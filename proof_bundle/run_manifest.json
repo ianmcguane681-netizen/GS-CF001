@@ -1,0 +1,70 @@
+{
+  "run_id": "RUN-ABEC4DE8FEE1",
+  "study_id": "GS-CF001-C",
+  "code_commit_hash": "9bb288cfad99e16425f98000a906f8ca1a35eeac",
+  "configuration_version": "GS-CF001-CONFIG-001",
+  "methodology_version": "PROVENA-EOS-METHOD-001",
+  "rule_versions": {
+    "normalisation": "NORM-CFPB-001",
+    "verification": "VER-CFPB-001",
+    "findings": "FIND-CFPB-001",
+    "opportunity_assessment": "OPP-ASSESS-001",
+    "proof_gates": "PG-001",
+    "evidence_ceiling": "CEILING-001",
+    "ai_governance": "AI-GOV-001"
+  },
+  "ai_model_configuration": "AI disabled; deterministic rules only.",
+  "source_access_method": "official_cfpb_search_api",
+  "retrieval_timestamps": [
+    "2026-07-14T22:42:54Z"
+  ],
+  "input_record_identifiers": [
+    "9999997",
+    "9999996",
+    "9999995"
+  ],
+  "artifact_checksums": {
+    "data/raw/cfpb_credit_reporting_raw_20260714T224254Z.json": "72ea1c1494fbf0d4b2cd30e8d7cf562c03f12d6e02bae6458ab58463a615cad2",
+    "data/exports/access_diagnostics_20260714T224254Z.json": "31d9222fd32e6dbc7cba390e3504fd25591ab6b42bd367d85538f5bcf8767f87",
+    "data/exports/source_reliability_20260714T224254Z.json": "52b26290ac40c0025d45a2e295015a90c85056df9b5ca995e1bb2d7b8895cefc",
+    "data/exports/analysis_artifacts_20260714T224254Z.json": "cf086af8c5cfe3e8848ae20067d7a435f679db7a4f87b10f774f8e24e569784b",
+    "data/exports/verification_artifacts_20260714T224254Z.json": "56fdddf7060cef1a64cc0b9fe2ebf24b1517491fac8c9262bb0ac578840d4f51",
+    "data/exports/proof_gate_results_20260714T224254Z.json": "04111766cecfe8eb0caa23c0d20d5bee8b63900c976e12e58f8f6f4ce5cdb5e7",
+    "data/exports/audit_trail_20260714T224254Z.json": "55ab8be8b057825cddf034ce8ad6a29176eb4317537e948fa354e924bf50f9f1",
+    "data/processed/gs_cf001_c_processed_20260714T224254Z.json": "208a1f4f9ef90b64dfc18ac8bcd6fbced3ccb3b46c85e77bed3c9d45a0c8843a",
+    "data/exports/gs_cf001_c_report.json": "208a1f4f9ef90b64dfc18ac8bcd6fbced3ccb3b46c85e77bed3c9d45a0c8843a",
+    "data/exports/gs_cf001_c_report.md": "528f9621399c9c620cc89f1a44a3ddadb95ce62452163f29dbd9a54b26553cdb"
+  },
+  "output_artifact_list": [
+    "data/raw/cfpb_credit_reporting_raw_20260714T224254Z.json",
+    "data/exports/access_diagnostics_20260714T224254Z.json",
+    "data/exports/source_reliability_20260714T224254Z.json",
+    "data/exports/analysis_artifacts_20260714T224254Z.json",
+    "data/exports/verification_artifacts_20260714T224254Z.json",
+    "data/exports/proof_gate_results_20260714T224254Z.json",
+    "data/exports/audit_trail_20260714T224254Z.json",
+    "data/processed/gs_cf001_c_processed_20260714T224254Z.json",
+    "data/exports/gs_cf001_c_report.json",
+    "data/exports/gs_cf001_c_report.md"
+  ],
+  "final_verdict": "CONTINUE RESEARCH",
+  "evidence_ceiling": "CONTINUE RESEARCH",
+  "errors": [],
+  "warnings": [
+    "budget owner",
+    "commercial urgency",
+    "confirmed buyer",
+    "counter-evidence review",
+    "economic impact",
+    "evidence across at least 2 companies",
+    "evidence required to remove CONTINUE RESEARCH ceiling",
+    "existing solution maturity research",
+    "independent regulatory, enforcement, judicial, audit, company, or examination evidence",
+    "market evidence",
+    "operational mechanism definition",
+    "procurement context",
+    "repeated mechanism across CFPB records",
+    "second independent source family",
+    "software-addressability evidence"
+  ]
+}

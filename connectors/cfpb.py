@@ -96,9 +96,12 @@ def _curl_fetch(url: str, headers: dict[str, str]) -> tuple[bytes, dict[str, str
 def _parse_curl_headers(header_path: Path) -> dict[str, str]:
     if not header_path.exists():
         return {}
+    # Path.read_text() applies universal-newline translation (\r\n -> \n) on read, so
+    # curl's literal \r\n\r\n block separators never survive to a naive split. Split on
+    # the post-translation blank-line boundary instead of the raw \r\n\r\n sequence.
     text = header_path.read_text(encoding="utf-8", errors="ignore")
     # -D captures headers for every redirect hop; keep only the final response block.
-    blocks = [block for block in text.split("\r\n\r\n") if block.strip()]
+    blocks = [block for block in text.split("\n\n") if block.strip()]
     last_block = blocks[-1] if blocks else ""
     parsed: dict[str, str] = {}
     for line in last_block.splitlines()[1:]:

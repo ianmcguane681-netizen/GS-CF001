@@ -56,6 +56,26 @@ manager; `requirements.txt` lists `pytest`.
   official CFPB CSV snapshot file if one is ever supplied, but the CLI
   (`core.pipeline`) doesn't expose a flag to select it yet — tracked as a
   follow-up task. Not currently needed since live access now works.
+- **Required system dependency: `curl`.** Any environment that runs the live
+  pipeline (`python -m core.pipeline`) must have the `curl` binary on `PATH`
+  for official CFPB retrieval to work. It is present by default in this
+  Replit environment and in the `ubuntu-latest` GitHub Actions runner. If
+  missing, `connectors.cfpb._require_curl()` raises a clear `RuntimeError`
+  instead of silently falling back to a blocked transport. Tests do not
+  require `curl` — they stub `subprocess.run`/`shutil.which`.
+
+## CI
+`.github/workflows/tests.yml` runs the full `pytest` suite on every push and
+pull request via GitHub Actions (`ubuntu-latest`, Python 3.12).
+
+## Proof bundle
+`proof_bundle/` contains a sanitised, independently-reviewable snapshot of one
+live GS-CF001-C run against genuine official CFPB data: run manifest, access
+diagnostic, source reliability assessment, the 3 preserved raw records and
+normalised candidates (free-text narrative redacted, complaint IDs and
+provenance preserved), verification artifacts, all 16 Proof Gate results,
+the Markdown/JSON reports, exact test results, and SHA-256 checksums. See
+`proof_bundle/README.md` for details and verification instructions.
 
 ## Project structure
 - `connectors/` — source connectors (CFPB) and access adapters (API, bulk
@@ -66,8 +86,11 @@ manager; `requirements.txt` lists `pytest`.
   stages per the methodology in README.md
 - `reports/` — Markdown/JSON report generation
 - `studies/` — study definitions (only GS-CF001-C is implemented)
-- `tests/` — pytest suite (13 tests, all passing)
+- `tests/` — pytest suite (22 tests, all passing), including focused
+  curl-transport tests in `tests/test_cfpb_transport.py`
 - `data/` — generated run artifacts (gitignored per-file, directories kept)
+- `proof_bundle/` — sanitised, committed proof bundle (see above)
+- `.github/workflows/tests.yml` — CI test workflow
 
 ## User preferences
 None recorded yet.

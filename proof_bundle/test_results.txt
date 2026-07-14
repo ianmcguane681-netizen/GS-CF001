@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /home/runner/workspace
+collected 22 items
+
+tests/test_cfpb_connector.py ..                                          [  9%]
+tests/test_cfpb_transport.py .........                                   [ 50%]
+tests/test_domain_models.py .                                            [ 54%]
+tests/test_findings.py ..                                                [ 63%]
+tests/test_normalization.py ..                                           [ 72%]
+tests/test_opportunity_and_proof_gates.py ...                            [ 86%]
+tests/test_pipeline.py .                                                 [ 90%]
+tests/test_verification.py ..                                            [100%]
+
+============================== 22 passed in 0.11s ==============================
+
+Command: python -m pytest -q -v
+Captured at: 2026-07-14T22:43:59Z
+Commit under test: 9bb288cfad99e16425f98000a906f8ca1a35eeac (subsequent commit adds this proof bundle)
