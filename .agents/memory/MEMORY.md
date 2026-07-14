@@ -1,0 +1,1 @@
+- [CFPB/Akamai transport fingerprinting](cfpb-akamai-transport-fingerprinting.md) — curl succeeds where Python urllib/requests get 403/hang (TLS fingerprinting); also CFPB API's format=json&no_aggs=true silently ignores size/product filters.

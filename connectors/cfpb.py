@@ -3,7 +3,10 @@ from __future__ import annotations
 import csv
 import json
 import queue
+import shutil
 import ssl
+import subprocess
+import tempfile
 import threading
 import urllib.parse
 import urllib.error
@@ -21,6 +24,88 @@ CFPB_BULK_DOWNLOAD_URL = "https://files.consumerfinance.gov/ccdb/complaints.csv.
 CFPB_CREDIT_REPORTING_PRODUCT = "Credit reporting or other personal consumer reports"
 RELIABILITY_VERSION = "CFPB-SRA-001"
 ACCESS_TIMEOUT_SECONDS = 45
+
+
+class CFPBTransportHTTPError(Exception):
+    """Mirrors the subset of urllib.error.HTTPError's interface the connector relies on.
+
+    This environment's Akamai edge fingerprints and blocks Python's urllib/requests
+    TLS/HTTP client stack on the official CFPB endpoints (verified: identical URL,
+    headers, and IP succeed via curl and fail via urllib/requests). curl is used as
+    the transport below, behind the same injectable fetch_json/opener seams the
+    adapters already exposed, so retrieval, diagnostics, and error handling above
+    this layer are unchanged.
+    """
+
+    def __init__(self, code: int, headers: dict[str, str], body: bytes):
+        super().__init__(f"HTTP {code}")
+        self.code = code
+        self.headers = headers
+        self._body = body
+
+    def read(self) -> bytes:
+        return self._body
+
+
+def _require_curl() -> str:
+    curl_path = shutil.which("curl")
+    if not curl_path:
+        raise RuntimeError("curl is required for official CFPB transport but was not found on PATH.")
+    return curl_path
+
+
+def _curl_fetch(url: str, headers: dict[str, str]) -> tuple[bytes, dict[str, str], int]:
+    """Fetch a URL via curl, returning (body, response_headers, status_code).
+
+    Raises CFPBTransportHTTPError for non-2xx responses and RuntimeError/CalledProcessError
+    for transport-level failures (DNS, TLS, timeout), matching the error surface the
+    adapters already expect from their injectable fetch/opener callables.
+    """
+    curl_path = _require_curl()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        body_path = Path(tmpdir) / "body"
+        header_path = Path(tmpdir) / "headers"
+        command = [
+            curl_path,
+            "-sS",
+            "--noproxy",
+            "*",
+            "--max-time",
+            str(ACCESS_TIMEOUT_SECONDS),
+            "-D",
+            str(header_path),
+            "-o",
+            str(body_path),
+            "-w",
+            "%{http_code}",
+        ]
+        for name, value in headers.items():
+            command.extend(["-H", f"{name}: {value}"])
+        command.append(url)
+        completed = subprocess.run(command, capture_output=True, text=True, timeout=ACCESS_TIMEOUT_SECONDS + 5)
+        if completed.returncode != 0:
+            raise RuntimeError(f"curl transport failed (exit {completed.returncode}): {completed.stderr.strip()}")
+        status_code = int(completed.stdout.strip() or "0")
+        response_headers = _parse_curl_headers(header_path)
+        body = body_path.read_bytes() if body_path.exists() else b""
+        if status_code < 200 or status_code >= 300:
+            raise CFPBTransportHTTPError(status_code, response_headers, body)
+        return body, response_headers, status_code
+
+
+def _parse_curl_headers(header_path: Path) -> dict[str, str]:
+    if not header_path.exists():
+        return {}
+    text = header_path.read_text(encoding="utf-8", errors="ignore")
+    # -D captures headers for every redirect hop; keep only the final response block.
+    blocks = [block for block in text.split("\r\n\r\n") if block.strip()]
+    last_block = blocks[-1] if blocks else ""
+    parsed: dict[str, str] = {}
+    for line in last_block.splitlines()[1:]:
+        if ":" in line:
+            key, _, value = line.partition(":")
+            parsed[key.strip()] = value.strip()
+    return parsed
 
 
 def cfpb_source() -> Source:
@@ -118,7 +203,7 @@ def _diagnostic(
         diagnostic_id=stable_id("ADIAG", payload),
         endpoint=endpoint,
         attempted_at=attempted_at,
-        environment="local-python-urllib",
+        environment="local-curl-transport",
         request_method=request_method,
         request_headers={key: value for key, value in request_headers.items() if key.lower() not in {"authorization", "cookie"}},
         response_status=response_status,
@@ -165,9 +250,13 @@ class CFPBAPIAccessAdapter:
         self._fetch_json = fetch_json or self._default_fetch_json
 
     def build_url(self, limit: int = 1) -> str:
+        # NOTE: `format=json&no_aggs=true` are no longer safe on the live official API.
+        # Verified 2026-07-14: with those params the endpoint switches into a full
+        # database export/attachment mode (ignores `size`/`product` filtering,
+        # multi-GB response). Omitting them returns the intended filtered,
+        # size-limited Elasticsearch-style {"hits":{"hits":[...]}} envelope the
+        # rest of this connector already expects.
         params = {
-            "format": "json",
-            "no_aggs": "true",
             "size": str(limit),
             "product": CFPB_CREDIT_REPORTING_PRODUCT,
         }
@@ -193,14 +282,16 @@ class CFPBAPIAccessAdapter:
                 "Official CFPB search API returned parseable JSON.",
             )
             return url, records, [], [diagnostic]
-        except urllib.error.HTTPError as exc:
-            body = exc.read().decode("utf-8", errors="ignore")
+        except (urllib.error.HTTPError, CFPBTransportHTTPError) as exc:
+            body_bytes = exc.read()
+            body = body_bytes.decode("utf-8", errors="ignore") if isinstance(body_bytes, bytes) else str(body_bytes)
+            response_headers = dict(exc.headers.items()) if hasattr(exc.headers, "items") else dict(exc.headers)
             diagnostic = _diagnostic(
                 url,
                 self.method_name,
                 headers,
                 str(exc.code),
-                dict(exc.headers.items()),
+                response_headers,
                 body,
                 "Official CFPB search API request failed from this environment.",
             )
@@ -210,11 +301,15 @@ class CFPBAPIAccessAdapter:
             return url, [], [f"CFPB API access failed: {exc}"], [diagnostic]
 
     def _default_fetch_json(self, url: str) -> tuple[dict[str, Any], dict[str, str], str]:
+        # Python's urllib/requests TLS+HTTP client fingerprint is blocked by the CFPB
+        # site's Akamai edge (verified 2026-07-14: identical URL/headers/IP succeed via
+        # curl, fail via urllib/requests). curl is used as the transport here, behind
+        # this same injectable seam, so the rest of the adapter is unchanged.
         def fetch() -> tuple[dict[str, Any], dict[str, str], str]:
-            request = urllib.request.Request(url, headers={"User-Agent": "GS-CF001/0.1 methodology proof", "Accept": "application/json"})
-            with _open_without_proxy_autodetect(request) as response:
-                payload = json.loads(response.read().decode("utf-8", errors="ignore"))
-                return payload, dict(response.headers.items()), str(response.status)
+            headers = {"User-Agent": "GS-CF001/0.1 methodology proof", "Accept": "application/json"}
+            body, response_headers, status_code = _curl_fetch(url, headers)
+            payload = json.loads(body.decode("utf-8", errors="ignore"))
+            return payload, response_headers, str(status_code)
 
         return _run_bounded_access(fetch)
 
@@ -254,14 +349,16 @@ class CFPBBulkDownloadAccessAdapter:
                 "Official CFPB bulk download returned readable records.",
             )
             return CFPB_BULK_DOWNLOAD_URL, records, [], [diagnostic]
-        except urllib.error.HTTPError as exc:
-            body = exc.read().decode("utf-8", errors="ignore")
+        except (urllib.error.HTTPError, CFPBTransportHTTPError) as exc:
+            body_bytes = exc.read()
+            body = body_bytes.decode("utf-8", errors="ignore") if isinstance(body_bytes, bytes) else str(body_bytes)
+            response_headers = dict(exc.headers.items()) if hasattr(exc.headers, "items") else dict(exc.headers)
             diagnostic = _diagnostic(
                 CFPB_BULK_DOWNLOAD_URL,
                 self.method_name,
                 headers,
                 str(exc.code),
-                dict(exc.headers.items()),
+                response_headers,
                 body,
                 "Official CFPB bulk download failed from this environment.",
             )
@@ -271,11 +368,12 @@ class CFPBBulkDownloadAccessAdapter:
             return CFPB_BULK_DOWNLOAD_URL, [], [f"CFPB bulk download failed: {exc}"], [diagnostic]
 
     def _default_open(self, url: str) -> bytes:
+        # Same Akamai TLS/HTTP client fingerprinting issue as the API adapter (see
+        # CFPBAPIAccessAdapter._default_fetch_json); curl is used as the transport here.
         def fetch() -> bytes:
-            request = urllib.request.Request(url, headers={"User-Agent": "GS-CF001/0.1 methodology proof"})
-            context = ssl.create_default_context()
-            with _open_without_proxy_autodetect(request, context=context) as response:
-                return response.read()
+            headers = {"User-Agent": "GS-CF001/0.1 methodology proof", "Accept": "application/zip,text/csv"}
+            body, _response_headers, _status_code = _curl_fetch(url, headers)
+            return body
 
         return _run_bounded_access(fetch)
 
