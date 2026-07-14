@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from core.evidence_states import EVIDENCE_CANDIDATE, NORMALISED_RECORD, SOURCE_RECORD, transition
 from core.ids import stable_id
 from core.models import EvidenceCandidate, Source, Study
 
@@ -34,6 +35,28 @@ def normalise_cfpb_record(raw_record: dict[str, Any], source: Source, study: Stu
         "Normalised CFPB fields into source-agnostic EvidenceCandidate",
     ]
     candidate_id = stable_id("CAN", {"source": source.source_id, "study": study.study_id, "complaint_id": complaint_id, "raw": raw_record})
+    transitions = [
+        transition(
+            complaint_id or candidate_id,
+            SOURCE_RECORD,
+            NORMALISED_RECORD,
+            "CFPB field normalisation v1",
+            [complaint_id],
+            "Normalised CFPB raw record fields.",
+            1.0,
+            ["Normalisation does not verify complaint truth."],
+        ).to_dict(),
+        transition(
+            candidate_id,
+            NORMALISED_RECORD,
+            EVIDENCE_CANDIDATE,
+            "GS-CF001-C product mapping rule v1",
+            [complaint_id],
+            "Mapped to Credit Reporting Disputes evidence candidate.",
+            1.0,
+            ["Product mapping is deterministic but source record fields may be incomplete."],
+        ).to_dict(),
+    ]
     return EvidenceCandidate(
         candidate_id=candidate_id,
         source=source,
@@ -45,6 +68,7 @@ def normalise_cfpb_record(raw_record: dict[str, Any], source: Source, study: Stu
         parsed_fields=parsed_fields,
         study_mapping_reason="CFPB product maps to Credit Reporting Disputes.",
         traceability=traceability,
+        state_transitions=transitions,
     )
 
 
@@ -55,4 +79,3 @@ def normalise_cfpb_records(raw_records: list[dict[str, Any]], source: Source, st
         if candidate:
             candidates.append(candidate)
     return candidates
-

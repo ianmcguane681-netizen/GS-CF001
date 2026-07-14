@@ -45,14 +45,16 @@ def test_opportunity_assessment_is_separate_and_remains_hypothesis_only():
 def test_proof_gates_explain_status_confidence_missing_evidence_and_next_action():
     _verified, _findings, _opportunities, gates, verdict = pipeline_objects()
 
-    evidence_quality = gates[0]
-    assert evidence_quality.gate_name == "Evidence quality"
-    assert evidence_quality.status == "WEAK"
-    assert evidence_quality.evidence_ids
-    assert evidence_quality.confidence > 0
-    assert evidence_quality.missing_evidence
+    evidence_quality = [gate for gate in gates if gate.gate_id == "PG-01"][0]
+    ceiling_gate = [gate for gate in gates if gate.gate_id == "PG-16"][0]
+    assert evidence_quality.gate_name == "Source Authenticity"
+    assert evidence_quality.status in {"PASS", "FAIL"}
+    assert evidence_quality.threshold
+    assert evidence_quality.observed_value
     assert evidence_quality.recommended_next_action
+    assert ceiling_gate.constrains_max_verdict is True
     assert verdict.outcome == "CONTINUE RESEARCH"
+    assert verdict.evidence_ceiling == "CONTINUE RESEARCH"
 
 
 def test_markdown_report_links_statements_to_evidence_ids():
@@ -64,4 +66,3 @@ def test_markdown_report_links_statements_to_evidence_ids():
     assert verified[0].evidence_id in markdown
     assert findings[0].finding_id in markdown
     assert opportunities[0].opportunity_id in markdown
-

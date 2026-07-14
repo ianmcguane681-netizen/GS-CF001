@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import Counter
 
+from core.evidence_states import CFPB_LIMITED_EVIDENCE, EVIDENCE_CANDIDATE, VERIFIED_WITHIN_SOURCE, transition
 from core.ids import stable_id
 from core.models import EvidenceCandidate, VerifiedEvidence
 from verification.rules import OPERATIONAL_TERMS, SOFTWARE_ADDRESSABLE_TERMS, contains_any, detect_mechanism
@@ -38,6 +39,17 @@ def verify_candidate(candidate: EvidenceCandidate, repeated_mechanisms: set[str]
 
     status = "verified_candidate" if operational and traceable and software_addressable else "rejected_candidate"
     evidence_id = stable_id("EVD", {"candidate": candidate.candidate_id, "mechanism": mechanism})
+    new_state = CFPB_LIMITED_EVIDENCE if candidate.source.source_family == "CFPB complaints" and status == "verified_candidate" else VERIFIED_WITHIN_SOURCE
+    state_transition = transition(
+        evidence_id,
+        EVIDENCE_CANDIDATE,
+        new_state,
+        "Verification V1 deterministic classification",
+        [candidate.candidate_id],
+        status,
+        0.75 if status == "verified_candidate" else 0.35,
+        ["CFPB data alone cannot independently corroborate the underlying allegation."],
+    )
     reasoning = [
         f"Verified candidate {candidate.candidate_id} for operational content.",
         f"Mechanism classified as {mechanism}.",
@@ -60,6 +72,21 @@ def verify_candidate(candidate: EvidenceCandidate, repeated_mechanisms: set[str]
         reasoning_chain=reasoning,
         supporting_candidate_ids=[candidate.candidate_id],
         missing_evidence=missing,
+        evidence_state=new_state,
+        source_family=candidate.source.source_family,
+        product=str(candidate.parsed_fields.get("product") or ""),
+        issue=str(candidate.parsed_fields.get("issue") or ""),
+        date_received=str(candidate.parsed_fields.get("date_received") or ""),
+        source_limitations=[
+            "CFPB consumer narratives are not independently verified.",
+            "CFPB complaint repetition does not prove operational failure.",
+            "CFPB records do not establish market prevalence.",
+        ],
+        alternative_explanations=[
+            "Complaint may reflect misunderstanding, missing documentation, or company-specific handling.",
+            "Repeated complaint terms may reflect CFPB taxonomy rather than a common root cause.",
+        ],
+        state_transitions=[state_transition.to_dict()],
     )
 
 

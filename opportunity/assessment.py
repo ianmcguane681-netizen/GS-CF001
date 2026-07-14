@@ -38,6 +38,13 @@ def assess_finding(finding: Finding) -> OpportunityHypothesis:
         component_reusability="plausible" if finding.evidence_count >= 3 else "unproven",
         market_saturation="unknown",
         implementation_leverage="unknown",
+        user_clarity="plausible operations/compliance users, unverified",
+        workflow_owner="unknown; likely disputes, compliance, servicing, or customer operations",
+        regulatory_exposure="possible but unverified from CFPB complaints alone",
+        operational_cost="unknown",
+        integration_burden="unknown",
+        cross_company_applicability="plausible" if finding.company_count >= 2 else "unproven",
+        non_software_alternatives="process change, policy change, staffing, vendor tools, or training may address the mechanism",
         evidence_ids=finding.evidence_ids,
         missing_evidence=missing,
         reasoning_chain=reasoning,
@@ -46,4 +53,3 @@ def assess_finding(finding: Finding) -> OpportunityHypothesis:
 
 def assess_findings(findings: list[Finding]) -> list[OpportunityHypothesis]:
     return [assess_finding(finding) for finding in findings]
-

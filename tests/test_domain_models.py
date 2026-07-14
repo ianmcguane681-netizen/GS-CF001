@@ -61,15 +61,46 @@ def test_domain_model_is_source_agnostic():
         "possible",
         "unknown",
         "unknown",
-        finding.evidence_ids,
-        ["buyer evidence"],
-        ["assessed after finding"],
+        evidence_ids=finding.evidence_ids,
+        missing_evidence=["buyer evidence"],
+        reasoning_chain=["assessed after finding"],
     )
 
-    gate = ProofGateResult("Evidence quality", "WEAK", ["EVD-1"], 0.35, ["corroboration"], "Continue research.", ["checked evidence"])
-    verdict = StudyVerdict("VER-1", study.study_id, "CONTINUE RESEARCH", [gate], ["EVD-1"], ["FND-1"], ["OPP-1"], ["corroboration"], ["gates not satisfied"])
+    gate = ProofGateResult(
+        "PG-01",
+        "Evidence quality",
+        "WEAK",
+        "independent corroboration required",
+        "CFPB only",
+        ["EVD-1"],
+        ["EVD-1"],
+        [],
+        0.35,
+        ["corroboration"],
+        "Continue research.",
+        True,
+        ["checked evidence"],
+    )
+    verdict = StudyVerdict(
+        "VER-1",
+        study.study_id,
+        "CONTINUE RESEARCH",
+        "BUILD CANDIDATE",
+        "CONTINUE RESEARCH",
+        "CONTINUE RESEARCH",
+        "Only one source family.",
+        ["independent source"],
+        1,
+        [gate],
+        ["EVD-1"],
+        ["FND-1"],
+        ["OPP-1"],
+        ["corroboration"],
+        ["gates not satisfied"],
+    )
 
     assert candidate.source.source_id == "SRC-1"
     assert opportunity.finding_id == finding.finding_id
     assert verdict.outcome == "CONTINUE RESEARCH"
+    assert verdict.evidence_ceiling == "CONTINUE RESEARCH"
     assert verdict.proof_gates[0].missing_evidence == ["corroboration"]
