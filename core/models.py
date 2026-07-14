@@ -64,6 +64,7 @@ class VerifiedEvidence:
     candidate_id: str
     study_id: str
     source_record_id: str
+    company_name: str
     verification_status: str
     operational: bool
     traceable: bool
@@ -171,4 +172,3 @@ class PipelineResult:
             "verdict": self.verdict.to_dict() if self.verdict else None,
             "artifacts": self.artifacts,
         }
-

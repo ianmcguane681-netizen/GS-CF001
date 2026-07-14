@@ -23,6 +23,7 @@ def test_domain_model_is_source_agnostic():
         candidate.candidate_id,
         study.study_id,
         candidate.source_record_id,
+        "Example Company",
         "verified",
         True,
         True,
@@ -72,4 +73,3 @@ def test_domain_model_is_source_agnostic():
     assert opportunity.finding_id == finding.finding_id
     assert verdict.outcome == "CONTINUE RESEARCH"
     assert verdict.proof_gates[0].missing_evidence == ["corroboration"]
-
