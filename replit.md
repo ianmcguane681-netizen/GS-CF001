@@ -20,6 +20,10 @@ python -m pytest -q
 python -m core.pipeline --limit 3
 ```
 
+The `Run Tests & Pipeline` workflow runs both of the above in sequence
+on demand (it's a one-shot CLI run, not a persistent server — there's no
+web UI to preview since this project is a research pipeline, not an app).
+
 Dependencies (`pytest`, `requests`) are installed via Replit's Python package
 manager; `requirements.txt` lists `pytest`.
 
@@ -33,12 +37,14 @@ manager; `requirements.txt` lists `pytest`.
   normalisation instead of fabricating placeholder evidence (see
   `data/exports/access_diagnostics_*.json` and the resulting `CONTINUE
   RESEARCH`/`REJECT` verdict). No code changes are needed to "fix" this —
-  it reflects the intended fail-closed design.
-- A third adapter, `CFPBLocalOfficialSnapshotAdapter`, can process a local
+  it reflects the intended fail-closed design. All three official access
+  methods (Search API, bulk download, local official snapshot) have been
+  exercised manually and each correctly produced its own diagnostic when
+  unavailable.
+- The third adapter, `CFPBLocalOfficialSnapshotAdapter`, can process a local
   official CFPB CSV snapshot file if one is ever supplied, bypassing the
-  network access issue.
-- No workflow is configured since this project has no long-running server —
-  it's invoked on demand via the commands above.
+  network access issue, but the CLI (`core.pipeline`) doesn't expose a flag
+  to select it yet — tracked as a follow-up task.
 
 ## Project structure
 - `connectors/` — source connectors (CFPB) and access adapters (API, bulk
