@@ -11,7 +11,7 @@ from core.manifest import build_run_manifest
 from core.models import PipelineResult
 from core.normalization import normalise_cfpb_records
 from core.run_index import append_run_index, build_run_index_entry
-from core.storage import run_timestamp, write_json_artifact
+from core.storage import file_checksum, run_timestamp, write_json_artifact
 from findings.engine import generate_findings
 from opportunity.assessment import assess_findings
 from proof_gates.evaluator import evaluate_proof_gates, make_verdict
@@ -173,6 +173,11 @@ def run_credit_reporting_proof(
     )
     write_json_report(result, base / "exports" / f"gs_cf001_c_report_{stamp}.json")
     write_markdown_report(verdict, verified, findings, opportunities, base / "exports" / f"gs_cf001_c_report_{stamp}.md", source_reliability, diagnostics, manifest)
+    # Compute checksums from the final on-disk state of every artifact — AFTER
+    # the second report writes above, which overwrite the preliminary versions
+    # that build_run_manifest checksummed. Using manifest.artifact_checksums
+    # here would record stale pre-overwrite hashes for the report files.
+    final_checksums = {path: file_checksum(path) for path in artifacts.values()}
     append_run_index(
         build_run_index_entry(
             run_id=manifest.run_id,
@@ -182,7 +187,7 @@ def run_credit_reporting_proof(
             evidence_ceiling=verdict.evidence_ceiling,
             source_access_method=retrieval.access_method,
             artifact_paths=artifacts,
-            artifact_checksums=manifest.artifact_checksums,
+            artifact_checksums=final_checksums,
         ),
         path=base / "exports" / "run_index.json",
     )

@@ -1,0 +1,52 @@
+{
+  "archive_generated_at": "2026-07-15T18:48:32+00:00",
+  "run_id": "RUN-8FFFBA72404A",
+  "study_id": "GS-CF001-C",
+  "run_timestamp": "20260715T184824501724Z",
+  "verdict": "CONTINUE RESEARCH",
+  "evidence_ceiling": "CONTINUE RESEARCH",
+  "source_access_method": "official_cfpb_search_api",
+  "archive_files": {
+    "raw_records_redacted.json": "a83587792fb71727d0599358acceb05d9e2f3a2dbb9891559b0d168becfb6137",
+    "normalised_candidates_redacted.json": "c60ae30dadc05a907a4f536d9eda52b4b5be945186c2929f035dddf9822786bf",
+    "report.json": "afb900d68dc8b897be49ab66ad8a91318ae15d6e8bfa78c4d1f8349943d0eac7",
+    "run_manifest.json": "a5dce83a79a9a217f3482ca49e87e946960ccbdaf2a83ad0c546eca4cb2c05ad",
+    "access_diagnostics.json": "4f7079deeac0ee8044f2ae3a599ec49028b113dfa2b5b9b83ca495b5a3b80417",
+    "source_reliability_assessment.json": "9b635f942a9f8498be36841b09176bfda2f6d53fa8d6a5e9be0104f2ea982ece",
+    "verification_artifacts.json": "c92fd33ac34cf7411203e64ba3382ae5d2d678202ea7794fa662755004c506ab",
+    "proof_gate_results.json": "7286f083d8f3d1f7f572696e06282983a16a75c976f5697aac0718d56aa28774",
+    "audit_trail.json": "a58777635e082b311abb6f07959cfe6414dea82fee27502d6aabaadbba8fd0ed",
+    "findings.json": "809a53e1731fc9c574fba522c227326ab19331882bf66e1b782e32114629515b",
+    "opportunities.json": "8805645aa12e91ae45562f197cd1c83324fe6f98722149e9f835cf82fc4b401e",
+    "report.md": "db93978d22a72a6a2a5cdb69bd3ea8f052081742f7aa5e21b1cf32b8ffcd5cfc",
+    "test_results.txt": "4273bc4bda2213ed932446b7429d8f1c24edb429632e3cb5f0b17ebef2f3842b"
+  },
+  "source_artifact_paths": {
+    "raw": "data/raw/cfpb_credit_reporting_raw_20260715T184824501724Z.json",
+    "access_diagnostics": "data/exports/access_diagnostics_20260715T184824501724Z.json",
+    "source_reliability": "data/exports/source_reliability_20260715T184824501724Z.json",
+    "analysis_artifacts": "data/exports/analysis_artifacts_20260715T184824501724Z.json",
+    "verification_artifacts": "data/exports/verification_artifacts_20260715T184824501724Z.json",
+    "proof_gate_results": "data/exports/proof_gate_results_20260715T184824501724Z.json",
+    "audit_trail": "data/exports/audit_trail_20260715T184824501724Z.json",
+    "normalised_candidates": "data/exports/normalised_candidates_20260715T184824501724Z.json",
+    "findings": "data/exports/findings_20260715T184824501724Z.json",
+    "opportunities": "data/exports/opportunities_20260715T184824501724Z.json",
+    "processed": "data/processed/gs_cf001_c_processed_20260715T184824501724Z.json",
+    "report_json": "data/exports/gs_cf001_c_report_20260715T184824501724Z.json",
+    "report_markdown": "data/exports/gs_cf001_c_report_20260715T184824501724Z.md",
+    "run_manifest": "data/exports/run_manifest_20260715T184824501724Z.json"
+  },
+  "redaction_policy": {
+    "redacted_fields": [
+      "complaint_what_happened",
+      "narrative"
+    ],
+    "redacted_artifact_keys": [
+      "normalised_candidates",
+      "raw",
+      "report_json"
+    ],
+    "redaction_marker": "[REDACTED: free-text consumer narrative — not preserved in archive]"
+  }
+}

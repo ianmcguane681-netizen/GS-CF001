@@ -1,0 +1,155 @@
+[
+  {
+    "transition_id": "TRN-1751C751D981",
+    "evidence_id": "9999997",
+    "previous_state": "SOURCE_RECORD",
+    "new_state": "NORMALISED_RECORD",
+    "rule_or_process": "CFPB field normalisation v1",
+    "timestamp": "2026-07-15T18:48:24Z",
+    "inputs": [
+      "9999997"
+    ],
+    "output": "Normalised CFPB raw record fields.",
+    "confidence": 1.0,
+    "limitations": [
+      "Normalisation does not verify complaint truth."
+    ],
+    "actor_type": "deterministic rule"
+  },
+  {
+    "transition_id": "TRN-0D7251775CBA",
+    "evidence_id": "CAN-C68BA9E12F1B",
+    "previous_state": "NORMALISED_RECORD",
+    "new_state": "EVIDENCE_CANDIDATE",
+    "rule_or_process": "GS-CF001-C product mapping rule v1",
+    "timestamp": "2026-07-15T18:48:24Z",
+    "inputs": [
+      "9999997"
+    ],
+    "output": "Mapped to Credit Reporting Disputes evidence candidate.",
+    "confidence": 1.0,
+    "limitations": [
+      "Product mapping is deterministic but source record fields may be incomplete."
+    ],
+    "actor_type": "deterministic rule"
+  },
+  {
+    "transition_id": "TRN-07F9EAE13CB6",
+    "evidence_id": "9999996",
+    "previous_state": "SOURCE_RECORD",
+    "new_state": "NORMALISED_RECORD",
+    "rule_or_process": "CFPB field normalisation v1",
+    "timestamp": "2026-07-15T18:48:24Z",
+    "inputs": [
+      "9999996"
+    ],
+    "output": "Normalised CFPB raw record fields.",
+    "confidence": 1.0,
+    "limitations": [
+      "Normalisation does not verify complaint truth."
+    ],
+    "actor_type": "deterministic rule"
+  },
+  {
+    "transition_id": "TRN-B3F8F9CABB2F",
+    "evidence_id": "CAN-4F467A20A97B",
+    "previous_state": "NORMALISED_RECORD",
+    "new_state": "EVIDENCE_CANDIDATE",
+    "rule_or_process": "GS-CF001-C product mapping rule v1",
+    "timestamp": "2026-07-15T18:48:24Z",
+    "inputs": [
+      "9999996"
+    ],
+    "output": "Mapped to Credit Reporting Disputes evidence candidate.",
+    "confidence": 1.0,
+    "limitations": [
+      "Product mapping is deterministic but source record fields may be incomplete."
+    ],
+    "actor_type": "deterministic rule"
+  },
+  {
+    "transition_id": "TRN-3FBA848883F6",
+    "evidence_id": "9999995",
+    "previous_state": "SOURCE_RECORD",
+    "new_state": "NORMALISED_RECORD",
+    "rule_or_process": "CFPB field normalisation v1",
+    "timestamp": "2026-07-15T18:48:24Z",
+    "inputs": [
+      "9999995"
+    ],
+    "output": "Normalised CFPB raw record fields.",
+    "confidence": 1.0,
+    "limitations": [
+      "Normalisation does not verify complaint truth."
+    ],
+    "actor_type": "deterministic rule"
+  },
+  {
+    "transition_id": "TRN-B35A48E301E3",
+    "evidence_id": "CAN-BF46989928F6",
+    "previous_state": "NORMALISED_RECORD",
+    "new_state": "EVIDENCE_CANDIDATE",
+    "rule_or_process": "GS-CF001-C product mapping rule v1",
+    "timestamp": "2026-07-15T18:48:24Z",
+    "inputs": [
+      "9999995"
+    ],
+    "output": "Mapped to Credit Reporting Disputes evidence candidate.",
+    "confidence": 1.0,
+    "limitations": [
+      "Product mapping is deterministic but source record fields may be incomplete."
+    ],
+    "actor_type": "deterministic rule"
+  },
+  {
+    "transition_id": "TRN-057EBE737993",
+    "evidence_id": "EVD-6959D7C346B0",
+    "previous_state": "EVIDENCE_CANDIDATE",
+    "new_state": "VERIFIED_WITHIN_SOURCE",
+    "rule_or_process": "Verification V1 deterministic classification",
+    "timestamp": "2026-07-15T18:48:24Z",
+    "inputs": [
+      "CAN-C68BA9E12F1B"
+    ],
+    "output": "rejected_candidate",
+    "confidence": 0.35,
+    "limitations": [
+      "CFPB data alone cannot independently corroborate the underlying allegation."
+    ],
+    "actor_type": "deterministic rule"
+  },
+  {
+    "transition_id": "TRN-5D58071E72E8",
+    "evidence_id": "EVD-9D5A9F36BDC0",
+    "previous_state": "EVIDENCE_CANDIDATE",
+    "new_state": "VERIFIED_WITHIN_SOURCE",
+    "rule_or_process": "Verification V1 deterministic classification",
+    "timestamp": "2026-07-15T18:48:24Z",
+    "inputs": [
+      "CAN-4F467A20A97B"
+    ],
+    "output": "rejected_candidate",
+    "confidence": 0.35,
+    "limitations": [
+      "CFPB data alone cannot independently corroborate the underlying allegation."
+    ],
+    "actor_type": "deterministic rule"
+  },
+  {
+    "transition_id": "TRN-B7A76587E944",
+    "evidence_id": "EVD-DEA3CB0AE7C6",
+    "previous_state": "EVIDENCE_CANDIDATE",
+    "new_state": "CFPB_LIMITED_EVIDENCE",
+    "rule_or_process": "Verification V1 deterministic classification",
+    "timestamp": "2026-07-15T18:48:24Z",
+    "inputs": [
+      "CAN-BF46989928F6"
+    ],
+    "output": "verified_candidate",
+    "confidence": 0.75,
+    "limitations": [
+      "CFPB data alone cannot independently corroborate the underlying allegation."
+    ],
+    "actor_type": "deterministic rule"
+  }
+]

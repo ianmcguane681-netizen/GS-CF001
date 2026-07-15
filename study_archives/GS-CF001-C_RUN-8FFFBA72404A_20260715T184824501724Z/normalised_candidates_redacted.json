@@ -1,0 +1,320 @@
+[
+  {
+    "candidate_id": "CAN-C68BA9E12F1B",
+    "source": {
+      "source_id": "CFPB-CCD-001",
+      "name": "CFPB Consumer Complaint Database",
+      "source_type": "public_consumer_complaint_database",
+      "base_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "jurisdiction": "United States",
+      "role": "discovery",
+      "source_family": "CFPB complaints",
+      "notes": "Discovery source only. Complaints must be normalised and verified before findings."
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "9999997",
+    "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+    "retrieved_at": "2026-07-15T18:48:24Z",
+    "raw_record": {
+      "product": "Credit reporting or other personal consumer reports",
+      "complaint_what_happened": "",
+      "date_sent_to_company": "2024-09-03T22:42:56.000Z",
+      "issue": "Improper use of your report",
+      "sub_product": "Credit reporting",
+      "zip_code": "33060",
+      "tags": null,
+      "has_narrative": false,
+      "complaint_id": "9999997",
+      "timely": "Yes",
+      "company_response": "Closed with non-monetary relief",
+      "submitted_via": "Web",
+      "company": "TRANSUNION INTERMEDIATE HOLDINGS, INC.",
+      "date_received": "2024-09-03T22:42:53.000Z",
+      "state": "FL",
+      "company_public_response": "Company has responded to the consumer and the CFPB and chooses not to provide a public response",
+      "sub_issue": "Reporting company used your report improperly",
+      "_cfpb_hit_id": "9999997",
+      "_source_record_id": "9999997",
+      "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "_source_name": "CFPB Consumer Complaint Database",
+      "_access_method": "official_cfpb_search_api",
+      "_retrieved_at": "2026-07-15T18:48:24Z"
+    },
+    "parsed_fields": {
+      "complaint_id": "9999997",
+      "product": "Credit reporting or other personal consumer reports",
+      "sub_product": "Credit reporting",
+      "issue": "Improper use of your report",
+      "sub_issue": "Reporting company used your report improperly",
+      "company": "TRANSUNION INTERMEDIATE HOLDINGS, INC.",
+      "state": "FL",
+      "date_received": "2024-09-03T22:42:53.000Z",
+      "submitted_via": "Web",
+      "company_response": "Closed with non-monetary relief",
+      "timely": "Yes",
+      "consumer_disputed": "",
+      "narrative": ""
+    },
+    "study_mapping_reason": "CFPB product maps to Credit Reporting Disputes.",
+    "traceability": [
+      "Retrieved raw CFPB record from https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "Mapped CFPB complaint 9999997 to GS-CF001-C",
+      "Normalised CFPB fields into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-1751C751D981",
+        "evidence_id": "9999997",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "CFPB field normalisation v1",
+        "timestamp": "2026-07-15T18:48:24Z",
+        "inputs": [
+          "9999997"
+        ],
+        "output": "Normalised CFPB raw record fields.",
+        "confidence": 1.0,
+        "limitations": [
+          "Normalisation does not verify complaint truth."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-0D7251775CBA",
+        "evidence_id": "CAN-C68BA9E12F1B",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C product mapping rule v1",
+        "timestamp": "2026-07-15T18:48:24Z",
+        "inputs": [
+          "9999997"
+        ],
+        "output": "Mapped to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "Product mapping is deterministic but source record fields may be incomplete."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  },
+  {
+    "candidate_id": "CAN-4F467A20A97B",
+    "source": {
+      "source_id": "CFPB-CCD-001",
+      "name": "CFPB Consumer Complaint Database",
+      "source_type": "public_consumer_complaint_database",
+      "base_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "jurisdiction": "United States",
+      "role": "discovery",
+      "source_family": "CFPB complaints",
+      "notes": "Discovery source only. Complaints must be normalised and verified before findings."
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "9999996",
+    "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+    "retrieved_at": "2026-07-15T18:48:24Z",
+    "raw_record": {
+      "product": "Credit reporting or other personal consumer reports",
+      "complaint_what_happened": "",
+      "date_sent_to_company": "2024-09-03T22:42:56.000Z",
+      "issue": "Improper use of your report",
+      "sub_product": "Credit reporting",
+      "zip_code": "33060",
+      "tags": null,
+      "has_narrative": false,
+      "complaint_id": "9999996",
+      "timely": "Yes",
+      "company_response": "Closed with non-monetary relief",
+      "submitted_via": "Web",
+      "company": "EQUIFAX, INC.",
+      "date_received": "2024-09-03T22:42:53.000Z",
+      "state": "FL",
+      "company_public_response": null,
+      "sub_issue": "Reporting company used your report improperly",
+      "_cfpb_hit_id": "9999996",
+      "_source_record_id": "9999996",
+      "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "_source_name": "CFPB Consumer Complaint Database",
+      "_access_method": "official_cfpb_search_api",
+      "_retrieved_at": "2026-07-15T18:48:24Z"
+    },
+    "parsed_fields": {
+      "complaint_id": "9999996",
+      "product": "Credit reporting or other personal consumer reports",
+      "sub_product": "Credit reporting",
+      "issue": "Improper use of your report",
+      "sub_issue": "Reporting company used your report improperly",
+      "company": "EQUIFAX, INC.",
+      "state": "FL",
+      "date_received": "2024-09-03T22:42:53.000Z",
+      "submitted_via": "Web",
+      "company_response": "Closed with non-monetary relief",
+      "timely": "Yes",
+      "consumer_disputed": "",
+      "narrative": ""
+    },
+    "study_mapping_reason": "CFPB product maps to Credit Reporting Disputes.",
+    "traceability": [
+      "Retrieved raw CFPB record from https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "Mapped CFPB complaint 9999996 to GS-CF001-C",
+      "Normalised CFPB fields into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-07F9EAE13CB6",
+        "evidence_id": "9999996",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "CFPB field normalisation v1",
+        "timestamp": "2026-07-15T18:48:24Z",
+        "inputs": [
+          "9999996"
+        ],
+        "output": "Normalised CFPB raw record fields.",
+        "confidence": 1.0,
+        "limitations": [
+          "Normalisation does not verify complaint truth."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-B3F8F9CABB2F",
+        "evidence_id": "CAN-4F467A20A97B",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C product mapping rule v1",
+        "timestamp": "2026-07-15T18:48:24Z",
+        "inputs": [
+          "9999996"
+        ],
+        "output": "Mapped to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "Product mapping is deterministic but source record fields may be incomplete."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  },
+  {
+    "candidate_id": "CAN-BF46989928F6",
+    "source": {
+      "source_id": "CFPB-CCD-001",
+      "name": "CFPB Consumer Complaint Database",
+      "source_type": "public_consumer_complaint_database",
+      "base_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "jurisdiction": "United States",
+      "role": "discovery",
+      "source_family": "CFPB complaints",
+      "notes": "Discovery source only. Complaints must be normalised and verified before findings."
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "9999995",
+    "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+    "retrieved_at": "2026-07-15T18:48:24Z",
+    "raw_record": {
+      "product": "Credit reporting or other personal consumer reports",
+      "complaint_what_happened": "",
+      "date_sent_to_company": "2024-09-03T22:52:19.000Z",
+      "issue": "Problem with a company's investigation into an existing problem",
+      "sub_product": "Credit reporting",
+      "zip_code": "89014",
+      "tags": null,
+      "has_narrative": false,
+      "complaint_id": "9999995",
+      "timely": "Yes",
+      "company_response": "Closed with non-monetary relief",
+      "submitted_via": "Web",
+      "company": "EQUIFAX, INC.",
+      "date_received": "2024-09-03T22:41:36.000Z",
+      "state": "NV",
+      "company_public_response": null,
+      "sub_issue": "Their investigation did not fix an error on your report",
+      "_cfpb_hit_id": "9999995",
+      "_source_record_id": "9999995",
+      "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "_source_name": "CFPB Consumer Complaint Database",
+      "_access_method": "official_cfpb_search_api",
+      "_retrieved_at": "2026-07-15T18:48:24Z"
+    },
+    "parsed_fields": {
+      "complaint_id": "9999995",
+      "product": "Credit reporting or other personal consumer reports",
+      "sub_product": "Credit reporting",
+      "issue": "Problem with a company's investigation into an existing problem",
+      "sub_issue": "Their investigation did not fix an error on your report",
+      "company": "EQUIFAX, INC.",
+      "state": "NV",
+      "date_received": "2024-09-03T22:41:36.000Z",
+      "submitted_via": "Web",
+      "company_response": "Closed with non-monetary relief",
+      "timely": "Yes",
+      "consumer_disputed": "",
+      "narrative": ""
+    },
+    "study_mapping_reason": "CFPB product maps to Credit Reporting Disputes.",
+    "traceability": [
+      "Retrieved raw CFPB record from https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "Mapped CFPB complaint 9999995 to GS-CF001-C",
+      "Normalised CFPB fields into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-3FBA848883F6",
+        "evidence_id": "9999995",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "CFPB field normalisation v1",
+        "timestamp": "2026-07-15T18:48:24Z",
+        "inputs": [
+          "9999995"
+        ],
+        "output": "Normalised CFPB raw record fields.",
+        "confidence": 1.0,
+        "limitations": [
+          "Normalisation does not verify complaint truth."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-B35A48E301E3",
+        "evidence_id": "CAN-BF46989928F6",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C product mapping rule v1",
+        "timestamp": "2026-07-15T18:48:24Z",
+        "inputs": [
+          "9999995"
+        ],
+        "output": "Mapped to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "Product mapping is deterministic but source record fields may be incomplete."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  }
+]

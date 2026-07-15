@@ -1,0 +1,1700 @@
+{
+  "source_records": [
+    {
+      "product": "Credit reporting or other personal consumer reports",
+      "complaint_what_happened": "",
+      "date_sent_to_company": "2024-09-03T22:42:56.000Z",
+      "issue": "Improper use of your report",
+      "sub_product": "Credit reporting",
+      "zip_code": "33060",
+      "tags": null,
+      "has_narrative": false,
+      "complaint_id": "9999997",
+      "timely": "Yes",
+      "company_response": "Closed with non-monetary relief",
+      "submitted_via": "Web",
+      "company": "TRANSUNION INTERMEDIATE HOLDINGS, INC.",
+      "date_received": "2024-09-03T22:42:53.000Z",
+      "state": "FL",
+      "company_public_response": "Company has responded to the consumer and the CFPB and chooses not to provide a public response",
+      "sub_issue": "Reporting company used your report improperly",
+      "_cfpb_hit_id": "9999997",
+      "_source_record_id": "9999997",
+      "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "_source_name": "CFPB Consumer Complaint Database",
+      "_access_method": "official_cfpb_search_api",
+      "_retrieved_at": "2026-07-15T18:48:24Z"
+    },
+    {
+      "product": "Credit reporting or other personal consumer reports",
+      "complaint_what_happened": "",
+      "date_sent_to_company": "2024-09-03T22:42:56.000Z",
+      "issue": "Improper use of your report",
+      "sub_product": "Credit reporting",
+      "zip_code": "33060",
+      "tags": null,
+      "has_narrative": false,
+      "complaint_id": "9999996",
+      "timely": "Yes",
+      "company_response": "Closed with non-monetary relief",
+      "submitted_via": "Web",
+      "company": "EQUIFAX, INC.",
+      "date_received": "2024-09-03T22:42:53.000Z",
+      "state": "FL",
+      "company_public_response": null,
+      "sub_issue": "Reporting company used your report improperly",
+      "_cfpb_hit_id": "9999996",
+      "_source_record_id": "9999996",
+      "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "_source_name": "CFPB Consumer Complaint Database",
+      "_access_method": "official_cfpb_search_api",
+      "_retrieved_at": "2026-07-15T18:48:24Z"
+    },
+    {
+      "product": "Credit reporting or other personal consumer reports",
+      "complaint_what_happened": "",
+      "date_sent_to_company": "2024-09-03T22:52:19.000Z",
+      "issue": "Problem with a company's investigation into an existing problem",
+      "sub_product": "Credit reporting",
+      "zip_code": "89014",
+      "tags": null,
+      "has_narrative": false,
+      "complaint_id": "9999995",
+      "timely": "Yes",
+      "company_response": "Closed with non-monetary relief",
+      "submitted_via": "Web",
+      "company": "EQUIFAX, INC.",
+      "date_received": "2024-09-03T22:41:36.000Z",
+      "state": "NV",
+      "company_public_response": null,
+      "sub_issue": "Their investigation did not fix an error on your report",
+      "_cfpb_hit_id": "9999995",
+      "_source_record_id": "9999995",
+      "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "_source_name": "CFPB Consumer Complaint Database",
+      "_access_method": "official_cfpb_search_api",
+      "_retrieved_at": "2026-07-15T18:48:24Z"
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "CAN-C68BA9E12F1B",
+      "source": {
+        "source_id": "CFPB-CCD-001",
+        "name": "CFPB Consumer Complaint Database",
+        "source_type": "public_consumer_complaint_database",
+        "base_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+        "jurisdiction": "United States",
+        "role": "discovery",
+        "source_family": "CFPB complaints",
+        "notes": "Discovery source only. Complaints must be normalised and verified before findings."
+      },
+      "study": {
+        "study_id": "GS-CF001-C",
+        "title": "Credit Reporting Disputes",
+        "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+        "implemented": true,
+        "notes": ""
+      },
+      "source_record_id": "9999997",
+      "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "retrieved_at": "2026-07-15T18:48:24Z",
+      "raw_record": {
+        "product": "Credit reporting or other personal consumer reports",
+        "complaint_what_happened": "",
+        "date_sent_to_company": "2024-09-03T22:42:56.000Z",
+        "issue": "Improper use of your report",
+        "sub_product": "Credit reporting",
+        "zip_code": "33060",
+        "tags": null,
+        "has_narrative": false,
+        "complaint_id": "9999997",
+        "timely": "Yes",
+        "company_response": "Closed with non-monetary relief",
+        "submitted_via": "Web",
+        "company": "TRANSUNION INTERMEDIATE HOLDINGS, INC.",
+        "date_received": "2024-09-03T22:42:53.000Z",
+        "state": "FL",
+        "company_public_response": "Company has responded to the consumer and the CFPB and chooses not to provide a public response",
+        "sub_issue": "Reporting company used your report improperly",
+        "_cfpb_hit_id": "9999997",
+        "_source_record_id": "9999997",
+        "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+        "_source_name": "CFPB Consumer Complaint Database",
+        "_access_method": "official_cfpb_search_api",
+        "_retrieved_at": "2026-07-15T18:48:24Z"
+      },
+      "parsed_fields": {
+        "complaint_id": "9999997",
+        "product": "Credit reporting or other personal consumer reports",
+        "sub_product": "Credit reporting",
+        "issue": "Improper use of your report",
+        "sub_issue": "Reporting company used your report improperly",
+        "company": "TRANSUNION INTERMEDIATE HOLDINGS, INC.",
+        "state": "FL",
+        "date_received": "2024-09-03T22:42:53.000Z",
+        "submitted_via": "Web",
+        "company_response": "Closed with non-monetary relief",
+        "timely": "Yes",
+        "consumer_disputed": "",
+        "narrative": ""
+      },
+      "study_mapping_reason": "CFPB product maps to Credit Reporting Disputes.",
+      "traceability": [
+        "Retrieved raw CFPB record from https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+        "Mapped CFPB complaint 9999997 to GS-CF001-C",
+        "Normalised CFPB fields into source-agnostic EvidenceCandidate"
+      ],
+      "evidence_state": "EVIDENCE_CANDIDATE",
+      "state_transitions": [
+        {
+          "transition_id": "TRN-1751C751D981",
+          "evidence_id": "9999997",
+          "previous_state": "SOURCE_RECORD",
+          "new_state": "NORMALISED_RECORD",
+          "rule_or_process": "CFPB field normalisation v1",
+          "timestamp": "2026-07-15T18:48:24Z",
+          "inputs": [
+            "9999997"
+          ],
+          "output": "Normalised CFPB raw record fields.",
+          "confidence": 1.0,
+          "limitations": [
+            "Normalisation does not verify complaint truth."
+          ],
+          "actor_type": "deterministic rule"
+        },
+        {
+          "transition_id": "TRN-0D7251775CBA",
+          "evidence_id": "CAN-C68BA9E12F1B",
+          "previous_state": "NORMALISED_RECORD",
+          "new_state": "EVIDENCE_CANDIDATE",
+          "rule_or_process": "GS-CF001-C product mapping rule v1",
+          "timestamp": "2026-07-15T18:48:24Z",
+          "inputs": [
+            "9999997"
+          ],
+          "output": "Mapped to Credit Reporting Disputes evidence candidate.",
+          "confidence": 1.0,
+          "limitations": [
+            "Product mapping is deterministic but source record fields may be incomplete."
+          ],
+          "actor_type": "deterministic rule"
+        }
+      ]
+    },
+    {
+      "candidate_id": "CAN-4F467A20A97B",
+      "source": {
+        "source_id": "CFPB-CCD-001",
+        "name": "CFPB Consumer Complaint Database",
+        "source_type": "public_consumer_complaint_database",
+        "base_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+        "jurisdiction": "United States",
+        "role": "discovery",
+        "source_family": "CFPB complaints",
+        "notes": "Discovery source only. Complaints must be normalised and verified before findings."
+      },
+      "study": {
+        "study_id": "GS-CF001-C",
+        "title": "Credit Reporting Disputes",
+        "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+        "implemented": true,
+        "notes": ""
+      },
+      "source_record_id": "9999996",
+      "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "retrieved_at": "2026-07-15T18:48:24Z",
+      "raw_record": {
+        "product": "Credit reporting or other personal consumer reports",
+        "complaint_what_happened": "",
+        "date_sent_to_company": "2024-09-03T22:42:56.000Z",
+        "issue": "Improper use of your report",
+        "sub_product": "Credit reporting",
+        "zip_code": "33060",
+        "tags": null,
+        "has_narrative": false,
+        "complaint_id": "9999996",
+        "timely": "Yes",
+        "company_response": "Closed with non-monetary relief",
+        "submitted_via": "Web",
+        "company": "EQUIFAX, INC.",
+        "date_received": "2024-09-03T22:42:53.000Z",
+        "state": "FL",
+        "company_public_response": null,
+        "sub_issue": "Reporting company used your report improperly",
+        "_cfpb_hit_id": "9999996",
+        "_source_record_id": "9999996",
+        "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+        "_source_name": "CFPB Consumer Complaint Database",
+        "_access_method": "official_cfpb_search_api",
+        "_retrieved_at": "2026-07-15T18:48:24Z"
+      },
+      "parsed_fields": {
+        "complaint_id": "9999996",
+        "product": "Credit reporting or other personal consumer reports",
+        "sub_product": "Credit reporting",
+        "issue": "Improper use of your report",
+        "sub_issue": "Reporting company used your report improperly",
+        "company": "EQUIFAX, INC.",
+        "state": "FL",
+        "date_received": "2024-09-03T22:42:53.000Z",
+        "submitted_via": "Web",
+        "company_response": "Closed with non-monetary relief",
+        "timely": "Yes",
+        "consumer_disputed": "",
+        "narrative": ""
+      },
+      "study_mapping_reason": "CFPB product maps to Credit Reporting Disputes.",
+      "traceability": [
+        "Retrieved raw CFPB record from https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+        "Mapped CFPB complaint 9999996 to GS-CF001-C",
+        "Normalised CFPB fields into source-agnostic EvidenceCandidate"
+      ],
+      "evidence_state": "EVIDENCE_CANDIDATE",
+      "state_transitions": [
+        {
+          "transition_id": "TRN-07F9EAE13CB6",
+          "evidence_id": "9999996",
+          "previous_state": "SOURCE_RECORD",
+          "new_state": "NORMALISED_RECORD",
+          "rule_or_process": "CFPB field normalisation v1",
+          "timestamp": "2026-07-15T18:48:24Z",
+          "inputs": [
+            "9999996"
+          ],
+          "output": "Normalised CFPB raw record fields.",
+          "confidence": 1.0,
+          "limitations": [
+            "Normalisation does not verify complaint truth."
+          ],
+          "actor_type": "deterministic rule"
+        },
+        {
+          "transition_id": "TRN-B3F8F9CABB2F",
+          "evidence_id": "CAN-4F467A20A97B",
+          "previous_state": "NORMALISED_RECORD",
+          "new_state": "EVIDENCE_CANDIDATE",
+          "rule_or_process": "GS-CF001-C product mapping rule v1",
+          "timestamp": "2026-07-15T18:48:24Z",
+          "inputs": [
+            "9999996"
+          ],
+          "output": "Mapped to Credit Reporting Disputes evidence candidate.",
+          "confidence": 1.0,
+          "limitations": [
+            "Product mapping is deterministic but source record fields may be incomplete."
+          ],
+          "actor_type": "deterministic rule"
+        }
+      ]
+    },
+    {
+      "candidate_id": "CAN-BF46989928F6",
+      "source": {
+        "source_id": "CFPB-CCD-001",
+        "name": "CFPB Consumer Complaint Database",
+        "source_type": "public_consumer_complaint_database",
+        "base_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+        "jurisdiction": "United States",
+        "role": "discovery",
+        "source_family": "CFPB complaints",
+        "notes": "Discovery source only. Complaints must be normalised and verified before findings."
+      },
+      "study": {
+        "study_id": "GS-CF001-C",
+        "title": "Credit Reporting Disputes",
+        "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+        "implemented": true,
+        "notes": ""
+      },
+      "source_record_id": "9999995",
+      "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "retrieved_at": "2026-07-15T18:48:24Z",
+      "raw_record": {
+        "product": "Credit reporting or other personal consumer reports",
+        "complaint_what_happened": "",
+        "date_sent_to_company": "2024-09-03T22:52:19.000Z",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "sub_product": "Credit reporting",
+        "zip_code": "89014",
+        "tags": null,
+        "has_narrative": false,
+        "complaint_id": "9999995",
+        "timely": "Yes",
+        "company_response": "Closed with non-monetary relief",
+        "submitted_via": "Web",
+        "company": "EQUIFAX, INC.",
+        "date_received": "2024-09-03T22:41:36.000Z",
+        "state": "NV",
+        "company_public_response": null,
+        "sub_issue": "Their investigation did not fix an error on your report",
+        "_cfpb_hit_id": "9999995",
+        "_source_record_id": "9999995",
+        "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+        "_source_name": "CFPB Consumer Complaint Database",
+        "_access_method": "official_cfpb_search_api",
+        "_retrieved_at": "2026-07-15T18:48:24Z"
+      },
+      "parsed_fields": {
+        "complaint_id": "9999995",
+        "product": "Credit reporting or other personal consumer reports",
+        "sub_product": "Credit reporting",
+        "issue": "Problem with a company's investigation into an existing problem",
+        "sub_issue": "Their investigation did not fix an error on your report",
+        "company": "EQUIFAX, INC.",
+        "state": "NV",
+        "date_received": "2024-09-03T22:41:36.000Z",
+        "submitted_via": "Web",
+        "company_response": "Closed with non-monetary relief",
+        "timely": "Yes",
+        "consumer_disputed": "",
+        "narrative": ""
+      },
+      "study_mapping_reason": "CFPB product maps to Credit Reporting Disputes.",
+      "traceability": [
+        "Retrieved raw CFPB record from https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+        "Mapped CFPB complaint 9999995 to GS-CF001-C",
+        "Normalised CFPB fields into source-agnostic EvidenceCandidate"
+      ],
+      "evidence_state": "EVIDENCE_CANDIDATE",
+      "state_transitions": [
+        {
+          "transition_id": "TRN-3FBA848883F6",
+          "evidence_id": "9999995",
+          "previous_state": "SOURCE_RECORD",
+          "new_state": "NORMALISED_RECORD",
+          "rule_or_process": "CFPB field normalisation v1",
+          "timestamp": "2026-07-15T18:48:24Z",
+          "inputs": [
+            "9999995"
+          ],
+          "output": "Normalised CFPB raw record fields.",
+          "confidence": 1.0,
+          "limitations": [
+            "Normalisation does not verify complaint truth."
+          ],
+          "actor_type": "deterministic rule"
+        },
+        {
+          "transition_id": "TRN-B35A48E301E3",
+          "evidence_id": "CAN-BF46989928F6",
+          "previous_state": "NORMALISED_RECORD",
+          "new_state": "EVIDENCE_CANDIDATE",
+          "rule_or_process": "GS-CF001-C product mapping rule v1",
+          "timestamp": "2026-07-15T18:48:24Z",
+          "inputs": [
+            "9999995"
+          ],
+          "output": "Mapped to Credit Reporting Disputes evidence candidate.",
+          "confidence": 1.0,
+          "limitations": [
+            "Product mapping is deterministic but source record fields may be incomplete."
+          ],
+          "actor_type": "deterministic rule"
+        }
+      ]
+    }
+  ],
+  "verified_evidence": [
+    {
+      "evidence_id": "EVD-6959D7C346B0",
+      "candidate_id": "CAN-C68BA9E12F1B",
+      "study_id": "GS-CF001-C",
+      "source_record_id": "9999997",
+      "company_name": "TRANSUNION INTERMEDIATE HOLDINGS, INC.",
+      "verification_status": "rejected_candidate",
+      "operational": true,
+      "traceable": true,
+      "software_addressable": false,
+      "repeated_signal": true,
+      "independently_corrobored": false,
+      "mechanism": "incorrect_credit_report_information",
+      "reasoning_chain": [
+        "Verified candidate CAN-C68BA9E12F1B for operational content.",
+        "Mechanism classified as incorrect_credit_report_information.",
+        "Traceability is present.",
+        "Verification does not assess whether software should be built."
+      ],
+      "supporting_candidate_ids": [
+        "CAN-C68BA9E12F1B"
+      ],
+      "missing_evidence": [
+        "software-addressable workflow mechanism",
+        "independent non-CFPB corroboration"
+      ],
+      "evidence_state": "VERIFIED_WITHIN_SOURCE",
+      "source_family": "CFPB complaints",
+      "product": "Credit reporting or other personal consumer reports",
+      "issue": "Improper use of your report",
+      "date_received": "2024-09-03T22:42:53.000Z",
+      "source_limitations": [
+        "CFPB consumer narratives are not independently verified.",
+        "CFPB complaint repetition does not prove operational failure.",
+        "CFPB records do not establish market prevalence."
+      ],
+      "alternative_explanations": [
+        "Complaint may reflect misunderstanding, missing documentation, or company-specific handling.",
+        "Repeated complaint terms may reflect CFPB taxonomy rather than a common root cause."
+      ],
+      "state_transitions": [
+        {
+          "transition_id": "TRN-057EBE737993",
+          "evidence_id": "EVD-6959D7C346B0",
+          "previous_state": "EVIDENCE_CANDIDATE",
+          "new_state": "VERIFIED_WITHIN_SOURCE",
+          "rule_or_process": "Verification V1 deterministic classification",
+          "timestamp": "2026-07-15T18:48:24Z",
+          "inputs": [
+            "CAN-C68BA9E12F1B"
+          ],
+          "output": "rejected_candidate",
+          "confidence": 0.35,
+          "limitations": [
+            "CFPB data alone cannot independently corroborate the underlying allegation."
+          ],
+          "actor_type": "deterministic rule"
+        }
+      ]
+    },
+    {
+      "evidence_id": "EVD-9D5A9F36BDC0",
+      "candidate_id": "CAN-4F467A20A97B",
+      "study_id": "GS-CF001-C",
+      "source_record_id": "9999996",
+      "company_name": "EQUIFAX, INC.",
+      "verification_status": "rejected_candidate",
+      "operational": true,
+      "traceable": true,
+      "software_addressable": false,
+      "repeated_signal": true,
+      "independently_corrobored": false,
+      "mechanism": "incorrect_credit_report_information",
+      "reasoning_chain": [
+        "Verified candidate CAN-4F467A20A97B for operational content.",
+        "Mechanism classified as incorrect_credit_report_information.",
+        "Traceability is present.",
+        "Verification does not assess whether software should be built."
+      ],
+      "supporting_candidate_ids": [
+        "CAN-4F467A20A97B"
+      ],
+      "missing_evidence": [
+        "software-addressable workflow mechanism",
+        "independent non-CFPB corroboration"
+      ],
+      "evidence_state": "VERIFIED_WITHIN_SOURCE",
+      "source_family": "CFPB complaints",
+      "product": "Credit reporting or other personal consumer reports",
+      "issue": "Improper use of your report",
+      "date_received": "2024-09-03T22:42:53.000Z",
+      "source_limitations": [
+        "CFPB consumer narratives are not independently verified.",
+        "CFPB complaint repetition does not prove operational failure.",
+        "CFPB records do not establish market prevalence."
+      ],
+      "alternative_explanations": [
+        "Complaint may reflect misunderstanding, missing documentation, or company-specific handling.",
+        "Repeated complaint terms may reflect CFPB taxonomy rather than a common root cause."
+      ],
+      "state_transitions": [
+        {
+          "transition_id": "TRN-5D58071E72E8",
+          "evidence_id": "EVD-9D5A9F36BDC0",
+          "previous_state": "EVIDENCE_CANDIDATE",
+          "new_state": "VERIFIED_WITHIN_SOURCE",
+          "rule_or_process": "Verification V1 deterministic classification",
+          "timestamp": "2026-07-15T18:48:24Z",
+          "inputs": [
+            "CAN-4F467A20A97B"
+          ],
+          "output": "rejected_candidate",
+          "confidence": 0.35,
+          "limitations": [
+            "CFPB data alone cannot independently corroborate the underlying allegation."
+          ],
+          "actor_type": "deterministic rule"
+        }
+      ]
+    },
+    {
+      "evidence_id": "EVD-DEA3CB0AE7C6",
+      "candidate_id": "CAN-BF46989928F6",
+      "study_id": "GS-CF001-C",
+      "source_record_id": "9999995",
+      "company_name": "EQUIFAX, INC.",
+      "verification_status": "verified_candidate",
+      "operational": true,
+      "traceable": true,
+      "software_addressable": true,
+      "repeated_signal": true,
+      "independently_corrobored": false,
+      "mechanism": "incorrect_credit_report_information",
+      "reasoning_chain": [
+        "Verified candidate CAN-BF46989928F6 for operational content.",
+        "Mechanism classified as incorrect_credit_report_information.",
+        "Traceability is present.",
+        "Verification does not assess whether software should be built."
+      ],
+      "supporting_candidate_ids": [
+        "CAN-BF46989928F6"
+      ],
+      "missing_evidence": [
+        "independent non-CFPB corroboration"
+      ],
+      "evidence_state": "CFPB_LIMITED_EVIDENCE",
+      "source_family": "CFPB complaints",
+      "product": "Credit reporting or other personal consumer reports",
+      "issue": "Problem with a company's investigation into an existing problem",
+      "date_received": "2024-09-03T22:41:36.000Z",
+      "source_limitations": [
+        "CFPB consumer narratives are not independently verified.",
+        "CFPB complaint repetition does not prove operational failure.",
+        "CFPB records do not establish market prevalence."
+      ],
+      "alternative_explanations": [
+        "Complaint may reflect misunderstanding, missing documentation, or company-specific handling.",
+        "Repeated complaint terms may reflect CFPB taxonomy rather than a common root cause."
+      ],
+      "state_transitions": [
+        {
+          "transition_id": "TRN-B7A76587E944",
+          "evidence_id": "EVD-DEA3CB0AE7C6",
+          "previous_state": "EVIDENCE_CANDIDATE",
+          "new_state": "CFPB_LIMITED_EVIDENCE",
+          "rule_or_process": "Verification V1 deterministic classification",
+          "timestamp": "2026-07-15T18:48:24Z",
+          "inputs": [
+            "CAN-BF46989928F6"
+          ],
+          "output": "verified_candidate",
+          "confidence": 0.75,
+          "limitations": [
+            "CFPB data alone cannot independently corroborate the underlying allegation."
+          ],
+          "actor_type": "deterministic rule"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "FND-E61BE9DC7F86",
+      "study_id": "GS-CF001-C",
+      "mechanism": "incorrect_credit_report_information",
+      "status": "needs_more_evidence",
+      "evidence_ids": [
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "companies": [
+        "EQUIFAX, INC."
+      ],
+      "evidence_count": 1,
+      "company_count": 1,
+      "summary": "incorrect_credit_report_information repeats within CFPB records across 1 company reference(s). This is CFPB-limited and requires independent corroboration.",
+      "missing_evidence": [
+        "minimum 3 verified evidence items",
+        "evidence across at least 2 companies",
+        "independent non-CFPB corroboration"
+      ],
+      "reasoning_chain": [
+        "Grouped verified evidence by operational mechanism incorrect_credit_report_information.",
+        "Finding remains limited because CFPB is currently the only source.",
+        "TRN-E19E1B9A4ACA"
+      ],
+      "date_range": "2024-09-03T22:41:36.000Z to 2024-09-03T22:41:36.000Z",
+      "product_issue_mappings": [
+        "Credit reporting or other personal consumer reports / Problem with a company's investigation into an existing problem"
+      ],
+      "mechanism_definition": {
+        "trigger": "Consumer disputes credit reporting information.",
+        "affected_account_or_dispute_type": "Credit reporting dispute.",
+        "operational_step": "Dispute intake, investigation, evidence routing, and response.",
+        "failure_mode": "Alleged failure to correct, investigate, match evidence, communicate status, or resolve disputed information.",
+        "consumer_consequence": "Consumer reports continued unresolved or allegedly inaccurate information.",
+        "expected_process": "Receive dispute, assess evidence, investigate, communicate outcome, and update/report resolution.",
+        "observed_alleged_deviation": "CFPB complaint narratives allege the process did not resolve the disputed credit report issue.",
+        "repeat_pattern": "Observed in 1 CFPB record(s) across 1 company reference(s).",
+        "software_addressability_hypothesis": "A reusable dispute orchestration, evidence collection, deadline tracking, and audit trail component may address parts of the workflow.",
+        "evidence_status": "CFPB-limited.",
+        "required_corroboration": "Independent regulatory, enforcement, judicial, audit, company, or examination evidence showing the same mechanism."
+      },
+      "verification_status": "CFPB-limited Finding",
+      "alternative_explanations": [
+        "Similar CFPB complaints may reflect reporting behaviour or company size rather than a shared root cause.",
+        "Consumer allegations may be incomplete, inaccurate, or unresolved in the public record.",
+        "The same taxonomy may group operationally different cases."
+      ],
+      "source_limitations": [
+        "CFPB complaint repetition does not prove operational failure.",
+        "CFPB consumer narratives are not independently verified.",
+        "CFPB records do not establish market prevalence."
+      ],
+      "maximum_permitted_verdict": "CONTINUE RESEARCH"
+    }
+  ],
+  "opportunities": [
+    {
+      "opportunity_id": "OPP-5489C6A9F269",
+      "finding_id": "FND-E61BE9DC7F86",
+      "status": "unproven",
+      "component_hypothesis": "Credit report correction evidence workflow",
+      "buyer_clarity": "unclear",
+      "commercial_relevance": "unproven",
+      "existing_solution_maturity": "unknown",
+      "component_reusability": "unproven",
+      "market_saturation": "unknown",
+      "implementation_leverage": "unknown",
+      "user_clarity": "plausible operations/compliance users, unverified",
+      "workflow_owner": "unknown; likely disputes, compliance, servicing, or customer operations",
+      "regulatory_exposure": "possible but unverified from CFPB complaints alone",
+      "operational_cost": "unknown",
+      "integration_burden": "unknown",
+      "cross_company_applicability": "unproven",
+      "non_software_alternatives": "process change, policy change, staffing, vendor tools, or training may address the mechanism",
+      "evidence_ids": [
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "missing_evidence": [
+        "minimum 3 verified evidence items",
+        "evidence across at least 2 companies",
+        "independent non-CFPB corroboration",
+        "supported finding",
+        "buyer pattern across multiple companies",
+        "existing solution maturity research",
+        "buyer willingness evidence",
+        "commercial urgency evidence"
+      ],
+      "reasoning_chain": [
+        "Assessed finding FND-E61BE9DC7F86 after finding generation.",
+        "Mapped mechanism incorrect_credit_report_information to component hypothesis: Credit report correction evidence workflow.",
+        "Opportunity assessment does not override missing evidence."
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "PG-01",
+      "gate_name": "Source Authenticity",
+      "status": "PASS",
+      "threshold": "Source reliability assessment present",
+      "observed_value": "True",
+      "evidence_ids": [],
+      "supporting_evidence": [
+        "CFPB-CCD-001"
+      ],
+      "counter_evidence": [],
+      "confidence": 1.0,
+      "missing_evidence": [],
+      "recommended_next_action": "Create or review source reliability assessment.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Source authenticity is assessed from source metadata."
+      ]
+    },
+    {
+      "gate_id": "PG-02",
+      "gate_name": "Raw Record Preservation",
+      "status": "PASS",
+      "threshold": "Raw retrieval artifact or diagnostic exists",
+      "observed_value": "True",
+      "evidence_ids": [
+        "EVD-6959D7C346B0",
+        "EVD-9D5A9F36BDC0",
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [
+        "raw artifacts",
+        "access diagnostics"
+      ],
+      "counter_evidence": [],
+      "confidence": 1.0,
+      "missing_evidence": [],
+      "recommended_next_action": "Do not normalise until raw retrieval or access failure is preserved.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Raw records or access failure diagnostics must exist."
+      ]
+    },
+    {
+      "gate_id": "PG-03",
+      "gate_name": "Normalisation Integrity",
+      "status": "PASS",
+      "threshold": "Normalised candidate records exist",
+      "observed_value": "True",
+      "evidence_ids": [
+        "EVD-6959D7C346B0",
+        "EVD-9D5A9F36BDC0",
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [
+        "CAN-C68BA9E12F1B",
+        "CAN-4F467A20A97B",
+        "CAN-BF46989928F6"
+      ],
+      "counter_evidence": [],
+      "confidence": 0.9,
+      "missing_evidence": [],
+      "recommended_next_action": "Resolve source access or normalisation before verification.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Normalisation is deterministic."
+      ]
+    },
+    {
+      "gate_id": "PG-04",
+      "gate_name": "Study Classification Integrity",
+      "status": "PASS",
+      "threshold": "All evidence maps to GS-CF001-C",
+      "observed_value": "True",
+      "evidence_ids": [
+        "EVD-6959D7C346B0",
+        "EVD-9D5A9F36BDC0",
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [
+        "GS-CF001-C deterministic product mapping"
+      ],
+      "counter_evidence": [],
+      "confidence": 0.9,
+      "missing_evidence": [],
+      "recommended_next_action": "Classify retrieved records into the implemented study only.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Only Credit Reporting Disputes is implemented."
+      ]
+    },
+    {
+      "gate_id": "PG-05",
+      "gate_name": "Repetition",
+      "status": "FAIL",
+      "threshold": "Minimum repeated mechanism finding",
+      "observed_value": "False",
+      "evidence_ids": [
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [],
+      "counter_evidence": [],
+      "confidence": 0.0,
+      "missing_evidence": [
+        "repeated mechanism across CFPB records"
+      ],
+      "recommended_next_action": "Collect more CFPB records until repeated mechanisms are present.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Repetition is within source family only."
+      ]
+    },
+    {
+      "gate_id": "PG-06",
+      "gate_name": "Cross-Company Evidence",
+      "status": "FAIL",
+      "threshold": "At least 2 company references",
+      "observed_value": "1",
+      "evidence_ids": [
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [
+        "EQUIFAX, INC."
+      ],
+      "counter_evidence": [],
+      "confidence": 0.0,
+      "missing_evidence": [
+        "evidence across at least 2 companies"
+      ],
+      "recommended_next_action": "Collect records spanning multiple companies.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Company spread supports repetition but not independent corroboration."
+      ]
+    },
+    {
+      "gate_id": "PG-07",
+      "gate_name": "Operational Specificity",
+      "status": "FAIL",
+      "threshold": "Finding includes operational mechanism definition",
+      "observed_value": "False",
+      "evidence_ids": [
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [],
+      "counter_evidence": [],
+      "confidence": 0.0,
+      "missing_evidence": [
+        "operational mechanism definition"
+      ],
+      "recommended_next_action": "Extract trigger, step, failure mode, consequence, and expected process.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Findings represent mechanisms, not keywords."
+      ]
+    },
+    {
+      "gate_id": "PG-08",
+      "gate_name": "Software-Addressability",
+      "status": "WEAK",
+      "threshold": "Opportunity assessment exists",
+      "observed_value": "False",
+      "evidence_ids": [
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [
+        "Credit report correction evidence workflow"
+      ],
+      "counter_evidence": [
+        "process change, policy change, staffing, vendor tools, or training may address the mechanism"
+      ],
+      "confidence": 0.2,
+      "missing_evidence": [
+        "software-addressability evidence"
+      ],
+      "recommended_next_action": "Assess workflow detail and non-software alternatives.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Opportunity assessment is separate from verification."
+      ]
+    },
+    {
+      "gate_id": "PG-09",
+      "gate_name": "Independent Corroboration",
+      "status": "FAIL",
+      "threshold": "At least 2 independent source families",
+      "observed_value": "1",
+      "evidence_ids": [
+        "EVD-6959D7C346B0",
+        "EVD-9D5A9F36BDC0",
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [
+        "CFPB complaints"
+      ],
+      "counter_evidence": [
+        "CFPB alone is one source family"
+      ],
+      "confidence": 0.0,
+      "missing_evidence": [
+        "independent regulatory, enforcement, judicial, audit, company, or examination evidence"
+      ],
+      "recommended_next_action": "Add a genuinely independent source family before BUILD CANDIDATE.",
+      "constrains_max_verdict": true,
+      "reasoning_chain": [
+        "CFPB complaints alone cannot independently corroborate allegations."
+      ]
+    },
+    {
+      "gate_id": "PG-10",
+      "gate_name": "Buyer Clarity",
+      "status": "FAIL",
+      "threshold": "Confirmed buyer evidence",
+      "observed_value": "unverified",
+      "evidence_ids": [
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [
+        "unclear"
+      ],
+      "counter_evidence": [
+        "CFPB identifies companies, not buyers."
+      ],
+      "confidence": 0.0,
+      "missing_evidence": [
+        "confirmed buyer",
+        "budget owner",
+        "procurement context"
+      ],
+      "recommended_next_action": "Research buyer role after independent corroboration.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Buyer clarity cannot be established from CFPB complaints alone."
+      ]
+    },
+    {
+      "gate_id": "PG-11",
+      "gate_name": "Existing Solution Assessment",
+      "status": "FAIL",
+      "threshold": "Existing solution maturity evidence",
+      "observed_value": "unknown",
+      "evidence_ids": [
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [],
+      "counter_evidence": [
+        "No solution-market research integrated."
+      ],
+      "confidence": 0.0,
+      "missing_evidence": [
+        "existing solution maturity research"
+      ],
+      "recommended_next_action": "Research current solutions before commercial conclusion.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "No market saturation claim is allowed yet."
+      ]
+    },
+    {
+      "gate_id": "PG-12",
+      "gate_name": "Commercial Relevance",
+      "status": "FAIL",
+      "threshold": "Commercial urgency evidence",
+      "observed_value": "unproven",
+      "evidence_ids": [
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [],
+      "counter_evidence": [
+        "CFPB complaints do not prove commercial demand."
+      ],
+      "confidence": 0.0,
+      "missing_evidence": [
+        "commercial urgency",
+        "economic impact",
+        "market evidence"
+      ],
+      "recommended_next_action": "Do not promote commercial claims without source evidence.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Commercial relevance remains hypothesis-only."
+      ]
+    },
+    {
+      "gate_id": "PG-13",
+      "gate_name": "Counter-Evidence",
+      "status": "FAIL",
+      "threshold": "Counter-evidence reviewed",
+      "observed_value": "not reviewed",
+      "evidence_ids": [
+        "EVD-6959D7C346B0",
+        "EVD-9D5A9F36BDC0",
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [],
+      "counter_evidence": [
+        "No independent counter-evidence source integrated."
+      ],
+      "confidence": 0.0,
+      "missing_evidence": [
+        "counter-evidence review"
+      ],
+      "recommended_next_action": "Add contradiction and counter-evidence analysis before build decision.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Contradictions cannot be assessed from CFPB-only data."
+      ]
+    },
+    {
+      "gate_id": "PG-14",
+      "gate_name": "Reproducibility",
+      "status": "PASS",
+      "threshold": "Run preserves artifacts and diagnostics",
+      "observed_value": "True",
+      "evidence_ids": [
+        "EVD-6959D7C346B0",
+        "EVD-9D5A9F36BDC0",
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [
+        "artifact preservation",
+        "diagnostics"
+      ],
+      "counter_evidence": [],
+      "confidence": 0.8,
+      "missing_evidence": [],
+      "recommended_next_action": "Preserve run manifest, diagnostics, and raw official records.",
+      "constrains_max_verdict": false,
+      "reasoning_chain": [
+        "Access failures are reproducible diagnostics, not evidence records."
+      ]
+    },
+    {
+      "gate_id": "PG-15",
+      "gate_name": "Source Independence",
+      "status": "FAIL",
+      "threshold": "Independent source family count >= 2",
+      "observed_value": "1",
+      "evidence_ids": [
+        "EVD-6959D7C346B0",
+        "EVD-9D5A9F36BDC0",
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [
+        "CFPB complaints"
+      ],
+      "counter_evidence": [
+        "Multiple CFPB complaints remain one source family."
+      ],
+      "confidence": 0.0,
+      "missing_evidence": [
+        "second independent source family"
+      ],
+      "recommended_next_action": "Add independent corroborating source family.",
+      "constrains_max_verdict": true,
+      "reasoning_chain": [
+        "Different URLs do not automatically mean independent sources."
+      ]
+    },
+    {
+      "gate_id": "PG-16",
+      "gate_name": "Evidence Ceiling Compliance",
+      "status": "PASS",
+      "threshold": "If source families < 2, maximum verdict is CONTINUE RESEARCH",
+      "observed_value": "source families=1",
+      "evidence_ids": [
+        "EVD-6959D7C346B0",
+        "EVD-9D5A9F36BDC0",
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "supporting_evidence": [
+        "deterministic evidence ceiling rule"
+      ],
+      "counter_evidence": [],
+      "confidence": 1.0,
+      "missing_evidence": [
+        "evidence required to remove CONTINUE RESEARCH ceiling"
+      ],
+      "recommended_next_action": "Apply deterministic ceiling before final verdict.",
+      "constrains_max_verdict": true,
+      "reasoning_chain": [
+        "AI, user settings, and reports cannot override the evidence ceiling."
+      ]
+    }
+  ],
+  "verdict": {
+    "verdict_id": "VER-5A8AB60AD777",
+    "study_id": "GS-CF001-C",
+    "outcome": "CONTINUE RESEARCH",
+    "unconstrained_outcome": "CONTINUE RESEARCH",
+    "evidence_ceiling": "CONTINUE RESEARCH",
+    "final_permitted_outcome": "CONTINUE RESEARCH",
+    "evidence_ceiling_reason": "Only one independent source family is present.",
+    "evidence_required_to_remove_ceiling": [
+      "Independent regulatory, enforcement, examination, judicial, audit, company, or equivalent evidence corroborating the same operational mechanism."
+    ],
+    "independent_source_family_count": 1,
+    "proof_gates": [
+      {
+        "gate_id": "PG-01",
+        "gate_name": "Source Authenticity",
+        "status": "PASS",
+        "threshold": "Source reliability assessment present",
+        "observed_value": "True",
+        "evidence_ids": [],
+        "supporting_evidence": [
+          "CFPB-CCD-001"
+        ],
+        "counter_evidence": [],
+        "confidence": 1.0,
+        "missing_evidence": [],
+        "recommended_next_action": "Create or review source reliability assessment.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Source authenticity is assessed from source metadata."
+        ]
+      },
+      {
+        "gate_id": "PG-02",
+        "gate_name": "Raw Record Preservation",
+        "status": "PASS",
+        "threshold": "Raw retrieval artifact or diagnostic exists",
+        "observed_value": "True",
+        "evidence_ids": [
+          "EVD-6959D7C346B0",
+          "EVD-9D5A9F36BDC0",
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [
+          "raw artifacts",
+          "access diagnostics"
+        ],
+        "counter_evidence": [],
+        "confidence": 1.0,
+        "missing_evidence": [],
+        "recommended_next_action": "Do not normalise until raw retrieval or access failure is preserved.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Raw records or access failure diagnostics must exist."
+        ]
+      },
+      {
+        "gate_id": "PG-03",
+        "gate_name": "Normalisation Integrity",
+        "status": "PASS",
+        "threshold": "Normalised candidate records exist",
+        "observed_value": "True",
+        "evidence_ids": [
+          "EVD-6959D7C346B0",
+          "EVD-9D5A9F36BDC0",
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [
+          "CAN-C68BA9E12F1B",
+          "CAN-4F467A20A97B",
+          "CAN-BF46989928F6"
+        ],
+        "counter_evidence": [],
+        "confidence": 0.9,
+        "missing_evidence": [],
+        "recommended_next_action": "Resolve source access or normalisation before verification.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Normalisation is deterministic."
+        ]
+      },
+      {
+        "gate_id": "PG-04",
+        "gate_name": "Study Classification Integrity",
+        "status": "PASS",
+        "threshold": "All evidence maps to GS-CF001-C",
+        "observed_value": "True",
+        "evidence_ids": [
+          "EVD-6959D7C346B0",
+          "EVD-9D5A9F36BDC0",
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [
+          "GS-CF001-C deterministic product mapping"
+        ],
+        "counter_evidence": [],
+        "confidence": 0.9,
+        "missing_evidence": [],
+        "recommended_next_action": "Classify retrieved records into the implemented study only.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Only Credit Reporting Disputes is implemented."
+        ]
+      },
+      {
+        "gate_id": "PG-05",
+        "gate_name": "Repetition",
+        "status": "FAIL",
+        "threshold": "Minimum repeated mechanism finding",
+        "observed_value": "False",
+        "evidence_ids": [
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [],
+        "counter_evidence": [],
+        "confidence": 0.0,
+        "missing_evidence": [
+          "repeated mechanism across CFPB records"
+        ],
+        "recommended_next_action": "Collect more CFPB records until repeated mechanisms are present.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Repetition is within source family only."
+        ]
+      },
+      {
+        "gate_id": "PG-06",
+        "gate_name": "Cross-Company Evidence",
+        "status": "FAIL",
+        "threshold": "At least 2 company references",
+        "observed_value": "1",
+        "evidence_ids": [
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [
+          "EQUIFAX, INC."
+        ],
+        "counter_evidence": [],
+        "confidence": 0.0,
+        "missing_evidence": [
+          "evidence across at least 2 companies"
+        ],
+        "recommended_next_action": "Collect records spanning multiple companies.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Company spread supports repetition but not independent corroboration."
+        ]
+      },
+      {
+        "gate_id": "PG-07",
+        "gate_name": "Operational Specificity",
+        "status": "FAIL",
+        "threshold": "Finding includes operational mechanism definition",
+        "observed_value": "False",
+        "evidence_ids": [
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [],
+        "counter_evidence": [],
+        "confidence": 0.0,
+        "missing_evidence": [
+          "operational mechanism definition"
+        ],
+        "recommended_next_action": "Extract trigger, step, failure mode, consequence, and expected process.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Findings represent mechanisms, not keywords."
+        ]
+      },
+      {
+        "gate_id": "PG-08",
+        "gate_name": "Software-Addressability",
+        "status": "WEAK",
+        "threshold": "Opportunity assessment exists",
+        "observed_value": "False",
+        "evidence_ids": [
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [
+          "Credit report correction evidence workflow"
+        ],
+        "counter_evidence": [
+          "process change, policy change, staffing, vendor tools, or training may address the mechanism"
+        ],
+        "confidence": 0.2,
+        "missing_evidence": [
+          "software-addressability evidence"
+        ],
+        "recommended_next_action": "Assess workflow detail and non-software alternatives.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Opportunity assessment is separate from verification."
+        ]
+      },
+      {
+        "gate_id": "PG-09",
+        "gate_name": "Independent Corroboration",
+        "status": "FAIL",
+        "threshold": "At least 2 independent source families",
+        "observed_value": "1",
+        "evidence_ids": [
+          "EVD-6959D7C346B0",
+          "EVD-9D5A9F36BDC0",
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [
+          "CFPB complaints"
+        ],
+        "counter_evidence": [
+          "CFPB alone is one source family"
+        ],
+        "confidence": 0.0,
+        "missing_evidence": [
+          "independent regulatory, enforcement, judicial, audit, company, or examination evidence"
+        ],
+        "recommended_next_action": "Add a genuinely independent source family before BUILD CANDIDATE.",
+        "constrains_max_verdict": true,
+        "reasoning_chain": [
+          "CFPB complaints alone cannot independently corroborate allegations."
+        ]
+      },
+      {
+        "gate_id": "PG-10",
+        "gate_name": "Buyer Clarity",
+        "status": "FAIL",
+        "threshold": "Confirmed buyer evidence",
+        "observed_value": "unverified",
+        "evidence_ids": [
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [
+          "unclear"
+        ],
+        "counter_evidence": [
+          "CFPB identifies companies, not buyers."
+        ],
+        "confidence": 0.0,
+        "missing_evidence": [
+          "confirmed buyer",
+          "budget owner",
+          "procurement context"
+        ],
+        "recommended_next_action": "Research buyer role after independent corroboration.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Buyer clarity cannot be established from CFPB complaints alone."
+        ]
+      },
+      {
+        "gate_id": "PG-11",
+        "gate_name": "Existing Solution Assessment",
+        "status": "FAIL",
+        "threshold": "Existing solution maturity evidence",
+        "observed_value": "unknown",
+        "evidence_ids": [
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [],
+        "counter_evidence": [
+          "No solution-market research integrated."
+        ],
+        "confidence": 0.0,
+        "missing_evidence": [
+          "existing solution maturity research"
+        ],
+        "recommended_next_action": "Research current solutions before commercial conclusion.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "No market saturation claim is allowed yet."
+        ]
+      },
+      {
+        "gate_id": "PG-12",
+        "gate_name": "Commercial Relevance",
+        "status": "FAIL",
+        "threshold": "Commercial urgency evidence",
+        "observed_value": "unproven",
+        "evidence_ids": [
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [],
+        "counter_evidence": [
+          "CFPB complaints do not prove commercial demand."
+        ],
+        "confidence": 0.0,
+        "missing_evidence": [
+          "commercial urgency",
+          "economic impact",
+          "market evidence"
+        ],
+        "recommended_next_action": "Do not promote commercial claims without source evidence.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Commercial relevance remains hypothesis-only."
+        ]
+      },
+      {
+        "gate_id": "PG-13",
+        "gate_name": "Counter-Evidence",
+        "status": "FAIL",
+        "threshold": "Counter-evidence reviewed",
+        "observed_value": "not reviewed",
+        "evidence_ids": [
+          "EVD-6959D7C346B0",
+          "EVD-9D5A9F36BDC0",
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [],
+        "counter_evidence": [
+          "No independent counter-evidence source integrated."
+        ],
+        "confidence": 0.0,
+        "missing_evidence": [
+          "counter-evidence review"
+        ],
+        "recommended_next_action": "Add contradiction and counter-evidence analysis before build decision.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Contradictions cannot be assessed from CFPB-only data."
+        ]
+      },
+      {
+        "gate_id": "PG-14",
+        "gate_name": "Reproducibility",
+        "status": "PASS",
+        "threshold": "Run preserves artifacts and diagnostics",
+        "observed_value": "True",
+        "evidence_ids": [
+          "EVD-6959D7C346B0",
+          "EVD-9D5A9F36BDC0",
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [
+          "artifact preservation",
+          "diagnostics"
+        ],
+        "counter_evidence": [],
+        "confidence": 0.8,
+        "missing_evidence": [],
+        "recommended_next_action": "Preserve run manifest, diagnostics, and raw official records.",
+        "constrains_max_verdict": false,
+        "reasoning_chain": [
+          "Access failures are reproducible diagnostics, not evidence records."
+        ]
+      },
+      {
+        "gate_id": "PG-15",
+        "gate_name": "Source Independence",
+        "status": "FAIL",
+        "threshold": "Independent source family count >= 2",
+        "observed_value": "1",
+        "evidence_ids": [
+          "EVD-6959D7C346B0",
+          "EVD-9D5A9F36BDC0",
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [
+          "CFPB complaints"
+        ],
+        "counter_evidence": [
+          "Multiple CFPB complaints remain one source family."
+        ],
+        "confidence": 0.0,
+        "missing_evidence": [
+          "second independent source family"
+        ],
+        "recommended_next_action": "Add independent corroborating source family.",
+        "constrains_max_verdict": true,
+        "reasoning_chain": [
+          "Different URLs do not automatically mean independent sources."
+        ]
+      },
+      {
+        "gate_id": "PG-16",
+        "gate_name": "Evidence Ceiling Compliance",
+        "status": "PASS",
+        "threshold": "If source families < 2, maximum verdict is CONTINUE RESEARCH",
+        "observed_value": "source families=1",
+        "evidence_ids": [
+          "EVD-6959D7C346B0",
+          "EVD-9D5A9F36BDC0",
+          "EVD-DEA3CB0AE7C6"
+        ],
+        "supporting_evidence": [
+          "deterministic evidence ceiling rule"
+        ],
+        "counter_evidence": [],
+        "confidence": 1.0,
+        "missing_evidence": [
+          "evidence required to remove CONTINUE RESEARCH ceiling"
+        ],
+        "recommended_next_action": "Apply deterministic ceiling before final verdict.",
+        "constrains_max_verdict": true,
+        "reasoning_chain": [
+          "AI, user settings, and reports cannot override the evidence ceiling."
+        ]
+      }
+    ],
+    "evidence_ids": [
+      "EVD-6959D7C346B0",
+      "EVD-9D5A9F36BDC0",
+      "EVD-DEA3CB0AE7C6"
+    ],
+    "finding_ids": [
+      "FND-E61BE9DC7F86"
+    ],
+    "opportunity_ids": [
+      "OPP-5489C6A9F269"
+    ],
+    "missing_evidence": [
+      "budget owner",
+      "commercial urgency",
+      "confirmed buyer",
+      "counter-evidence review",
+      "economic impact",
+      "evidence across at least 2 companies",
+      "evidence required to remove CONTINUE RESEARCH ceiling",
+      "existing solution maturity research",
+      "independent regulatory, enforcement, judicial, audit, company, or examination evidence",
+      "market evidence",
+      "operational mechanism definition",
+      "procurement context",
+      "repeated mechanism across CFPB records",
+      "second independent source family",
+      "software-addressability evidence"
+    ],
+    "reasoning_chain": [
+      "Verdict generated from deterministic proof gate statuses.",
+      "No positive build decision is allowed unless every proof gate passes.",
+      "Evidence ceiling applied after unconstrained assessment."
+    ]
+  },
+  "source_reliability": [
+    {
+      "source_id": "CFPB-CCD-001",
+      "source_name": "CFPB Consumer Complaint Database",
+      "publisher": "Consumer Financial Protection Bureau",
+      "publisher_type": "U.S. federal consumer financial regulator",
+      "authority_level": "U.S. federal consumer financial regulator",
+      "jurisdiction": "United States",
+      "source_family": "CFPB complaints",
+      "retrieval_method": "official_cfpb_search_api",
+      "retrieval_timestamp": "2026-07-15T18:48:24Z",
+      "update_frequency": "Published by CFPB; update cadence should be confirmed per access method.",
+      "coverage_period": "Depends on retrieved official dataset or query result.",
+      "record_granularity": "Individual consumer complaint record.",
+      "known_limitations": [
+        "Consumer narratives are not independently verified.",
+        "Complaint volume alone does not prove operational failure.",
+        "The dataset is not statistically representative of the full market.",
+        "Complaint volume may reflect company size, consumer awareness, reporting behaviour, or market share.",
+        "Similar complaints do not automatically prove a common root cause.",
+        "Company response status does not independently validate every consumer allegation.",
+        "Records may contain missing or withheld fields.",
+        "Public narratives may be unavailable for some records."
+      ],
+      "verification_constraints": [
+        "CFPB complaint repetition can support a repeated complaint signal.",
+        "CFPB alone cannot independently corroborate the underlying allegation.",
+        "CFPB alone cannot establish a BUILD CANDIDATE verdict.",
+        "Independent source evidence is required for stronger commercial conclusions."
+      ],
+      "independence_constraints": [
+        "Multiple CFPB complaints count as one source family.",
+        "Different CFPB distribution methods do not create source-family independence.",
+        "CFPB complaint records do not independently verify consumer allegations."
+      ],
+      "representativeness_warning": "CFPB complaint records are not a statistically representative market sample.",
+      "data_completeness_warning": "Some CFPB fields may be missing, withheld, amended, or unavailable in public data.",
+      "permitted_uses": [
+        "Discover recurring complaint mechanisms.",
+        "Analyse repeated CFPB complaint signals across companies.",
+        "Generate CFPB-limited findings requiring independent corroboration."
+      ],
+      "prohibited_inferences": [
+        "Do not infer that alleged failures definitely occurred.",
+        "Do not infer market prevalence from complaint volume alone.",
+        "Do not infer that software is the best intervention.",
+        "Do not produce BUILD CANDIDATE from CFPB data alone."
+      ],
+      "reliability_version": "CFPB-SRA-001",
+      "last_reviewed_date": "2026-07-14"
+    }
+  ],
+  "access_diagnostics": [
+    {
+      "diagnostic_id": "ADIAG-8D70F12B7824",
+      "endpoint": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=3&product=Credit+reporting+or+other+personal+consumer+reports",
+      "attempted_at": "2026-07-15T18:48:24Z",
+      "environment": "local-curl-transport",
+      "request_method": "GET",
+      "request_headers": {
+        "User-Agent": "GS-CF001/0.1 methodology proof",
+        "Accept": "application/json"
+      },
+      "response_status": "200",
+      "response_headers": {
+        "content-type": "application/json",
+        "content-length": "165897",
+        "server": "envoy",
+        "access-control-allow-origin": "https://cfpb.github.io",
+        "access-control-allow-methods": "GET",
+        "allow": "OPTIONS, GET",
+        "content-security-policy": "connect-src 'self' *.consumerfinance.gov dap.digitalgov.gov *.google-analytics.com *.tiles.mapbox.com api.mapbox.com bam.nr-data.net gov-bam.nr-data.net s3.amazonaws.com public.govdelivery.com *.mouseflow.com *.qualtrics.com raw.githubusercontent.com; font-src 'self' fonts.gstatic.com; frame-src 'self' *.consumerfinance.gov *.googletagmanager.com *.google-analytics.com www.youtube.com *.qualtrics.com mailto:; img-src 'self' *.cfpb.gov *.consumerfinance.gov www.ecfr.gov s3.amazonaws.com img.youtube.com *.google-analytics.com *.googletagmanager.com api.mapbox.com *.tiles.mapbox.com blob: data: www.gravatar.com *.qualtrics.com *.mouseflow.com i.ytimg.com www.ssa.gov/accessibility/andi/; style-src 'self' 'unsafe-inline' *.consumerfinance.gov *.googletagmanager.com fonts.googleapis.com api.mapbox.com www.ssa.gov/accessibility/andi/; media-src 'self' *.consumerfinance.gov; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.consumerfinance.gov dap.digitalgov.gov *.googleanalytics.com *.google-analytics.com *.googletagmanager.com api.mapbox.com js-agent.newrelic.com bam.nr-data.net gov-bam.nr-data.net *.youtube.com *.ytimg.com *.mouseflow.com *.geo.census.gov about: www.federalregister.gov *.qualtrics.com www.ssa.gov/accessibility/andi/ ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js; default-src 'self'",
+        "x-frame-options": "SAMEORIGIN",
+        "etag": "\"db979a56cfb7a5f0e7829c5357fe8795\"",
+        "permissions-policy": "interest-cohort=()",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "same-origin",
+        "cross-origin-opener-policy": "same-origin",
+        "x-envoy-upstream-service-time": "15328",
+        "date": "Wed, 15 Jul 2026 18:48:24 GMT",
+        "strict-transport-security": "max-age=31536000"
+      },
+      "response_body_summary": "Retrieved 3 record(s).",
+      "retry_result": "not retried",
+      "final_interpretation": "Official CFPB search API returned parseable JSON.",
+      "access_method": "official_cfpb_search_api"
+    }
+  ],
+  "analysis_artifacts": [
+    {
+      "artifact_id": "ANL-4D1EE86757F9",
+      "method_used": "deterministic_rules_no_ai",
+      "instruction_version": "AI-GOV-001",
+      "timestamp": "2026-07-15T18:48:24Z",
+      "input_evidence_ids": [
+        "EVD-6959D7C346B0",
+        "EVD-9D5A9F36BDC0",
+        "EVD-DEA3CB0AE7C6"
+      ],
+      "output": {
+        "verification_count": 3,
+        "finding_count": 1,
+        "opportunity_count": 1,
+        "ai_used": false
+      },
+      "confidence": 1.0,
+      "known_limitations": [
+        "No AI interpretation was used in this run."
+      ],
+      "validation_status": "rule_validated",
+      "affected_finding_or_verdict": true
+    }
+  ],
+  "state_transitions": [],
+  "run_manifest": {
+    "run_id": "RUN-8FFFBA72404A",
+    "study_id": "GS-CF001-C",
+    "code_commit_hash": "ec6a01eb820da96c793f5af9b1cd163d1d4e49ee",
+    "configuration_version": "GS-CF001-CONFIG-001",
+    "methodology_version": "PROVENA-EOS-METHOD-001",
+    "rule_versions": {
+      "normalisation": "NORM-CFPB-001",
+      "verification": "VER-CFPB-001",
+      "findings": "FIND-CFPB-001",
+      "opportunity_assessment": "OPP-ASSESS-001",
+      "proof_gates": "PG-001",
+      "evidence_ceiling": "CEILING-001",
+      "ai_governance": "AI-GOV-001"
+    },
+    "ai_model_configuration": "AI disabled; deterministic rules only.",
+    "source_access_method": "official_cfpb_search_api",
+    "retrieval_timestamps": [
+      "2026-07-15T18:48:24Z"
+    ],
+    "input_record_identifiers": [
+      "9999997",
+      "9999996",
+      "9999995"
+    ],
+    "artifact_checksums": {
+      "data/raw/cfpb_credit_reporting_raw_20260715T184824501724Z.json": "f533399898e243b5e440ff2114f09b6b2e8e0c9e88b07d08dd6257f77e5f0942",
+      "data/exports/access_diagnostics_20260715T184824501724Z.json": "7e65255c2faccf05fda76994488bd70ff8d23eee14317a2e9028e33ee4a74550",
+      "data/exports/source_reliability_20260715T184824501724Z.json": "cbffe8efb2a48fbd4184bb57ebfa32677ce9d562f120b0b61a78795ddcd5d14e",
+      "data/exports/analysis_artifacts_20260715T184824501724Z.json": "77303f9677e24679e71185e16486721564ab981c8e8b3374807ef0223f3dbe8a",
+      "data/exports/verification_artifacts_20260715T184824501724Z.json": "e76e810bcfdfe91e856279ad5d023877446ab594456e7aad78df7158a87dec29",
+      "data/exports/proof_gate_results_20260715T184824501724Z.json": "857ebd14b6813e4b31ba3a19fc072361791a17df058eccb6215dc1db8c73d4cd",
+      "data/exports/audit_trail_20260715T184824501724Z.json": "8317147692ec96e8200dd7f45fd77b7525abc7b71b9bfcb9fa395b11369edbad",
+      "data/exports/normalised_candidates_20260715T184824501724Z.json": "4a458bdab0be138d6cb5c1ddb25ce89e34a49dbdad5b9dba73ae7c6ef610a240",
+      "data/exports/findings_20260715T184824501724Z.json": "12fbd38a322889d493bdbc7bfc8a01feb747e48ca5ef6491c24669838cfd199d",
+      "data/exports/opportunities_20260715T184824501724Z.json": "318926a229029d81c9796e8be373304d5dd098b8e666844b8abd25d32cf83b0c",
+      "data/processed/gs_cf001_c_processed_20260715T184824501724Z.json": "4e907dda73e01cbc5e53cf1da6c3ff4ace06fac98bc96c8930ed3e0a93294393",
+      "data/exports/gs_cf001_c_report_20260715T184824501724Z.json": "4e907dda73e01cbc5e53cf1da6c3ff4ace06fac98bc96c8930ed3e0a93294393",
+      "data/exports/gs_cf001_c_report_20260715T184824501724Z.md": "2418f2519ba8f26d30a4b0bd12a05f07d665b42033cf5f80e0c0e0b606fe4caf"
+    },
+    "output_artifact_list": [
+      "data/raw/cfpb_credit_reporting_raw_20260715T184824501724Z.json",
+      "data/exports/access_diagnostics_20260715T184824501724Z.json",
+      "data/exports/source_reliability_20260715T184824501724Z.json",
+      "data/exports/analysis_artifacts_20260715T184824501724Z.json",
+      "data/exports/verification_artifacts_20260715T184824501724Z.json",
+      "data/exports/proof_gate_results_20260715T184824501724Z.json",
+      "data/exports/audit_trail_20260715T184824501724Z.json",
+      "data/exports/normalised_candidates_20260715T184824501724Z.json",
+      "data/exports/findings_20260715T184824501724Z.json",
+      "data/exports/opportunities_20260715T184824501724Z.json",
+      "data/processed/gs_cf001_c_processed_20260715T184824501724Z.json",
+      "data/exports/gs_cf001_c_report_20260715T184824501724Z.json",
+      "data/exports/gs_cf001_c_report_20260715T184824501724Z.md",
+      "data/exports/run_manifest_20260715T184824501724Z.json"
+    ],
+    "final_verdict": "CONTINUE RESEARCH",
+    "evidence_ceiling": "CONTINUE RESEARCH",
+    "errors": [],
+    "warnings": [
+      "budget owner",
+      "commercial urgency",
+      "confirmed buyer",
+      "counter-evidence review",
+      "economic impact",
+      "evidence across at least 2 companies",
+      "evidence required to remove CONTINUE RESEARCH ceiling",
+      "existing solution maturity research",
+      "independent regulatory, enforcement, judicial, audit, company, or examination evidence",
+      "market evidence",
+      "operational mechanism definition",
+      "procurement context",
+      "repeated mechanism across CFPB records",
+      "second independent source family",
+      "software-addressability evidence"
+    ]
+  },
+  "artifacts": {
+    "raw": "data/raw/cfpb_credit_reporting_raw_20260715T184824501724Z.json",
+    "access_diagnostics": "data/exports/access_diagnostics_20260715T184824501724Z.json",
+    "source_reliability": "data/exports/source_reliability_20260715T184824501724Z.json",
+    "analysis_artifacts": "data/exports/analysis_artifacts_20260715T184824501724Z.json",
+    "verification_artifacts": "data/exports/verification_artifacts_20260715T184824501724Z.json",
+    "proof_gate_results": "data/exports/proof_gate_results_20260715T184824501724Z.json",
+    "audit_trail": "data/exports/audit_trail_20260715T184824501724Z.json",
+    "normalised_candidates": "data/exports/normalised_candidates_20260715T184824501724Z.json",
+    "findings": "data/exports/findings_20260715T184824501724Z.json",
+    "opportunities": "data/exports/opportunities_20260715T184824501724Z.json",
+    "processed": "data/processed/gs_cf001_c_processed_20260715T184824501724Z.json",
+    "report_json": "data/exports/gs_cf001_c_report_20260715T184824501724Z.json",
+    "report_markdown": "data/exports/gs_cf001_c_report_20260715T184824501724Z.md",
+    "run_manifest": "data/exports/run_manifest_20260715T184824501724Z.json"
+  }
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "finding_id": "FND-E61BE9DC7F86",
+    "study_id": "GS-CF001-C",
+    "mechanism": "incorrect_credit_report_information",
+    "status": "needs_more_evidence",
+    "evidence_ids": [
+      "EVD-DEA3CB0AE7C6"
+    ],
+    "companies": [
+      "EQUIFAX, INC."
+    ],
+    "evidence_count": 1,
+    "company_count": 1,
+    "summary": "incorrect_credit_report_information repeats within CFPB records across 1 company reference(s). This is CFPB-limited and requires independent corroboration.",
+    "missing_evidence": [
+      "minimum 3 verified evidence items",
+      "evidence across at least 2 companies",
+      "independent non-CFPB corroboration"
+    ],
+    "reasoning_chain": [
+      "Grouped verified evidence by operational mechanism incorrect_credit_report_information.",
+      "Finding remains limited because CFPB is currently the only source.",
+      "TRN-E19E1B9A4ACA"
+    ],
+    "date_range": "2024-09-03T22:41:36.000Z to 2024-09-03T22:41:36.000Z",
+    "product_issue_mappings": [
+      "Credit reporting or other personal consumer reports / Problem with a company's investigation into an existing problem"
+    ],
+    "mechanism_definition": {
+      "trigger": "Consumer disputes credit reporting information.",
+      "affected_account_or_dispute_type": "Credit reporting dispute.",
+      "operational_step": "Dispute intake, investigation, evidence routing, and response.",
+      "failure_mode": "Alleged failure to correct, investigate, match evidence, communicate status, or resolve disputed information.",
+      "consumer_consequence": "Consumer reports continued unresolved or allegedly inaccurate information.",
+      "expected_process": "Receive dispute, assess evidence, investigate, communicate outcome, and update/report resolution.",
+      "observed_alleged_deviation": "CFPB complaint narratives allege the process did not resolve the disputed credit report issue.",
+      "repeat_pattern": "Observed in 1 CFPB record(s) across 1 company reference(s).",
+      "software_addressability_hypothesis": "A reusable dispute orchestration, evidence collection, deadline tracking, and audit trail component may address parts of the workflow.",
+      "evidence_status": "CFPB-limited.",
+      "required_corroboration": "Independent regulatory, enforcement, judicial, audit, company, or examination evidence showing the same mechanism."
+    },
+    "verification_status": "CFPB-limited Finding",
+    "alternative_explanations": [
+      "Similar CFPB complaints may reflect reporting behaviour or company size rather than a shared root cause.",
+      "Consumer allegations may be incomplete, inaccurate, or unresolved in the public record.",
+      "The same taxonomy may group operationally different cases."
+    ],
+    "source_limitations": [
+      "CFPB complaint repetition does not prove operational failure.",
+      "CFPB consumer narratives are not independently verified.",
+      "CFPB records do not establish market prevalence."
+    ],
+    "maximum_permitted_verdict": "CONTINUE RESEARCH"
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "opportunity_id": "OPP-5489C6A9F269",
+    "finding_id": "FND-E61BE9DC7F86",
+    "status": "unproven",
+    "component_hypothesis": "Credit report correction evidence workflow",
+    "buyer_clarity": "unclear",
+    "commercial_relevance": "unproven",
+    "existing_solution_maturity": "unknown",
+    "component_reusability": "unproven",
+    "market_saturation": "unknown",
+    "implementation_leverage": "unknown",
+    "user_clarity": "plausible operations/compliance users, unverified",
+    "workflow_owner": "unknown; likely disputes, compliance, servicing, or customer operations",
+    "regulatory_exposure": "possible but unverified from CFPB complaints alone",
+    "operational_cost": "unknown",
+    "integration_burden": "unknown",
+    "cross_company_applicability": "unproven",
+    "non_software_alternatives": "process change, policy change, staffing, vendor tools, or training may address the mechanism",
+    "evidence_ids": [
+      "EVD-DEA3CB0AE7C6"
+    ],
+    "missing_evidence": [
+      "minimum 3 verified evidence items",
+      "evidence across at least 2 companies",
+      "independent non-CFPB corroboration",
+      "supported finding",
+      "buyer pattern across multiple companies",
+      "existing solution maturity research",
+      "buyer willingness evidence",
+      "commercial urgency evidence"
+    ],
+    "reasoning_chain": [
+      "Assessed finding FND-E61BE9DC7F86 after finding generation.",
+      "Mapped mechanism incorrect_credit_report_information to component hypothesis: Credit report correction evidence workflow.",
+      "Opportunity assessment does not override missing evidence."
+    ]
+  }
+]
