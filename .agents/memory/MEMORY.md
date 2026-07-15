@@ -1,1 +1,3 @@
 - [CFPB/Akamai transport fingerprinting](cfpb-akamai-transport-fingerprinting.md) — curl succeeds where Python urllib/requests get 403/hang (TLS fingerprinting); also CFPB API's format=json&no_aggs=true silently ignores size/product filters.
+- [Run-index checksum alignment](run-index-checksum-alignment.md) — artifact_checksums in the run index must be computed from final on-disk files after all writes complete, not from manifest.artifact_checksums (which are stale when reports are written twice).
+- [Archive checksum algorithm](archive-checksum-algorithm.md) — core.ids.stable_hash JSON-serialises its payload before hashing; archive verification must call stable_hash(text) not hashlib.sha256(text.encode()).
