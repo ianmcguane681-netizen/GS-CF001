@@ -63,3 +63,37 @@ def test_credit_reporting_pipeline_preserves_and_traces_all_stages(tmp_path):
     assert result.run_manifest is not None
     assert result.access_diagnostics
     assert result.source_reliability
+    assert result.artifacts["normalised_candidates"]
+    assert result.artifacts["findings"]
+    assert result.artifacts["opportunities"]
+
+
+def test_pipeline_writes_timestamped_reports_and_append_only_run_index(tmp_path):
+    from pathlib import Path
+    import json
+
+    result_one = run_credit_reporting_proof(limit=1, connector=FakeCFPBConnector(), data_dir=tmp_path)
+    result_two = run_credit_reporting_proof(limit=1, connector=FakeCFPBConnector(), data_dir=tmp_path)
+
+    # Each run's Markdown/JSON reports get distinct, timestamped filenames --
+    # a second run must never overwrite the first run's report.
+    assert result_one.artifacts["report_json"] != result_two.artifacts["report_json"]
+    assert result_one.artifacts["report_markdown"] != result_two.artifacts["report_markdown"]
+    assert Path(result_one.artifacts["report_json"]).exists()
+    assert Path(result_two.artifacts["report_json"]).exists()
+
+    # Per-run candidates/findings/opportunities artifacts exist independently
+    # of the combined processed bundle, and are distinct per run.
+    assert result_one.artifacts["normalised_candidates"] != result_two.artifacts["normalised_candidates"]
+    assert Path(result_one.artifacts["normalised_candidates"]).exists()
+    assert Path(result_one.artifacts["findings"]).exists()
+    assert Path(result_one.artifacts["opportunities"]).exists()
+
+    # The run index is append-only: after two runs it holds two entries, the
+    # first run's entry is untouched, and both runs are recorded.
+    index_path = tmp_path / "exports" / "run_index.json"
+    entries = json.loads(index_path.read_text(encoding="utf-8"))
+    assert len(entries) == 2
+    assert entries[0]["run_id"] == result_one.run_manifest.run_id
+    assert entries[1]["run_id"] == result_two.run_manifest.run_id
+    assert entries[0]["artifact_paths"]["report_json"] == result_one.artifacts["report_json"]

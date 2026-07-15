@@ -10,7 +10,8 @@ from core.ai_governance import deterministic_analysis_artifact
 from core.manifest import build_run_manifest
 from core.models import PipelineResult
 from core.normalization import normalise_cfpb_records
-from core.storage import write_json_artifact
+from core.run_index import append_run_index, build_run_index_entry
+from core.storage import run_timestamp, write_json_artifact
 from findings.engine import generate_findings
 from opportunity.assessment import assess_findings
 from proof_gates.evaluator import evaluate_proof_gates, make_verdict
@@ -28,6 +29,11 @@ def run_credit_reporting_proof(
     connector = connector or CFPBConnector()
     retrieval = connector.retrieve(limit=limit)
 
+    # One timestamp shared by every artifact this run produces, so the full
+    # set of a run's files can always be found and grouped by this stamp
+    # alone, and no run's files collide with another run's.
+    stamp = run_timestamp()
+
     base = Path(data_dir)
     raw_path = write_json_artifact(
         {
@@ -40,11 +46,12 @@ def run_credit_reporting_proof(
         },
         base / "raw",
         "cfpb_credit_reporting_raw",
+        timestamp=stamp,
     )
     diagnostics = retrieval.diagnostics or []
     source_reliability = [retrieval.source_reliability] if retrieval.source_reliability else []
-    diagnostics_path = write_json_artifact([diagnostic.to_dict() for diagnostic in diagnostics], base / "exports", "access_diagnostics")
-    reliability_path = write_json_artifact([item.to_dict() for item in source_reliability], base / "exports", "source_reliability")
+    diagnostics_path = write_json_artifact([diagnostic.to_dict() for diagnostic in diagnostics], base / "exports", "access_diagnostics", timestamp=stamp)
+    reliability_path = write_json_artifact([item.to_dict() for item in source_reliability], base / "exports", "source_reliability", timestamp=stamp)
 
     candidates = normalise_cfpb_records(retrieval.records, retrieval.source, study)
     verified = verify_candidates(candidates)
@@ -83,18 +90,25 @@ def run_credit_reporting_proof(
         analysis_artifacts=analysis_artifacts,
         state_transitions=[],
     )
-    analysis_path = write_json_artifact([artifact.to_dict() for artifact in analysis_artifacts], base / "exports", "analysis_artifacts")
-    verification_path = write_json_artifact([item.to_dict() for item in verified], base / "exports", "verification_artifacts")
-    proof_gate_path = write_json_artifact([gate.to_dict() for gate in gates], base / "exports", "proof_gate_results")
-    audit_path = write_json_artifact(state_transitions, base / "exports", "audit_trail")
-    processed_path = write_json_artifact(result_without_manifest.to_dict(), base / "processed", "gs_cf001_c_processed")
-    report_json_path = write_json_report(result_without_manifest, base / "exports" / "gs_cf001_c_report.json")
+    analysis_path = write_json_artifact([artifact.to_dict() for artifact in analysis_artifacts], base / "exports", "analysis_artifacts", timestamp=stamp)
+    verification_path = write_json_artifact([item.to_dict() for item in verified], base / "exports", "verification_artifacts", timestamp=stamp)
+    proof_gate_path = write_json_artifact([gate.to_dict() for gate in gates], base / "exports", "proof_gate_results", timestamp=stamp)
+    audit_path = write_json_artifact(state_transitions, base / "exports", "audit_trail", timestamp=stamp)
+    # Per-run artifacts for normalised candidates, findings, and opportunities,
+    # in addition to (not instead of) the combined processed bundle below --
+    # these let each stage be inspected, diffed, or archived independently
+    # without unpacking the whole processed file.
+    candidates_path = write_json_artifact([candidate.to_dict() for candidate in candidates], base / "exports", "normalised_candidates", timestamp=stamp)
+    findings_path = write_json_artifact([finding.to_dict() for finding in findings], base / "exports", "findings", timestamp=stamp)
+    opportunities_path = write_json_artifact([opportunity.to_dict() for opportunity in opportunities], base / "exports", "opportunities", timestamp=stamp)
+    processed_path = write_json_artifact(result_without_manifest.to_dict(), base / "processed", "gs_cf001_c_processed", timestamp=stamp)
+    report_json_path = write_json_report(result_without_manifest, base / "exports" / f"gs_cf001_c_report_{stamp}.json")
     report_md_path = write_markdown_report(
         verdict,
         verified,
         findings,
         opportunities,
-        base / "exports" / "gs_cf001_c_report.md",
+        base / "exports" / f"gs_cf001_c_report_{stamp}.md",
         source_reliability,
         diagnostics,
     )
@@ -106,6 +120,9 @@ def run_credit_reporting_proof(
         verification_path,
         proof_gate_path,
         audit_path,
+        candidates_path,
+        findings_path,
+        opportunities_path,
         processed_path,
         report_json_path,
         report_md_path,
@@ -121,7 +138,7 @@ def run_credit_reporting_proof(
         errors=retrieval.errors,
         warnings=verdict.missing_evidence,
     )
-    manifest_path = write_json_artifact(manifest.to_dict(), base / "exports", "run_manifest")
+    manifest_path = write_json_artifact(manifest.to_dict(), base / "exports", "run_manifest", timestamp=stamp)
     output_paths.append(manifest_path)
     artifacts = {
         "raw": raw_path,
@@ -131,6 +148,9 @@ def run_credit_reporting_proof(
         "verification_artifacts": verification_path,
         "proof_gate_results": proof_gate_path,
         "audit_trail": audit_path,
+        "normalised_candidates": candidates_path,
+        "findings": findings_path,
+        "opportunities": opportunities_path,
         "processed": processed_path,
         "report_json": report_json_path,
         "report_markdown": report_md_path,
@@ -151,8 +171,21 @@ def run_credit_reporting_proof(
         run_manifest=manifest,
         artifacts=artifacts,
     )
-    write_json_report(result, base / "exports" / "gs_cf001_c_report.json")
-    write_markdown_report(verdict, verified, findings, opportunities, base / "exports" / "gs_cf001_c_report.md", source_reliability, diagnostics, manifest)
+    write_json_report(result, base / "exports" / f"gs_cf001_c_report_{stamp}.json")
+    write_markdown_report(verdict, verified, findings, opportunities, base / "exports" / f"gs_cf001_c_report_{stamp}.md", source_reliability, diagnostics, manifest)
+    append_run_index(
+        build_run_index_entry(
+            run_id=manifest.run_id,
+            timestamp=stamp,
+            study_id=study.study_id,
+            verdict=verdict.final_permitted_outcome,
+            evidence_ceiling=verdict.evidence_ceiling,
+            source_access_method=retrieval.access_method,
+            artifact_paths=artifacts,
+            artifact_checksums=manifest.artifact_checksums,
+        ),
+        path=base / "exports" / "run_index.json",
+    )
     return result
 
 
