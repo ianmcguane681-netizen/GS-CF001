@@ -1,6 +1,6 @@
 # GS-CF001-C Sampling Design — 100-Record Live CFPB Pull
 
-**Version:** SD-002 (Milestone 3 corrections applied)
+**Version:** SD-003 (Milestone 4 three-agent review applied)
 **Study:** GS-CF001-C Credit Reporting Disputes  
 **Prepared:** 2026-07-15  
 **Status:** Approved for methodology-validation milestone
@@ -227,7 +227,7 @@ The ceiling applies to all CFPB-only findings; it is not presented as a single o
 
 To reproduce this sampling run:
 1. Confirm `curl` is on PATH (`which curl`)
-2. Run `python -m pytest -q` — all tests must pass (≥114)
+2. Run `python -m pytest -q` — all tests must pass (≥125)
 3. Run `python -m core.pipeline --limit 100` (three times)
 4. Compare run index entries: `cat data/exports/run_index.json`
 5. Run cross-run comparison:
@@ -238,3 +238,57 @@ To reproduce this sampling run:
    ```
 6. Build archive: `python -m tools.build_study_archive --latest`
 7. Verify: `cd study_archives/<archive_dir> && sha256sum -c checksums.txt`
+
+---
+
+## 14. Milestone 4 additions (SD-003, 2026-07-15)
+
+### 14.1 Three-bucket mutation analysis
+
+`core/cross_run_analysis.py` was rewritten to split raw record fields into three
+named buckets before computing cross-run content hashes:
+
+| Bucket | Fields | Flag when changed |
+|---|---|---|
+| Classification inputs | `complaint_what_happened`, `product`, `sub_product`, `issue`, `sub_issue` | `classification_mutation_detected` (CRITICAL) |
+| Stable business fields | `company`, `state`, `zip_code`, `tags`, `submitted_via`, `has_narrative`, `date_received`, `complaint_id` | `business_mutation_detected` (WARNING) |
+| Volatile metadata | `company_response`, `timely`, `_retrieved_at`, `_retrieval_url`, etc. | `metadata_differs` (INFO only — never penalises stability) |
+
+`mutation_detected` (summary) = `classification_mutation_detected OR business_mutation_detected`.
+Volatile metadata differences are excluded from the mutation summary and from `overall_stability`.
+
+**Why this matters:** CFPB continuously updates status fields (`company_response`,
+`timely`) and timestamps (`_retrieved_at`) after complaints are filed. These fields
+change between API pulls for the same complaint ID within minutes. Including them in
+the content hash produced a false-positive "unstable" verdict on every run despite
+the classifier inputs being identical. The three-bucket split eliminates this class
+of false positive entirely.
+
+**Verified result (3 × 100-record Milestone 4 runs):**
+- `classification_mutation_detected: False` ✓
+- `business_mutation_detected: False` ✓
+- `metadata_differs: True` (100 records — expected, informational) ✓
+- `overall_stability: stable` ✓ (was `unstable` before fix)
+
+### 14.2 Borderline majority-vote note (F-04 from methodology audit)
+
+`MechanismClassification` gains a `borderline_note: str` field (default `""`).
+Populated when any majority vote driving the classification falls within 10
+percentage points of 50% (i.e. a 40%–60% vote). A populated note means adding
+or removing one or two evidence items could flip the classification category.
+
+This is informational only — it does not change the classification decision or
+the Evidence Ceiling. It is intended to alert reviewers to classifications with
+low vote confidence.
+
+### 14.3 Review reports
+
+Two analytical reports were produced by read-only subagent reviewers and committed
+to `analysis/`:
+
+- `analysis/review_methodology_audit.md` — methodology audit; nine findings
+  (F-01 through F-09); F-01 CRITICAL and F-04 MEDIUM actioned in this milestone.
+- `analysis/review_commercial.md` — commercial review; nine-row gap register;
+  unit economics, TAM, competitive displacement, buyer persona, and e-OSCAR
+  integration all rated CRITICAL or HIGH. Named incumbents: e-OSCAR, Pega,
+  Salesforce FSC.

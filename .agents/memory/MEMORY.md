@@ -2,3 +2,4 @@
 - [Run-index checksum alignment](run-index-checksum-alignment.md) — artifact_checksums in the run index must be computed from final on-disk files after all writes complete, not from manifest.artifact_checksums (which are stale when reports are written twice).
 - [Archive checksum algorithm](archive-checksum-algorithm.md) — core.ids.stable_hash JSON-serialises its payload before hashing; archive verification must call stable_hash(text) not hashlib.sha256(text.encode()).
 - [ODR run_id sequencing](odr-run-id-sequencing.md) — build_odr() is called twice in the pipeline: once with run_id="" before the manifest exists, then rebuilt with the real run_id after build_run_manifest() returns; the second call produces the authoritative ODR that gets written to disk.
+- [Three-bucket mutation analysis](three-bucket-mutation-analysis.md) — volatile CFPB metadata must never be hashed for mutation detection; only CLASSIFICATION_INPUT_FIELDS and STABLE_BUSINESS_FIELDS count.
