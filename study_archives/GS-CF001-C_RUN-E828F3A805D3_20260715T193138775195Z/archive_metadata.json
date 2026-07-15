@@ -1,0 +1,57 @@
+{
+  "archive_generated_at": "2026-07-15T19:31:52+00:00",
+  "run_id": "RUN-E828F3A805D3",
+  "study_id": "GS-CF001-C",
+  "run_timestamp": "20260715T193138775195Z",
+  "verdict": "CONTINUE RESEARCH",
+  "evidence_ceiling": "CONTINUE RESEARCH",
+  "source_access_method": "official_cfpb_search_api",
+  "archive_files": {
+    "raw_records_redacted.json": "d213a29b0abeb353c280a67505d1c6c9f44632bad85d1c25b19fd00a2c4117b6",
+    "normalised_candidates_redacted.json": "777e0e404e08bd516cc82102aa4859e912cc63e8f7e8275aad7cf0356418386f",
+    "report.json": "252ccd685d49ea30714131b1dc917038ba411361207e04cf694ffc6eb7d42a3a",
+    "run_manifest.json": "c1a8ecf3e68d0d42294819f83a9d2edf690b5dde9b3a22962fe94c615365622f",
+    "access_diagnostics.json": "5f01057af3aedcf3a2f72211b679ce8a09f50e1b4f1fe3c34675b3e7dcd2096e",
+    "source_reliability_assessment.json": "3b7f1f96655bb56663c2638d1909fbe939c109c072f1484a7fe4b72bb03b04ac",
+    "verification_artifacts.json": "6698f10ea66414dfd6a11c53fe71680dc3b5cb53c63f5b9007c579681af94254",
+    "proof_gate_results.json": "dca04973556e361de25886e748c9f64cac43d1f0a7ddb05b44358e4164d14c15",
+    "audit_trail.json": "da78a4acf61fea70cf5fa52d1fb841445c165a5bb8a7a52487a566386d113061",
+    "findings.json": "e010c6660794043e800aa55eacdc06ce472d59bd40c56cd553cb8fa4d6c54115",
+    "opportunities.json": "1f92f4706c50f7eaff5b01d5e65b6971004911302c6b19fc32c38c7839066f97",
+    "mechanism_classifications.json": "b95294fbbffa5f126c5c3c941d65f6935d537814a688385a296391c61b317256",
+    "odr.json": "33fac897c938f8d5d2d60d40e229e7615d7232bfad47e74509a0b893e5509c33",
+    "odr.md": "81c81c725704ffad23efb5faa4e24c56c768b86f6e24b50794e58d18a6afe865",
+    "report.md": "4495bab09017f0d3d7a8679a826f405b88bb78570679294874779fbc2f3ad23c"
+  },
+  "source_artifact_paths": {
+    "raw": "data/raw/cfpb_credit_reporting_raw_20260715T193138775195Z.json",
+    "access_diagnostics": "data/exports/access_diagnostics_20260715T193138775195Z.json",
+    "source_reliability": "data/exports/source_reliability_20260715T193138775195Z.json",
+    "analysis_artifacts": "data/exports/analysis_artifacts_20260715T193138775195Z.json",
+    "verification_artifacts": "data/exports/verification_artifacts_20260715T193138775195Z.json",
+    "proof_gate_results": "data/exports/proof_gate_results_20260715T193138775195Z.json",
+    "audit_trail": "data/exports/audit_trail_20260715T193138775195Z.json",
+    "normalised_candidates": "data/exports/normalised_candidates_20260715T193138775195Z.json",
+    "findings": "data/exports/findings_20260715T193138775195Z.json",
+    "opportunities": "data/exports/opportunities_20260715T193138775195Z.json",
+    "mechanism_classifications": "data/exports/mechanism_classifications_20260715T193138775195Z.json",
+    "processed": "data/processed/gs_cf001_c_processed_20260715T193138775195Z.json",
+    "report_json": "data/exports/gs_cf001_c_report_20260715T193138775195Z.json",
+    "report_markdown": "data/exports/gs_cf001_c_report_20260715T193138775195Z.md",
+    "odr_json": "data/exports/odr_20260715T193138775195Z.json",
+    "odr_markdown": "data/exports/odr_20260715T193138775195Z.md",
+    "run_manifest": "data/exports/run_manifest_20260715T193138775195Z.json"
+  },
+  "redaction_policy": {
+    "redacted_fields": [
+      "complaint_what_happened",
+      "narrative"
+    ],
+    "redacted_artifact_keys": [
+      "normalised_candidates",
+      "raw",
+      "report_json"
+    ],
+    "redaction_marker": "[REDACTED: free-text consumer narrative — not preserved in archive]"
+  }
+}

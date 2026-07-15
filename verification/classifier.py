@@ -1,3 +1,21 @@
+"""verification/classifier.py — Deterministic evidence verification.
+
+Verification answers: "Is this complaint about a traceable operational workflow
+failure?" It does NOT answer: "Can software fix this?" That question is
+answered downstream by the mechanism classifier (findings/mechanism_classifier.py).
+
+verified_candidate status requires:
+    operational=True  (complaint text contains at least one OPERATIONAL_TERM)
+    traceable=True    (source URL, raw record, and record ID all present)
+
+software_addressable is recorded as a flag but is NOT a gate on
+verified_candidate status. Moving software addressability to the classification
+layer (rather than the verification gate) ensures that complaints describing
+operational failures that are not software-addressable (e.g., legal violations,
+staffing issues, regulatory non-compliance) are not silently discarded before
+reaching the findings engine and ODR — they reach both and correctly produce
+REJECTED outcomes via the non_software_problem classification.
+"""
 from __future__ import annotations
 
 from collections import Counter
@@ -37,7 +55,12 @@ def verify_candidate(candidate: EvidenceCandidate, repeated_mechanisms: set[str]
         missing.append("independent complaint repetition")
     missing.append("independent non-CFPB corroboration")
 
-    status = "verified_candidate" if operational and traceable and software_addressable else "rejected_candidate"
+    # Gate: operational AND traceable. software_addressable is intentionally
+    # NOT a gate here — it is a classification input, not a verification
+    # criterion. Operationally-real but non-software-addressable complaints
+    # must reach the findings engine so they can produce REJECTED ODR outcomes.
+    status = "verified_candidate" if operational and traceable else "rejected_candidate"
+
     evidence_id = stable_id("EVD", {"candidate": candidate.candidate_id, "mechanism": mechanism})
     new_state = CFPB_LIMITED_EVIDENCE if candidate.source.source_family == "CFPB complaints" and status == "verified_candidate" else VERIFIED_WITHIN_SOURCE
     state_transition = transition(
@@ -54,6 +77,7 @@ def verify_candidate(candidate: EvidenceCandidate, repeated_mechanisms: set[str]
         f"Verified candidate {candidate.candidate_id} for operational content.",
         f"Mechanism classified as {mechanism}.",
         f"Traceability is {'present' if traceable else 'missing'}.",
+        f"Software addressability: {software_addressable} (classification input only, not a verification gate).",
         "Verification does not assess whether software should be built.",
     ]
     return VerifiedEvidence(

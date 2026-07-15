@@ -14,7 +14,7 @@ evidence-ceiling rules.
 
 ## Running it
 ```bash
-# Run the test suite (90 tests)
+# Run the test suite (114+ tests)
 python -m pytest -q
 
 # Run the GS-CF001-C credit reporting proof against live CFPB data (100 records)
@@ -95,22 +95,33 @@ from within an archive directory to verify integrity.
 
 ### Milestone 1 — Storage hardening (committed 9044ef2)
 Timestamped reports, append-only run index, standalone per-run artifacts,
-reusable study-archive generator. Archive at
+reusable study-archive generator.
+
+### Milestone 2 — Methodology validation (committed 562a085)
+100-record sampling design, three live CFPB runs, cross-run analysis, mechanism
+classifier, ODR, study archive. Archive at
 `study_archives/GS-CF001-C_RUN-8FFFBA72404A_20260715T184824501724Z/`.
 
-### Milestone 2 — Methodology validation (in progress)
-Six objectives: (1) 100-record sampling design documented; (2) three controlled
-100-record live CFPB runs executed; (3) cross-run comparison confirms stable
-pipeline (identical mechanism distribution, verdicts, Evidence Ceiling across
-all 3 runs); (4) recurring operational mechanisms identified across distinct
-financial institutions using deterministic rules; (5) each mechanism classified
-into one of six deterministic categories; (6) Opportunity Decision Register
-produced per run with evidence references, reasoning, commercial assessment,
-decision status, and Evidence Ceiling enforcement.
+### Milestone 3 — Methodology corrections (2026-07-15)
+Six corrections from code review applied: (C1) ceiling note and category labels
+explicitly caveat CFPB complaints as unverified allegations; (C2) "only remaining
+blocker" framing removed everywhere; (C3) `missing_for_upgrade` expanded to 7
+commercial requirements; (C4) cross-run analysis extended with complaint-ID
+set/ordering/mutation checks; (C5) `software_addressable` moved out of the
+`verified_candidate` gate enabling genuine REJECTED ODR outcomes; (C6) mechanism
+labels renamed to trigger-process-failure format.
 
 **Sampling design:** `sampling_design/GS-CF001-C_sampling_design.md`
-**Cross-run analysis:** `analysis/GS-CF001-C_cross_run_comparison_milestone2.md`
-**Archive:** `study_archives/GS-CF001-C_{run_id}_{timestamp}/`
+**Cross-run analysis:** `analysis/GS-CF001-C_cross_run_comparison_milestone3.md`
+**Archive:** `study_archives/GS-CF001-C_RUN-E828F3A805D3_20260715T193138775195Z/`
+
+**Milestone 3 cross-run findings (3 × 100-record runs):**
+- Complaint IDs identical and in identical order across all three runs (Jaccard=1.0)
+- Verdict: CONTINUE RESEARCH (all 3); Ceiling: CONTINUE RESEARCH (all 3)
+- Mechanisms stable: `bureau_dispute_reinvestigation_failure`, `furnisher_tradeline_data_error_persistence` (both runs, both in every run)
+- Findings: 2; Opportunities: 2; Proof gates: consistent
+- Source mutation detected in ~100 records — expected behaviour; CFPB is a live database and record fields (company response status, timestamps) update between pulls within minutes. This does not affect mechanism classification, verdicts, or ODR entries.
+- `tests/` — 114 tests, all passing
 
 ## Mechanism classification (six categories)
 
@@ -119,15 +130,23 @@ deterministic rules only (no AI). Categories in order of commercial priority:
 
 | Category | Criteria | Decision |
 |---|---|---|
-| `candidate_needs_corroboration` | evidence≥3, companies≥2, operational, software-addressable, all repeated | CONTINUE_RESEARCH |
-| `verified_pain` | evidence≥3, companies≥2, operational, software-addressable, not all repeated | CONTINUE_RESEARCH |
+| `repeated_complaint_signal` | evidence≥3, companies≥2, operational, software-addressable, all repeated | CONTINUE_RESEARCH |
+| `partial_complaint_signal` | evidence≥3, companies≥2, operational, software-addressable, not all repeated | CONTINUE_RESEARCH |
 | `commercially_weak` | operational + software-addressable, but insufficient scale | CONTINUE_RESEARCH |
-| `non_software_problem` | operational but not software-addressable | REJECTED |
+| `non_software_problem` | operational but not software-addressable (Correction 5: reachable now) | REJECTED |
 | `non_operational_problem` | not operational | REJECTED |
 | `noise` | <2 verified evidence items | REJECTED |
 
 All CFPB-only evidence is capped at CONTINUE RESEARCH by PG-15/PG-16 regardless
 of category. BUILD CANDIDATE requires a second independent source family.
+
+**Milestone 3 corrections (2026-07-15):**
+- C1: Category labels and ceiling note explicitly caveat CFPB complaints as unverified allegations
+- C2: "only remaining blocker" language removed from all reasoning, labels, and upgrade lists
+- C3: `missing_for_upgrade` expanded to 7 requirements (buyer, cost, competitive, non-software, market, commercial signal, independent corroboration)
+- C4: Cross-run analysis extended with complaint-ID set/ordering/mutation checks
+- C5: `software_addressable` moved out of `verified_candidate` gate; `non_software_problem` findings now reach ODR and produce genuine REJECTED entries
+- C6: Mechanism labels renamed to trigger-process-failure format: `bureau_dispute_reinvestigation_failure`, `furnisher_tradeline_data_error_persistence`, `dispute_supporting_evidence_rejection`, `investigation_outcome_notification_failure`, `unclassified_credit_reporting_complaint`
 
 ## Opportunity Decision Register (ODR)
 

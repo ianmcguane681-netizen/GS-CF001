@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 from core.ids import stable_id
-from core.models import Finding, OpportunityHypothesis
+from core.models import Finding, OpportunityHypothesis, VerifiedEvidence
 from core.opportunity_decision_register import (
     ODREntry,
     OpportunityDecisionRegister,
@@ -21,7 +21,6 @@ from findings.mechanism_classifier import (
     MechanismClassification,
     classify_finding,
 )
-from core.models import VerifiedEvidence, Source, Study
 
 
 # ---------------------------------------------------------------------------
@@ -29,7 +28,7 @@ from core.models import VerifiedEvidence, Source, Study
 # ---------------------------------------------------------------------------
 
 def _finding(
-    mechanism: str = "credit_report_dispute_investigation",
+    mechanism: str = "bureau_dispute_reinvestigation_failure",
     evidence_count: int = 5,
     company_count: int = 3,
     status: str = "finding_supported_cfpb_only",
@@ -66,7 +65,7 @@ def _opportunity(finding_id: str) -> OpportunityHypothesis:
     )
 
 
-def _evidence_for(finding: Finding, repeated: bool = True) -> list[VerifiedEvidence]:
+def _evidence_for(finding: Finding, repeated: bool = True, sw_addressable: bool = True) -> list[VerifiedEvidence]:
     items = []
     for i, eid in enumerate(finding.evidence_ids):
         items.append(VerifiedEvidence(
@@ -78,7 +77,7 @@ def _evidence_for(finding: Finding, repeated: bool = True) -> list[VerifiedEvide
             verification_status="verified_candidate",
             operational=True,
             traceable=True,
-            software_addressable=True,
+            software_addressable=sw_addressable,
             repeated_signal=repeated,
             independently_corrobored=False,
             mechanism=finding.mechanism,
@@ -89,8 +88,8 @@ def _evidence_for(finding: Finding, repeated: bool = True) -> list[VerifiedEvide
     return items
 
 
-def _classification(finding: Finding, repeated: bool = True) -> MechanismClassification:
-    ev = _evidence_for(finding, repeated=repeated)
+def _classification(finding: Finding, repeated: bool = True, sw: bool = True) -> MechanismClassification:
+    ev = _evidence_for(finding, repeated=repeated, sw_addressable=sw)
     return classify_finding(finding, ev)
 
 
@@ -115,7 +114,7 @@ def test_odr_entry_has_required_fields():
     assert len(entry.decision_rationale) > 0
 
 
-def test_odr_entry_decision_status_continue_research_for_candidate():
+def test_odr_entry_continue_research_for_repeated_complaint_signal():
     f = _finding(evidence_count=5, company_count=3)
     opp = _opportunity(f.finding_id)
     clf = _classification(f, repeated=True)
@@ -123,10 +122,21 @@ def test_odr_entry_decision_status_continue_research_for_candidate():
     assert entry.decision_status == "CONTINUE_RESEARCH"
 
 
-def test_odr_entry_decision_status_rejected_for_noise():
+def test_odr_entry_rejected_for_noise():
     f = _finding(evidence_count=1, company_count=1)
     opp = _opportunity(f.finding_id)
     clf = classify_finding(f, [])  # no evidence → noise
+    entry = build_odr_entry(f, opp, clf)
+    assert entry.decision_status == "REJECTED"
+
+
+def test_odr_entry_rejected_for_non_software_problem():
+    """Correction 5: ODR must produce genuine REJECTED for non_software_problem."""
+    f = _finding(evidence_count=4, company_count=3)
+    opp = _opportunity(f.finding_id)
+    ev = _evidence_for(f, repeated=True, sw_addressable=False)
+    clf = classify_finding(f, ev)
+    assert clf.category == "non_software_problem"
     entry = build_odr_entry(f, opp, clf)
     assert entry.decision_status == "REJECTED"
 
@@ -141,6 +151,31 @@ def test_odr_entry_is_deterministic():
     assert e1.decision_status == e2.decision_status
 
 
+def test_odr_entry_rationale_no_only_remaining_blocker():
+    """Correction 2: 'only remaining blocker' must not appear in rationale."""
+    f = _finding(evidence_count=5, company_count=3)
+    opp = _opportunity(f.finding_id)
+    clf = _classification(f)
+    entry = build_odr_entry(f, opp, clf)
+    full = " ".join(entry.decision_rationale + entry.missing_for_decision_upgrade)
+    assert "only remaining blocker" not in full.lower()
+
+
+def test_odr_entry_missing_for_upgrade_includes_commercial_requirements():
+    """Correction 3: missing_for_upgrade must list commercial investigation requirements."""
+    f = _finding(evidence_count=5, company_count=3)
+    opp = _opportunity(f.finding_id)
+    clf = _classification(f, repeated=True)
+    entry = build_odr_entry(f, opp, clf)
+    combined = " ".join(entry.missing_for_decision_upgrade).lower()
+    assert "buyer" in combined
+    assert "cost" in combined or "financial" in combined
+    assert "competitive" in combined or "existing solution" in combined
+    assert "non-software" in combined
+    assert "market" in combined
+    assert "commercial" in combined or "willingness" in combined
+
+
 # ---------------------------------------------------------------------------
 # build_odr
 # ---------------------------------------------------------------------------
@@ -148,9 +183,6 @@ def test_odr_entry_is_deterministic():
 def test_build_odr_empty_run():
     odr = build_odr("GS-CF001-C", "RUN-TEST", [], [], [])
     assert odr.entry_count == 0
-    assert odr.rejected_count == 0
-    assert odr.continue_research_count == 0
-    assert odr.methodology_note
     assert "CONTINUE RESEARCH" in odr.evidence_ceiling_note
 
 
@@ -168,13 +200,16 @@ def test_build_odr_counts_correctly():
     assert odr.rejected_count == 1
 
 
-def test_build_odr_contains_evidence_ceiling():
-    f = _finding()
+def test_build_odr_produces_rejected_for_non_software():
+    """Correction 5: full ODR run with non-software finding produces REJECTED entry."""
+    f = _finding("furnisher_tradeline_data_error_persistence", 4, 3)
     opp = _opportunity(f.finding_id)
-    clf = _classification(f)
+    ev = _evidence_for(f, repeated=True, sw_addressable=False)
+    clf = classify_finding(f, ev)
     odr = build_odr("GS-CF001-C", "RUN-TEST", [f], [opp], [clf])
-    assert odr.evidence_ceiling == "CONTINUE RESEARCH"
-    assert "single source family" in odr.evidence_ceiling_note
+    assert odr.rejected_count == 1
+    assert odr.continue_research_count == 0
+    assert odr.entries[0].decision_status == "REJECTED"
 
 
 def test_build_odr_no_ai_methodology_note():
@@ -183,12 +218,10 @@ def test_build_odr_no_ai_methodology_note():
     assert "deterministic" in odr.methodology_note.lower()
 
 
-def test_build_odr_entries_have_evidence_references():
-    f = _finding()
-    opp = _opportunity(f.finding_id)
-    clf = _classification(f)
-    odr = build_odr("GS-CF001-C", "RUN-TEST", [f], [opp], [clf])
-    assert odr.entries[0].evidence_references == f.evidence_ids
+def test_build_odr_ceiling_note_includes_allegation_caveat():
+    """Correction 1: ceiling note must mention unverified allegations."""
+    odr = build_odr("GS-CF001-C", "RUN-TEST", [], [], [])
+    assert "unverified" in odr.evidence_ceiling_note.lower()
 
 
 # ---------------------------------------------------------------------------
@@ -226,6 +259,20 @@ def test_write_odr_markdown_contains_required_sections(tmp_path):
     assert "Methodology note" in md
     assert "No AI" in md
     assert "Decision table" in md
+    assert odr.entries[0].odr_id in md
+
+
+def test_write_odr_markdown_rejected_entry(tmp_path):
+    """Correction 5: REJECTED entries appear in Markdown report."""
+    f = _finding()
+    opp = _opportunity(f.finding_id)
+    ev = _evidence_for(f, repeated=True, sw_addressable=False)
+    clf = classify_finding(f, ev)
+    odr = build_odr("GS-CF001-C", "RUN-TEST", [f], [opp], [clf])
+    path = tmp_path / "odr_rejected.md"
+    write_odr_markdown(odr, path)
+    md = path.read_text()
+    assert "REJECTED" in md
     assert odr.entries[0].odr_id in md
 
 

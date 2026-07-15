@@ -3,14 +3,14 @@ from __future__ import annotations
 
 import pytest
 
-from core.models import Finding, VerifiedEvidence, Source, Study
 from core.ids import stable_id
+from core.models import Finding, VerifiedEvidence
 from findings.mechanism_classifier import (
-    MechanismCategory,
-    classify_finding,
-    classify_all,
     CATEGORY_DECISION_STATUS,
     EVIDENCE_CEILING_NOTE,
+    MechanismCategory,
+    classify_all,
+    classify_finding,
 )
 
 
@@ -18,30 +18,9 @@ from findings.mechanism_classifier import (
 # Helpers
 # ---------------------------------------------------------------------------
 
-def _source() -> Source:
-    return Source(
-        source_id="CFPB-CCD-001",
-        name="CFPB",
-        source_type="public_consumer_complaint_database",
-        base_url="https://cfpb.gov",
-        jurisdiction="US",
-        role="discovery",
-        source_family="CFPB complaints",
-    )
-
-
-def _study() -> Study:
-    return Study(
-        study_id="GS-CF001-C",
-        title="Credit Reporting Disputes",
-        research_question="Test?",
-        implemented=True,
-    )
-
-
 def _evidence(
     n: int,
-    mechanism: str = "credit_report_dispute_investigation",
+    mechanism: str = "bureau_dispute_reinvestigation_failure",
     *,
     operational: bool = True,
     software_addressable: bool = True,
@@ -68,17 +47,13 @@ def _evidence(
                 reasoning_chain=["test"],
                 supporting_candidate_ids=[f"CAN-{i:03d}"],
                 missing_evidence=[],
-                source_family="CFPB complaints",
-                product="Credit reporting",
-                issue="Incorrect information",
-                date_received="2024-01-01",
             )
         )
     return items
 
 
 def _finding(
-    mechanism: str = "credit_report_dispute_investigation",
+    mechanism: str = "bureau_dispute_reinvestigation_failure",
     evidence_count: int = 5,
     company_count: int = 3,
     status: str = "finding_supported_cfpb_only",
@@ -108,7 +83,7 @@ def _finding(
 
 def test_classify_noise_when_zero_verified_items():
     finding = _finding(evidence_count=1, company_count=1)
-    clf = classify_finding(finding, [])  # no evidence passed
+    clf = classify_finding(finding, [])
     assert clf.category == "noise"
     assert clf.decision_status == "REJECTED"
 
@@ -135,7 +110,8 @@ def test_classify_non_operational_when_majority_not_operational():
 
 
 # ---------------------------------------------------------------------------
-# Category: non_software_problem
+# Category: non_software_problem — reachable now that software_addressable
+# is not a gate on verified_candidate status (Correction 5)
 # ---------------------------------------------------------------------------
 
 def test_classify_non_software_when_not_software_addressable():
@@ -175,44 +151,121 @@ def test_classify_commercially_weak_when_status_not_supported():
 
 
 # ---------------------------------------------------------------------------
-# Category: candidate_needs_corroboration
+# Category: repeated_complaint_signal (renamed from candidate_needs_corroboration)
 # ---------------------------------------------------------------------------
 
-def test_classify_candidate_needs_corroboration_all_repeated():
+def test_classify_repeated_complaint_signal_all_repeated():
     finding = _finding(evidence_count=5, company_count=3)
     ev = _evidence(5, operational=True, software_addressable=True, repeated_signal=True)
     clf = classify_finding(finding, ev)
-    assert clf.category == "candidate_needs_corroboration"
+    assert clf.category == "repeated_complaint_signal"
     assert clf.decision_status == "CONTINUE_RESEARCH"
     assert clf.all_repeated_signal
-    assert "second independent source family" in clf.missing_for_upgrade[0]
+
+
+def test_repeated_complaint_signal_does_not_claim_verified_operational_reality():
+    """Correction 1: the label and reasoning must not positively claim verified operational fact."""
+    finding = _finding(evidence_count=5, company_count=3)
+    ev = _evidence(5, repeated_signal=True)
+    clf = classify_finding(finding, ev)
+    # Category name must not contain "verified" as a positive claim
+    assert clf.category == "repeated_complaint_signal"
+    assert "verified_pain" not in clf.category
+    # Label must not say "Verified pain" or "Verified [positive claim]"
+    # (saying "unverified" in parens is fine — that's the caveat)
+    label_lower = clf.category_label.lower()
+    assert not label_lower.startswith("verified")
+    assert "verified pain" not in label_lower
+    # Reasoning must include the unverified-allegation caveat
+    reasoning_text = " ".join(clf.classification_reasoning).lower()
+    assert "unverified" in reasoning_text or "allegations" in reasoning_text
+
+
+def test_repeated_complaint_signal_missing_for_upgrade_is_comprehensive():
+    """Correction 3: missing_for_upgrade must cover all 7 advance requirements."""
+    finding = _finding(evidence_count=5, company_count=3)
+    ev = _evidence(5, repeated_signal=True)
+    clf = classify_finding(finding, ev)
+    combined = " ".join(clf.missing_for_upgrade).lower()
+    # Check all 7 categories are represented
+    assert "independent corroboration" in combined or "non-cfpb" in combined
+    assert "buyer" in combined
+    assert "cost" in combined or "financial" in combined
+    assert "competitive" in combined or "existing solution" in combined
+    assert "non-software" in combined
+    assert "market" in combined
+    assert "commercial" in combined or "willingness to pay" in combined
+
+
+def test_repeated_complaint_signal_no_only_remaining_blocker_language():
+    """Correction 2: 'only remaining blocker' language must not appear anywhere."""
+    finding = _finding(evidence_count=5, company_count=3)
+    ev = _evidence(5, repeated_signal=True)
+    clf = classify_finding(finding, ev)
+    full_text = (
+        " ".join(clf.classification_reasoning)
+        + " ".join(clf.missing_for_upgrade)
+        + clf.evidence_ceiling_note
+    )
+    assert "only remaining blocker" not in full_text.lower()
 
 
 # ---------------------------------------------------------------------------
-# Category: verified_pain
+# Category: partial_complaint_signal (renamed from verified_pain)
 # ---------------------------------------------------------------------------
 
-def test_classify_verified_pain_not_all_repeated():
+def test_classify_partial_complaint_signal_not_all_repeated():
     finding = _finding(evidence_count=5, company_count=3)
     ev_repeated = _evidence(3, operational=True, software_addressable=True, repeated_signal=True)
     ev_single = _evidence(2, operational=True, software_addressable=True, repeated_signal=False)
     clf = classify_finding(finding, ev_repeated + ev_single)
-    assert clf.category == "verified_pain"
+    assert clf.category == "partial_complaint_signal"
     assert clf.decision_status == "CONTINUE_RESEARCH"
     assert not clf.all_repeated_signal
 
 
+def test_partial_complaint_signal_does_not_claim_verified_pain():
+    """Correction 1: 'verified_pain' name is gone; label must not claim verified pain."""
+    finding = _finding(evidence_count=5, company_count=3)
+    ev_repeated = _evidence(3, repeated_signal=True)
+    ev_single = _evidence(2, repeated_signal=False)
+    clf = classify_finding(finding, ev_repeated + ev_single)
+    assert clf.category == "partial_complaint_signal"
+    label_lower = clf.category_label.lower()
+    assert not label_lower.startswith("verified")
+    assert "verified pain" not in label_lower
+
+
 # ---------------------------------------------------------------------------
-# Evidence ceiling note always present
+# Evidence ceiling note — Correction 1 tightened wording
 # ---------------------------------------------------------------------------
 
-def test_evidence_ceiling_note_always_present():
+def test_evidence_ceiling_note_includes_unverified_allegation_caveat():
     finding = _finding(evidence_count=5, company_count=3)
     ev = _evidence(5, repeated_signal=True)
     clf = classify_finding(finding, ev)
-    assert clf.evidence_ceiling_note == EVIDENCE_CEILING_NOTE
-    assert "CONTINUE RESEARCH" in clf.evidence_ceiling_note
-    assert "single source family" in clf.evidence_ceiling_note
+    note = clf.evidence_ceiling_note
+    assert "unverified" in note.lower() or "allegations" in note.lower()
+    assert "CONTINUE RESEARCH" in note
+    assert "single source family" in note
+
+
+# ---------------------------------------------------------------------------
+# No "only remaining blocker" language anywhere (Correction 2)
+# ---------------------------------------------------------------------------
+
+def test_no_only_remaining_blocker_in_any_category():
+    banned = "only remaining blocker"
+    categories = [
+        (_finding(evidence_count=5, company_count=3), _evidence(5, repeated_signal=True)),
+        (_finding(evidence_count=5, company_count=3), _evidence(3, repeated_signal=True) + _evidence(2, repeated_signal=False)),
+        (_finding(evidence_count=4, company_count=2, status="needs_more_evidence"), _evidence(4)),
+        (_finding(evidence_count=4, company_count=2), _evidence(4, software_addressable=False)),
+    ]
+    for finding, ev in categories:
+        clf = classify_finding(finding, ev)
+        full = " ".join(clf.classification_reasoning + clf.missing_for_upgrade + [clf.evidence_ceiling_note])
+        assert banned not in full.lower(), f"Found '{banned}' in {clf.category}"
 
 
 # ---------------------------------------------------------------------------
@@ -226,21 +279,19 @@ def test_classify_all_returns_one_per_finding():
     ]
     ev_a = _evidence(5, mechanism="mechanism_A", repeated_signal=True)
     ev_b = _evidence(1, mechanism="mechanism_B")
-    all_ev = ev_a + ev_b
-    results = classify_all(findings, all_ev)
+    results = classify_all(findings, ev_a + ev_b)
     assert len(results) == 2
     by_finding = {r.finding_id: r for r in results}
-    assert by_finding[findings[0].finding_id].category == "candidate_needs_corroboration"
+    assert by_finding[findings[0].finding_id].category == "repeated_complaint_signal"
     assert by_finding[findings[1].finding_id].category == "noise"
 
 
 def test_classify_all_empty_findings():
-    results = classify_all([], [])
-    assert results == []
+    assert classify_all([], []) == []
 
 
 # ---------------------------------------------------------------------------
-# Determinism: same inputs → same output
+# Determinism
 # ---------------------------------------------------------------------------
 
 def test_classification_is_deterministic():
@@ -258,8 +309,8 @@ def test_classification_is_deterministic():
 
 def test_all_categories_have_decision_status():
     all_cats = [
-        "candidate_needs_corroboration",
-        "verified_pain",
+        "repeated_complaint_signal",
+        "partial_complaint_signal",
         "commercially_weak",
         "non_software_problem",
         "non_operational_problem",
@@ -268,3 +319,9 @@ def test_all_categories_have_decision_status():
     for cat in all_cats:
         assert cat in CATEGORY_DECISION_STATUS
         assert CATEGORY_DECISION_STATUS[cat] in ("CONTINUE_RESEARCH", "REJECTED")
+
+
+def test_rejected_categories():
+    assert CATEGORY_DECISION_STATUS["non_software_problem"] == "REJECTED"
+    assert CATEGORY_DECISION_STATUS["non_operational_problem"] == "REJECTED"
+    assert CATEGORY_DECISION_STATUS["noise"] == "REJECTED"

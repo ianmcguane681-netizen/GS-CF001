@@ -1,0 +1,36 @@
+[
+  {
+    "diagnostic_id": "ADIAG-E30E55B69193",
+    "endpoint": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=100&product=Credit+reporting+or+other+personal+consumer+reports",
+    "attempted_at": "2026-07-15T19:31:38Z",
+    "environment": "local-curl-transport",
+    "request_method": "GET",
+    "request_headers": {
+      "User-Agent": "GS-CF001/0.1 methodology proof",
+      "Accept": "application/json"
+    },
+    "response_status": "200",
+    "response_headers": {
+      "content-type": "application/json",
+      "content-length": "245520",
+      "server": "envoy",
+      "access-control-allow-origin": "https://cfpb.github.io",
+      "access-control-allow-methods": "GET",
+      "allow": "GET, OPTIONS",
+      "content-security-policy": "style-src 'self' 'unsafe-inline' *.consumerfinance.gov *.googletagmanager.com fonts.googleapis.com api.mapbox.com www.ssa.gov/accessibility/andi/; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.consumerfinance.gov dap.digitalgov.gov *.googleanalytics.com *.google-analytics.com *.googletagmanager.com api.mapbox.com js-agent.newrelic.com bam.nr-data.net gov-bam.nr-data.net *.youtube.com *.ytimg.com *.mouseflow.com *.geo.census.gov about: www.federalregister.gov *.qualtrics.com www.ssa.gov/accessibility/andi/ ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js; img-src 'self' *.cfpb.gov *.consumerfinance.gov www.ecfr.gov s3.amazonaws.com img.youtube.com *.google-analytics.com *.googletagmanager.com api.mapbox.com *.tiles.mapbox.com blob: data: www.gravatar.com *.qualtrics.com *.mouseflow.com i.ytimg.com www.ssa.gov/accessibility/andi/; default-src 'self'; font-src 'self' fonts.gstatic.com; frame-src 'self' *.consumerfinance.gov *.googletagmanager.com *.google-analytics.com www.youtube.com *.qualtrics.com mailto:; media-src 'self' *.consumerfinance.gov; connect-src 'self' *.consumerfinance.gov dap.digitalgov.gov *.google-analytics.com *.tiles.mapbox.com api.mapbox.com bam.nr-data.net gov-bam.nr-data.net s3.amazonaws.com public.govdelivery.com *.mouseflow.com *.qualtrics.com raw.githubusercontent.com",
+      "x-frame-options": "SAMEORIGIN",
+      "etag": "\"7c36761aec530362b67a3364f12c340c\"",
+      "permissions-policy": "interest-cohort=()",
+      "x-content-type-options": "nosniff",
+      "referrer-policy": "same-origin",
+      "cross-origin-opener-policy": "same-origin",
+      "x-envoy-upstream-service-time": "15707",
+      "date": "Wed, 15 Jul 2026 19:31:38 GMT",
+      "strict-transport-security": "max-age=31536000"
+    },
+    "response_body_summary": "Retrieved 100 record(s).",
+    "retry_result": "not retried",
+    "final_interpretation": "Official CFPB search API returned parseable JSON.",
+    "access_method": "official_cfpb_search_api"
+  }
+]

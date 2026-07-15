@@ -1,31 +1,23 @@
 """opportunity_decision_register.py — Fully traceable Opportunity Decision Register.
 
-Produces one ODREntry per opportunity hypothesis, using deterministic rules only.
+Produces one ODREntry per opportunity hypothesis using deterministic rules only.
 No AI is used in any ODR decision. All reasoning is derived from:
   - MechanismClassification (category, decision_status)
   - Finding fields (evidence_count, company_count, status, companies)
   - OpportunityHypothesis fields (component_hypothesis, buyer_clarity, etc.)
   - Proof Gate outputs (specifically PG-15, PG-16 for ceiling enforcement)
 
-An ODREntry records:
-  - odr_id          — deterministic stable ID
-  - mechanism       — the detected mechanism name
-  - mechanism_classification — six-category result
-  - evidence_references — evidence IDs supporting this entry
-  - companies_observed — companies seen in CFPB data
-  - evidence_count, company_count — counts for traceability
-  - finding_id, opportunity_id — cross-references
-  - component_hypothesis — what software component was hypothesised
-  - commercial_assessment — buyer_clarity, relevance, reusability fields verbatim
-  - decision_status — REJECTED | CONTINUE_RESEARCH
-  - decision_rationale — full deterministic reasoning chain
-  - evidence_ceiling_note — explicit ceiling enforcement statement
-  - missing_for_decision_upgrade — what evidence is needed to advance status
+The Evidence Ceiling (CONTINUE RESEARCH) is a methodology rule enforced by
+PG-15 and PG-16. It cannot be removed by any ODR entry, report, argument, or
+configuration change. CFPB-only evidence establishes at most a complaint signal,
+not a verified operational failure or a commercial opportunity. Advancing beyond
+CONTINUE RESEARCH requires independent evidence from multiple research streams —
+not a larger CFPB record pull.
 """
 from __future__ import annotations
 
 import json
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -40,18 +32,15 @@ from findings.mechanism_classifier import (
 
 @dataclass(frozen=True)
 class ODREntry:
-    """One row in the Opportunity Decision Register.
-
-    Every field is populated from pipeline outputs by deterministic rules.
-    """
+    """One row in the Opportunity Decision Register."""
     odr_id: str
     mechanism: str
-    mechanism_classification: str       # six-category label
-    decision_status: str                # REJECTED | CONTINUE_RESEARCH
+    mechanism_classification: str
+    decision_status: str
     evidence_ceiling_note: str
     finding_id: str
     opportunity_id: str
-    evidence_references: list[str]      # evidence IDs
+    evidence_references: list[str]
     companies_observed: list[str]
     evidence_count: int
     company_count: int
@@ -91,10 +80,12 @@ class OpportunityDecisionRegister:
 _METHODOLOGY_NOTE = (
     "All decisions in this ODR are produced by deterministic pipeline rules. "
     "No AI model was consulted for any classification or decision. "
-    "The Evidence Ceiling (CONTINUE RESEARCH) is enforced by Proof Gates PG-15 and PG-16 "
-    "and cannot be overridden by any ODR entry, report, or configuration. "
-    "CFPB complaint data is a single source family; BUILD CANDIDATE requires "
-    "at least two independent source families."
+    "The Evidence Ceiling (CONTINUE RESEARCH) is enforced by Proof Gates PG-15 "
+    "and PG-16 and cannot be overridden. CFPB complaint data is a single source "
+    "family. CFPB complaints are unverified consumer allegations and do not "
+    "independently establish operational reality, software addressability, or "
+    "commercial viability. Advancing beyond CONTINUE RESEARCH requires independent "
+    "evidence from multiple research streams."
 )
 
 
@@ -115,16 +106,8 @@ def build_odr_entry(
     opportunity: OpportunityHypothesis,
     classification: MechanismClassification,
 ) -> ODREntry:
-    """Build one ODREntry from a finding, opportunity, and classification.
-
-    Decision logic:
-    - decision_status comes from the classification (REJECTED or CONTINUE_RESEARCH).
-    - decision_rationale is assembled from classification reasoning + commercial fields.
-    - missing_for_decision_upgrade lists what evidence would advance the status.
-    """
+    """Build one ODREntry from a finding, opportunity, and classification."""
     rationale = list(classification.classification_reasoning)
-
-    # Add commercial context to rationale.
     rationale.append(
         f"Commercial hypothesis: '{opportunity.component_hypothesis}' — "
         f"buyer_clarity={opportunity.buyer_clarity}, "
@@ -139,8 +122,9 @@ def build_odr_entry(
     else:
         rationale.append(
             "Decision: CONTINUE_RESEARCH. Evidence ceiling enforced. "
-            "CFPB data alone cannot support a BUILD CANDIDATE verdict. "
-            "Independent corroboration must be sourced before this can advance."
+            "CFPB complaint data establishes a complaint signal only — not a "
+            "verified operational failure or commercial opportunity. Multiple "
+            "independent research streams must be completed before this can advance."
         )
 
     odr_id = stable_id(
@@ -176,14 +160,7 @@ def build_odr(
     opportunities: list[OpportunityHypothesis],
     classifications: list[MechanismClassification],
 ) -> OpportunityDecisionRegister:
-    """Build the full ODR for one pipeline run.
-
-    Pairs each finding with its corresponding opportunity and classification.
-    Findings without a matching opportunity are included as REJECTED entries
-    with an explicit note. Opportunities without a matching finding are skipped
-    (should not occur in a well-formed pipeline run).
-    """
-    # Index by finding_id for O(1) lookup.
+    """Build the full ODR for one pipeline run."""
     opp_by_finding: dict[str, OpportunityHypothesis] = {
         opp.finding_id: opp for opp in opportunities
     }
@@ -196,7 +173,7 @@ def build_odr(
         opp = opp_by_finding.get(finding.finding_id)
         clf = clf_by_finding.get(finding.finding_id)
         if opp is None or clf is None:
-            continue  # mismatched data; skip rather than crash
+            continue
         entries.append(build_odr_entry(finding, opp, clf))
 
     rejected = sum(1 for e in entries if e.decision_status == "REJECTED")
@@ -223,7 +200,6 @@ def build_odr(
 # ---------------------------------------------------------------------------
 
 def write_odr_json(odr: OpportunityDecisionRegister, path: str | Path) -> str:
-    """Write the ODR as machine-readable JSON. Returns path as str."""
     out = Path(path)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(
@@ -234,7 +210,6 @@ def write_odr_json(odr: OpportunityDecisionRegister, path: str | Path) -> str:
 
 
 def write_odr_markdown(odr: OpportunityDecisionRegister, path: str | Path) -> str:
-    """Write the ODR as a human-readable Markdown report. Returns path as str."""
     lines: list[str] = []
     lines.append(f"# Opportunity Decision Register — {odr.study_id}")
     lines.append("")
@@ -252,8 +227,8 @@ def write_odr_markdown(odr: OpportunityDecisionRegister, path: str | Path) -> st
     lines.append("")
     lines.append("## Summary")
     lines.append("")
-    lines.append(f"| | Count |")
-    lines.append(f"|---|---|")
+    lines.append("| | Count |")
+    lines.append("|---|---|")
     lines.append(f"| Total ODR entries | {odr.entry_count} |")
     lines.append(f"| CONTINUE_RESEARCH | {odr.continue_research_count} |")
     lines.append(f"| REJECTED | {odr.rejected_count} |")
@@ -275,12 +250,12 @@ def write_odr_markdown(odr: OpportunityDecisionRegister, path: str | Path) -> st
         lines.append("")
 
         for e in odr.entries:
-            lines.append(f"---")
+            lines.append("---")
             lines.append("")
             lines.append(f"### {e.odr_id} — {e.mechanism}")
             lines.append("")
-            lines.append(f"| Field | Value |")
-            lines.append(f"|---|---|")
+            lines.append("| Field | Value |")
+            lines.append("|---|---|")
             lines.append(f"| Classification | {e.mechanism_classification} |")
             lines.append(f"| Decision status | **{e.decision_status}** |")
             lines.append(f"| Finding ID | `{e.finding_id}` |")
@@ -309,7 +284,7 @@ def write_odr_markdown(odr: OpportunityDecisionRegister, path: str | Path) -> st
                 for item in e.missing_for_decision_upgrade:
                     lines.append(f"- {item}")
                 lines.append("")
-            lines.append(f"**Evidence ceiling note:**")
+            lines.append("**Evidence ceiling note:**")
             lines.append("")
             lines.append(f"> {e.evidence_ceiling_note}")
             lines.append("")

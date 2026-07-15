@@ -1,6 +1,6 @@
 # GS-CF001-C Sampling Design — 100-Record Live CFPB Pull
 
-**Version:** SD-001  
+**Version:** SD-002 (Milestone 3 corrections applied)
 **Study:** GS-CF001-C Credit Reporting Disputes  
 **Prepared:** 2026-07-15  
 **Status:** Approved for methodology-validation milestone
@@ -94,30 +94,88 @@ Records are normalised by `core/normalization.py` using the product inclusion te
 ```
 
 Verification by `verification/classifier.py` applies:
-- `OPERATIONAL_TERMS` — presence signals an operational complaint
+- `OPERATIONAL_TERMS` — presence signals an operational complaint (tightened: "information" and
+  "report" removed because they are too broad and appear in non-operational complaints)
 - `SOFTWARE_ADDRESSABLE_TERMS` — presence signals a software-addressable mechanism
-- `MECHANISM_RULES` — deterministic priority-ordered rules assign one of five
-  mechanism labels (or the default `credit_reporting_dispute_handling`)
+- `MECHANISM_RULES` — deterministic priority-ordered rules assign one of five mechanism labels
+
+**Correction 5 — `software_addressable` is a classification input, not a verification gate:**  
+A complaint is a `verified_candidate` if and only if `operational=True AND traceable=True`.
+Software addressability does NOT gate verification status. This ensures non-software complaints
+reach the findings engine and produce genuine REJECTED ODR outcomes from real complaint data.
 
 ---
 
-## 7. Mechanism classification criteria
+## 7. Mechanism labels (trigger-process-failure format)
+
+**Correction 6** renamed all mechanism labels to use consistent trigger-process-failure-consequence
+format. The five mechanism labels are:
+
+| Label | Description |
+|---|---|
+| `bureau_dispute_reinvestigation_failure` | Dispute triggers reinvestigation; bureau fails to correct result |
+| `furnisher_tradeline_data_error_persistence` | Furnisher fails to remove or correct a disputed tradeline error |
+| `dispute_supporting_evidence_rejection` | Evidence submitted with a dispute is rejected or ignored |
+| `investigation_outcome_notification_failure` | Outcome notification not delivered or delayed after investigation |
+| `unclassified_credit_reporting_complaint` | Default: does not match any higher-priority mechanism pattern |
+
+The old labels (`credit_report_dispute_investigation`, `incorrect_credit_report_information`,
+`credit_report_documentation_handling`, `credit_report_resolution_communication`,
+`credit_reporting_dispute_handling`) are retired.
+
+---
+
+## 8. Mechanism classification criteria
 
 Each identified finding is classified into one of six categories by
 `findings/mechanism_classifier.py` using deterministic rules only:
 
-| Category | Rules |
-|---|---|
-| `noise` | evidence_count < 2 or no verified_candidate items |
-| `non_operational_problem` | Has evidence; operational=False for majority of verified items |
-| `non_software_problem` | Operational evidence present; software_addressable=False for majority |
-| `commercially_weak` | Operational + software-addressable; company_count < 2 or evidence_count < 3 |
-| `verified_pain` | evidence_count ≥ 3, company_count ≥ 2, operational, software-addressable, status=finding_supported_cfpb_only |
-| `candidate_needs_corroboration` | All verified_pain criteria + all evidence items have repeated_signal=True |
+| Category | Rules | ODR Decision |
+|---|---|---|
+| `noise` | evidence_count < 2 or no verified_candidate items | REJECTED |
+| `non_operational_problem` | Has evidence; operational=False for majority of verified items | REJECTED |
+| `non_software_problem` | Operational evidence present; software_addressable=False for majority | REJECTED |
+| `commercially_weak` | Operational + software-addressable; company_count < 2 or evidence_count < 3, or status ≠ finding_supported_cfpb_only | CONTINUE_RESEARCH |
+| `repeated_complaint_signal` | evidence≥3, companies≥2, operational, software-addressable, status=finding_supported_cfpb_only, all repeated | CONTINUE_RESEARCH |
+| `partial_complaint_signal` | evidence≥3, companies≥2, operational, software-addressable, status=finding_supported_cfpb_only, not all repeated | CONTINUE_RESEARCH |
+
+**Correction 1** — renamed categories:
+- `candidate_needs_corroboration` → `repeated_complaint_signal` (old name implied only one remaining blocker)
+- `verified_pain` → `partial_complaint_signal` (old name incorrectly implied verified operational fact)
+
+**Correction 2** — "only remaining blocker" language removed from all category labels, reasoning chains,
+and `missing_for_upgrade` lists. CFPB complaints are unverified consumer allegations; repeating
+a complaint pattern is necessary but not sufficient evidence of operational failure.
+
+**Correction 3** — `missing_for_upgrade` now covers all seven advance requirements:
+1. Independent corroboration from a non-CFPB source family
+2. Buyer persona clarity (who pays, who authorises)
+3. Measurable cost or financial impact
+4. Competitive landscape and existing solution maturity
+5. Non-software alternative analysis
+6. Market size evidence
+7. Commercial signal (willingness-to-pay or procurement evidence)
 
 ---
 
-## 8. Evidence Ceiling enforcement
+## 9. Rejection harness (Correction 5 validation)
+
+`connectors/rejection_harness.py` provides `RejectionHarnessConnector` — a controlled test
+connector with 6 synthetic CFPB-taxonomy complaints (3 Pattern A: furnisher refused removal,
+3 Pattern B: identity theft result without removal). All are `operational=True, traceable=True,
+software_addressable=False`, so they:
+- Pass the `verified_candidate` gate (operational AND traceable)
+- Classify as `non_software_problem`
+- Produce genuine **REJECTED** ODR entries
+
+This confirms the pipeline correctly identifies and rejects non-software operational problems
+and is not restricted to producing only CONTINUE_RESEARCH outcomes.
+
+`tests/test_rejection_harness.py` validates the full harness pipeline end-to-end.
+
+---
+
+## 10. Evidence Ceiling enforcement
 
 CFPB data is a single source family. Proof Gates PG-15 (Source Independence)
 and PG-16 (Evidence Ceiling Compliance) enforce a hard ceiling of
@@ -129,9 +187,12 @@ if 10,000 records are retrieved. The ceiling can only be removed by adding a
 second independent source family (regulatory, enforcement, judicial, audit, or
 company-examination evidence). That is not part of this milestone.
 
+REJECTED ODR entries do not represent a breach of the ceiling — they represent
+findings the pipeline has actively eliminated as non-viable.
+
 ---
 
-## 9. Opportunity Decision Register (ODR)
+## 11. Opportunity Decision Register (ODR)
 
 The ODR is produced by `core/opportunity_decision_register.py` for every run.
 Each entry records: mechanism, classification, evidence references, companies,
@@ -140,9 +201,15 @@ and full deterministic reasoning chain. No AI is used in any ODR decision.
 Decisions are derived entirely from finding status, mechanism classification
 rules, and proof gate outputs.
 
+**Correction 1** — `EVIDENCE_CEILING_NOTE` updated to include explicit caveat that
+CFPB complaints are unverified consumer allegations, not confirmed operational facts.
+
+**Correction 2** — ODR rationale language does not use "only remaining blocker" framing.
+The ceiling applies to all CFPB-only findings; it is not presented as a single obstacle.
+
 ---
 
-## 10. What this design does not claim
+## 12. What this design does not claim
 
 - It does not claim statistical representativeness of the full CFPB complaint
   population.
@@ -156,12 +223,18 @@ rules, and proof gate outputs.
 
 ---
 
-## 11. Verification instructions
+## 13. Verification instructions
 
 To reproduce this sampling run:
 1. Confirm `curl` is on PATH (`which curl`)
-2. Run `python -m pytest -q` — all tests must pass
+2. Run `python -m pytest -q` — all tests must pass (≥114)
 3. Run `python -m core.pipeline --limit 100` (three times)
 4. Compare run index entries: `cat data/exports/run_index.json`
-5. Build archive: `python -m tools.build_study_archive --latest`
-6. Verify: `cd study_archives/<archive_dir> && sha256sum -c checksums.txt`
+5. Run cross-run comparison:
+   ```python
+   from core.cross_run_analysis import load_and_compare_last_n_runs, write_cross_run_report
+   comp = load_and_compare_last_n_runs(3)
+   write_cross_run_report(comp, 'analysis/comparison.md')
+   ```
+6. Build archive: `python -m tools.build_study_archive --latest`
+7. Verify: `cd study_archives/<archive_dir> && sha256sum -c checksums.txt`
