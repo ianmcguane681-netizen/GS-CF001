@@ -134,6 +134,10 @@ class MechanismClassification:
     majority_software_addressable: bool
     classification_reasoning: list[str]
     missing_for_upgrade: list[str]
+    # Audit note: populated when a majority vote driving classification is within
+    # 10 percentage points of 50% (i.e. 40%–60%). A borderline vote means a small
+    # evidence change could flip the category. Empty string when not borderline.
+    borderline_note: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -144,6 +148,16 @@ def _majority(items: list[VerifiedEvidence], attr: str) -> bool:
         return False
     count = sum(1 for item in items if getattr(item, attr, False))
     return count > len(items) / 2
+
+
+def _majority_ratio(items: list[VerifiedEvidence], attr: str) -> float:
+    """Return the fraction of items where attr is True (0.0 if empty)."""
+    if not items:
+        return 0.0
+    return sum(1 for item in items if getattr(item, attr, False)) / len(items)
+
+
+_BORDERLINE_BAND = 0.10   # within 10pp of 50% → borderline
 
 
 def classify_finding(
@@ -276,6 +290,31 @@ def classify_finding(
             "(to reach repeated_complaint_signal)",
         ] + list(_ADVANCE_REQUIREMENTS)
 
+    # Borderline vote detection (F-04 from methodology audit):
+    # Emit a note when the majority vote that drove classification is within
+    # _BORDERLINE_BAND (10pp) of 50%. A borderline vote means adding or removing
+    # one or two evidence items could flip the category.
+    op_ratio = _majority_ratio(verified_items, "operational")
+    sw_ratio = _majority_ratio(verified_items, "software_addressable")
+    borderline_parts: list[str] = []
+    if verified_count >= 2:
+        if abs(op_ratio - 0.5) <= _BORDERLINE_BAND:
+            pct = round(op_ratio * 100)
+            borderline_parts.append(
+                f"operational vote is borderline ({pct}% of {verified_count} items; "
+                f"threshold 50% — a small evidence change could flip this)"
+            )
+        if abs(sw_ratio - 0.5) <= _BORDERLINE_BAND:
+            pct = round(sw_ratio * 100)
+            borderline_parts.append(
+                f"software_addressable vote is borderline ({pct}% of {verified_count} items; "
+                f"threshold 50% — a small evidence change could flip this)"
+            )
+    borderline_note = (
+        "BORDERLINE MAJORITY VOTE: " + "; ".join(borderline_parts)
+        if borderline_parts else ""
+    )
+
     classification_id = stable_id(
         "CLF",
         {"finding_id": finding.finding_id, "category": category},
@@ -297,6 +336,7 @@ def classify_finding(
         majority_software_addressable=maj_sw,
         classification_reasoning=reasoning,
         missing_for_upgrade=missing_for_upgrade,
+        borderline_note=borderline_note,
     )
 
 

@@ -1,0 +1,192 @@
+# Opportunity Decision Register — GS-CF001-C
+
+**Run ID:** `RUN-6A31FC091937`  
+**Generated:** 2026-07-15T19:50:10+00:00  
+**Evidence Ceiling:** **CONTINUE RESEARCH** (enforced — CFPB single source family)
+
+---
+
+## Methodology note
+
+> All decisions in this ODR are produced by deterministic pipeline rules. No AI model was consulted for any classification or decision. The Evidence Ceiling (CONTINUE RESEARCH) is enforced by Proof Gates PG-15 and PG-16 and cannot be overridden. CFPB complaint data is a single source family. CFPB complaints are unverified consumer allegations and do not independently establish operational reality, software addressability, or commercial viability. Advancing beyond CONTINUE RESEARCH requires independent evidence from multiple research streams.
+
+---
+
+## Summary
+
+| | Count |
+|---|---|
+| Total ODR entries | 2 |
+| CONTINUE_RESEARCH | 1 |
+| REJECTED | 1 |
+
+## Decision table
+
+| ODR ID | Mechanism | Classification | Evidence | Companies | Decision |
+|---|---|---|---|---|---|
+| `ODR-A99628FD6703` | furnisher_tradeline_data_error_persistence | Non-software problem | 76 | 6 | **REJECTED** |
+| `ODR-BEC4F31A1477` | bureau_dispute_reinvestigation_failure | Repeated complaint signal (operational reality unverified) | 3 | 3 | **CONTINUE_RESEARCH** |
+
+---
+
+### ODR-A99628FD6703 — furnisher_tradeline_data_error_persistence
+
+| Field | Value |
+|---|---|
+| Classification | Non-software problem |
+| Decision status | **REJECTED** |
+| Finding ID | `FND-3A980A330F17` |
+| Opportunity ID | `OPP-CBB71DC6C36F` |
+| Evidence count | 76 |
+| Company count | 6 |
+| Companies | DISCOVER BANK, EQUIFAX, INC., Experian Information Solutions Inc., Lendmark Financial Services, Spring Oaks Capital, LLC, TRANSUNION INTERMEDIATE HOLDINGS, INC. |
+| Component hypothesis | Consumer finance workflow component |
+| Buyer clarity | weak |
+| Commercial relevance | unproven |
+| Component reusability | plausible |
+
+**Evidence references:**
+
+- `EVD-A2775D97B6A4`
+- `EVD-229234854C39`
+- `EVD-D3BBCAB7C2C6`
+- `EVD-77277A27D953`
+- `EVD-417130FDAF8C`
+- `EVD-FA0391DF0335`
+- `EVD-0B7205FFB417`
+- `EVD-794BEE8A2790`
+- `EVD-98A860E85ED6`
+- `EVD-D918DADD25BD`
+- `EVD-7D34C832E674`
+- `EVD-03712602722B`
+- `EVD-5D560E9FAD52`
+- `EVD-26DFDC43C8E7`
+- `EVD-5BBBD58569B4`
+- `EVD-BAA5D42A0CA9`
+- `EVD-B6ECB9A36B92`
+- `EVD-D38425C8D42C`
+- `EVD-BB231E9463DE`
+- `EVD-9B07347358E1`
+- `EVD-A23583B50A9F`
+- `EVD-380D0407D8AC`
+- `EVD-60E64C3E4D97`
+- `EVD-D560CD701004`
+- `EVD-B1C128BE111B`
+- `EVD-02E280114885`
+- `EVD-5A591681B787`
+- `EVD-F89228061EEE`
+- `EVD-808E654A7545`
+- `EVD-BAEC8987E309`
+- `EVD-D512214D666B`
+- `EVD-475E1987EAF8`
+- `EVD-1F1DA3BC5DF5`
+- `EVD-9F610FA8FAE7`
+- `EVD-0163E76845E0`
+- `EVD-8D244E3518D2`
+- `EVD-A3C9BA3FDEF9`
+- `EVD-B22240CC27C8`
+- `EVD-70C99F15BBC8`
+- `EVD-7B702D6B8625`
+- `EVD-FFB8554E09AA`
+- `EVD-D3C17D29CE5B`
+- `EVD-8B7794CFBC07`
+- `EVD-268F15B35AA4`
+- `EVD-1E8C3161304E`
+- `EVD-2B2005311B67`
+- `EVD-53DB1987113B`
+- `EVD-57A0C91FFFFA`
+- `EVD-7277AF8960EF`
+- `EVD-606198F23EAE`
+- `EVD-86A9BAB4D0FE`
+- `EVD-41B23E9EC7A6`
+- `EVD-84A30A91E145`
+- `EVD-56C8581B4A4E`
+- `EVD-C8B0D1E8D05E`
+- `EVD-6AA9040EC402`
+- `EVD-B3071BD83B1C`
+- `EVD-A4A99F0CED5E`
+- `EVD-CD0779646F41`
+- `EVD-D83EF8B8CB51`
+- `EVD-51B052B00605`
+- `EVD-451B5E0F7157`
+- `EVD-4A822AB000D8`
+- `EVD-4FAAD027B320`
+- `EVD-37EDCD408CE5`
+- `EVD-9475FBCDF911`
+- `EVD-F1AD0D5DBE87`
+- `EVD-1256D04F0475`
+- `EVD-CA54F29989A0`
+- `EVD-25FF9376D4F6`
+- `EVD-85732083F50B`
+- `EVD-2C7B4D2D065B`
+- `EVD-1BC946A51CD9`
+- `EVD-6F930FB58EA7`
+- `EVD-1A44F79478A6`
+- `EVD-51A529A84E60`
+
+**Decision rationale:**
+
+- Finding FND-3A980A330F17: majority operational=True (76/76 items).
+- However, fewer than half of evidence items have software_addressable=True.
+- The failure mode is more plausibly addressed by policy change, regulatory compliance, staffing adjustment, legal action, or vendor-contract modification rather than a software workflow component.
+- Classified as non_software_problem.
+- Commercial hypothesis: 'Consumer finance workflow component' — buyer_clarity=weak, commercial_relevance=unproven, reusability=plausible.
+- Decision: REJECTED. The mechanism does not meet the threshold for commercial investigation under the current evidence base.
+
+**Required to advance decision status:**
+
+- majority of evidence items must contain SOFTWARE_ADDRESSABLE_TERMS matches
+- mechanism must indicate a workflow gap addressable by software (not a legal or regulatory compliance gap)
+
+**Evidence ceiling note:**
+
+> Evidence ceiling: CONTINUE RESEARCH. CFPB complaint data is a single source family. Proof Gates PG-15 and PG-16 cap the maximum verdict at CONTINUE RESEARCH regardless of record volume. CFPB complaints are unverified consumer allegations and do not independently confirm operational failure, software addressability, or commercial viability. Multiple independent research streams are required before any of those conclusions can be drawn.
+
+---
+
+### ODR-BEC4F31A1477 — bureau_dispute_reinvestigation_failure
+
+| Field | Value |
+|---|---|
+| Classification | Repeated complaint signal (operational reality unverified) |
+| Decision status | **CONTINUE_RESEARCH** |
+| Finding ID | `FND-7C11ABD7AA09` |
+| Opportunity ID | `OPP-05B6A2D66D69` |
+| Evidence count | 3 |
+| Company count | 3 |
+| Companies | EQUIFAX, INC., Experian Information Solutions Inc., TRANSUNION INTERMEDIATE HOLDINGS, INC. |
+| Component hypothesis | Consumer finance workflow component |
+| Buyer clarity | weak |
+| Commercial relevance | unproven |
+| Component reusability | plausible |
+
+**Evidence references:**
+
+- `EVD-EE2621765F55`
+- `EVD-7139EE7EBFEA`
+- `EVD-5A80713E7459`
+
+**Decision rationale:**
+
+- Finding FND-7C11ABD7AA09: evidence_count=3 ≥ 3, company_count=3 ≥ 2, status=finding_supported_cfpb_only.
+- All verified evidence items have repeated_signal=True — the same mechanism appears across multiple complaints.
+- Operational and software-addressable criteria met within CFPB data.
+- IMPORTANT: CFPB complaints are unverified consumer allegations. This classification does NOT confirm operational reality, software addressability of the root cause, or commercial viability.
+- Evidence ceiling enforced: CONTINUE RESEARCH (PG-15 source_families=1, PG-16 ceiling applied).
+- Classified as repeated_complaint_signal.
+- Commercial hypothesis: 'Consumer finance workflow component' — buyer_clarity=weak, commercial_relevance=unproven, reusability=plausible.
+- Decision: CONTINUE_RESEARCH. Evidence ceiling enforced. CFPB complaint data establishes a complaint signal only — not a verified operational failure or commercial opportunity. Multiple independent research streams must be completed before this can advance.
+
+**Required to advance decision status:**
+
+- Independent corroboration of operational reality from a non-CFPB source (regulatory findings, enforcement actions, judicial records, audit reports, or company-examination evidence) confirming the mechanism exists as described.
+- Named buyer persona with confirmed purchasing authority, demonstrated budget cycle, and organisational context (role, company size, purchase trigger).
+- Measurable operational or financial cost attributable to the mechanism (documented dollar amount, labour hours lost, SLA breach rate, or equivalent quantifiable harm — not inferred from complaint volume).
+- Competitive landscape assessment: named existing solutions, their current maturity level, and a sourced explanation of why they fail or are unavailable to the identified buyer.
+- Non-software alternatives assessment: explicit evaluation of why process change, staffing, regulatory compliance, or vendor-contract modification cannot solve this more cost-effectively than software.
+- Addressable market size estimate with sourced revenue-potential basis (not a top-down TAM — a bottoms-up count of named buyers with stated willingness to pay or comparable purchase evidence).
+- Commercial signal: at least one instance of stated or implied willingness to pay, a deal-cycle or procurement reference, or a comparable competitive sale.
+
+**Evidence ceiling note:**
+
+> Evidence ceiling: CONTINUE RESEARCH. CFPB complaint data is a single source family. Proof Gates PG-15 and PG-16 cap the maximum verdict at CONTINUE RESEARCH regardless of record volume. CFPB complaints are unverified consumer allegations and do not independently confirm operational failure, software addressability, or commercial viability. Multiple independent research streams are required before any of those conclusions can be drawn.
