@@ -1,0 +1,100 @@
+[
+  {
+    "opportunity_id": "OPP-512D14FB044A",
+    "finding_id": "FND-62284502B0BC",
+    "status": "hypothesis_only",
+    "component_hypothesis": "Credit report correction evidence workflow",
+    "buyer_clarity": "weak",
+    "commercial_relevance": "unproven",
+    "existing_solution_maturity": "unknown",
+    "component_reusability": "plausible",
+    "market_saturation": "unknown",
+    "implementation_leverage": "unknown",
+    "user_clarity": "plausible operations/compliance users, unverified",
+    "workflow_owner": "unknown; likely disputes, compliance, servicing, or customer operations",
+    "regulatory_exposure": "possible but unverified from CFPB complaints alone",
+    "operational_cost": "unknown",
+    "integration_burden": "unknown",
+    "cross_company_applicability": "plausible",
+    "non_software_alternatives": "process change, policy change, staffing, vendor tools, or training may address the mechanism",
+    "evidence_ids": [
+      "EVD-D227862D29C7",
+      "EVD-F24C6586C2DB",
+      "EVD-D985FE7FF583",
+      "EVD-ECA4BDC2014B",
+      "EVD-30593CB8F3EC",
+      "EVD-8D25621856FF",
+      "EVD-C921B383E892",
+      "EVD-4550F2FA8386",
+      "EVD-84F9EF3AF907",
+      "EVD-8FCB3A1A2068",
+      "EVD-0EF5CE31A38F",
+      "EVD-437D4CF474C3",
+      "EVD-ED7A4FDAF7AE",
+      "EVD-02D703840219",
+      "EVD-ABF59F77CFF4",
+      "EVD-768127C9DBF3",
+      "EVD-5D5D463A3C60",
+      "EVD-28F8E6DD97D3",
+      "EVD-314984EF2D8B",
+      "EVD-C58485079BAC",
+      "EVD-9F24B10E4EA4",
+      "EVD-139C08501EEB",
+      "EVD-72736D88CEAB",
+      "EVD-9C02BB91A620",
+      "EVD-8657F538624B",
+      "EVD-2EAF484297AD",
+      "EVD-6523BD82338E",
+      "EVD-AF2CB7CE9A10",
+      "EVD-C17C3FD6EE75",
+      "EVD-C342145077BE",
+      "EVD-3775D2AB70D6"
+    ],
+    "missing_evidence": [
+      "independent non-CFPB corroboration",
+      "existing solution maturity research",
+      "buyer willingness evidence",
+      "commercial urgency evidence"
+    ],
+    "reasoning_chain": [
+      "Assessed finding FND-62284502B0BC after finding generation.",
+      "Mapped mechanism incorrect_credit_report_information to component hypothesis: Credit report correction evidence workflow.",
+      "Opportunity assessment does not override missing evidence."
+    ]
+  },
+  {
+    "opportunity_id": "OPP-2FF5200A05CD",
+    "finding_id": "FND-0611A9B6F864",
+    "status": "hypothesis_only",
+    "component_hypothesis": "Dispute investigation workflow component",
+    "buyer_clarity": "weak",
+    "commercial_relevance": "unproven",
+    "existing_solution_maturity": "unknown",
+    "component_reusability": "plausible",
+    "market_saturation": "unknown",
+    "implementation_leverage": "unknown",
+    "user_clarity": "plausible operations/compliance users, unverified",
+    "workflow_owner": "unknown; likely disputes, compliance, servicing, or customer operations",
+    "regulatory_exposure": "possible but unverified from CFPB complaints alone",
+    "operational_cost": "unknown",
+    "integration_burden": "unknown",
+    "cross_company_applicability": "plausible",
+    "non_software_alternatives": "process change, policy change, staffing, vendor tools, or training may address the mechanism",
+    "evidence_ids": [
+      "EVD-FA2347261F2B",
+      "EVD-F26F80359E30",
+      "EVD-89FCA3BDB081"
+    ],
+    "missing_evidence": [
+      "independent non-CFPB corroboration",
+      "existing solution maturity research",
+      "buyer willingness evidence",
+      "commercial urgency evidence"
+    ],
+    "reasoning_chain": [
+      "Assessed finding FND-0611A9B6F864 after finding generation.",
+      "Mapped mechanism credit_report_dispute_investigation to component hypothesis: Dispute investigation workflow component.",
+      "Opportunity assessment does not override missing evidence."
+    ]
+  }
+]

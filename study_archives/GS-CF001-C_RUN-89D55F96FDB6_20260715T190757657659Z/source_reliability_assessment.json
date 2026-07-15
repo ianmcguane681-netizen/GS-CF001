@@ -1,0 +1,52 @@
+[
+  {
+    "source_id": "CFPB-CCD-001",
+    "source_name": "CFPB Consumer Complaint Database",
+    "publisher": "Consumer Financial Protection Bureau",
+    "publisher_type": "U.S. federal consumer financial regulator",
+    "authority_level": "U.S. federal consumer financial regulator",
+    "jurisdiction": "United States",
+    "source_family": "CFPB complaints",
+    "retrieval_method": "official_cfpb_search_api",
+    "retrieval_timestamp": "2026-07-15T19:07:57Z",
+    "update_frequency": "Published by CFPB; update cadence should be confirmed per access method.",
+    "coverage_period": "Depends on retrieved official dataset or query result.",
+    "record_granularity": "Individual consumer complaint record.",
+    "known_limitations": [
+      "Consumer narratives are not independently verified.",
+      "Complaint volume alone does not prove operational failure.",
+      "The dataset is not statistically representative of the full market.",
+      "Complaint volume may reflect company size, consumer awareness, reporting behaviour, or market share.",
+      "Similar complaints do not automatically prove a common root cause.",
+      "Company response status does not independently validate every consumer allegation.",
+      "Records may contain missing or withheld fields.",
+      "Public narratives may be unavailable for some records."
+    ],
+    "verification_constraints": [
+      "CFPB complaint repetition can support a repeated complaint signal.",
+      "CFPB alone cannot independently corroborate the underlying allegation.",
+      "CFPB alone cannot establish a BUILD CANDIDATE verdict.",
+      "Independent source evidence is required for stronger commercial conclusions."
+    ],
+    "independence_constraints": [
+      "Multiple CFPB complaints count as one source family.",
+      "Different CFPB distribution methods do not create source-family independence.",
+      "CFPB complaint records do not independently verify consumer allegations."
+    ],
+    "representativeness_warning": "CFPB complaint records are not a statistically representative market sample.",
+    "data_completeness_warning": "Some CFPB fields may be missing, withheld, amended, or unavailable in public data.",
+    "permitted_uses": [
+      "Discover recurring complaint mechanisms.",
+      "Analyse repeated CFPB complaint signals across companies.",
+      "Generate CFPB-limited findings requiring independent corroboration."
+    ],
+    "prohibited_inferences": [
+      "Do not infer that alleged failures definitely occurred.",
+      "Do not infer market prevalence from complaint volume alone.",
+      "Do not infer that software is the best intervention.",
+      "Do not produce BUILD CANDIDATE from CFPB data alone."
+    ],
+    "reliability_version": "CFPB-SRA-001",
+    "last_reviewed_date": "2026-07-14"
+  }
+]

@@ -1,0 +1,152 @@
+{
+  "run_count": 3,
+  "run_ids": [
+    "RUN-C71FBECF87E5",
+    "RUN-07B10902778D",
+    "RUN-89D55F96FDB6"
+  ],
+  "timestamps": [
+    "20260715T190740079751Z",
+    "20260715T190750661198Z",
+    "20260715T190757657659Z"
+  ],
+  "candidate_counts": [
+    100,
+    100,
+    100
+  ],
+  "retrieval_stable": true,
+  "retrieval_note": "All 3 run(s) returned candidates (counts: [100, 100, 100]).",
+  "verdicts": [
+    "CONTINUE RESEARCH",
+    "CONTINUE RESEARCH",
+    "CONTINUE RESEARCH"
+  ],
+  "verdict_consistent": true,
+  "evidence_ceilings": [
+    "CONTINUE RESEARCH",
+    "CONTINUE RESEARCH",
+    "CONTINUE RESEARCH"
+  ],
+  "ceiling_consistent": true,
+  "gate_status_by_run": [
+    {
+      "PG-01": "PASS",
+      "PG-02": "PASS",
+      "PG-03": "PASS",
+      "PG-04": "PASS",
+      "PG-05": "PASS",
+      "PG-06": "PASS",
+      "PG-07": "PASS",
+      "PG-08": "PASS",
+      "PG-09": "FAIL",
+      "PG-10": "WEAK",
+      "PG-11": "FAIL",
+      "PG-12": "WEAK",
+      "PG-13": "FAIL",
+      "PG-14": "PASS",
+      "PG-15": "FAIL",
+      "PG-16": "PASS"
+    },
+    {
+      "PG-01": "PASS",
+      "PG-02": "PASS",
+      "PG-03": "PASS",
+      "PG-04": "PASS",
+      "PG-05": "PASS",
+      "PG-06": "PASS",
+      "PG-07": "PASS",
+      "PG-08": "PASS",
+      "PG-09": "FAIL",
+      "PG-10": "WEAK",
+      "PG-11": "FAIL",
+      "PG-12": "WEAK",
+      "PG-13": "FAIL",
+      "PG-14": "PASS",
+      "PG-15": "FAIL",
+      "PG-16": "PASS"
+    },
+    {
+      "PG-01": "PASS",
+      "PG-02": "PASS",
+      "PG-03": "PASS",
+      "PG-04": "PASS",
+      "PG-05": "PASS",
+      "PG-06": "PASS",
+      "PG-07": "PASS",
+      "PG-08": "PASS",
+      "PG-09": "FAIL",
+      "PG-10": "WEAK",
+      "PG-11": "FAIL",
+      "PG-12": "WEAK",
+      "PG-13": "FAIL",
+      "PG-14": "PASS",
+      "PG-15": "FAIL",
+      "PG-16": "PASS"
+    }
+  ],
+  "inconsistent_gates": [],
+  "mechanisms_per_run": [
+    [
+      "credit_report_dispute_investigation",
+      "incorrect_credit_report_information"
+    ],
+    [
+      "credit_report_dispute_investigation",
+      "incorrect_credit_report_information"
+    ],
+    [
+      "credit_report_dispute_investigation",
+      "incorrect_credit_report_information"
+    ]
+  ],
+  "common_mechanisms": [
+    "credit_report_dispute_investigation",
+    "incorrect_credit_report_information"
+  ],
+  "any_run_mechanisms": [
+    "credit_report_dispute_investigation",
+    "incorrect_credit_report_information"
+  ],
+  "mechanism_stable": true,
+  "findings_per_run": [
+    2,
+    2,
+    2
+  ],
+  "opportunities_per_run": [
+    2,
+    2,
+    2
+  ],
+  "companies_per_run": [
+    [
+      "DISCOVER BANK",
+      "EQUIFAX, INC.",
+      "Experian Information Solutions Inc.",
+      "TRANSUNION INTERMEDIATE HOLDINGS, INC."
+    ],
+    [
+      "DISCOVER BANK",
+      "EQUIFAX, INC.",
+      "Experian Information Solutions Inc.",
+      "TRANSUNION INTERMEDIATE HOLDINGS, INC."
+    ],
+    [
+      "DISCOVER BANK",
+      "EQUIFAX, INC.",
+      "Experian Information Solutions Inc.",
+      "TRANSUNION INTERMEDIATE HOLDINGS, INC."
+    ]
+  ],
+  "common_companies": [
+    "DISCOVER BANK",
+    "EQUIFAX, INC.",
+    "Experian Information Solutions Inc.",
+    "TRANSUNION INTERMEDIATE HOLDINGS, INC."
+  ],
+  "overall_stability": "stable",
+  "stability_notes": [
+    "CEILING ENFORCED: Evidence ceiling is CONTINUE RESEARCH in all runs \u2014 correct for single source family."
+  ]
+}

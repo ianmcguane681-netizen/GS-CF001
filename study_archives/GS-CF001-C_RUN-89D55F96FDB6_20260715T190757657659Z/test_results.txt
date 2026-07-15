@@ -1,0 +1,20 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.1.1, pluggy-1.6.0
+rootdir: /home/runner/workspace
+collected 90 items
+
+tests/test_cfpb_connector.py ..                                          [  2%]
+tests/test_cfpb_transport.py .........                                   [ 12%]
+tests/test_cross_run_analysis.py ..........                              [ 23%]
+tests/test_domain_models.py .                                            [ 24%]
+tests/test_findings.py ..                                                [ 26%]
+tests/test_mechanism_classifier.py ..............                        [ 42%]
+tests/test_normalization.py ..                                           [ 44%]
+tests/test_odr.py ............                                           [ 57%]
+tests/test_opportunity_and_proof_gates.py ...                            [ 61%]
+tests/test_pipeline.py ..                                                [ 63%]
+tests/test_run_index.py ..........                                       [ 74%]
+tests/test_study_archive.py .....................                        [ 97%]
+tests/test_verification.py ..                                            [100%]
+
+============================== 90 passed in 0.38s ==============================

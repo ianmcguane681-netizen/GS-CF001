@@ -96,6 +96,9 @@ VERBATIM_ARTIFACT_KEYS = {
     "audit_trail",
     "findings",
     "opportunities",
+    "mechanism_classifications",
+    "odr_json",
+    "odr_markdown",
     "processed",
     "report_markdown",
     "run_manifest",
@@ -322,6 +325,9 @@ def build_archive(
     _copy_artifact("audit_trail", "audit_trail.json", redact=False)
     _copy_artifact("findings", "findings.json", redact=False)
     _copy_artifact("opportunities", "opportunities.json", redact=False)
+    _copy_artifact("mechanism_classifications", "mechanism_classifications.json", redact=False)
+    _copy_artifact("odr_json", "odr.json", redact=False)
+    _copy_artifact("odr_markdown", "odr.md", redact=False)
     _copy_artifact("report_markdown", "report.md", redact=False)
 
     # ---- 3. Optional test results -----------------------------------------

@@ -203,6 +203,9 @@ class PipelineResult:
     state_transitions: list["EvidenceStateTransition"] = field(default_factory=list)
     run_manifest: "RunManifest | None" = None
     artifacts: dict[str, str] = field(default_factory=dict)
+    # Storage-hardening milestone additions (default-empty for back-compat)
+    mechanism_classifications: list[Any] = field(default_factory=list)
+    odr_entries: list[Any] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -219,6 +222,14 @@ class PipelineResult:
             "state_transitions": [item.to_dict() for item in self.state_transitions],
             "run_manifest": self.run_manifest.to_dict() if self.run_manifest else None,
             "artifacts": self.artifacts,
+            "mechanism_classifications": [
+                c.to_dict() if hasattr(c, "to_dict") else c
+                for c in self.mechanism_classifications
+            ],
+            "odr_entries": [
+                e.to_dict() if hasattr(e, "to_dict") else e
+                for e in self.odr_entries
+            ],
         }
 
 

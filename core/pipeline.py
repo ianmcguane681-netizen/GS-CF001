@@ -10,9 +10,11 @@ from core.ai_governance import deterministic_analysis_artifact
 from core.manifest import build_run_manifest
 from core.models import PipelineResult
 from core.normalization import normalise_cfpb_records
+from core.opportunity_decision_register import build_odr, write_odr_json, write_odr_markdown
 from core.run_index import append_run_index, build_run_index_entry
 from core.storage import file_checksum, run_timestamp, write_json_artifact
 from findings.engine import generate_findings
+from findings.mechanism_classifier import classify_all
 from opportunity.assessment import assess_findings
 from proof_gates.evaluator import evaluate_proof_gates, make_verdict
 from reports.report_generator import write_json_report, write_markdown_report
@@ -57,6 +59,22 @@ def run_credit_reporting_proof(
     verified = verify_candidates(candidates)
     findings = generate_findings(verified)
     opportunities = assess_findings(findings)
+
+    # Mechanism classification: deterministic six-category classification of every
+    # finding. Produces one MechanismClassification per finding — no AI used.
+    classifications = classify_all(findings, verified)
+
+    # Opportunity Decision Register: one ODREntry per finding/opportunity pair,
+    # with full reasoning chain, commercial assessment, decision status, and
+    # Evidence Ceiling enforcement note. No AI used.
+    odr = build_odr(
+        study_id=study.study_id,
+        run_id="",  # placeholder; replaced after manifest is built below
+        findings=findings,
+        opportunities=opportunities,
+        classifications=classifications,
+    )
+
     analysis_artifacts = [
         deterministic_analysis_artifact(
             [item.evidence_id for item in verified],
@@ -64,6 +82,8 @@ def run_credit_reporting_proof(
                 "verification_count": len(verified),
                 "finding_count": len(findings),
                 "opportunity_count": len(opportunities),
+                "classification_count": len(classifications),
+                "odr_entry_count": odr.entry_count,
                 "ai_used": False,
             },
             affected_finding_or_verdict=bool(findings or opportunities),
@@ -89,6 +109,8 @@ def run_credit_reporting_proof(
         access_diagnostics=diagnostics,
         analysis_artifacts=analysis_artifacts,
         state_transitions=[],
+        mechanism_classifications=classifications,
+        odr_entries=list(odr.entries),
     )
     analysis_path = write_json_artifact([artifact.to_dict() for artifact in analysis_artifacts], base / "exports", "analysis_artifacts", timestamp=stamp)
     verification_path = write_json_artifact([item.to_dict() for item in verified], base / "exports", "verification_artifacts", timestamp=stamp)
@@ -101,6 +123,12 @@ def run_credit_reporting_proof(
     candidates_path = write_json_artifact([candidate.to_dict() for candidate in candidates], base / "exports", "normalised_candidates", timestamp=stamp)
     findings_path = write_json_artifact([finding.to_dict() for finding in findings], base / "exports", "findings", timestamp=stamp)
     opportunities_path = write_json_artifact([opportunity.to_dict() for opportunity in opportunities], base / "exports", "opportunities", timestamp=stamp)
+    # Mechanism classifications and ODR written with placeholder run_id;
+    # the final ODR with correct run_id is written after manifest is built.
+    classifications_path = write_json_artifact(
+        [c.to_dict() for c in classifications],
+        base / "exports", "mechanism_classifications", timestamp=stamp,
+    )
     processed_path = write_json_artifact(result_without_manifest.to_dict(), base / "processed", "gs_cf001_c_processed", timestamp=stamp)
     report_json_path = write_json_report(result_without_manifest, base / "exports" / f"gs_cf001_c_report_{stamp}.json")
     report_md_path = write_markdown_report(
@@ -123,6 +151,7 @@ def run_credit_reporting_proof(
         candidates_path,
         findings_path,
         opportunities_path,
+        classifications_path,
         processed_path,
         report_json_path,
         report_md_path,
@@ -140,6 +169,18 @@ def run_credit_reporting_proof(
     )
     manifest_path = write_json_artifact(manifest.to_dict(), base / "exports", "run_manifest", timestamp=stamp)
     output_paths.append(manifest_path)
+
+    # Rebuild ODR with the real run_id now that the manifest is available.
+    odr = build_odr(
+        study_id=study.study_id,
+        run_id=manifest.run_id,
+        findings=findings,
+        opportunities=opportunities,
+        classifications=classifications,
+    )
+    odr_json_path = write_odr_json(odr, base / "exports" / f"odr_{stamp}.json")
+    odr_md_path = write_odr_markdown(odr, base / "exports" / f"odr_{stamp}.md")
+
     artifacts = {
         "raw": raw_path,
         "access_diagnostics": diagnostics_path,
@@ -151,9 +192,12 @@ def run_credit_reporting_proof(
         "normalised_candidates": candidates_path,
         "findings": findings_path,
         "opportunities": opportunities_path,
+        "mechanism_classifications": classifications_path,
         "processed": processed_path,
         "report_json": report_json_path,
         "report_markdown": report_md_path,
+        "odr_json": odr_json_path,
+        "odr_markdown": odr_md_path,
         "run_manifest": manifest_path,
     }
     result = PipelineResult(
@@ -170,6 +214,8 @@ def run_credit_reporting_proof(
         state_transitions=[],
         run_manifest=manifest,
         artifacts=artifacts,
+        mechanism_classifications=classifications,
+        odr_entries=list(odr.entries),
     )
     write_json_report(result, base / "exports" / f"gs_cf001_c_report_{stamp}.json")
     write_markdown_report(verdict, verified, findings, opportunities, base / "exports" / f"gs_cf001_c_report_{stamp}.md", source_reliability, diagnostics, manifest)
@@ -200,7 +246,12 @@ def main() -> None:
     parser.add_argument("--data-dir", default="data")
     args = parser.parse_args()
     result = run_credit_reporting_proof(limit=args.limit, data_dir=args.data_dir)
-    print(json.dumps({"verdict": result.verdict.to_dict() if result.verdict else None, "artifacts": result.artifacts}, indent=2))
+    print(json.dumps({
+        "verdict": result.verdict.to_dict() if result.verdict else None,
+        "artifacts": result.artifacts,
+        "classification_count": len(result.mechanism_classifications),
+        "odr_entry_count": len(result.odr_entries),
+    }, indent=2))
 
 
 if __name__ == "__main__":

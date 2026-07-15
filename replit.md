@@ -5,19 +5,28 @@ Research proof system for Provena (Evidence Operating System). This is a Python
 CLI/library, not a web app — there is no server or frontend. It runs a
 deterministic evidence pipeline over CFPB consumer complaint data for the
 `GS-CF001-C Credit Reporting Disputes` study, producing traceable file
-artifacts (raw records, diagnostics, findings, opportunity assessments, Proof
-Gate results, Markdown/JSON reports, audit trail, run manifest) under `data/`.
+artifacts (raw records, diagnostics, findings, mechanism classifications,
+opportunity decision register, proof gate results, Markdown/JSON reports,
+audit trail, run manifest) under `data/`.
 
 See `README.md` for the full methodology, evidence pipeline stages, and
 evidence-ceiling rules.
 
 ## Running it
 ```bash
-# Run the test suite (54 tests)
+# Run the test suite (90 tests)
 python -m pytest -q
 
-# Run the GS-CF001-C credit reporting proof against live CFPB data
-python -m core.pipeline --limit 3
+# Run the GS-CF001-C credit reporting proof against live CFPB data (100 records)
+python -m core.pipeline --limit 100
+
+# Compare the last 3 runs for stability and consistency
+python3 -c "
+from core.cross_run_analysis import load_and_compare_last_n_runs, write_cross_run_report
+comp = load_and_compare_last_n_runs(3)
+write_cross_run_report(comp, 'data/exports/comparison.md')
+print('stability:', comp.overall_stability)
+"
 
 # Build a sanitised, git-committable archive from the most-recent run
 python -m tools.build_study_archive --latest
@@ -32,12 +41,18 @@ python -m tools.build_study_archive --latest --test-results /path/to/test_result
 The `Run Tests & Pipeline` workflow runs `pytest` and then the live pipeline
 in sequence on demand (one-shot CLI run, no persistent server or web UI).
 
+## Current goal
+Prove the system can take a market, pull verified pain, create verified
+solutions, and reject verified stupid/non-profitable solutions — entirely
+in-house, deterministically, without AI in any decision. Single market
+scope (GS-CF001-C) until this is proven end-to-end.
+
 ## Storage-hardening conventions
 
 ### Per-run timestamp
 Every pipeline run generates one shared timestamp at the start of
 `run_credit_reporting_proof()` (microsecond resolution UTC, format
-`YYYYMMDDTHHMMSSffffffZ`). This stamp is passed explicitly into every
+`YYYYMMDDTHHMMSSffffffZ`). This stamp is threaded into every
 `write_json_artifact()` call so all of a single run's files carry the same
 stamp and can be grouped by it. No run's files collide with another run's.
 The helper is `core.storage.run_timestamp()`.
@@ -49,92 +64,95 @@ pipeline run) that records: `run_id`, `timestamp`, `study_id`, `verdict`,
 `artifact_checksums` (computed from the final on-disk state of every artifact
 after all writes complete). The file is gitignored (lives under `data/`) and
 is workspace-persistent — it accumulates across every run in the environment.
-Use `core.run_index.read_run_index()` to query it programmatically. The index
-degrades gracefully on a corrupt or missing file (returns an empty list rather
-than crashing).
+Use `core.run_index.read_run_index()` to query it programmatically.
 
 ### Standalone per-run artifacts
-In addition to the combined `processed` bundle, each run now writes three
-standalone files to `data/exports/`:
+Each run writes these files to `data/exports/` (in addition to the combined
+`processed` bundle):
 - `normalised_candidates_{stamp}.json` — the normalised EvidenceCandidate list
 - `findings_{stamp}.json` — structured findings generated from verified evidence
 - `opportunities_{stamp}.json` — opportunity assessments derived from findings
-
-These expose each stage independently for inspection, diff, or archiving
-without unpacking the whole processed bundle. Backward compatibility with the
-combined bundle is preserved.
+- `mechanism_classifications_{stamp}.json` — six-category deterministic classification
+- `odr_{stamp}.json` — full machine-readable Opportunity Decision Register
+- `odr_{stamp}.md` — human-readable ODR report
 
 ### Study-archive generator
-`tools/build_study_archive.py` is a reusable script that turns any completed
-pipeline run (identified by run_id or "latest") into a git-committable,
-sanitised, integrity-checked archive under `study_archives/`. Run it after
-every milestone pipeline run.
-
-**What the archive contains:**
-- `raw_records_redacted.json` — raw CFPB records with narrative fields redacted
-- `normalised_candidates_redacted.json` — normalised candidates with narrative redacted
-- `verification_artifacts.json`, `proof_gate_results.json`, `audit_trail.json`
-- `findings.json`, `opportunities.json`
-- `report.json` (narrative-redacted), `report.md` (full Markdown verdict report)
-- `run_manifest.json`, `access_diagnostics.json`, `source_reliability_assessment.json`
-- `archive_metadata.json` — machine-readable provenance, file checksums, redaction policy
-- `README.md` — human-readable provenance, contents, verification instructions
-- `checksums.txt` — SHA-256 of every file; run `sha256sum -c checksums.txt` to verify
-
-**Redaction policy:** the fields `complaint_what_happened` and `narrative` are
-replaced with a literal marker wherever they appear in any artifact that may
-carry them. Structured provenance fields (complaint ID, product, issue, company,
-dates, etc.) are preserved unmodified.
-
-**Integrity:** checksums are verified against the run-index values (which are
-computed from final on-disk state) before any file is written. A mismatch
-aborts immediately and removes the partial archive. Existing archives are never
-silently overwritten — a `FileExistsError` is raised if the target directory
-exists.
-
-**Git tracking:** `study_archives/` is not gitignored. Commit each new archive
-subdirectory as part of the milestone that produced it. The live `data/`
-directory stays gitignored.
+`tools/build_study_archive.py` is a reusable CLI script. Given `--latest` or
+`--run-id RUN-…`, it builds a git-committable, sanitised archive under
+`study_archives/`. Verifies all source artifact checksums before writing.
+Refuses to overwrite an existing archive. Run `sha256sum -c checksums.txt`
+from within an archive directory to verify integrity.
 
 ### How a live run becomes a committed archive
 1. Capture test results: `python -m pytest -q -v | tee /tmp/test_results.txt`
-2. Run the pipeline: `python -m core.pipeline --limit 3`
-3. Build the archive: `python -m tools.build_study_archive --latest --test-results /tmp/test_results.txt`
-4. Inspect the archive under `study_archives/`; verify with `sha256sum -c checksums.txt`
-5. Commit the new `study_archives/` subdirectory together with any other milestone changes
+2. Run the pipeline: `python -m core.pipeline --limit 100`
+3. (Optional) Compare runs: use `core.cross_run_analysis.load_and_compare_last_n_runs(3)`
+4. Build the archive: `python -m tools.build_study_archive --latest --test-results /tmp/test_results.txt`
+5. Verify: `cd study_archives/<archive_dir> && sha256sum -c checksums.txt`
+6. Commit the new `study_archives/` subdirectory and `analysis/` documents
+
+## Methodology milestones
+
+### Milestone 1 — Storage hardening (committed 9044ef2)
+Timestamped reports, append-only run index, standalone per-run artifacts,
+reusable study-archive generator. Archive at
+`study_archives/GS-CF001-C_RUN-8FFFBA72404A_20260715T184824501724Z/`.
+
+### Milestone 2 — Methodology validation (in progress)
+Six objectives: (1) 100-record sampling design documented; (2) three controlled
+100-record live CFPB runs executed; (3) cross-run comparison confirms stable
+pipeline (identical mechanism distribution, verdicts, Evidence Ceiling across
+all 3 runs); (4) recurring operational mechanisms identified across distinct
+financial institutions using deterministic rules; (5) each mechanism classified
+into one of six deterministic categories; (6) Opportunity Decision Register
+produced per run with evidence references, reasoning, commercial assessment,
+decision status, and Evidence Ceiling enforcement.
+
+**Sampling design:** `sampling_design/GS-CF001-C_sampling_design.md`
+**Cross-run analysis:** `analysis/GS-CF001-C_cross_run_comparison_milestone2.md`
+**Archive:** `study_archives/GS-CF001-C_{run_id}_{timestamp}/`
+
+## Mechanism classification (six categories)
+
+All findings are classified by `findings/mechanism_classifier.py` using
+deterministic rules only (no AI). Categories in order of commercial priority:
+
+| Category | Criteria | Decision |
+|---|---|---|
+| `candidate_needs_corroboration` | evidence≥3, companies≥2, operational, software-addressable, all repeated | CONTINUE_RESEARCH |
+| `verified_pain` | evidence≥3, companies≥2, operational, software-addressable, not all repeated | CONTINUE_RESEARCH |
+| `commercially_weak` | operational + software-addressable, but insufficient scale | CONTINUE_RESEARCH |
+| `non_software_problem` | operational but not software-addressable | REJECTED |
+| `non_operational_problem` | not operational | REJECTED |
+| `noise` | <2 verified evidence items | REJECTED |
+
+All CFPB-only evidence is capped at CONTINUE RESEARCH by PG-15/PG-16 regardless
+of category. BUILD CANDIDATE requires a second independent source family.
+
+## Opportunity Decision Register (ODR)
+
+`core/opportunity_decision_register.py` produces one `ODREntry` per finding/
+opportunity pair per run. Each entry records: mechanism, classification,
+evidence references, companies, evidence count, component hypothesis, buyer
+clarity, commercial relevance, decision status, decision rationale, missing
+evidence for upgrade, and Evidence Ceiling note. No AI is used. All decisions
+are deterministic and reproducible.
+
+## Cross-run analysis
+
+`core/cross_run_analysis.py` compares N pipeline runs for: retrieval stability,
+verdict and ceiling consistency, proof gate consistency, mechanism distribution,
+finding/opportunity counts, and company distribution. Produces a
+`CrossRunComparison` object with `overall_stability` = stable | partially_stable
+| unstable, and full stability notes.
 
 ## Environment notes
 - **CFPB transport fix (2026-07-14):** Python's `urllib`/`requests` TLS+HTTP
-  client stack is fingerprinted and blocked (HTTP 403, or an indefinite hang)
-  by CFPB's Akamai edge from this environment — verified by confirming the
-  identical URL, headers, and outbound IP succeed instantly via `curl` but
-  fail via Python's stdlib HTTP clients. `connectors/cfpb.py` now shells out
-  to `curl` as the transport for the official Search API and bulk-download
-  adapters, behind the same `fetch_json`/`opener` injection seams the
-  adapters already exposed (`CFPBTransportHTTPError` mirrors
-  `urllib.error.HTTPError`'s interface so existing diagnostic/error handling
-  above the transport layer is unchanged). No new dependency: `curl` is a
-  system binary.
-- **Query bug fix (2026-07-14):** `CFPBAPIAccessAdapter.build_url` also sent
-  `format=json&no_aggs=true`, which — on the *current* live API — switches
-  the endpoint into a full-database export/attachment mode that ignores
-  `size`/`product` filtering (confirmed: multi-GB response instead of a
-  filtered result). Removing those two params restores the intended
-  Elasticsearch-style `{"hits":{"hits":[...]}}` response, filtered by
-  `product` and limited by `size`, which the rest of the connector already
-  expects.
-- With both fixes, `python -m core.pipeline` retrieves genuine live CFPB
-  complaint records end-to-end with zero errors. The Evidence OS ceiling still
-  correctly caps the verdict at `CONTINUE RESEARCH` since CFPB is a single
-  source family — that ceiling is a methodology rule, not an access problem,
-  and must never be bypassed.
-- **Required system dependency: `curl`.** Any environment that runs the live
-  pipeline (`python -m core.pipeline`) must have the `curl` binary on `PATH`
-  for official CFPB retrieval to work. It is present by default in this
-  Replit environment and in the `ubuntu-latest` GitHub Actions runner. If
-  missing, `connectors.cfpb._require_curl()` raises a clear `RuntimeError`
-  instead of silently falling back to a blocked transport. Tests do not
-  require `curl` — they stub `subprocess.run`/`shutil.which`.
+  client stack is fingerprinted and blocked by CFPB's Akamai edge. `connectors/cfpb.py`
+  shells out to `curl` as transport. `curl` must be on PATH.
+- **Required system dependency: `curl`.** Present in this Replit environment and
+  in the `ubuntu-latest` GitHub Actions runner. `_require_curl()` raises a clear
+  `RuntimeError` if missing.
 
 ## CI
 `.github/workflows/tests.yml` runs the full `pytest` suite on every push and
@@ -143,30 +161,30 @@ pull request via GitHub Actions (`ubuntu-latest`, Python 3.12).
 ## Study archives
 `study_archives/` contains sanitised, independently-reviewable snapshots of
 selected live GS-CF001-C runs. Each subdirectory is named
-`{study_id}_{run_id}_{timestamp}/` and contains everything documented in the
-Storage-hardening conventions section above. See the README.md inside each
-archive for full provenance and verification instructions.
+`{study_id}_{run_id}_{timestamp}/`. The legacy `proof_bundle/` directory is
+the first manually-assembled milestone snapshot. New archives are generated
+by `tools/build_study_archive.py`.
 
-The legacy `proof_bundle/` directory is a manually-assembled snapshot from the
-first milestone run (2026-07-14, commit `9bb288c`). New milestone archives are
-generated by `tools/build_study_archive.py` and stored under `study_archives/`.
+## Analysis documents
+`analysis/` contains committed cross-run comparison reports and other
+analytical documents produced from pipeline runs. These are git-tracked
+(not gitignored).
 
 ## Project structure
-- `connectors/` — source connectors (CFPB) and access adapters (API, bulk
-  download, local snapshot)
-- `core/` — pipeline orchestration, domain models, normalisation, storage,
-  AI-governance guardrails, run manifest, run index
-- `tools/` — CLI utilities: `build_study_archive.py` (study archive generator)
-- `verification/`, `findings/`, `opportunity/`, `proof_gates/` — pipeline
-  stages per the methodology in README.md
+- `connectors/` — source connectors (CFPB) and access adapters
+- `core/` — pipeline orchestration, models, normalisation, storage, run index,
+  manifest, opportunity decision register, cross-run analysis
+- `findings/` — findings engine, mechanism classifier
+- `tools/` — CLI utilities: `build_study_archive.py`
+- `verification/`, `opportunity/`, `proof_gates/` — pipeline stages
 - `reports/` — Markdown/JSON report generation
-- `studies/` — study definitions (only GS-CF001-C is implemented)
-- `tests/` — pytest suite (54 tests, all passing), including focused tests for
-  curl-transport, run-index edge cases, and the study-archive generator
-- `data/` — generated run artifacts (gitignored per-file, directories kept)
-- `study_archives/` — committed, sanitised milestone archives (git-tracked)
-- `proof_bundle/` — legacy manually-assembled proof bundle (first milestone)
-- `.github/workflows/tests.yml` — CI test workflow
+- `studies/` — study definitions (only GS-CF001-C)
+- `sampling_design/` — sampling design documents
+- `analysis/` — committed cross-run comparison and analysis documents
+- `tests/` — pytest suite (90 tests, all passing)
+- `data/` — generated run artifacts (gitignored)
+- `study_archives/` — committed, sanitised milestone archives
+- `proof_bundle/` — legacy first milestone archive
 
 ## User preferences
 None recorded yet.
