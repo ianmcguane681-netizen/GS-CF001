@@ -1,101 +1,128 @@
-"""verification/rules.py — Deterministic term lists and mechanism detection rules.
+"""Deterministic evidence qualification and mechanism rules.
 
-OPERATIONAL_TERMS: words whose presence in a complaint text indicates the
-consumer is describing a specific operational workflow failure (a process that
-was triggered, executed incorrectly, or not executed at all). Generic credit
-vocabulary ("information", "report") is intentionally excluded — those appear
-in virtually every credit-related complaint and do not distinguish operational
-failures from general dissatisfaction or educational inquiries.
-
-SOFTWARE_ADDRESSABLE_TERMS: words whose presence indicates the failure mode
-could plausibly be addressed by a software workflow component (dispute
-management, document handling, case tracking, notification). This is checked
-independently of operational status and is used only as a classification input,
-not as a gate on verified_candidate status.
-
-MECHANISM_RULES: priority-ordered list of (mechanism_name, detection_terms).
-Mechanism names use the format:
-    <actor>_<trigger-process>_<failure-mode>
-e.g. "bureau_dispute_reinvestigation_failure" captures:
-    actor=bureau, trigger-process=dispute_reinvestigation, failure=failure
-The fallback mechanism "unclassified_credit_reporting_complaint" applies when
-no named rule matches.
+Generic credit-reporting vocabulary is not enough to establish an operational
+failure. Narrative evidence must describe both a process and an alleged
+failure. In the absence of a public narrative, only explicit CFPB taxonomy
+phrases that name a failed process can establish a taxonomy-limited signal.
 """
 from __future__ import annotations
 
-# Terms that indicate an operational workflow failure is described.
-# NOTE: "information" and "report" are deliberately EXCLUDED — they appear in
-# nearly every credit-related complaint and do not distinguish workflow failures
-# from general dissatisfaction, educational inquiries, or score confusion.
-OPERATIONAL_TERMS = [
+import re
+
+
+NARRATIVE_PROCESS_TERMS = [
+    "contacted",
     "dispute",
-    "reinvestigation",
-    "investigation",
-    "inaccurate",
-    "incorrect",
-    "not mine",
-    "identity theft",
+    "disputed",
     "documentation",
-    "proof",
-    "remove",
-    "correct",
-]
-
-# Terms that indicate the failure mode could be addressed by a software workflow
-# component. Checked independently of OPERATIONAL_TERMS. Note: "dispute" and
-# "investigation" appear here because dispute-management and case-tracking
-# software directly addresses those failure modes.
-SOFTWARE_ADDRESSABLE_TERMS = [
-    "dispute",
+    "documents",
+    "evidence",
     "investigation",
-    "document",
     "proof",
-    "communication",
+    "reinvestigation",
+    "remove",
+    "requested",
     "response",
-    "timeline",
+    "submitted",
+]
+
+NARRATIVE_FAILURE_TERMS = [
+    "did not",
+    "failed",
+    "ignored",
+    "no response",
+    "not considered",
+    "not corrected",
+    "not fixed",
+    "not removed",
+    "rejected",
+    "refused",
+    "refuses",
+    "remained",
+    "still inaccurate",
+    "unresolved",
+]
+
+# These phrases describe an operational step and an alleged failure in the
+# official structured taxonomy. Broad labels such as "Incorrect information on
+# your report" are deliberately absent.
+EXPLICIT_OPERATIONAL_TAXONOMY_PHRASES = [
+    "investigation into an existing problem",
+    "investigation did not fix an error",
+    "did not receive notice of the results",
+    "was not notified of investigation status or results",
+    "problem with fraud alerts or security freezes",
+]
+
+SOFTWARE_ADDRESSABLE_TERMS = [
+    "communication",
+    "dispute",
+    "document",
+    "evidence",
+    "investigation",
+    "notification",
+    "proof",
+    "response",
     "resolution",
+    "status",
+    "timeline",
 ]
 
-# Priority-ordered mechanism detection rules.
-# Each entry: (mechanism_name, detection_terms_list).
-# First matching rule wins. Mechanism names are trigger-process-failure labels.
-MECHANISM_RULES = [
-    (
-        "bureau_dispute_reinvestigation_failure",
-        ["dispute", "investigation", "reinvestigation"],
-    ),
-    (
-        "furnisher_tradeline_data_error_persistence",
-        ["incorrect", "inaccurate", "information", "report"],
-    ),
-    (
-        "dispute_supporting_evidence_rejection",
-        ["document", "proof", "evidence"],
-    ),
-    (
-        "investigation_outcome_notification_failure",
-        ["response", "communication", "status", "resolution"],
-    ),
-]
+# Backward-compatible export for callers that import the former name. It now
+# represents process terms only and is never sufficient by itself.
+OPERATIONAL_TERMS = NARRATIVE_PROCESS_TERMS
 
-# Default mechanism applied when no rule matches.
 DEFAULT_MECHANISM = "unclassified_credit_reporting_complaint"
 
 
+def matched_terms(text: str, terms: list[str]) -> list[str]:
+    """Return exact case-insensitive term matches without substring leakage."""
+
+    return [
+        term
+        for term in terms
+        if re.search(rf"(?<!\w){re.escape(term)}(?!\w)", text, flags=re.IGNORECASE)
+    ]
+
+
 def contains_any(text: str, terms: list[str]) -> bool:
-    lower = text.lower()
-    return any(term in lower for term in terms)
+    return bool(matched_terms(text, terms))
+
+
+def operational_assessment(parsed_fields: dict[str, object]) -> tuple[bool, str, list[str]]:
+    """Determine whether a record identifies an operational failure and why."""
+
+    narrative = str(parsed_fields.get("narrative") or "").strip()
+    if narrative:
+        process_matches = matched_terms(narrative, NARRATIVE_PROCESS_TERMS)
+        failure_matches = matched_terms(narrative, NARRATIVE_FAILURE_TERMS)
+        if process_matches and failure_matches:
+            return True, "consumer_narrative_process_and_failure", sorted(
+                set(process_matches + failure_matches)
+            )
+
+    taxonomy = " ".join(
+        str(parsed_fields.get(key) or "") for key in ("issue", "sub_issue")
+    )
+    taxonomy_matches = matched_terms(taxonomy, EXPLICIT_OPERATIONAL_TAXONOMY_PHRASES)
+    if taxonomy_matches:
+        return True, "explicit_cfpb_taxonomy_process_failure", taxonomy_matches
+
+    return False, "operational_failure_not_established", []
 
 
 def detect_mechanism(text: str) -> str:
+    process = set(matched_terms(text, NARRATIVE_PROCESS_TERMS))
+    failures = set(matched_terms(text, NARRATIVE_FAILURE_TERMS))
     lower = text.lower()
-    for mechanism, terms in MECHANISM_RULES:
-        if mechanism == "bureau_dispute_reinvestigation_failure":
-            # Requires co-occurrence of "dispute" AND ("investigation" OR
-            # "reinvestigation") to distinguish from generic mentions.
-            if "dispute" in lower and ("investigation" in lower or "reinvestigation" in lower):
-                return mechanism
-            continue
-        if any(term in lower for term in terms):
-            return mechanism
+
+    if ({"dispute", "disputed"} & process) and ({"investigation", "reinvestigation"} & process):
+        return "bureau_dispute_reinvestigation_failure"
+    if ({"documentation", "documents", "evidence", "proof"} & process) and failures:
+        return "dispute_supporting_evidence_rejection"
+    if any(term in lower for term in ("notification", "status", "communication", "response")) and failures:
+        return "investigation_outcome_notification_failure"
+    if any(term in lower for term in ("incorrect", "inaccurate", "not mine", "tradeline")):
+        if failures or any(term in lower for term in ("persist", "remain", "still")):
+            return "furnisher_tradeline_data_error_persistence"
     return DEFAULT_MECHANISM

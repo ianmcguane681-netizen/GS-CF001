@@ -50,9 +50,9 @@ def test_verification_operational_but_not_software_addressable_still_verified_ca
     A record that is operational and traceable but NOT software-addressable must
     become verified_candidate so it reaches the findings engine and ODR.
     """
-    # Text has OPERATIONAL_TERMS (incorrect, inaccurate, not mine, remove) but
-    # NO SOFTWARE_ADDRESSABLE_TERMS (no dispute, investigation, document, proof,
-    # communication, response, timeline, resolution).
+    # Text has a process/failure pair (contacted/requested/remove + refused) but
+    # no software-addressability terms such as dispute, investigation, document,
+    # proof, communication, response, timeline, or resolution.
     item = candidate(
         "99",
         "Incorrect derogatory tradeline on credit file. "
@@ -97,3 +97,27 @@ def test_verification_software_addressability_is_classification_input_not_gate()
     verified = verify_candidate(item)
     assert any("classification input" in r or "not a verification gate" in r
                for r in verified.reasoning_chain)
+
+
+def test_generic_taxonomy_without_narrative_is_not_operational_evidence():
+    item = candidate("102", "")
+
+    verified = verify_candidate(item)
+
+    assert verified.narrative_available is False
+    assert verified.operational is False
+    assert verified.operational_basis == "operational_failure_not_established"
+    assert verified.verification_status == "rejected_candidate"
+
+
+def test_explicit_operational_taxonomy_is_qualified_without_claiming_a_narrative():
+    record = raw_record("103", "")
+    record["issue"] = "Problem with a credit reporting company's investigation into an existing problem"
+    item = normalise_cfpb_record(record, cfpb_source(), get_study("GS-CF001-C"))
+
+    verified = verify_candidate(item)
+
+    assert verified.operational is True
+    assert verified.narrative_available is False
+    assert verified.operational_basis == "explicit_cfpb_taxonomy_process_failure"
+    assert "investigation into an existing problem" in verified.operational_terms_matched

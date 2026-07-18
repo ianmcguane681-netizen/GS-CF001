@@ -5,9 +5,9 @@ genuine REJECTED outcomes. This test runs the full pipeline with the
 RejectionHarnessConnector and asserts:
 
   1. Pipeline completes without error.
-  2. All harness records have verified_candidate status (operational=True,
-     traceable=True) — they pass the verification gate.
-  3. Majority of verified evidence items are NOT software-addressable
+  2. Exactly the process-plus-failure fixtures pass verification; outcome-only
+     fixtures remain rejected candidates.
+  3. Verified evidence items are NOT software-addressable
      (software_addressable=False), confirming the test data is well-formed.
   4. At least one finding is classified as non_software_problem.
   5. The ODR contains at least one REJECTED entry.
@@ -23,7 +23,7 @@ from connectors.rejection_harness import RejectionHarnessConnector, _HARNESS_REC
 from core.pipeline import run_credit_reporting_proof
 from findings.mechanism_classifier import classify_all
 from verification.classifier import verify_candidates
-from verification.rules import OPERATIONAL_TERMS, SOFTWARE_ADDRESSABLE_TERMS, contains_any
+from verification.rules import SOFTWARE_ADDRESSABLE_TERMS, operational_assessment
 from core.normalization import normalise_cfpb_records
 from connectors.cfpb import cfpb_source
 from studies.definitions import get_study
@@ -33,22 +33,20 @@ from studies.definitions import get_study
 # Verify the harness records have the expected operational/software properties
 # ---------------------------------------------------------------------------
 
-def test_harness_records_are_operational():
-    """All harness records must contain OPERATIONAL_TERMS."""
-    for rec in _HARNESS_RECORDS:
-        text = " ".join([
-            str(rec.get("product") or ""),
-            str(rec.get("sub_product") or ""),
-            str(rec.get("issue") or ""),
-            str(rec.get("sub_issue") or ""),
-            str(rec.get("company") or ""),
-            str(rec.get("company_response") or ""),
-            str(rec.get("complaint_what_happened") or ""),
-        ])
-        assert contains_any(text, OPERATIONAL_TERMS), (
-            f"Harness record {rec['complaint_id']} is not operational — "
-            f"adjust text to include at least one OPERATIONAL_TERM."
-        )
+def test_harness_contains_three_explicit_operational_failures():
+    """Only process-plus-failure records qualify; outcome-only records do not."""
+    assessments = [
+        operational_assessment(
+            {
+                "issue": rec.get("issue") or "",
+                "sub_issue": rec.get("sub_issue") or "",
+                "narrative": rec.get("complaint_what_happened") or "",
+            }
+        )[0]
+        for rec in _HARNESS_RECORDS
+    ]
+    assert assessments[:3] == [True, True, True]
+    assert assessments[3:] == [False, False, False]
 
 
 def test_harness_records_are_not_software_addressable():

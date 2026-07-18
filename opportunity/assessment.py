@@ -4,6 +4,12 @@ from core.ids import stable_id
 from core.models import Finding, OpportunityHypothesis
 
 COMPONENT_BY_MECHANISM = {
+    "bureau_dispute_reinvestigation_failure": "Dispute reinvestigation workflow component",
+    "furnisher_tradeline_data_error_persistence": "Tradeline correction evidence workflow",
+    "dispute_supporting_evidence_rejection": "Consumer dispute evidence intake component",
+    "investigation_outcome_notification_failure": "Investigation outcome communication component",
+    "unclassified_credit_reporting_complaint": "Unclassified mechanism - no supported component yet",
+    # Historical labels remain readable in archived artifacts.
     "credit_report_dispute_investigation": "Dispute investigation workflow component",
     "incorrect_credit_report_information": "Credit report correction evidence workflow",
     "credit_report_documentation_handling": "Consumer evidence collection component",

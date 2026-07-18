@@ -44,3 +44,27 @@ def test_finding_can_identify_repeated_operational_mechanism_but_requires_corrob
     assert findings[0].status == "finding_supported_cfpb_only"
     assert "independent non-CFPB corroboration" in findings[0].missing_evidence
 
+
+def test_single_taxonomy_based_finding_does_not_claim_repetition_or_narrative_evidence():
+    item = normalise_cfpb_record(
+        {
+            "complaint_id": "taxonomy-only",
+            "product": "Credit reporting or other personal consumer reports",
+            "issue": "Problem with a credit reporting company's investigation into an existing problem",
+            "company": "Company A",
+            "complaint_what_happened": "",
+            "_retrieval_url": "https://consumerfinance.gov/api",
+            "_retrieved_at": "2026-07-14T00:00:00Z",
+        },
+        cfpb_source(),
+        get_study("GS-CF001-C"),
+    )
+
+    finding = generate_findings(verify_candidates([item]))[0]
+
+    assert "repeats" not in finding.summary.lower()
+    assert "repetition is not established" in finding.summary.lower()
+    observed = finding.mechanism_definition["observed_alleged_deviation"]
+    assert "no public consumer narrative" in observed.lower()
+    assert "taxonomy" in observed.lower()
+

@@ -1,7 +1,11 @@
 from connectors.cfpb import cfpb_source
 from core.normalization import normalise_cfpb_record
 from findings.engine import generate_findings
-from opportunity.assessment import assess_findings
+from dataclasses import replace
+
+import pytest
+
+from opportunity.assessment import assess_finding, assess_findings
 from proof_gates.evaluator import evaluate_proof_gates, make_verdict
 from reports.report_generator import render_markdown_report
 from studies.definitions import get_study
@@ -66,3 +70,24 @@ def test_markdown_report_links_statements_to_evidence_ids():
     assert verified[0].evidence_id in markdown
     assert findings[0].finding_id in markdown
     assert opportunities[0].opportunity_id in markdown
+
+
+@pytest.mark.parametrize(
+    ("mechanism", "expected_component"),
+    [
+        ("bureau_dispute_reinvestigation_failure", "Dispute reinvestigation workflow component"),
+        ("furnisher_tradeline_data_error_persistence", "Tradeline correction evidence workflow"),
+        ("dispute_supporting_evidence_rejection", "Consumer dispute evidence intake component"),
+        ("investigation_outcome_notification_failure", "Investigation outcome communication component"),
+        ("unclassified_credit_reporting_complaint", "Unclassified mechanism - no supported component yet"),
+    ],
+)
+def test_current_mechanisms_map_to_specific_component_hypotheses(
+    mechanism: str, expected_component: str
+):
+    _verified, findings, _opportunities, _gates, _verdict = pipeline_objects()
+    finding = replace(findings[0], mechanism=mechanism)
+
+    opportunity = assess_finding(finding)
+
+    assert opportunity.component_hypothesis == expected_component

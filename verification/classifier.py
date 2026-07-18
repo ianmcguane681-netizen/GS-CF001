@@ -5,7 +5,7 @@ failure?" It does NOT answer: "Can software fix this?" That question is
 answered downstream by the mechanism classifier (findings/mechanism_classifier.py).
 
 verified_candidate status requires:
-    operational=True  (complaint text contains at least one OPERATIONAL_TERM)
+    operational=True  (narrative process + failure, or explicit operational taxonomy)
     traceable=True    (source URL, raw record, and record ID all present)
 
 software_addressable is recorded as a flag but is NOT a gate on
@@ -23,7 +23,12 @@ from collections import Counter
 from core.evidence_states import CFPB_LIMITED_EVIDENCE, EVIDENCE_CANDIDATE, VERIFIED_WITHIN_SOURCE, transition
 from core.ids import stable_id
 from core.models import EvidenceCandidate, VerifiedEvidence
-from verification.rules import OPERATIONAL_TERMS, SOFTWARE_ADDRESSABLE_TERMS, contains_any, detect_mechanism
+from verification.rules import (
+    SOFTWARE_ADDRESSABLE_TERMS,
+    detect_mechanism,
+    matched_terms,
+    operational_assessment,
+)
 
 
 def _candidate_text(candidate: EvidenceCandidate) -> str:
@@ -37,11 +42,15 @@ def _candidate_text(candidate: EvidenceCandidate) -> str:
 def verify_candidate(candidate: EvidenceCandidate, repeated_mechanisms: set[str] | None = None) -> VerifiedEvidence:
     repeated_mechanisms = repeated_mechanisms or set()
     text = _candidate_text(candidate)
+    narrative = str(candidate.parsed_fields.get("narrative") or "").strip()
     company_name = str(candidate.parsed_fields.get("company") or "")
     mechanism = detect_mechanism(text)
-    operational = contains_any(text, OPERATIONAL_TERMS)
+    operational, operational_basis, operational_matches = operational_assessment(
+        candidate.parsed_fields
+    )
     traceable = bool(candidate.source_url and candidate.raw_record and candidate.source_record_id)
-    software_addressable = contains_any(text, SOFTWARE_ADDRESSABLE_TERMS)
+    software_matches = matched_terms(text, SOFTWARE_ADDRESSABLE_TERMS)
+    software_addressable = bool(software_matches)
     repeated_signal = mechanism in repeated_mechanisms
     independently_corrobored = False
     missing = []
@@ -74,7 +83,10 @@ def verify_candidate(candidate: EvidenceCandidate, repeated_mechanisms: set[str]
         ["CFPB data alone cannot independently corroborate the underlying allegation."],
     )
     reasoning = [
-        f"Verified candidate {candidate.candidate_id} for operational content.",
+        (
+            f"Operational qualification basis: {operational_basis}; "
+            f"matched terms: {', '.join(operational_matches) or 'none'}."
+        ),
         f"Mechanism classified as {mechanism}.",
         f"Traceability is {'present' if traceable else 'missing'}.",
         f"Software addressability: {software_addressable} (classification input only, not a verification gate).",
@@ -111,6 +123,10 @@ def verify_candidate(candidate: EvidenceCandidate, repeated_mechanisms: set[str]
             "Repeated complaint terms may reflect CFPB taxonomy rather than a common root cause.",
         ],
         state_transitions=[state_transition.to_dict()],
+        narrative_available=bool(narrative),
+        operational_basis=operational_basis,
+        operational_terms_matched=operational_matches,
+        software_terms_matched=software_matches,
     )
 
 

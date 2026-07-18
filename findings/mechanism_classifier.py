@@ -211,7 +211,7 @@ def classify_finding(
         ]
         missing_for_upgrade = [
             "majority of evidence items must describe a specific operational workflow failure (operational=True)",
-            "at least one OPERATIONAL_TERMS match per item",
+            "each narrative-based item must contain both process and alleged-failure language, or explicit operational CFPB taxonomy",
         ]
 
     elif not maj_sw:

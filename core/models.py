@@ -87,6 +87,10 @@ class VerifiedEvidence:
     source_limitations: list[str] = field(default_factory=list)
     alternative_explanations: list[str] = field(default_factory=list)
     state_transitions: list[dict[str, Any]] = field(default_factory=list)
+    narrative_available: bool = False
+    operational_basis: str = "not established"
+    operational_terms_matched: list[str] = field(default_factory=list)
+    software_terms_matched: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

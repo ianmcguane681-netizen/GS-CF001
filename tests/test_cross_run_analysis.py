@@ -452,7 +452,7 @@ def test_write_cross_run_report_has_three_mutation_sections(tmp_path):
     ])
     out = tmp_path / "comparison.md"
     write_cross_run_report(result, out)
-    md = out.read_text()
+    md = out.read_text(encoding="utf-8")
     # All three categories must appear
     assert "Classification-input mutation" in md
     assert "Stable-business-field mutation" in md

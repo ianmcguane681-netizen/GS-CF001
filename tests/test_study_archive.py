@@ -260,7 +260,7 @@ def test_archive_redacts_narrative_in_raw_records(tmp_path):
     archive_root = tmp_path / "study_archives"
     archive_dir = build_archive(entry, archive_root=archive_root)
 
-    raw = json.loads((archive_dir / "raw_records_redacted.json").read_text())
+    raw = json.loads((archive_dir / "raw_records_redacted.json").read_text(encoding="utf-8"))
     for rec in raw.get("records", [raw]):
         assert rec.get("complaint_what_happened") != "I had a problem with my credit report."
         if rec.get("complaint_what_happened"):
@@ -272,7 +272,9 @@ def test_archive_redacts_narrative_in_candidates(tmp_path):
     archive_root = tmp_path / "study_archives"
     archive_dir = build_archive(entry, archive_root=archive_root)
 
-    candidates = json.loads((archive_dir / "normalised_candidates_redacted.json").read_text())
+    candidates = json.loads(
+        (archive_dir / "normalised_candidates_redacted.json").read_text(encoding="utf-8")
+    )
     for c in candidates:
         raw_rec = c.get("raw_record", {})
         parsed = c.get("parsed_fields", {})
@@ -287,7 +289,7 @@ def test_archive_metadata_contains_run_fields(tmp_path):
     archive_root = tmp_path / "study_archives"
     archive_dir = build_archive(entry, archive_root=archive_root)
 
-    meta = json.loads((archive_dir / "archive_metadata.json").read_text())
+    meta = json.loads((archive_dir / "archive_metadata.json").read_text(encoding="utf-8"))
     assert meta["run_id"] == "RUN-TEST001"
     assert meta["study_id"] == "GS-CF001-C"
     assert meta["verdict"] == "CONTINUE RESEARCH"

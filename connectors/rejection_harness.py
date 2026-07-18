@@ -2,16 +2,16 @@
 
 Correction 5 of the methodology-validation review: the ODR must produce genuine
 REJECTED outcomes, not only CONTINUE_RESEARCH. This connector supplies a
-controlled set of CFPB-style complaint records whose text patterns represent
-real complaint categories that:
+controlled set of CFPB-style fixture records whose text patterns exercise two
+qualification outcomes:
 
-  (a) ARE operational (contain OPERATIONAL_TERMS — a specific workflow failure
-      is described) so they pass the verified_candidate gate, reach the
-      findings engine, and appear in the ODR.
+  (a) The first three describe both a process and an alleged failure, so they
+      pass the verified_candidate gate, reach the findings engine, and appear
+      in the ODR.
 
-  (b) are NOT software-addressable (contain no SOFTWARE_ADDRESSABLE_TERMS) so
-      the resulting finding receives a majority software_addressable=False and
-      is classified as non_software_problem → decision_status=REJECTED.
+  (b) The remaining records describe an outcome without a process failure and
+      are rejected by verification. All records avoid software-addressability
+      terms so qualifying findings can exercise the non-software path.
 
 The complaint text patterns are drawn from CFPB public consumer complaint
 taxonomy categories that genuinely appear in the credit reporting product
@@ -32,13 +32,11 @@ gaps. These patterns are:
     specific dispute/investigation workflow failure. The harm is real but the
     complaint describes the outcome (account is fraudulent) not a process failure
     that software could intercept.
-    → operational=True (identity theft, incorrect, not mine)
+    → operational=False (outcome described, but no process-and-failure pair)
     → software_addressable=False (no workflow terms)
 
-Records are assigned to three different companies (FinanceCo A, FinanceCo B,
-FinanceCo C) to ensure finding.company_count ≥ 2 and evidence_count ≥ 3 so the
-finding reaches "finding_supported_cfpb_only" status and is classified rather
-than remaining commercially_weak.
+The three process-failure records are assigned to different companies to allow
+the qualifying mechanism to cross the deterministic repetition threshold.
 
 This connector is intentionally NOT the default pipeline connector. It is used
 in tests and in dedicated rejection-harness pipeline runs only.
@@ -151,8 +149,8 @@ _HARNESS_RECORDS: list[dict] = [
         "company_response": "Closed with non-monetary relief",
         "complaint_what_happened": (
             "My identity was stolen. There are incorrect accounts on my credit "
-            "file that are not mine. The furnisher refuses to remove these "
-            "inaccurate fraudulent entries."
+            "file that are not mine. These inaccurate fraudulent entries are "
+            "severely harming my credit score."
         ),
         "_retrieval_url": "https://consumerfinance.gov/data-research/consumer-complaints/",
         "_retrieved_at": "2026-07-15T00:00:00Z",
@@ -163,10 +161,10 @@ _HARNESS_RECORDS: list[dict] = [
 class RejectionHarnessConnector(DiscoveryConnector):
     """Returns controlled records that produce genuine REJECTED ODR outcomes.
 
-    All records are operational (OPERATIONAL_TERMS present) and traceable, so
-    they pass the verified_candidate gate. None contain SOFTWARE_ADDRESSABLE_TERMS,
-    so the resulting findings have majority software_addressable=False and are
-    classified as non_software_problem → REJECTED.
+    The first three records are operational and traceable. The outcome-only
+    records stop at verification. None contain software-addressability terms,
+    so the qualifying finding exercises the non-software_problem rejection
+    path.
     """
 
     def retrieve(self, limit: int = 100) -> RetrievalResult:

@@ -44,7 +44,7 @@ def test_curl_fetch_success(monkeypatch):
     def fake_run(command, capture_output, text, timeout):
         body_path, header_path = _command_paths(command)
         body_path.write_bytes(b'{"ok": true}')
-        header_path.write_text("HTTP/2 200\r\ncontent-type: application/json\r\n\r\n")
+        header_path.write_bytes(b"HTTP/2 200\r\ncontent-type: application/json\r\n\r\n")
         return FakeCompletedProcess(returncode=0, stdout="200")
 
     monkeypatch.setattr("connectors.cfpb.shutil.which", fake_which)
@@ -64,7 +64,7 @@ def test_curl_fetch_non_2xx_raises_transport_http_error(monkeypatch):
     def fake_run(command, capture_output, text, timeout):
         body_path, header_path = _command_paths(command)
         body_path.write_bytes(b"Access Denied")
-        header_path.write_text("HTTP/2 403\r\nserver: AkamaiGHost\r\n\r\n")
+        header_path.write_bytes(b"HTTP/2 403\r\nserver: AkamaiGHost\r\n\r\n")
         return FakeCompletedProcess(returncode=0, stdout="403")
 
     monkeypatch.setattr("connectors.cfpb.shutil.which", fake_which)
@@ -128,7 +128,7 @@ def test_curl_fetch_malformed_json_raises_on_decode(monkeypatch):
     def fake_run(command, capture_output, text, timeout):
         body_path, header_path = _command_paths(command)
         body_path.write_bytes(b"not-valid-json{{{")
-        header_path.write_text("HTTP/2 200\r\ncontent-type: application/json\r\n\r\n")
+        header_path.write_bytes(b"HTTP/2 200\r\ncontent-type: application/json\r\n\r\n")
         return FakeCompletedProcess(returncode=0, stdout="200")
 
     monkeypatch.setattr("connectors.cfpb.shutil.which", fake_which)
@@ -147,14 +147,14 @@ def test_curl_fetch_uses_only_final_header_block_after_redirect(monkeypatch):
         body_path, header_path = _command_paths(command)
         body_path.write_bytes(b'{"final": true}')
         # curl's -D captures a header block per hop when following redirects.
-        header_path.write_text(
-            "HTTP/1.1 301 Moved Permanently\r\n"
-            "location: https://example.test/api/final\r\n"
-            "\r\n"
-            "HTTP/2 200\r\n"
-            "content-type: application/json\r\n"
-            "x-final-hop: true\r\n"
-            "\r\n"
+        header_path.write_bytes(
+            b"HTTP/1.1 301 Moved Permanently\r\n"
+            b"location: https://example.test/api/final\r\n"
+            b"\r\n"
+            b"HTTP/2 200\r\n"
+            b"content-type: application/json\r\n"
+            b"x-final-hop: true\r\n"
+            b"\r\n"
         )
         return FakeCompletedProcess(returncode=0, stdout="200")
 
