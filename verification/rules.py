@@ -111,18 +111,24 @@ def operational_assessment(parsed_fields: dict[str, object]) -> tuple[bool, str,
     return False, "operational_failure_not_established", []
 
 
+NOTIFICATION_TERMS = ["notification", "status", "communication", "response"]
+DATA_ERROR_TERMS = ["incorrect", "inaccurate", "not mine", "tradeline"]
+PERSISTENCE_TERMS = ["persist", "remain", "still"]
+
+
 def detect_mechanism(text: str) -> str:
     process = set(matched_terms(text, NARRATIVE_PROCESS_TERMS))
     failures = set(matched_terms(text, NARRATIVE_FAILURE_TERMS))
-    lower = text.lower()
 
     if ({"dispute", "disputed"} & process) and ({"investigation", "reinvestigation"} & process):
         return "bureau_dispute_reinvestigation_failure"
     if ({"documentation", "documents", "evidence", "proof"} & process) and failures:
         return "dispute_supporting_evidence_rejection"
-    if any(term in lower for term in ("notification", "status", "communication", "response")) and failures:
+    # matched_terms rather than a plain `in`: substring matching classified
+    # "telecommunications" as "communication" and "distilled" as "still".
+    if contains_any(text, NOTIFICATION_TERMS) and failures:
         return "investigation_outcome_notification_failure"
-    if any(term in lower for term in ("incorrect", "inaccurate", "not mine", "tradeline")):
-        if failures or any(term in lower for term in ("persist", "remain", "still")):
+    if contains_any(text, DATA_ERROR_TERMS):
+        if failures or contains_any(text, PERSISTENCE_TERMS):
             return "furnisher_tradeline_data_error_persistence"
     return DEFAULT_MECHANISM

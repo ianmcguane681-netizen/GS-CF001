@@ -24,6 +24,9 @@ CFPB_BULK_DOWNLOAD_URL = "https://files.consumerfinance.gov/ccdb/complaints.csv.
 CFPB_CREDIT_REPORTING_PRODUCT = "Credit reporting or other personal consumer reports"
 RELIABILITY_VERSION = "CFPB-SRA-001"
 ACCESS_TIMEOUT_SECONDS = 45
+# Upper bound for the streamed bulk archive. Large enough for the published file,
+# small enough that a redirect to something unexpected cannot fill the disk.
+MAX_BULK_DOWNLOAD_BYTES = 2 * 1024 * 1024 * 1024
 
 
 class CFPBTransportHTTPError(Exception):
@@ -81,7 +84,7 @@ def _curl_fetch(url: str, headers: dict[str, str]) -> tuple[bytes, dict[str, str
         ]
         for name, value in headers.items():
             command.extend(["-H", f"{name}: {value}"])
-        command.append(url)
+        command.extend(["--", url])
         completed = subprocess.run(command, capture_output=True, text=True, timeout=ACCESS_TIMEOUT_SECONDS + 5)
         if completed.returncode != 0:
             raise RuntimeError(f"curl transport failed (exit {completed.returncode}): {completed.stderr.strip()}")
@@ -91,6 +94,42 @@ def _curl_fetch(url: str, headers: dict[str, str]) -> tuple[bytes, dict[str, str
         if status_code < 200 or status_code >= 300:
             raise CFPBTransportHTTPError(status_code, response_headers, body)
         return body, response_headers, status_code
+
+
+def _curl_download(url: str, destination: Path, headers: dict[str, str], max_bytes: int) -> None:
+    """Stream a URL to `destination` via curl without buffering it in memory."""
+
+    curl_path = _require_curl()
+    with tempfile.TemporaryDirectory() as tmpdir:
+        header_path = Path(tmpdir) / "headers"
+        command = [
+            curl_path,
+            "-sS",
+            "--noproxy",
+            "*",
+            "--max-time",
+            str(ACCESS_TIMEOUT_SECONDS),
+            "--max-filesize",
+            str(max_bytes),
+            "-D",
+            str(header_path),
+            "-o",
+            str(destination),
+            "-w",
+            "%{http_code}",
+        ]
+        for name, value in headers.items():
+            command.extend(["-H", f"{name}: {value}"])
+        command.extend(["--", url])
+        completed = subprocess.run(command, capture_output=True, text=True, timeout=ACCESS_TIMEOUT_SECONDS + 5)
+        if completed.returncode != 0:
+            raise RuntimeError(f"curl transport failed (exit {completed.returncode}): {completed.stderr.strip()}")
+        status_code = int(completed.stdout.strip() or "0")
+        response_headers = _parse_curl_headers(header_path)
+        if status_code < 200 or status_code >= 300:
+            # Read only a bounded prefix of the error body for the diagnostic.
+            body = destination.read_bytes()[:4096] if destination.exists() else b""
+            raise CFPBTransportHTTPError(status_code, response_headers, body)
 
 
 def _parse_curl_headers(header_path: Path) -> dict[str, str]:
@@ -334,14 +373,28 @@ class CFPBAPIAccessAdapter:
 class CFPBBulkDownloadAccessAdapter:
     method_name = "official_cfpb_bulk_download"
 
-    def __init__(self, opener: Callable[[str], bytes] | None = None) -> None:
-        self._opener = opener or self._default_open
+    def __init__(
+        self,
+        opener: Callable[[str], bytes] | None = None,
+        *,
+        max_download_bytes: int = MAX_BULK_DOWNLOAD_BYTES,
+    ) -> None:
+        # An injected opener returns bytes and is used as-is; the default transport
+        # streams to disk instead, because the official archive is far too large to
+        # hold in memory (see _download_to_disk).
+        self._opener = opener
+        self._max_download_bytes = max_download_bytes
 
     def retrieve(self, limit: int) -> tuple[str, list[dict[str, Any]], list[str], list[AccessDiagnostic]]:
         headers = {"User-Agent": "GS-CF001/0.1 methodology proof", "Accept": "application/zip,text/csv"}
         try:
-            content = self._opener(CFPB_BULK_DOWNLOAD_URL)
-            records = self._extract_from_zip(content, limit)
+            if self._opener is not None:
+                records = self._extract_from_zip(self._opener(CFPB_BULK_DOWNLOAD_URL), limit)
+            else:
+                with tempfile.TemporaryDirectory() as tmpdir:
+                    archive_path = Path(tmpdir) / "complaints.csv.zip"
+                    self._download_to_disk(CFPB_BULK_DOWNLOAD_URL, archive_path, headers)
+                    records = self._extract_from_zip(archive_path, limit)
             diagnostic = _diagnostic(
                 CFPB_BULK_DOWNLOAD_URL,
                 self.method_name,
@@ -370,24 +423,38 @@ class CFPBBulkDownloadAccessAdapter:
             diagnostic = _diagnostic(CFPB_BULK_DOWNLOAD_URL, self.method_name, headers, "error", {}, str(exc), "CFPB bulk download failed.")
             return CFPB_BULK_DOWNLOAD_URL, [], [f"CFPB bulk download failed: {exc}"], [diagnostic]
 
-    def _default_open(self, url: str) -> bytes:
-        # Same Akamai TLS/HTTP client fingerprinting issue as the API adapter (see
-        # CFPBAPIAccessAdapter._default_fetch_json); curl is used as the transport here.
-        def fetch() -> bytes:
-            headers = {"User-Agent": "GS-CF001/0.1 methodology proof", "Accept": "application/zip,text/csv"}
-            body, _response_headers, _status_code = _curl_fetch(url, headers)
-            return body
+    def _download_to_disk(self, url: str, destination: Path, headers: dict[str, str]) -> None:
+        """Stream the official archive to disk under a hard size cap.
 
-        return _run_bounded_access(fetch)
+        The published complaints archive is hundreds of megabytes compressed and
+        several gigabytes expanded, so it must never be materialised as bytes in
+        memory. curl writes straight to the destination file and --max-filesize
+        aborts the transfer rather than filling the disk.
 
-    def _extract_from_zip(self, content: bytes, limit: int) -> list[dict[str, Any]]:
+        Same Akamai TLS/HTTP client fingerprinting issue as the API adapter (see
+        CFPBAPIAccessAdapter._default_fetch_json); curl is used as the transport here.
+        """
+
+        def fetch() -> None:
+            _curl_download(url, destination, headers, self._max_download_bytes)
+
+        _run_bounded_access(fetch)
+
+    def _extract_from_zip(self, source: bytes | Path, limit: int) -> list[dict[str, Any]]:
+        """Read matching rows from a zip given either raw bytes or a path.
+
+        Only `limit` rows are retained and the CSV is consumed as a stream, so the
+        expanded archive is never held in memory in full.
+        """
+
         import io
 
+        handle: Any = io.BytesIO(source) if isinstance(source, bytes) else source
         records: list[dict[str, Any]] = []
-        with zipfile.ZipFile(io.BytesIO(content)) as archive:
+        with zipfile.ZipFile(handle) as archive:
             csv_name = next(name for name in archive.namelist() if name.lower().endswith(".csv"))
-            with archive.open(csv_name) as handle:
-                text = io.TextIOWrapper(handle, encoding="utf-8-sig", errors="ignore")
+            with archive.open(csv_name) as member:
+                text = io.TextIOWrapper(member, encoding="utf-8-sig", errors="ignore")
                 for row in csv.DictReader(text):
                     if row.get("Product") == CFPB_CREDIT_REPORTING_PRODUCT:
                         records.append(_normalise_bulk_row(row, self.method_name, CFPB_BULK_DOWNLOAD_URL))

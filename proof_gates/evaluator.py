@@ -93,8 +93,36 @@ def evaluate_proof_gates(
     ]
 
 
+GATE_CEILING = "CONTINUE RESEARCH"
+
+
 def _minimum_outcome(outcome: str, ceiling: str) -> str:
+    if outcome not in OUTCOME_RANK:
+        raise ValueError(f"Unknown outcome: {outcome}")
+    if ceiling not in OUTCOME_RANK:
+        raise ValueError(f"Unknown ceiling: {ceiling}")
     return outcome if OUTCOME_RANK[outcome] <= OUTCOME_RANK[ceiling] else ceiling
+
+
+def gate_ceiling(gates: list[ProofGateResult]) -> tuple[str, list[str]]:
+    """Cap the verdict unless every proof gate passes.
+
+    This rule was previously asserted only in the verdict's reasoning chain. It
+    held because the unconstrained outcome never exceeded CONTINUE RESEARCH, not
+    because the gate statuses were ever checked, so any future path that could
+    produce a stronger unconstrained outcome would have bypassed it silently.
+    """
+
+    failed = sorted(gate.gate_id for gate in gates if gate.status != "PASS")
+    constraining = sorted(gate.gate_id for gate in gates if gate.constrains_max_verdict)
+    if not failed and not constraining:
+        return "BUILD CANDIDATE", []
+    reasons = []
+    if failed:
+        reasons.append(f"Proof gates not passing: {', '.join(failed)}.")
+    if constraining:
+        reasons.append(f"Gates constraining the maximum verdict: {', '.join(constraining)}.")
+    return GATE_CEILING, reasons
 
 
 def make_verdict(
@@ -125,7 +153,8 @@ def make_verdict(
     else:
         unconstrained = "REJECT"
 
-    final = _minimum_outcome(unconstrained, evidence_ceiling)
+    gates_ceiling, gate_ceiling_reasons = gate_ceiling(gates)
+    final = _minimum_outcome(_minimum_outcome(unconstrained, evidence_ceiling), gates_ceiling)
     return StudyVerdict(
         verdict_id=stable_id("VER", {"study": study_id, "gates": [gate.to_dict() for gate in gates], "ceiling": evidence_ceiling}),
         study_id=study_id,
@@ -144,6 +173,7 @@ def make_verdict(
         reasoning_chain=[
             "Verdict generated from deterministic proof gate statuses.",
             "No positive build decision is allowed unless every proof gate passes.",
+            *gate_ceiling_reasons,
             "Evidence ceiling applied after unconstrained assessment.",
         ],
     )
