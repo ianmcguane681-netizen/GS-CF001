@@ -69,13 +69,12 @@ THEN maximum verdict = CONTINUE RESEARCH
 
 Multiple CFPB complaint records remain one source family.
 
-## Current Source
+## Current Sources
 
-Initial live source:
+Two independent source families are integrated:
 
-- CFPB Consumer Complaint Database
-
-No other source is integrated yet.
+- CFPB Consumer Complaint Database — `CFPB complaints`
+- CourtListener federal court records (RECAP) — `Federal court records`
 
 The CFPB connector separates the CFPB source from access methods:
 
@@ -84,6 +83,37 @@ The CFPB connector separates the CFPB source from access methods:
 - Local official CFPB snapshot adapter
 
 No scraping and no third-party mirrors are used.
+
+### Federal court records
+
+Federal dockets are a genuinely separate source family: different parties, a
+different forum, and legal consequences attached. Admission is deterministic on
+the statutory cause recorded by the court itself — a docket is mapped to this
+study only where the claim arises under the Fair Credit Reporting Act
+(15 U.S.C. 1681), never by keyword matching a case caption.
+
+The evidential limits are deliberately narrow:
+
+```text
+A filed complaint is an allegation, not a finding of fact.
+A settlement or dismissal is not an admission of liability.
+```
+
+Dockets therefore corroborate that an alleged mechanism recurs outside the CFPB,
+and satisfy the independence requirement. They do not establish that any alleged
+failure occurred. Docket metadata carries no consumer narrative, and a case
+caption is never mined as though it were a first-hand account.
+
+With both families present the deterministic evidence ceiling lifts:
+
+```text
+independent source family count >= 2
+=> maximum verdict is no longer capped at CONTINUE RESEARCH
+```
+
+The verdict itself remains gated on the remaining proof gates, which continue to
+require solution-maturity, commercial and counter-evidence research that is not
+yet integrated.
 
 ## Reports and Artifacts
 
