@@ -200,7 +200,15 @@ def normalise_idb_record(
         "judgment_code": raw_record.get("judgment_code"),
         "adjudication_posture": posture,
         "adjudication_direction": direction,
-        "adjudication_citation": raw_record.get("docket_number") or "",
+        "adjudication_citation": raw_record.get("pacer_docket_number") or raw_record.get("docket_number") or "",
+        # From the RECAP docket join. False whenever the join did not confirm a
+        # single consumer-credit docket, including when it could not run at all:
+        # unknown subject matter is not permission to count the case.
+        "on_study_suit_nature": bool(raw_record.get("on_study_suit_nature")),
+        "joined_case_name": raw_record.get("joined_case_name") or "",
+        "joined_suit_nature": raw_record.get("joined_suit_nature") or "",
+        "join_verified": bool(raw_record.get("join_verified")),
+        "join_note": raw_record.get("join_note") or "",
         "occurrence_reasoning": raw_record.get("occurrence_reasoning") or "",
         # An IDB row records who won, not what the consumer said. Leaving the
         # narrative empty stops the verification rules reading an outcome code as
@@ -214,6 +222,8 @@ def normalise_idb_record(
         f"Retrieved FJC Integrated Database case outcome from {source_url}",
         f"Admitted case {record_id} on coded statute title {raw_record.get('title')!r} section {raw_record.get('section')!r}",
         f"Classified posture {posture!r} direction {direction!r} from official FJC codes",
+        f"Docket join {'confirmed' if raw_record.get('join_verified') else 'not confirmed'}: {raw_record.get('join_note') or 'not attempted'}",
+        f"Suit nature {raw_record.get('joined_suit_nature') or 'unknown'!r}; on study subject matter: {bool(raw_record.get('on_study_suit_nature'))}",
         "Normalised coded case outcome into source-agnostic EvidenceCandidate",
     ]
     candidate_id = stable_id(

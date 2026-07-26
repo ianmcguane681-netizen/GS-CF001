@@ -118,12 +118,20 @@ def verify_candidate(candidate: EvidenceCandidate, repeated_mechanisms: set[str]
         adjudication_posture=str(candidate.parsed_fields.get("adjudication_posture") or ""),
         adjudication_direction=str(candidate.parsed_fields.get("adjudication_direction") or ""),
         adjudication_citation=str(candidate.parsed_fields.get("adjudication_citation") or ""),
+        # Subject matter is a precondition, not a refinement. The first
+        # occurrence-establishing record this study retrieved was United States v.
+        # Vivint Smart Home -- a real FCRA violation resolved against the
+        # respondent, and an enforcement action about misusing consumer reports
+        # rather than anything to do with reinvestigation. Without this check it
+        # would have proved the study's mechanism with a case about something else.
         establishes_occurrence=candidate.source.evidentiary_standing == ADJUDICATED
+        and bool(candidate.parsed_fields.get("on_study_suit_nature"))
         and establishes_occurrence(
             str(candidate.parsed_fields.get("adjudication_posture") or ""),
             str(candidate.parsed_fields.get("adjudication_direction") or ""),
         ),
         contradicts_occurrence=candidate.source.evidentiary_standing == ADJUDICATED
+        and bool(candidate.parsed_fields.get("on_study_suit_nature"))
         and contradicts_occurrence(
             str(candidate.parsed_fields.get("adjudication_posture") or ""),
             str(candidate.parsed_fields.get("adjudication_direction") or ""),

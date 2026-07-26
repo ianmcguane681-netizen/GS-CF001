@@ -28,6 +28,12 @@ from core.adjudication import (
     establishes_occurrence,
 )
 from connectors.courtlistener import courtlistener_source
+from connectors.docket_join import (
+    DocketJoinAdapter,
+    court_id_from_district,
+    is_consumer_credit_suit,
+    pacer_docket_number,
+)
 from connectors.fjc_idb import FJCIDBConnector, cites_fcra, fjc_idb_source
 from core.normalization import normalise_idb_records
 from studies.definitions import get_study
@@ -35,6 +41,8 @@ from verification.classifier import verify_candidates
 
 CONSENT_ROW = {
     "resource_uri": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/99/",
+    "office": "1",
+    "district": "https://www.courtlistener.com/api/rest/v4/courts/gand/",
     "docket_number": "2100123",
     "plaintiff": "CONSUMER",
     "defendant": "EXAMPLE BUREAU INC",
@@ -53,6 +61,30 @@ def fake_fetch(payload):
         return payload, {"Content-Type": "application/json"}, "200"
 
     return _fetch
+
+
+def join_returning(suit_nature: str, case_name: str = "Consumer v. Example Bureau"):
+    """A docket join stub that resolves to exactly one docket."""
+
+    payload = {
+        "results": [
+            {
+                "caseName": case_name,
+                "cause": "15:1681 Fair Credit Reporting Act",
+                "suitNature": suit_nature,
+                "docket_id": "12345",
+            }
+        ]
+    }
+    return DocketJoinAdapter(fetch_json=fake_fetch(payload))
+
+
+def connector_for(row: dict, suit_nature: str = "480 Consumer Credit", **kwargs):
+    return FJCIDBConnector(
+        fetch_json=fake_fetch({"results": [row]}),
+        token="t",
+        join_adapter=join_returning(suit_nature, **kwargs),
+    )
 
 
 # --- Admission is statutory, not nominal --------------------------------------
@@ -173,8 +205,7 @@ def test_only_decided_cases_are_requested():
 
 
 def test_a_retrieved_consent_judgment_reaches_verification_as_adjudicated():
-    payload = {"results": [CONSENT_ROW]}
-    result = FJCIDBConnector(fetch_json=fake_fetch(payload), token="t").retrieve(limit=5)
+    result = connector_for(CONSENT_ROW).retrieve(limit=5)
     candidates = normalise_idb_records(result.records, result.source, get_study("GS-CF001-C"))
     verified = verify_candidates(candidates)
 
@@ -188,11 +219,93 @@ def test_a_retrieved_consent_judgment_reaches_verification_as_adjudicated():
 
 def test_a_settled_case_reaching_verification_still_establishes_nothing():
     """Defence in depth: the query filters these out, and the classifier would too."""
-    payload = {"results": [dict(CONSENT_ROW, disposition=13, judgment=0)]}
-    result = FJCIDBConnector(fetch_json=fake_fetch(payload), token="t").retrieve(limit=5)
+    result = connector_for(dict(CONSENT_ROW, disposition=13, judgment=0)).retrieve(limit=5)
     verified = verify_candidates(
         normalise_idb_records(result.records, result.source, get_study("GS-CF001-C"))
     )
 
     assert verified[0].establishes_occurrence is False
     assert verified[0].contradicts_occurrence is False
+
+
+# --- The docket join, and the case that made it mandatory ---------------------
+
+
+def test_the_pacer_docket_number_is_rebuilt_from_coded_fields():
+    """Verified against live data: utd 2:21-cv-00267 is FJC office 2, docket 2100267."""
+    assert pacer_docket_number("2", "2100267") == "2:21-cv-00267"
+    assert pacer_docket_number("1", "2004737") == "1:20-cv-04737"
+
+
+def test_a_malformed_docket_number_produces_no_join_key():
+    """Better no lookup than a lookup for the wrong case."""
+    for office, docket in (("", "2100267"), ("2", "123"), ("2", ""), (None, None)):
+        assert pacer_docket_number(office, docket) == ""
+
+
+def test_the_court_id_is_read_from_the_district_resource_url():
+    assert court_id_from_district("https://www.courtlistener.com/api/rest/v4/courts/utd/") == "utd"
+    assert court_id_from_district("gand") == "gand"
+    assert court_id_from_district(None) == ""
+
+
+def test_consumer_credit_suit_nature_is_recognised_in_every_rendering():
+    for value in ("480", "480 Consumer Credit", "Consumer Credit", "consumer credit"):
+        assert is_consumer_credit_suit(value) is True
+    for value in ("890 Other Statutory Actions", "190 Contract", "", None):
+        assert is_consumer_credit_suit(value) is False
+
+
+def test_an_enforcement_action_does_not_establish_this_studys_mechanism():
+    """United States v. Vivint Smart Home, the record that made the join mandatory.
+
+    A genuine FCRA violation, consent judgment against the respondent, and about
+    improperly *using* consumer reports rather than failing to reinvestigate a
+    dispute. It satisfies posture and direction and must still establish nothing.
+    """
+    vivint = dict(
+        CONSENT_ROW,
+        office="2",
+        district="https://www.courtlistener.com/api/rest/v4/courts/utd/",
+        docket_number="2100267",
+        defendant="VIVINT SMART HOME",
+        disposition=5,
+        judgment=1,
+    )
+    result = connector_for(
+        vivint,
+        suit_nature="890 Other Statutory Actions",
+        case_name="United States v. Vivint Smart Home",
+    ).retrieve(limit=5)
+    verified = verify_candidates(
+        normalise_idb_records(result.records, result.source, get_study("GS-CF001-C"))
+    )
+
+    assert verified[0].adjudication_posture == CONSENT_ORDER
+    assert verified[0].adjudication_direction == AGAINST_RESPONDENT
+    assert verified[0].establishes_occurrence is False
+
+
+def test_an_unjoined_record_establishes_nothing():
+    """Unknown subject matter is not permission. A failed join must not read the
+    same as a confirmed consumer credit case."""
+    result = FJCIDBConnector(
+        fetch_json=fake_fetch({"results": [CONSENT_ROW]}),
+        token="t",
+        join_adapter=DocketJoinAdapter(fetch_json=fake_fetch({"results": []})),
+    ).retrieve(limit=5)
+    verified = verify_candidates(
+        normalise_idb_records(result.records, result.source, get_study("GS-CF001-C"))
+    )
+
+    assert verified[0].establishes_occurrence is False
+    assert result.records[0]["join_verified"] is False
+
+
+def test_an_ambiguous_join_is_not_a_join():
+    two = {"results": [{"caseName": "A", "suitNature": "480"}, {"caseName": "B", "suitNature": "480"}]}
+    outcome = DocketJoinAdapter(fetch_json=fake_fetch(two)).lookup("gand", "1:21-cv-00123")
+
+    assert outcome["join_verified"] is False
+    assert "ambiguous" in outcome["join_note"]
+    assert outcome["on_study_suit_nature"] is False

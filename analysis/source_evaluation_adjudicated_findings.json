@@ -149,8 +149,8 @@
       "establishing": 67,
       "contradicting": 3
     },
-    "occurrence_established_in_live_run": 1,
-    "pg09": "WEAK",
+    "occurrence_established_in_live_run": 0,
+    "pg09": "FAIL",
     "pg13": "WEAK",
     "maximum_permitted_verdict": "CONTINUE RESEARCH"
   },
@@ -160,5 +160,21 @@
     "fix": "The unclassified fallback is excluded from mechanism matching in both directions, mirroring PG-06's treatment of an unknown company.",
     "after_fix": "PG-09 and PG-13 report WEAK: an adjudication establishing occurrence is present but does not corroborate a classified mechanism."
   },
-  "next_step": "Classify the mechanism for adjudicated records by joining an IDB record to its RECAP docket on docket number, so PG-09 can pass on a classified mechanism."
+  "next_step": "Mechanism-level corroboration is structurally unachieved from case-level metadata: neither the IDB nor docket metadata names the duty breached. Closing it requires document-level text from a joined docket, where RECAP coverage is uneven. Scope as research, not wiring.",
+  "docket_join": {
+    "module": "connectors/docket_join.py",
+    "join_key": "PACER docket number rebuilt from coded office and docket_number, plus district court id",
+    "verified": "4 of 4 live IDB FCRA cases resolved to exactly one RECAP docket",
+    "why_mandatory": "An IDB row records that an FCRA violation was found but not which duty was breached (section=1681 on every record, subsection always empty). The docket's nature of suit is the only field separating a consumer credit claim from an enforcement action under the same statute.",
+    "case_that_made_it_mandatory": {
+      "case": "United States v. Vivint Smart Home",
+      "docket": "2:21-cv-00267",
+      "posture": "CONSENT_ORDER",
+      "direction": "AGAINST_RESPONDENT",
+      "suit_nature": "890 Other Statutory Actions",
+      "problem": "A genuine FCRA violation about improperly using consumer reports, not about reinvestigation. It was the study's only occurrence-establishing record.",
+      "resolution": "Excluded. An adjudicated record must be confirmed against a single consumer-credit docket before it can establish or contradict anything."
+    },
+    "effect_on_live_run": "Occurrence-establishing records fell from 1 to 0; PG-09 moved from WEAK to FAIL."
+  }
 }

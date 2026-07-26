@@ -49,6 +49,7 @@ import urllib.request
 from typing import Any, Callable
 
 from connectors.base import RetrievalResult
+from connectors.docket_join import DocketJoinAdapter, join_idb_record
 from core.adjudication import ADJUDICATED, classify_fjc_disposition, occurrence_reasoning
 from core.ids import stable_id, utc_now
 from core.models import AccessDiagnostic, Source, SourceReliabilityAssessment
@@ -302,6 +303,7 @@ def _normalise_idb_row(
     record_id = resource_uri.rstrip("/").rsplit("/", 1)[-1] or str(row.get("docket_number") or "")
     return {
         "idb_record_id": record_id,
+        "office": row.get("office") or "",
         "docket_number": row.get("docket_number") or "",
         "plaintiff": row.get("plaintiff") or "",
         "defendant": row.get("defendant") or "",
@@ -334,8 +336,16 @@ class FJCIDBConnector:
         fetch_json: Callable[[str], tuple[dict[str, Any], dict[str, str], str]] | None = None,
         *,
         token: str | None = None,
+        join_adapter: DocketJoinAdapter | None = None,
     ) -> None:
         self.access_adapter = access_adapter or FJCIDBAdapter(fetch_json=fetch_json, token=token)
+        # The docket join is not optional enrichment. An IDB row states that an
+        # FCRA violation was found without stating which duty was breached, and
+        # the docket's nature of suit is the only field separating a consumer
+        # credit claim from an enforcement action filed under the same statute.
+        # Without it an off-mechanism case can establish occurrence for a
+        # mechanism it has nothing to do with.
+        self.join_adapter = join_adapter or DocketJoinAdapter(token=self.access_adapter.token)
 
     def build_url(self, limit: int = 1) -> str:
         return self.access_adapter.build_url(limit)
@@ -345,6 +355,7 @@ class FJCIDBConnector:
         retrieval_url, records, errors, diagnostics = self.access_adapter.retrieve(limit)
         for record in records:
             record["_retrieved_at"] = retrieved_at
+            join_idb_record(record, self.join_adapter)
         return RetrievalResult(
             self.source,
             retrieval_url,

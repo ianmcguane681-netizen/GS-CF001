@@ -135,17 +135,57 @@ itself. On the re-run PG-09 and PG-13 correctly report WEAK: an adjudication
 establishing occurrence exists, but it does not yet corroborate a classified
 mechanism.
 
+## The docket join, and the case that made it mandatory
+
+An IDB row states that an FCRA violation was found. It does not state which duty
+was breached: `section` is `1681` on every record and `subsection` is empty
+throughout. So the mechanism is not in the data.
+
+`connectors/docket_join.py` rebuilds the PACER docket number from the IDB's coded
+`office` and `docket_number` fields (`office=2, docket=2100267` → `2:21-cv-00267`)
+and confirms the case against RECAP. Verified live at 4 of 4.
+
+The join is not enrichment. It is a precondition, because of this record:
+
+```text
+United States v. Vivint Smart Home     2:21-cv-00267
+consent judgment, against the respondent
+suit nature: 890 Other Statutory Actions
+```
+
+A real FCRA violation, judicially resolved against the respondent, satisfying both
+posture and direction — and a government enforcement action about improperly
+*using* consumer reports, with nothing to do with reinvestigation failures. It was
+the study's only occurrence-establishing record. Admitting it would have proved the
+study's mechanism with a case about something else, and it would have read as a
+success.
+
+An adjudicated record must now be confirmed against a single consumer-credit docket
+before it can establish or contradict anything. A join that fails, or is ambiguous,
+or never runs, leaves the record establishing nothing: unknown subject matter is not
+permission.
+
+**Effect on the live run:** occurrence-establishing records fell from 1 to 0, and
+PG-09 moved from WEAK to FAIL. That is the correct answer.
+
 ## Standing state of the study
 
 | Axis | Status |
 | --- | --- |
 | Independent source families | 2 — CFPB complaints, federal court records |
 | Adjudicated records retrievable | 67 establishing, 3 contradicting |
-| Occurrence established in the live run | 1 (consent judgment) |
-| PG-09 / PG-13 | WEAK — adjudication present, mechanism unclassified |
+| Occurrence established in the live run | 0 — the one candidate was off-mechanism |
+| PG-09 | FAIL — no adjudication establishes this study's mechanism |
+| PG-13 | WEAK — one contradicting case, mechanism unclassified |
 | Maximum permitted verdict | CONTINUE RESEARCH |
 
-**Next step to make PG-09 pass on merit:** classify the mechanism for adjudicated
-records. IDB rows carry outcome codes but no narrative, so the mechanism has to come
-from the underlying docket — joining an IDB record to its RECAP docket by docket
-number would supply the text the classifier needs.
+**Where this leaves mechanism-level corroboration.** It is unachieved, and the
+reason is structural rather than a gap in the plumbing. Neither source names the
+mechanism: the IDB stops at `section=1681`, and docket metadata carries a statutory
+cause and a nature-of-suit category but no consumer narrative. Case-level records
+identify *that* an FCRA claim was decided, never *which duty* was breached.
+
+Closing it needs document-level text — the complaint or opinion in a joined docket —
+which RECAP holds unevenly because coverage depends on user contributions. That is a
+real research step with an uncertain yield, not a wiring job, and it should be
+scoped as one.
