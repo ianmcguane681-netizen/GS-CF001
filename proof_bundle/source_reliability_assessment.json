@@ -8,7 +8,7 @@
     "jurisdiction": "United States",
     "source_family": "CFPB complaints",
     "retrieval_method": "official_cfpb_search_api",
-    "retrieval_timestamp": "2026-07-26T02:38:43Z",
+    "retrieval_timestamp": "2026-07-26T17:15:13Z",
     "update_frequency": "Published by CFPB; update cadence should be confirmed per access method.",
     "coverage_period": "Depends on retrieved official dataset or query result.",
     "record_granularity": "Individual consumer complaint record.",
@@ -58,7 +58,7 @@
     "jurisdiction": "United States",
     "source_family": "Federal court records",
     "retrieval_method": "courtlistener_search_api",
-    "retrieval_timestamp": "2026-07-26T02:38:57Z",
+    "retrieval_timestamp": "2026-07-26T17:15:17Z",
     "update_frequency": "Continuously updated from PACER via RECAP contributions.",
     "coverage_period": "Depends on the retrieved docket set.",
     "record_granularity": "Individual federal court docket.",
@@ -95,5 +95,53 @@
     ],
     "reliability_version": "COURTLISTENER-SRA-001",
     "last_reviewed_date": "2026-07-25"
+  },
+  {
+    "source_id": "FJC-IDB-FCRA-001",
+    "source_name": "FJC Integrated Database (federal civil case outcomes)",
+    "publisher": "Federal Judicial Center, republished by the Free Law Project",
+    "publisher_type": "Research and education agency of the United States federal judiciary",
+    "authority_level": "Official judiciary statistical record of case outcomes",
+    "jurisdiction": "United States",
+    "source_family": "Federal court records",
+    "retrieval_method": "fjc_integrated_database_api",
+    "retrieval_timestamp": "2026-07-26T17:15:19Z",
+    "update_frequency": "Periodic dataset loads, not continuous.",
+    "coverage_period": "Federal civil cases from SY 1970 onward, depending on dataset.",
+    "record_granularity": "Individual federal civil case, with coded disposition and judgment.",
+    "known_limitations": [
+      "Outcome codes are null for pending cases and for cases not yet in a published load.",
+      "Disposition code 6 covers both Rule 12(b)(6) dismissal and Rule 56 summary judgment.",
+      "A settlement is coded as an ending, not as an admission of liability.",
+      "A default judgment records a forfeiture, not a weighed finding.",
+      "Case-level coding does not identify which specific allegation was decided.",
+      "Litigation volume reflects propensity to sue, not underlying failure rates.",
+      "Party names are as filed and may not identify the operationally responsible entity."
+    ],
+    "verification_constraints": [
+      "A merits judgment for the plaintiff establishes that a violation was found.",
+      "Absence of a coded judgment never means a case was decided either way.",
+      "A single case establishes occurrence in that case, never market prevalence."
+    ],
+    "independence_constraints": [
+      "NOT independent of the RECAP court records family; the same courts and cases.",
+      "Must never increase the independent source family count.",
+      "Corroborates only when another family independently alleges the same mechanism."
+    ],
+    "representativeness_warning": "Cases reaching a merits judgment are a small and unrepresentative fraction: most FCRA cases settle.",
+    "data_completeness_warning": "Recent cases carry null outcome codes until a subsequent dataset load.",
+    "permitted_uses": [
+      "Establish that an alleged mechanism was adjudicated against a respondent.",
+      "Supply counter-evidence where a merits judgment favoured the respondent.",
+      "Raise evidentiary standing from ALLEGED to ADJUDICATED."
+    ],
+    "prohibited_inferences": [
+      "Do not treat a settlement or voluntary dismissal as proof of wrongdoing.",
+      "Do not treat a default judgment as a finding on the merits.",
+      "Do not infer market prevalence from adjudicated case counts.",
+      "Do not count this source toward independent source families."
+    ],
+    "reliability_version": "FJC-IDB-SRA-001",
+    "last_reviewed_date": "2026-07-26"
   }
 ]

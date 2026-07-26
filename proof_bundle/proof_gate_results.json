@@ -8,7 +8,8 @@
     "evidence_ids": [],
     "supporting_evidence": [
       "CFPB-CCD-001",
-      "COURTLISTENER-FCRA-001"
+      "COURTLISTENER-FCRA-001",
+      "FJC-IDB-FCRA-001"
     ],
     "counter_evidence": [],
     "confidence": 1.0,
@@ -26,16 +27,30 @@
     "threshold": "Raw retrieval artifact or diagnostic exists",
     "observed_value": "True",
     "evidence_ids": [
-      "EVD-75C6D79F57AF",
-      "EVD-0EFE71DB63A7",
-      "EVD-DFF7CC96DA51",
-      "EVD-B075B18ECDE0",
-      "EVD-1B61D66331DD",
-      "EVD-53E5CDF50C02",
-      "EVD-5401B54334DC",
-      "EVD-66145677A19B",
-      "EVD-D871BF28CDD8",
-      "EVD-2E037035DCC0"
+      "EVD-54DF1CC356D2",
+      "EVD-B02D028F0632",
+      "EVD-B252E0B8B7C0",
+      "EVD-BD49B8C1847B",
+      "EVD-F5DD2A074622",
+      "EVD-572BD0B5ED79",
+      "EVD-CA8BCC788CBD",
+      "EVD-A3D9992783BC",
+      "EVD-D5F0D5534292",
+      "EVD-3A259E6FC571",
+      "EVD-29FFD18DDB3E",
+      "EVD-09B0EFB4BFDA",
+      "EVD-9184F53EC48B",
+      "EVD-20054679C056",
+      "EVD-AAB34D4880BA",
+      "EVD-56320C840917",
+      "EVD-3848CFE9BF3E",
+      "EVD-2ADDDC20E528",
+      "EVD-26F047F4853E",
+      "EVD-6A0A52C53E22",
+      "EVD-C9ED839573F1",
+      "EVD-E0C526190582",
+      "EVD-A47CA4024DE2",
+      "EVD-889EA82F27FD"
     ],
     "supporting_evidence": [
       "raw artifacts",
@@ -57,28 +72,56 @@
     "threshold": "Normalised candidate records exist",
     "observed_value": "True",
     "evidence_ids": [
-      "EVD-75C6D79F57AF",
-      "EVD-0EFE71DB63A7",
-      "EVD-DFF7CC96DA51",
-      "EVD-B075B18ECDE0",
-      "EVD-1B61D66331DD",
-      "EVD-53E5CDF50C02",
-      "EVD-5401B54334DC",
-      "EVD-66145677A19B",
-      "EVD-D871BF28CDD8",
-      "EVD-2E037035DCC0"
+      "EVD-54DF1CC356D2",
+      "EVD-B02D028F0632",
+      "EVD-B252E0B8B7C0",
+      "EVD-BD49B8C1847B",
+      "EVD-F5DD2A074622",
+      "EVD-572BD0B5ED79",
+      "EVD-CA8BCC788CBD",
+      "EVD-A3D9992783BC",
+      "EVD-D5F0D5534292",
+      "EVD-3A259E6FC571",
+      "EVD-29FFD18DDB3E",
+      "EVD-09B0EFB4BFDA",
+      "EVD-9184F53EC48B",
+      "EVD-20054679C056",
+      "EVD-AAB34D4880BA",
+      "EVD-56320C840917",
+      "EVD-3848CFE9BF3E",
+      "EVD-2ADDDC20E528",
+      "EVD-26F047F4853E",
+      "EVD-6A0A52C53E22",
+      "EVD-C9ED839573F1",
+      "EVD-E0C526190582",
+      "EVD-A47CA4024DE2",
+      "EVD-889EA82F27FD"
     ],
     "supporting_evidence": [
-      "CAN-DA5F7928EF96",
-      "CAN-E9523EC03FD2",
-      "CAN-86C0EA248D8F",
-      "CAN-9B084F3E5680",
-      "CAN-A871EC099A9B",
-      "CAN-67670AE9FF17",
-      "CAN-7558103D59C8",
-      "CAN-33353F7F9ACF",
-      "CAN-8BC7B510C066",
-      "CAN-BFF5CD193D02"
+      "CAN-7B188C77E767",
+      "CAN-9094CEFE3CEF",
+      "CAN-48ACDC0B6387",
+      "CAN-AB79646FDBF7",
+      "CAN-8D5A0415E1B7",
+      "CAN-F8D2B450533D",
+      "CAN-01C262C06A93",
+      "CAN-D2E9D92D1366",
+      "CAN-D3EDCA1BFEBB",
+      "CAN-925E42EA0AB4",
+      "CAN-57DAC006B4D0",
+      "CAN-753A991BABF1",
+      "CAN-9CC9CF826F82",
+      "CAN-230B06C32AC7",
+      "CAN-1E7282A7BFB2",
+      "CAN-C9F8363A862A",
+      "CAN-80662B02CF19",
+      "CAN-C7E687AE62F4",
+      "CAN-708F6B709800",
+      "CAN-7795CD09FFA8",
+      "CAN-ADE092C69178",
+      "CAN-5D97706FAAB2",
+      "CAN-B54020EBB393",
+      "CAN-BBB65A92A0F9"
     ],
     "counter_evidence": [],
     "confidence": 0.9,
@@ -96,16 +139,30 @@
     "threshold": "All evidence maps to GS-CF001-C",
     "observed_value": "True",
     "evidence_ids": [
-      "EVD-75C6D79F57AF",
-      "EVD-0EFE71DB63A7",
-      "EVD-DFF7CC96DA51",
-      "EVD-B075B18ECDE0",
-      "EVD-1B61D66331DD",
-      "EVD-53E5CDF50C02",
-      "EVD-5401B54334DC",
-      "EVD-66145677A19B",
-      "EVD-D871BF28CDD8",
-      "EVD-2E037035DCC0"
+      "EVD-54DF1CC356D2",
+      "EVD-B02D028F0632",
+      "EVD-B252E0B8B7C0",
+      "EVD-BD49B8C1847B",
+      "EVD-F5DD2A074622",
+      "EVD-572BD0B5ED79",
+      "EVD-CA8BCC788CBD",
+      "EVD-A3D9992783BC",
+      "EVD-D5F0D5534292",
+      "EVD-3A259E6FC571",
+      "EVD-29FFD18DDB3E",
+      "EVD-09B0EFB4BFDA",
+      "EVD-9184F53EC48B",
+      "EVD-20054679C056",
+      "EVD-AAB34D4880BA",
+      "EVD-56320C840917",
+      "EVD-3848CFE9BF3E",
+      "EVD-2ADDDC20E528",
+      "EVD-26F047F4853E",
+      "EVD-6A0A52C53E22",
+      "EVD-C9ED839573F1",
+      "EVD-E0C526190582",
+      "EVD-A47CA4024DE2",
+      "EVD-889EA82F27FD"
     ],
     "supporting_evidence": [
       "GS-CF001-C deterministic product mapping"
@@ -126,7 +183,7 @@
     "threshold": "Minimum repeated mechanism finding",
     "observed_value": "False",
     "evidence_ids": [
-      "EVD-DFF7CC96DA51"
+      "EVD-B252E0B8B7C0"
     ],
     "supporting_evidence": [],
     "counter_evidence": [],
@@ -147,7 +204,7 @@
     "threshold": "At least 2 company references",
     "observed_value": "1",
     "evidence_ids": [
-      "EVD-DFF7CC96DA51"
+      "EVD-B252E0B8B7C0"
     ],
     "supporting_evidence": [
       "EQUIFAX, INC."
@@ -170,7 +227,7 @@
     "threshold": "Finding includes operational mechanism definition",
     "observed_value": "False",
     "evidence_ids": [
-      "EVD-DFF7CC96DA51"
+      "EVD-B252E0B8B7C0"
     ],
     "supporting_evidence": [],
     "counter_evidence": [],
@@ -191,7 +248,7 @@
     "threshold": "Opportunity assessment exists",
     "observed_value": "False",
     "evidence_ids": [
-      "EVD-DFF7CC96DA51"
+      "EVD-B252E0B8B7C0"
     ],
     "supporting_evidence": [
       "Unclassified mechanism - no supported component yet"
@@ -213,35 +270,50 @@
     "gate_id": "PG-09",
     "gate_name": "Independent Corroboration",
     "status": "FAIL",
-    "threshold": "At least 2 independent source families",
-    "observed_value": "2",
+    "threshold": "At least 1 adjudicated finding of occurrence, on a mechanism independently alleged by another source family",
+    "observed_value": "corroborated=0; adjudicated=8; establishing occurrence=0",
     "evidence_ids": [
-      "EVD-75C6D79F57AF",
-      "EVD-0EFE71DB63A7",
-      "EVD-DFF7CC96DA51",
-      "EVD-B075B18ECDE0",
-      "EVD-1B61D66331DD",
-      "EVD-53E5CDF50C02",
-      "EVD-5401B54334DC",
-      "EVD-66145677A19B",
-      "EVD-D871BF28CDD8",
-      "EVD-2E037035DCC0"
+      "EVD-54DF1CC356D2",
+      "EVD-B02D028F0632",
+      "EVD-B252E0B8B7C0",
+      "EVD-BD49B8C1847B",
+      "EVD-F5DD2A074622",
+      "EVD-572BD0B5ED79",
+      "EVD-CA8BCC788CBD",
+      "EVD-A3D9992783BC",
+      "EVD-D5F0D5534292",
+      "EVD-3A259E6FC571",
+      "EVD-29FFD18DDB3E",
+      "EVD-09B0EFB4BFDA",
+      "EVD-9184F53EC48B",
+      "EVD-20054679C056",
+      "EVD-AAB34D4880BA",
+      "EVD-56320C840917",
+      "EVD-3848CFE9BF3E",
+      "EVD-2ADDDC20E528",
+      "EVD-26F047F4853E",
+      "EVD-6A0A52C53E22",
+      "EVD-C9ED839573F1",
+      "EVD-E0C526190582",
+      "EVD-A47CA4024DE2",
+      "EVD-889EA82F27FD"
     ],
     "supporting_evidence": [
       "CFPB complaints",
       "Federal court records"
     ],
     "counter_evidence": [
-      "CFPB alone is one source family"
+      "Allegations repeat across forums without any forum having decided them."
     ],
     "confidence": 0.0,
     "missing_evidence": [
-      "independent regulatory, enforcement, judicial, audit, company, or examination evidence"
+      "a judgment, consent order, or examination finding resolving the mechanism against a respondent"
     ],
-    "recommended_next_action": "Add a genuinely independent source family before BUILD CANDIDATE.",
+    "recommended_next_action": "Retrieve adjudicated dispositions before BUILD CANDIDATE.",
     "constrains_max_verdict": true,
     "reasoning_chain": [
-      "CFPB complaints alone cannot independently corroborate allegations."
+      "Independence of forums makes allegations independent, not established.",
+      "Occurrence is established by a decision, never by repetition."
     ]
   },
   {
@@ -251,7 +323,7 @@
     "threshold": "Confirmed buyer evidence",
     "observed_value": "unverified",
     "evidence_ids": [
-      "EVD-DFF7CC96DA51"
+      "EVD-B252E0B8B7C0"
     ],
     "supporting_evidence": [
       "unclear"
@@ -278,7 +350,7 @@
     "threshold": "Existing solution maturity evidence",
     "observed_value": "unknown",
     "evidence_ids": [
-      "EVD-DFF7CC96DA51"
+      "EVD-B252E0B8B7C0"
     ],
     "supporting_evidence": [],
     "counter_evidence": [
@@ -301,7 +373,7 @@
     "threshold": "Commercial urgency evidence",
     "observed_value": "unproven",
     "evidence_ids": [
-      "EVD-DFF7CC96DA51"
+      "EVD-B252E0B8B7C0"
     ],
     "supporting_evidence": [],
     "counter_evidence": [
@@ -322,33 +394,46 @@
   {
     "gate_id": "PG-13",
     "gate_name": "Counter-Evidence",
-    "status": "FAIL",
-    "threshold": "Counter-evidence reviewed",
-    "observed_value": "not reviewed",
+    "status": "WEAK",
+    "threshold": "At least 1 adjudicated disposition resolving the mechanism in a respondent's favour",
+    "observed_value": "contradicting=0 of 8 adjudicated",
     "evidence_ids": [
-      "EVD-75C6D79F57AF",
-      "EVD-0EFE71DB63A7",
-      "EVD-DFF7CC96DA51",
-      "EVD-B075B18ECDE0",
-      "EVD-1B61D66331DD",
-      "EVD-53E5CDF50C02",
-      "EVD-5401B54334DC",
-      "EVD-66145677A19B",
-      "EVD-D871BF28CDD8",
-      "EVD-2E037035DCC0"
+      "EVD-54DF1CC356D2",
+      "EVD-B02D028F0632",
+      "EVD-B252E0B8B7C0",
+      "EVD-BD49B8C1847B",
+      "EVD-F5DD2A074622",
+      "EVD-572BD0B5ED79",
+      "EVD-CA8BCC788CBD",
+      "EVD-A3D9992783BC",
+      "EVD-D5F0D5534292",
+      "EVD-3A259E6FC571",
+      "EVD-29FFD18DDB3E",
+      "EVD-09B0EFB4BFDA",
+      "EVD-9184F53EC48B",
+      "EVD-20054679C056",
+      "EVD-AAB34D4880BA",
+      "EVD-56320C840917",
+      "EVD-3848CFE9BF3E",
+      "EVD-2ADDDC20E528",
+      "EVD-26F047F4853E",
+      "EVD-6A0A52C53E22",
+      "EVD-C9ED839573F1",
+      "EVD-E0C526190582",
+      "EVD-A47CA4024DE2",
+      "EVD-889EA82F27FD"
     ],
     "supporting_evidence": [],
-    "counter_evidence": [
-      "No independent counter-evidence source integrated."
-    ],
-    "confidence": 0.0,
+    "counter_evidence": [],
+    "confidence": 0.3,
     "missing_evidence": [
-      "counter-evidence review"
+      "adjudicated dispositions decided in a respondent's favour"
     ],
-    "recommended_next_action": "Add contradiction and counter-evidence analysis before build decision.",
+    "recommended_next_action": "Retrieve dispositions in both directions, not only those that confirm.",
     "constrains_max_verdict": false,
     "reasoning_chain": [
-      "Contradictions cannot be assessed from CFPB-only data."
+      "Complaints and filings are submitted by claimants, so neither yields counter-evidence.",
+      "A source that can only ever confirm the hypothesis is not a test of it."
     ]
   },
   {
@@ -358,16 +443,30 @@
     "threshold": "Run preserves artifacts and diagnostics",
     "observed_value": "True",
     "evidence_ids": [
-      "EVD-75C6D79F57AF",
-      "EVD-0EFE71DB63A7",
-      "EVD-DFF7CC96DA51",
-      "EVD-B075B18ECDE0",
-      "EVD-1B61D66331DD",
-      "EVD-53E5CDF50C02",
-      "EVD-5401B54334DC",
-      "EVD-66145677A19B",
-      "EVD-D871BF28CDD8",
-      "EVD-2E037035DCC0"
+      "EVD-54DF1CC356D2",
+      "EVD-B02D028F0632",
+      "EVD-B252E0B8B7C0",
+      "EVD-BD49B8C1847B",
+      "EVD-F5DD2A074622",
+      "EVD-572BD0B5ED79",
+      "EVD-CA8BCC788CBD",
+      "EVD-A3D9992783BC",
+      "EVD-D5F0D5534292",
+      "EVD-3A259E6FC571",
+      "EVD-29FFD18DDB3E",
+      "EVD-09B0EFB4BFDA",
+      "EVD-9184F53EC48B",
+      "EVD-20054679C056",
+      "EVD-AAB34D4880BA",
+      "EVD-56320C840917",
+      "EVD-3848CFE9BF3E",
+      "EVD-2ADDDC20E528",
+      "EVD-26F047F4853E",
+      "EVD-6A0A52C53E22",
+      "EVD-C9ED839573F1",
+      "EVD-E0C526190582",
+      "EVD-A47CA4024DE2",
+      "EVD-889EA82F27FD"
     ],
     "supporting_evidence": [
       "artifact preservation",
@@ -389,16 +488,30 @@
     "threshold": "Independent source family count >= 2",
     "observed_value": "2",
     "evidence_ids": [
-      "EVD-75C6D79F57AF",
-      "EVD-0EFE71DB63A7",
-      "EVD-DFF7CC96DA51",
-      "EVD-B075B18ECDE0",
-      "EVD-1B61D66331DD",
-      "EVD-53E5CDF50C02",
-      "EVD-5401B54334DC",
-      "EVD-66145677A19B",
-      "EVD-D871BF28CDD8",
-      "EVD-2E037035DCC0"
+      "EVD-54DF1CC356D2",
+      "EVD-B02D028F0632",
+      "EVD-B252E0B8B7C0",
+      "EVD-BD49B8C1847B",
+      "EVD-F5DD2A074622",
+      "EVD-572BD0B5ED79",
+      "EVD-CA8BCC788CBD",
+      "EVD-A3D9992783BC",
+      "EVD-D5F0D5534292",
+      "EVD-3A259E6FC571",
+      "EVD-29FFD18DDB3E",
+      "EVD-09B0EFB4BFDA",
+      "EVD-9184F53EC48B",
+      "EVD-20054679C056",
+      "EVD-AAB34D4880BA",
+      "EVD-56320C840917",
+      "EVD-3848CFE9BF3E",
+      "EVD-2ADDDC20E528",
+      "EVD-26F047F4853E",
+      "EVD-6A0A52C53E22",
+      "EVD-C9ED839573F1",
+      "EVD-E0C526190582",
+      "EVD-A47CA4024DE2",
+      "EVD-889EA82F27FD"
     ],
     "supporting_evidence": [
       "CFPB complaints",
@@ -422,16 +535,30 @@
     "threshold": "If source families < 2, maximum verdict is CONTINUE RESEARCH",
     "observed_value": "source families=2",
     "evidence_ids": [
-      "EVD-75C6D79F57AF",
-      "EVD-0EFE71DB63A7",
-      "EVD-DFF7CC96DA51",
-      "EVD-B075B18ECDE0",
-      "EVD-1B61D66331DD",
-      "EVD-53E5CDF50C02",
-      "EVD-5401B54334DC",
-      "EVD-66145677A19B",
-      "EVD-D871BF28CDD8",
-      "EVD-2E037035DCC0"
+      "EVD-54DF1CC356D2",
+      "EVD-B02D028F0632",
+      "EVD-B252E0B8B7C0",
+      "EVD-BD49B8C1847B",
+      "EVD-F5DD2A074622",
+      "EVD-572BD0B5ED79",
+      "EVD-CA8BCC788CBD",
+      "EVD-A3D9992783BC",
+      "EVD-D5F0D5534292",
+      "EVD-3A259E6FC571",
+      "EVD-29FFD18DDB3E",
+      "EVD-09B0EFB4BFDA",
+      "EVD-9184F53EC48B",
+      "EVD-20054679C056",
+      "EVD-AAB34D4880BA",
+      "EVD-56320C840917",
+      "EVD-3848CFE9BF3E",
+      "EVD-2ADDDC20E528",
+      "EVD-26F047F4853E",
+      "EVD-6A0A52C53E22",
+      "EVD-C9ED839573F1",
+      "EVD-E0C526190582",
+      "EVD-A47CA4024DE2",
+      "EVD-889EA82F27FD"
     ],
     "supporting_evidence": [
       "deterministic evidence ceiling rule"
