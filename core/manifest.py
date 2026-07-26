@@ -9,6 +9,32 @@ from core.storage import file_checksum
 
 CONFIGURATION_VERSION = "GS-CF001-CONFIG-001"
 METHODOLOGY_VERSION = "PROVENA-EOS-METHOD-001"
+
+# Which review regime governs assessment of this artefact.
+#
+# Raised by the Methodology Auditor as FND3-MA-001 and unaddressed through two
+# further reviews: a run recorded the methodology it was *produced* under but
+# nothing about the authority that would *judge* it, so an artefact could not be
+# traced to a review regime from the manifest alone.
+#
+# The profile is named; the version deliberately is not. A run cannot know which
+# version will assess it -- an artefact produced today may be reviewed next month
+# under an amended profile -- so asserting a version here would be recording
+# something unknowable at the time of writing. The version that actually assessed
+# an artefact is a review-time fact and is recorded by the board, in the session
+# record and the exported bundle manifest. Naming the regime here and the version
+# there keeps each fact where it can be true.
+REVIEWING_AUTHORITY = {
+    "review_methodology_profile_id": "RBM-001",
+    "architecture_authority": "RBE-001",
+    "assessment_version_recorded_by": "the reviewing board, in its session record and bundle manifest",
+    "binding": "false",
+    "note": (
+        "This run declares the review regime that governs it. It does not assert "
+        "which review session assessed it, or under which version, because neither "
+        "is knowable when the run is produced."
+    ),
+}
 RULE_VERSIONS = {
     "normalisation": "NORM-CFPB-001",
     "verification": "VER-CFPB-001",
@@ -70,4 +96,5 @@ def build_run_manifest(
         evidence_ceiling=evidence_ceiling,
         errors=errors,
         warnings=warnings,
+        reviewing_authority=dict(REVIEWING_AUTHORITY),
     )

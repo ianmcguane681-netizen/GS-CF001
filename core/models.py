@@ -356,6 +356,11 @@ class RunManifest:
     evidence_ceiling: str
     errors: list[str]
     warnings: list[str]
+    # Which review regime governs assessment of this artefact. Raised as
+    # FND3-MA-001: a run recorded its own methodology but nothing about the
+    # authority that would judge it, so an artefact could not be traced to a
+    # review regime from the manifest alone. See core.manifest.
+    reviewing_authority: dict[str, str] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
