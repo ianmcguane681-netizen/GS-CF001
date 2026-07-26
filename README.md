@@ -115,6 +115,39 @@ The verdict itself remains gated on the remaining proof gates, which continue to
 require solution-maturity, commercial and counter-evidence research that is not
 yet integrated.
 
+## Market and Competition Lane
+
+`market/` answers a different question from the study: who already operates in
+this market, at what scale, and where is their primary disclosure. It exists to
+feed competitive and economic assessment (SV Engine `C8_MARKET_COMPETITION`,
+`G7_COMPETITIVE_VIABILITY`), not to prove that consumer harm occurred.
+
+It is sealed off from the evidence study by construction:
+
+```text
+MarketEvidence is not VerifiedEvidence.
+It carries no source_family, so it can never reach the proof gates
+or the independent source family count.
+```
+
+Every record is classed `E5_COMPETITIVE_MARKET` and carries
+`counts_toward_source_independence: false` explicitly, so the constraint is
+legible in the artifact and not only in the code that produced it.
+
+Current source: SEC EDGAR submissions and XBRL company facts. Registrants are
+verified against the SIC code they file under rather than an assumption about who
+they are — a CIK that turns out not to be a credit reporting agency is reported as
+such. Annual figures are filtered by period length, because a 10-K also carries
+quarterly breakdowns, and restatements of the same period collapse to the most
+recently filed value.
+
+EDGAR full-text search was evaluated and rejected: a phrase search for
+"Fair Credit Reporting Act" across 10-K filings returns thousands of unrelated
+registrants, so it cannot support a deterministic admission rule.
+
+Experian is absent by necessity — it is LSE-listed and does not file with the SEC,
+so no EDGAR evidence exists for it.
+
 ## Reports and Artifacts
 
 Each run writes file artifacts only:
