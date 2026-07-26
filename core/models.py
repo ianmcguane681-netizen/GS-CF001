@@ -23,6 +23,9 @@ class Source:
     role: str
     source_family: str = ""
     notes: str = ""
+    # Orthogonal to source_family: adding forums changes the family count, but
+    # only a forum's decision changes standing. See core.adjudication.
+    evidentiary_standing: str = "ALLEGED"
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -91,6 +94,14 @@ class VerifiedEvidence:
     operational_basis: str = "not established"
     operational_terms_matched: list[str] = field(default_factory=list)
     software_terms_matched: list[str] = field(default_factory=list)
+    # Evidentiary standing. Defaults to ALLEGED so every existing source keeps the
+    # standing it actually has; nothing becomes adjudicated by being added to.
+    evidentiary_standing: str = "ALLEGED"
+    adjudication_posture: str = ""
+    adjudication_direction: str = ""
+    adjudication_citation: str = ""
+    establishes_occurrence: bool = False
+    contradicts_occurrence: bool = False
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -116,6 +127,10 @@ class Finding:
     alternative_explanations: list[str] = field(default_factory=list)
     source_limitations: list[str] = field(default_factory=list)
     maximum_permitted_verdict: str = "CONTINUE RESEARCH"
+    # A finding may describe a repeated *alleged* mechanism without any forum
+    # having decided it. This stays False until adjudicated evidence says
+    # otherwise, so a finding cannot be read as proven by omission.
+    occurrence_established: bool = False
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -185,6 +200,10 @@ class StudyVerdict:
     opportunity_ids: list[str]
     missing_evidence: list[str]
     reasoning_chain: list[str]
+    # How many evidence items record a forum deciding the mechanism against a
+    # respondent. Reported alongside the family count so the two axes -- is this
+    # independent, and has anyone decided it -- are never read as one number.
+    occurrence_established_count: int = 0
 
     def to_dict(self) -> dict[str, Any]:
         data = asdict(self)

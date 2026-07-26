@@ -1,0 +1,122 @@
+{
+  "evaluation_id": "SRCEVAL-ADJUDICATED-2026-07-26",
+  "study_id": "GS-CF001-C",
+  "evaluated_at": "2026-07-26",
+  "question": "Can this study obtain adjudicated findings establishing that an alleged FCRA reinvestigation failure occurred?",
+  "board_finding": {
+    "finding_id": "FND3-SR-001",
+    "severity": "SEV-2",
+    "remediation": "Require a judgment, consent order or examination finding before asserting the failure occurred."
+  },
+  "conclusion": "One viable candidate blocked on a free API credential; three rejected. The remediation was implemented as a control rather than a dataset.",
+  "candidates": [
+    {
+      "candidate": "CourtListener opinions",
+      "publisher": "Free Law Project",
+      "status": "VIABLE_BLOCKED_ON_CREDENTIAL",
+      "probes": [
+        {
+          "endpoint": "https://www.courtlistener.com/api/rest/v4/search/?type=o",
+          "query": "\"Fair Credit Reporting Act\" reinvestigation",
+          "http_status": "200",
+          "observed": "402 published opinions; respondents include Experian, Equifax, TransUnion"
+        },
+        {
+          "endpoint": "https://www.courtlistener.com/api/rest/v4/clusters/",
+          "http_status": "401",
+          "observed": "Authentication credentials were not provided."
+        },
+        {
+          "endpoint": "https://www.courtlistener.com/api/rest/v4/opinions/{id}/",
+          "http_status": "401",
+          "observed": "Authentication credentials were not provided."
+        }
+      ],
+      "blockers": [
+        "Statutory admission cannot be verified locally: suitNature is empty on the free search endpoint and opinion snippets do not contain the statutory citation.",
+        "Disposition cannot be classified: posture, procedural_history and syllabus are empty strings on every row; the structured disposition field is on the 401 cluster record."
+      ],
+      "rejected_alternative": "Inferring disposition from opinion prose. Rejected: this repository refuses keyword guessing where structured metadata exists, and misreading a motion-to-dismiss denial would convert an allegation into a finding.",
+      "unblocked_by": "A CourtListener API token (free, research use). Human registration step."
+    },
+    {
+      "candidate": "Federal Register API",
+      "publisher": "Office of the Federal Register",
+      "status": "REJECTED_WRONG_INSTRUMENT",
+      "probes": [
+        {
+          "endpoint": "https://www.federalregister.gov/api/v1/documents.json",
+          "query": "\"Fair Credit Reporting Act\"",
+          "http_status": "200",
+          "observed": "1248 documents; rules, proposed rules, regulatory agendas, Paperwork Reduction Act notices"
+        }
+      ],
+      "rejection_reason": "The Federal Register is a rulemaking gazette, not an adjudication register. The consent orders it carries are FTC proposed orders published for public comment ('Analysis of Proposed Consent Order To Aid Public Comment'), which are not final adjudications."
+    },
+    {
+      "candidate": "FTC Legal Library, cases and proceedings",
+      "publisher": "Federal Trade Commission",
+      "status": "REJECTED_PUBLISHER_REFUSES_AUTOMATED_ACCESS",
+      "probes": [
+        {
+          "endpoint": "https://www.ftc.gov/legal-library/browse/cases-proceedings",
+          "http_status": "403",
+          "observed": "Forbidden"
+        },
+        {
+          "endpoint": "https://www.ftc.gov/api/v1/cases-and-proceedings",
+          "http_status": "200",
+          "observed": "Block page: 'The request resembles an abusive automated request.'"
+        }
+      ],
+      "rejection_reason": "The publisher explicitly refuses automated retrieval. No legitimate route is available to this study."
+    },
+    {
+      "candidate": "CFPB enforcement actions",
+      "publisher": "Consumer Financial Protection Bureau",
+      "status": "REJECTED_NO_MACHINE_READABLE_FEED",
+      "probes": [
+        {
+          "endpoint": "https://www.consumerfinance.gov/enforcement/actions/",
+          "http_status": "200",
+          "observed": "text/html only"
+        },
+        {
+          "endpoint": "https://www.consumerfinance.gov/enforcement/actions/?format=json",
+          "http_status": "200",
+          "observed": "returns HTML, not JSON"
+        },
+        {
+          "endpoint": "https://api.consumerfinance.gov/enforcement/actions/",
+          "http_status": "200",
+          "observed": "returns HTML"
+        },
+        {
+          "endpoint": "https://www.consumerfinance.gov/api/enforcement-actions/",
+          "http_status": "404"
+        },
+        {
+          "endpoint": "https://files.consumerfinance.gov/enforcement/actions.json",
+          "http_status": "404"
+        }
+      ],
+      "rejection_reason": "No machine-readable feed. Independently, CFPB enforcement shares a publisher with the CFPB complaint family already in the study, so its independence would need to be argued rather than assumed."
+    }
+  ],
+  "control_verification": {
+    "check": "Existing RECAP connector admission rule against live data",
+    "endpoint": "https://www.courtlistener.com/api/rest/v4/search/?type=r",
+    "http_status": "200",
+    "observed": "cause='15:1681 Fair Credit Reporting Act' on 12 of 12 sampled rows; cites_fcra admits 12/12"
+  },
+  "implemented_instead": [
+    "core/adjudication.py: evidentiary standing (ALLEGED/ADJUDICATED) orthogonal to source family, with a deterministic posture and direction classifier defaulting to establishing nothing.",
+    "PG-09 and PG-13 changed from pinned FAIL constants to computed controls.",
+    "Finding.occurrence_established and StudyVerdict.occurrence_established_count report standing separately from independence."
+  ],
+  "study_state": {
+    "independent_source_families": 2,
+    "adjudicated_findings_of_occurrence": 0,
+    "maximum_permitted_verdict": "CONTINUE RESEARCH"
+  }
+}

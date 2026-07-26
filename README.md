@@ -115,6 +115,42 @@ The verdict itself remains gated on the remaining proof gates, which continue to
 require solution-maturity, commercial and counter-evidence research that is not
 yet integrated.
 
+## Evidentiary Standing
+
+Independence and proof are separate questions, and the study tracks them on
+separate axes:
+
+```text
+source family        does this share an origin with evidence already held?
+evidentiary standing is this an allegation, or has a forum decided it?
+```
+
+Adding forums moves the first axis. Only a decision moves the second. Ten
+independent complaint databases would still be ten allegations.
+
+`core/adjudication.py` holds the rule. A record reaches `ADJUDICATED` standing
+only when a forum resolved the merits, and it establishes occurrence only when
+that resolution went against the respondent. Everything the classifier cannot
+resolve from explicit structured values is `UNDETERMINED`, which never establishes
+occurrence — because posture is routinely misread:
+
+```text
+denying a motion to dismiss   -> the court ASSUMED the allegations were true
+denying summary judgment      -> the facts are genuinely DISPUTED
+"affirmed" on appeal          -> relative to a judgment below; no direction alone
+a settlement                  -> not an admission
+```
+
+`PG-09` (Independent Corroboration) requires an adjudicated finding of occurrence
+on a mechanism *another* source family independently alleges. `PG-13`
+(Counter-Evidence) requires a disposition that went the other way — complaints and
+filings are submitted by claimants, so neither can ever produce counter-evidence,
+and a source that can only confirm the hypothesis is not a test of it.
+
+Both gates were previously pinned to `FAIL`. See
+`analysis/source_evaluation_adjudicated_findings.md` for which adjudicated sources
+were probed, which were rejected, and what the remaining one is blocked on.
+
 ## Market and Competition Lane
 
 `market/` answers a different question from the study: who already operates in

@@ -162,6 +162,9 @@ def generate_findings(evidence: list[VerifiedEvidence]) -> list[Finding]:
                 ],
                 source_limitations=sorted({limitation for item in items for limitation in item.source_limitations}),
                 maximum_permitted_verdict=maximum_permitted_verdict,
+                # A finding asserts occurrence only if one of the evidence items
+                # behind it is a forum deciding so. Repetition never promotes it.
+                occurrence_established=any(item.establishes_occurrence for item in items),
             )
         )
     return findings
