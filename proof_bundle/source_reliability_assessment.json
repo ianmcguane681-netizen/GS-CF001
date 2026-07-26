@@ -8,7 +8,7 @@
     "jurisdiction": "United States",
     "source_family": "CFPB complaints",
     "retrieval_method": "official_cfpb_search_api",
-    "retrieval_timestamp": "2026-07-14T22:42:54Z",
+    "retrieval_timestamp": "2026-07-26T02:38:43Z",
     "update_frequency": "Published by CFPB; update cadence should be confirmed per access method.",
     "coverage_period": "Depends on retrieved official dataset or query result.",
     "record_granularity": "Individual consumer complaint record.",
@@ -48,5 +48,52 @@
     ],
     "reliability_version": "CFPB-SRA-001",
     "last_reviewed_date": "2026-07-14"
+  },
+  {
+    "source_id": "COURTLISTENER-FCRA-001",
+    "source_name": "CourtListener Federal Court Records (RECAP)",
+    "publisher": "Free Law Project",
+    "publisher_type": "Non-profit publisher of United States court records",
+    "authority_level": "Primary court records republished by a non-profit",
+    "jurisdiction": "United States",
+    "source_family": "Federal court records",
+    "retrieval_method": "courtlistener_search_api",
+    "retrieval_timestamp": "2026-07-26T02:38:57Z",
+    "update_frequency": "Continuously updated from PACER via RECAP contributions.",
+    "coverage_period": "Depends on the retrieved docket set.",
+    "record_granularity": "Individual federal court docket.",
+    "known_limitations": [
+      "A filed complaint states allegations, not established facts.",
+      "A settlement or dismissal is not an admission of liability.",
+      "RECAP coverage depends on documents contributed by users and is incomplete.",
+      "Docket metadata may be amended, sealed, or corrected after retrieval.",
+      "Litigation volume reflects propensity to sue, not only underlying failure rates.",
+      "Represented plaintiffs are not a representative sample of affected consumers.",
+      "Case captions may not identify the operationally responsible party."
+    ],
+    "verification_constraints": [
+      "Repeated statutory causes can support a repeated alleged mechanism.",
+      "Court records alone do not establish that an alleged failure occurred.",
+      "A judgment or documented finding is required before asserting proven failure."
+    ],
+    "independence_constraints": [
+      "Independent of CFPB complaints: different parties, different forum.",
+      "Multiple dockets from one plaintiff firm are weak independent evidence.",
+      "Consolidated or related cases must not be counted as separate events."
+    ],
+    "representativeness_warning": "Federal dockets are not a statistically representative sample of the market.",
+    "data_completeness_warning": "RECAP is a partial mirror of PACER; absence of a case proves nothing.",
+    "permitted_uses": [
+      "Corroborate that an alleged mechanism recurs outside the CFPB.",
+      "Establish a second independent source family.",
+      "Identify companies repeatedly named in the same statutory cause."
+    ],
+    "prohibited_inferences": [
+      "Do not infer that alleged failures definitely occurred.",
+      "Do not treat a settlement as proof of wrongdoing.",
+      "Do not infer market prevalence from case volume alone."
+    ],
+    "reliability_version": "COURTLISTENER-SRA-001",
+    "last_reviewed_date": "2026-07-25"
   }
 ]

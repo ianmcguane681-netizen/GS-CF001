@@ -7,7 +7,8 @@
     "observed_value": "True",
     "evidence_ids": [],
     "supporting_evidence": [
-      "CFPB-CCD-001"
+      "CFPB-CCD-001",
+      "COURTLISTENER-FCRA-001"
     ],
     "counter_evidence": [],
     "confidence": 1.0,
@@ -25,9 +26,16 @@
     "threshold": "Raw retrieval artifact or diagnostic exists",
     "observed_value": "True",
     "evidence_ids": [
-      "EVD-E84C5DFAAFFE",
-      "EVD-3EACDE2020E1",
-      "EVD-E8AD8018F4D2"
+      "EVD-75C6D79F57AF",
+      "EVD-0EFE71DB63A7",
+      "EVD-DFF7CC96DA51",
+      "EVD-B075B18ECDE0",
+      "EVD-1B61D66331DD",
+      "EVD-53E5CDF50C02",
+      "EVD-5401B54334DC",
+      "EVD-66145677A19B",
+      "EVD-D871BF28CDD8",
+      "EVD-2E037035DCC0"
     ],
     "supporting_evidence": [
       "raw artifacts",
@@ -49,14 +57,28 @@
     "threshold": "Normalised candidate records exist",
     "observed_value": "True",
     "evidence_ids": [
-      "EVD-E84C5DFAAFFE",
-      "EVD-3EACDE2020E1",
-      "EVD-E8AD8018F4D2"
+      "EVD-75C6D79F57AF",
+      "EVD-0EFE71DB63A7",
+      "EVD-DFF7CC96DA51",
+      "EVD-B075B18ECDE0",
+      "EVD-1B61D66331DD",
+      "EVD-53E5CDF50C02",
+      "EVD-5401B54334DC",
+      "EVD-66145677A19B",
+      "EVD-D871BF28CDD8",
+      "EVD-2E037035DCC0"
     ],
     "supporting_evidence": [
-      "CAN-96C6096FA94F",
-      "CAN-59D548B8B399",
-      "CAN-C0FF4AEA3594"
+      "CAN-DA5F7928EF96",
+      "CAN-E9523EC03FD2",
+      "CAN-86C0EA248D8F",
+      "CAN-9B084F3E5680",
+      "CAN-A871EC099A9B",
+      "CAN-67670AE9FF17",
+      "CAN-7558103D59C8",
+      "CAN-33353F7F9ACF",
+      "CAN-8BC7B510C066",
+      "CAN-BFF5CD193D02"
     ],
     "counter_evidence": [],
     "confidence": 0.9,
@@ -74,9 +96,16 @@
     "threshold": "All evidence maps to GS-CF001-C",
     "observed_value": "True",
     "evidence_ids": [
-      "EVD-E84C5DFAAFFE",
-      "EVD-3EACDE2020E1",
-      "EVD-E8AD8018F4D2"
+      "EVD-75C6D79F57AF",
+      "EVD-0EFE71DB63A7",
+      "EVD-DFF7CC96DA51",
+      "EVD-B075B18ECDE0",
+      "EVD-1B61D66331DD",
+      "EVD-53E5CDF50C02",
+      "EVD-5401B54334DC",
+      "EVD-66145677A19B",
+      "EVD-D871BF28CDD8",
+      "EVD-2E037035DCC0"
     ],
     "supporting_evidence": [
       "GS-CF001-C deterministic product mapping"
@@ -97,7 +126,7 @@
     "threshold": "Minimum repeated mechanism finding",
     "observed_value": "False",
     "evidence_ids": [
-      "EVD-E8AD8018F4D2"
+      "EVD-DFF7CC96DA51"
     ],
     "supporting_evidence": [],
     "counter_evidence": [],
@@ -118,7 +147,7 @@
     "threshold": "At least 2 company references",
     "observed_value": "1",
     "evidence_ids": [
-      "EVD-E8AD8018F4D2"
+      "EVD-DFF7CC96DA51"
     ],
     "supporting_evidence": [
       "EQUIFAX, INC."
@@ -141,7 +170,7 @@
     "threshold": "Finding includes operational mechanism definition",
     "observed_value": "False",
     "evidence_ids": [
-      "EVD-E8AD8018F4D2"
+      "EVD-DFF7CC96DA51"
     ],
     "supporting_evidence": [],
     "counter_evidence": [],
@@ -162,10 +191,10 @@
     "threshold": "Opportunity assessment exists",
     "observed_value": "False",
     "evidence_ids": [
-      "EVD-E8AD8018F4D2"
+      "EVD-DFF7CC96DA51"
     ],
     "supporting_evidence": [
-      "Credit report correction evidence workflow"
+      "Unclassified mechanism - no supported component yet"
     ],
     "counter_evidence": [
       "process change, policy change, staffing, vendor tools, or training may address the mechanism"
@@ -185,14 +214,22 @@
     "gate_name": "Independent Corroboration",
     "status": "FAIL",
     "threshold": "At least 2 independent source families",
-    "observed_value": "1",
+    "observed_value": "2",
     "evidence_ids": [
-      "EVD-E84C5DFAAFFE",
-      "EVD-3EACDE2020E1",
-      "EVD-E8AD8018F4D2"
+      "EVD-75C6D79F57AF",
+      "EVD-0EFE71DB63A7",
+      "EVD-DFF7CC96DA51",
+      "EVD-B075B18ECDE0",
+      "EVD-1B61D66331DD",
+      "EVD-53E5CDF50C02",
+      "EVD-5401B54334DC",
+      "EVD-66145677A19B",
+      "EVD-D871BF28CDD8",
+      "EVD-2E037035DCC0"
     ],
     "supporting_evidence": [
-      "CFPB complaints"
+      "CFPB complaints",
+      "Federal court records"
     ],
     "counter_evidence": [
       "CFPB alone is one source family"
@@ -214,7 +251,7 @@
     "threshold": "Confirmed buyer evidence",
     "observed_value": "unverified",
     "evidence_ids": [
-      "EVD-E8AD8018F4D2"
+      "EVD-DFF7CC96DA51"
     ],
     "supporting_evidence": [
       "unclear"
@@ -241,7 +278,7 @@
     "threshold": "Existing solution maturity evidence",
     "observed_value": "unknown",
     "evidence_ids": [
-      "EVD-E8AD8018F4D2"
+      "EVD-DFF7CC96DA51"
     ],
     "supporting_evidence": [],
     "counter_evidence": [
@@ -264,7 +301,7 @@
     "threshold": "Commercial urgency evidence",
     "observed_value": "unproven",
     "evidence_ids": [
-      "EVD-E8AD8018F4D2"
+      "EVD-DFF7CC96DA51"
     ],
     "supporting_evidence": [],
     "counter_evidence": [
@@ -289,9 +326,16 @@
     "threshold": "Counter-evidence reviewed",
     "observed_value": "not reviewed",
     "evidence_ids": [
-      "EVD-E84C5DFAAFFE",
-      "EVD-3EACDE2020E1",
-      "EVD-E8AD8018F4D2"
+      "EVD-75C6D79F57AF",
+      "EVD-0EFE71DB63A7",
+      "EVD-DFF7CC96DA51",
+      "EVD-B075B18ECDE0",
+      "EVD-1B61D66331DD",
+      "EVD-53E5CDF50C02",
+      "EVD-5401B54334DC",
+      "EVD-66145677A19B",
+      "EVD-D871BF28CDD8",
+      "EVD-2E037035DCC0"
     ],
     "supporting_evidence": [],
     "counter_evidence": [
@@ -314,9 +358,16 @@
     "threshold": "Run preserves artifacts and diagnostics",
     "observed_value": "True",
     "evidence_ids": [
-      "EVD-E84C5DFAAFFE",
-      "EVD-3EACDE2020E1",
-      "EVD-E8AD8018F4D2"
+      "EVD-75C6D79F57AF",
+      "EVD-0EFE71DB63A7",
+      "EVD-DFF7CC96DA51",
+      "EVD-B075B18ECDE0",
+      "EVD-1B61D66331DD",
+      "EVD-53E5CDF50C02",
+      "EVD-5401B54334DC",
+      "EVD-66145677A19B",
+      "EVD-D871BF28CDD8",
+      "EVD-2E037035DCC0"
     ],
     "supporting_evidence": [
       "artifact preservation",
@@ -334,24 +385,30 @@
   {
     "gate_id": "PG-15",
     "gate_name": "Source Independence",
-    "status": "FAIL",
+    "status": "PASS",
     "threshold": "Independent source family count >= 2",
-    "observed_value": "1",
+    "observed_value": "2",
     "evidence_ids": [
-      "EVD-E84C5DFAAFFE",
-      "EVD-3EACDE2020E1",
-      "EVD-E8AD8018F4D2"
+      "EVD-75C6D79F57AF",
+      "EVD-0EFE71DB63A7",
+      "EVD-DFF7CC96DA51",
+      "EVD-B075B18ECDE0",
+      "EVD-1B61D66331DD",
+      "EVD-53E5CDF50C02",
+      "EVD-5401B54334DC",
+      "EVD-66145677A19B",
+      "EVD-D871BF28CDD8",
+      "EVD-2E037035DCC0"
     ],
     "supporting_evidence": [
-      "CFPB complaints"
+      "CFPB complaints",
+      "Federal court records"
     ],
     "counter_evidence": [
       "Multiple CFPB complaints remain one source family."
     ],
-    "confidence": 0.0,
-    "missing_evidence": [
-      "second independent source family"
-    ],
+    "confidence": 1.0,
+    "missing_evidence": [],
     "recommended_next_action": "Add independent corroborating source family.",
     "constrains_max_verdict": true,
     "reasoning_chain": [
@@ -363,22 +420,27 @@
     "gate_name": "Evidence Ceiling Compliance",
     "status": "PASS",
     "threshold": "If source families < 2, maximum verdict is CONTINUE RESEARCH",
-    "observed_value": "source families=1",
+    "observed_value": "source families=2",
     "evidence_ids": [
-      "EVD-E84C5DFAAFFE",
-      "EVD-3EACDE2020E1",
-      "EVD-E8AD8018F4D2"
+      "EVD-75C6D79F57AF",
+      "EVD-0EFE71DB63A7",
+      "EVD-DFF7CC96DA51",
+      "EVD-B075B18ECDE0",
+      "EVD-1B61D66331DD",
+      "EVD-53E5CDF50C02",
+      "EVD-5401B54334DC",
+      "EVD-66145677A19B",
+      "EVD-D871BF28CDD8",
+      "EVD-2E037035DCC0"
     ],
     "supporting_evidence": [
       "deterministic evidence ceiling rule"
     ],
     "counter_evidence": [],
     "confidence": 1.0,
-    "missing_evidence": [
-      "evidence required to remove CONTINUE RESEARCH ceiling"
-    ],
+    "missing_evidence": [],
     "recommended_next_action": "Apply deterministic ceiling before final verdict.",
-    "constrains_max_verdict": true,
+    "constrains_max_verdict": false,
     "reasoning_chain": [
       "AI, user settings, and reports cannot override the evidence ceiling."
     ]
