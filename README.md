@@ -147,9 +147,47 @@ on a mechanism *another* source family independently alleges. `PG-13`
 filings are submitted by claimants, so neither can ever produce counter-evidence,
 and a source that can only confirm the hypothesis is not a test of it.
 
-Both gates were previously pinned to `FAIL`. See
-`analysis/source_evaluation_adjudicated_findings.md` for which adjudicated sources
-were probed, which were rejected, and what the remaining one is blocked on.
+Both gates were previously pinned to `FAIL`.
+
+### The adjudicated source
+
+`connectors/fjc_idb.py` reads the Federal Judicial Center's Integrated Database —
+the judiciary's own statistical record of every federal civil case. It codes what
+opinion prose does not:
+
+```text
+disposition   how the case ended   (consent, verdict, settled, default, ...)
+judgment      who it went for      (1 plaintiff, 2 defendant, 3 both, 4 unknown)
+```
+
+Admission is statutory and deterministic, matching the RECAP connector: the FJC
+records the statute as title and section, so FCRA is title 15, section 1681.
+
+Of 17,204 FCRA cases, 67 establish occurrence and 3 contradict it. The exclusions
+matter more than the inclusions:
+
+```text
+7,683 settled          a settlement is not an admission
+   32 default          a forfeiture, not a weighed finding
+  363 pre-trial win    for the defendant, one code covers both Rule 12(b)(6)
+                       and Rule 56 — not separable, so it proves nothing
+```
+
+The IDB is deliberately **not** a new source family. These are the same courts
+RECAP already covers, so it raises standing without touching the independent family
+count — counting it as a third forum would double-count one dispute.
+
+Requires `COURTLISTENER_API_TOKEN`. Without it the connector emits an access
+diagnostic rather than an empty result, so an unconfigured environment never looks
+like an absence of adjudications.
+
+```bash
+python -m core.pipeline --sources cfpb,court,fjc --limit 8
+```
+
+See `analysis/source_evaluation_adjudicated_findings.md` for the four sources that
+were probed and rejected, and for the false PASS the first live three-source run
+produced before the unclassified-mechanism guard was added.
 
 ## Market and Competition Lane
 

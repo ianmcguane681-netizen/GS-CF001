@@ -165,6 +165,95 @@ def occurrence_reasoning(posture: str, direction: str) -> str:
     return "Posture not determinable from the available structured metadata."
 
 
+# --- Federal Judicial Center Integrated Database -----------------------------
+#
+# The IDB is the judiciary's own statistical record of every federal civil case,
+# and unlike opinion prose it codes the outcome. Two coded fields carry it:
+#
+#   disposition  how the case ended (0-20)
+#   judgment     who it went for: 1 plaintiff, 2 defendant, 3 both, 4 unknown
+#
+# That is the whole reason this source was adopted. Posture and direction are read
+# off official codes rather than inferred from text, which is the same standard the
+# RECAP connector applies when it admits a docket on its statutory cause.
+#
+# The mapping below is deliberately narrower than the codes allow, and each
+# exclusion is a rule about what a decision means rather than a data limitation:
+
+FJC_DISPOSITION_TRANSFER = 0
+FJC_DISPOSITION_REMAND_STATE = 1
+FJC_DISPOSITION_WANT_OF_PROSECUTION = 2
+FJC_DISPOSITION_LACK_OF_JURISDICTION = 3
+FJC_DISPOSITION_DEFAULT = 4
+FJC_DISPOSITION_CONSENT = 5
+FJC_DISPOSITION_MOTION_BEFORE_TRIAL = 6
+FJC_DISPOSITION_JURY_VERDICT = 7
+FJC_DISPOSITION_DIRECTED_VERDICT = 8
+FJC_DISPOSITION_COURT_TRIAL = 9
+FJC_DISPOSITION_VOLUNTARILY_DISMISSED = 12
+FJC_DISPOSITION_SETTLED = 13
+
+FJC_JUDGMENT_PLAINTIFF = 1
+FJC_JUDGMENT_DEFENDANT = 2
+FJC_JUDGMENT_BOTH = 3
+FJC_JUDGMENT_UNKNOWN = 4
+
+# Reached the merits after both sides were heard. Safe in either direction.
+_FJC_TRIAL_DISPOSITIONS = frozenset(
+    {FJC_DISPOSITION_JURY_VERDICT, FJC_DISPOSITION_DIRECTED_VERDICT, FJC_DISPOSITION_COURT_TRIAL}
+)
+
+
+def classify_fjc_disposition(disposition: Any, judgment: Any) -> tuple[str, str]:
+    """Map FJC IDB codes to (posture, direction). Total, deterministic, conservative.
+
+    Three exclusions carry the reasoning, and each drops real volume:
+
+    * **Settled (13) is excluded.** It is the single most common ending for these
+      cases -- roughly 7,700 of the 17,200 FCRA records -- and a settlement is not
+      an admission. Admitting it would hand the study thousands of false proofs.
+    * **Default (4) is excluded.** A defendant who never appeared forfeited the
+      case; nobody weighed whether the failure happened.
+    * **Judgment on a pre-trial motion (6) is directional.** For the *plaintiff* it
+      is a merits win, because a plaintiff cannot prevail on a motion to dismiss --
+      winning before trial means summary judgment. For the *defendant* the same
+      code covers both a Rule 12(b)(6) dismissal, where the claim failed as a
+      matter of law without any fact being found, and Rule 56 summary judgment,
+      where the facts were resolved. The IDB does not distinguish them, so a
+      defendant win here is UNDETERMINED rather than counter-evidence -- and that
+      discards the largest defence-side group (363 records) rather than overstate
+      what it proves.
+    """
+
+    try:
+        disposition_code = int(disposition)
+        judgment_code = int(judgment)
+    except (TypeError, ValueError):
+        return UNDETERMINED_POSTURE, UNDETERMINED_DIRECTION
+
+    if judgment_code == FJC_JUDGMENT_PLAINTIFF:
+        if disposition_code == FJC_DISPOSITION_CONSENT:
+            return CONSENT_ORDER, AGAINST_RESPONDENT
+        if disposition_code == FJC_DISPOSITION_MOTION_BEFORE_TRIAL:
+            return SUMMARY_JUDGMENT, AGAINST_RESPONDENT
+        if disposition_code in _FJC_TRIAL_DISPOSITIONS:
+            return TRIAL_JUDGMENT, AGAINST_RESPONDENT
+
+    if judgment_code == FJC_JUDGMENT_DEFENDANT:
+        if disposition_code in _FJC_TRIAL_DISPOSITIONS:
+            return TRIAL_JUDGMENT, FOR_RESPONDENT
+        if disposition_code == FJC_DISPOSITION_MOTION_BEFORE_TRIAL:
+            # Rule 12(b)(6) and Rule 56 share this code. Not separable here.
+            return SUMMARY_JUDGMENT, UNDETERMINED_DIRECTION
+
+    if disposition_code == FJC_DISPOSITION_SETTLED:
+        return SETTLEMENT, UNDETERMINED_DIRECTION
+    if disposition_code == FJC_DISPOSITION_DEFAULT:
+        # Deliberately not a merits posture: nobody weighed the allegation.
+        return UNDETERMINED_POSTURE, UNDETERMINED_DIRECTION
+    return UNDETERMINED_POSTURE, UNDETERMINED_DIRECTION
+
+
 @dataclass(frozen=True)
 class AdjudicatedFinding:
     """One forum decision, and what it is permitted to support.

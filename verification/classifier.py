@@ -20,6 +20,7 @@ from __future__ import annotations
 
 from collections import Counter
 
+from core.adjudication import ADJUDICATED, contradicts_occurrence, establishes_occurrence
 from core.evidence_states import CFPB_LIMITED_EVIDENCE, EVIDENCE_CANDIDATE, VERIFIED_WITHIN_SOURCE, transition
 from core.ids import stable_id
 from core.models import EvidenceCandidate, VerifiedEvidence
@@ -110,6 +111,23 @@ def verify_candidate(candidate: EvidenceCandidate, repeated_mechanisms: set[str]
         missing_evidence=missing,
         evidence_state=new_state,
         source_family=candidate.source.source_family,
+        # Standing travels with the source, and occurrence is derived from the
+        # forum's own codes rather than from anything verification decides. A
+        # verification rule must never be able to promote an allegation.
+        evidentiary_standing=candidate.source.evidentiary_standing,
+        adjudication_posture=str(candidate.parsed_fields.get("adjudication_posture") or ""),
+        adjudication_direction=str(candidate.parsed_fields.get("adjudication_direction") or ""),
+        adjudication_citation=str(candidate.parsed_fields.get("adjudication_citation") or ""),
+        establishes_occurrence=candidate.source.evidentiary_standing == ADJUDICATED
+        and establishes_occurrence(
+            str(candidate.parsed_fields.get("adjudication_posture") or ""),
+            str(candidate.parsed_fields.get("adjudication_direction") or ""),
+        ),
+        contradicts_occurrence=candidate.source.evidentiary_standing == ADJUDICATED
+        and contradicts_occurrence(
+            str(candidate.parsed_fields.get("adjudication_posture") or ""),
+            str(candidate.parsed_fields.get("adjudication_direction") or ""),
+        ),
         product=str(candidate.parsed_fields.get("product") or ""),
         issue=str(candidate.parsed_fields.get("issue") or ""),
         date_received=str(candidate.parsed_fields.get("date_received") or ""),

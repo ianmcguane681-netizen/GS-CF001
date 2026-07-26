@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from core.adjudication import ADJUDICATED, ALLEGED
 from core.ids import stable_id
+from verification.rules import DEFAULT_MECHANISM
 from core.models import AccessDiagnostic, Finding, OpportunityHypothesis, ProofGateResult, SourceReliabilityAssessment, StudyVerdict, VerifiedEvidence
 
 OUTCOME_RANK = {
@@ -12,6 +13,16 @@ OUTCOME_RANK = {
     "CONTINUE RESEARCH": 3,
     "BUILD CANDIDATE": 4,
 }
+
+
+def _classified(item: VerifiedEvidence) -> bool:
+    """Whether a mechanism was actually identified, rather than falling back.
+
+    Mirrors how PG-06 treats an unknown company: the placeholder value must not be
+    matched against itself and counted as agreement.
+    """
+
+    return bool(item.mechanism) and item.mechanism != DEFAULT_MECHANISM
 
 
 def _status(condition: bool, weak_condition: bool = False) -> str:
@@ -87,15 +98,23 @@ def evaluate_proof_gates(
     # the mechanism, and some other source family must independently allege it.
     # An adjudication corroborated only by its own family is one forum talking to
     # itself, which is what PG-15 already refuses to count.
+    #
+    # The unclassified fallback mechanism is excluded from matching in both
+    # directions. IDB rows are outcome codes with no narrative, so they classify to
+    # the default, and the first live three-source run passed PG-09 on an
+    # adjudication whose mechanism "matched" a complaint only because both were
+    # unclassified. Two records agreeing that neither has been classified is not
+    # corroboration, and the gate said PASS on it.
     alleging_families: dict[str, set[str]] = {}
     for item in evidence:
-        if item.evidentiary_standing == ALLEGED and item.source_family:
+        if item.evidentiary_standing == ALLEGED and item.source_family and _classified(item):
             alleging_families.setdefault(item.mechanism, set()).add(item.source_family)
     corroborated = [
         item
         for item in establishing
-        if alleging_families.get(item.mechanism, set()) - {item.source_family}
+        if _classified(item) and alleging_families.get(item.mechanism, set()) - {item.source_family}
     ]
+    contradicting = [item for item in contradicting if _classified(item)]
 
     return [
         _gate("PG-01", "Source Authenticity", _status(bool(source_reliability)), "Source reliability assessment present", str(bool(source_reliability)), [], [item.source_id for item in source_reliability], [], 1.0 if source_reliability else 0.0, [] if source_reliability else ["source reliability assessment"], "Create or review source reliability assessment.", ["Source authenticity is assessed from source metadata."]),

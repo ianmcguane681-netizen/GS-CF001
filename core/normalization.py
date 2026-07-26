@@ -168,6 +168,106 @@ def _defendant_from_caption(case_name: str) -> str:
     return ""
 
 
+def normalise_idb_record(
+    raw_record: dict[str, Any], source: Source, study: Study
+) -> EvidenceCandidate | None:
+    """Normalise one FJC Integrated Database case outcome.
+
+    Admission repeats the connector's statutory check rather than trusting it, so a
+    record cannot enter the study by arriving through the right pipeline branch.
+    """
+
+    from connectors.fjc_idb import cites_fcra as idb_cites_fcra
+
+    if not idb_cites_fcra(raw_record.get("title"), raw_record.get("section")):
+        return None
+
+    record_id = str(raw_record.get("idb_record_id") or raw_record.get("_source_record_id") or "")
+    source_url = str(raw_record.get("_retrieval_url") or source.base_url)
+    posture = str(raw_record.get("adjudication_posture") or "")
+    direction = str(raw_record.get("adjudication_direction") or "")
+    parsed_fields = {
+        "idb_record_id": record_id,
+        "docket_number": raw_record.get("docket_number") or "",
+        "plaintiff": raw_record.get("plaintiff") or "",
+        # The defendant is a coded party field here, not a caption guess.
+        "company": raw_record.get("defendant") or "",
+        "district": raw_record.get("district") or "",
+        "date_filed": raw_record.get("date_filed") or "",
+        "date_terminated": raw_record.get("date_terminated") or "",
+        "date_received": raw_record.get("date_terminated") or raw_record.get("date_filed") or "",
+        "disposition_code": raw_record.get("disposition_code"),
+        "judgment_code": raw_record.get("judgment_code"),
+        "adjudication_posture": posture,
+        "adjudication_direction": direction,
+        "adjudication_citation": raw_record.get("docket_number") or "",
+        "occurrence_reasoning": raw_record.get("occurrence_reasoning") or "",
+        # An IDB row records who won, not what the consumer said. Leaving the
+        # narrative empty stops the verification rules reading an outcome code as
+        # a first-hand account of the operational failure.
+        "narrative": "",
+        "product": "Credit reporting or other personal consumer reports",
+        "issue": "Adjudicated Fair Credit Reporting Act claim",
+        "sub_issue": f"disposition={raw_record.get('disposition_code')}; judgment={raw_record.get('judgment_code')}",
+    }
+    traceability = [
+        f"Retrieved FJC Integrated Database case outcome from {source_url}",
+        f"Admitted case {record_id} on coded statute title {raw_record.get('title')!r} section {raw_record.get('section')!r}",
+        f"Classified posture {posture!r} direction {direction!r} from official FJC codes",
+        "Normalised coded case outcome into source-agnostic EvidenceCandidate",
+    ]
+    candidate_id = stable_id(
+        "CAN",
+        {"source": source.source_id, "study": study.study_id, "idb": record_id, "raw": raw_record},
+    )
+    transitions = [
+        transition(
+            record_id or candidate_id,
+            SOURCE_RECORD,
+            NORMALISED_RECORD,
+            "FJC IDB case outcome normalisation v1",
+            [record_id],
+            "Normalised coded federal case outcome.",
+            1.0,
+            ["Outcome codes describe who prevailed, not the operational mechanism."],
+        ).to_dict(),
+        transition(
+            candidate_id,
+            NORMALISED_RECORD,
+            EVIDENCE_CANDIDATE,
+            "GS-CF001-C coded statutory basis mapping rule v1",
+            [record_id],
+            "Mapped FCRA statutory basis to Credit Reporting Disputes evidence candidate.",
+            1.0,
+            [str(raw_record.get("occurrence_reasoning") or "")],
+        ).to_dict(),
+    ]
+    return EvidenceCandidate(
+        candidate_id=candidate_id,
+        source=source,
+        study=study,
+        source_record_id=record_id,
+        source_url=source_url,
+        retrieved_at=str(raw_record.get("_retrieved_at") or ""),
+        raw_record=raw_record,
+        parsed_fields=parsed_fields,
+        study_mapping_reason="Case arises under the Fair Credit Reporting Act by coded statute.",
+        traceability=traceability,
+        state_transitions=transitions,
+    )
+
+
+def normalise_idb_records(
+    raw_records: list[dict[str, Any]], source: Source, study: Study
+) -> list[EvidenceCandidate]:
+    candidates = []
+    for raw_record in raw_records:
+        candidate = normalise_idb_record(raw_record, source, study)
+        if candidate:
+            candidates.append(candidate)
+    return candidates
+
+
 def normalise_court_records(raw_records: list[dict[str, Any]], source: Source, study: Study) -> list[EvidenceCandidate]:
     candidates = []
     for raw_record in raw_records:

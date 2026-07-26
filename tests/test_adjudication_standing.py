@@ -255,6 +255,49 @@ def test_counter_evidence_needs_a_disposition_that_went_the_other_way():
     assert gate(evaluate_proof_gates(with_defence_win, [], []), "PG-13").status == "PASS"
 
 
+def test_an_unclassified_mechanism_does_not_corroborate_itself():
+    """The bug the first live three-source run exposed.
+
+    IDB rows are outcome codes with no narrative, so they classify to the default
+    mechanism. So did the complaints in that run. PG-09 reported PASS because the
+    two "matched" -- on both being unclassified. Two records agreeing that neither
+    has been classified is not corroboration.
+    """
+    unclassified = "unclassified_credit_reporting_complaint"
+    items = [
+        evidence("E1", family="CFPB complaints", mechanism=unclassified),
+        evidence(
+            "E2",
+            family="Federal court records",
+            mechanism=unclassified,
+            standing=ADJUDICATED,
+            posture=CONSENT_ORDER,
+            direction=AGAINST_RESPONDENT,
+        ),
+    ]
+
+    gates = evaluate_proof_gates(items, [], [])
+
+    assert gate(gates, "PG-09").status == "WEAK"
+    assert gate(gates, "PG-09").constrains_max_verdict is True
+
+
+def test_an_unclassified_contradiction_is_not_counter_evidence_either():
+    items = [
+        evidence("E1", family="CFPB complaints"),
+        evidence(
+            "E2",
+            family="Federal court records",
+            mechanism="unclassified_credit_reporting_complaint",
+            standing=ADJUDICATED,
+            posture=TRIAL_JUDGMENT,
+            direction=FOR_RESPONDENT,
+        ),
+    ]
+
+    assert gate(evaluate_proof_gates(items, [], []), "PG-13").status == "WEAK"
+
+
 def test_adjudicated_evidence_does_not_inflate_the_source_family_count():
     """Court opinions are the courts deciding the same disputes RECAP records.
 

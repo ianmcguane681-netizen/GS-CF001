@@ -8,12 +8,34 @@
     "severity": "SEV-2",
     "remediation": "Require a judgment, consent order or examination finding before asserting the failure occurred."
   },
-  "conclusion": "One viable candidate blocked on a free API credential; three rejected. The remediation was implemented as a control rather than a dataset.",
+  "conclusion": "One source adopted (FJC Integrated Database); four rejected. The remediation was implemented as a control, and the control is now satisfiable with real data.",
   "candidates": [
+    {
+      "candidate": "FJC Integrated Database (via CourtListener)",
+      "publisher": "Federal Judicial Center, republished by the Free Law Project",
+      "status": "ADOPTED",
+      "endpoint": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/",
+      "admission_rule": "Coded statutory basis: title=15 and section startswith 1681.",
+      "why": "Codes disposition (how the case ended) and judgment (who it went for), so posture and direction are read from official codes rather than inferred from prose.",
+      "fcra_case_count": 17204,
+      "classified_outcomes": {
+        "establishes_occurrence_total": 67,
+        "consent_judgment_for_plaintiff": 23,
+        "pre_trial_motion_for_plaintiff": 39,
+        "jury_verdict_for_plaintiff": 4,
+        "directed_verdict_for_plaintiff": 1,
+        "contradicts_trial_merits_for_defendant": 3,
+        "excluded_pre_trial_motion_for_defendant_ambiguous": 363,
+        "excluded_settled_not_an_admission": 7683,
+        "excluded_default_judgment_forfeiture": 32
+      },
+      "independence": "NOT a new source family. Same federal courts as the RECAP connector; raises evidentiary standing only, never the independent family count.",
+      "requires_credential": "COURTLISTENER_API_TOKEN"
+    },
     {
       "candidate": "CourtListener opinions",
       "publisher": "Free Law Project",
-      "status": "VIABLE_BLOCKED_ON_CREDENTIAL",
+      "status": "REJECTED_OUTCOME_NOT_CODED",
       "probes": [
         {
           "endpoint": "https://www.courtlistener.com/api/rest/v4/search/?type=o",
@@ -30,6 +52,12 @@
           "endpoint": "https://www.courtlistener.com/api/rest/v4/opinions/{id}/",
           "http_status": "401",
           "observed": "Authentication credentials were not provided."
+        },
+        {
+          "endpoint": "https://www.courtlistener.com/api/rest/v4/clusters/{id}/",
+          "http_status": "200",
+          "authenticated": true,
+          "observed": "disposition empty on 8 of 8 sampled FCRA clusters; posture, procedural_history and syllabus also empty"
         }
       ],
       "blockers": [
@@ -37,7 +65,7 @@
         "Disposition cannot be classified: posture, procedural_history and syllabus are empty strings on every row; the structured disposition field is on the 401 cluster record."
       ],
       "rejected_alternative": "Inferring disposition from opinion prose. Rejected: this repository refuses keyword guessing where structured metadata exists, and misreading a motion-to-dismiss denial would convert an allegation into a finding.",
-      "unblocked_by": "A CourtListener API token (free, research use). Human registration step."
+      "rejection_reason": "A token was obtained and the endpoints opened, but the outcome fields are unpopulated for modern federal opinions. Admission could not be verified locally either, since snippets omit the statutory citation."
     },
     {
       "candidate": "Federal Register API",
@@ -112,11 +140,25 @@
   "implemented_instead": [
     "core/adjudication.py: evidentiary standing (ALLEGED/ADJUDICATED) orthogonal to source family, with a deterministic posture and direction classifier defaulting to establishing nothing.",
     "PG-09 and PG-13 changed from pinned FAIL constants to computed controls.",
-    "Finding.occurrence_established and StudyVerdict.occurrence_established_count report standing separately from independence."
+    "Finding.occurrence_established and StudyVerdict.occurrence_established_count report standing separately from independence.",
+    "connectors/fjc_idb.py: adjudicated outcomes with deterministic statutory admission and conservative posture classification."
   ],
   "study_state": {
     "independent_source_families": 2,
-    "adjudicated_findings_of_occurrence": 0,
+    "adjudicated_records_available": {
+      "establishing": 67,
+      "contradicting": 3
+    },
+    "occurrence_established_in_live_run": 1,
+    "pg09": "WEAK",
+    "pg13": "WEAK",
     "maximum_permitted_verdict": "CONTINUE RESEARCH"
-  }
+  },
+  "live_run_finding": {
+    "observed": "First live cfpb,court,fjc run reported PG-09 and PG-13 as PASS.",
+    "defect": "IDB rows carry no narrative so all classified to the default mechanism, as did the complaints; corroboration matched them on both being unclassified.",
+    "fix": "The unclassified fallback is excluded from mechanism matching in both directions, mirroring PG-06's treatment of an unknown company.",
+    "after_fix": "PG-09 and PG-13 report WEAK: an adjudication establishing occurrence is present but does not corroborate a classified mechanism."
+  },
+  "next_step": "Classify the mechanism for adjudicated records by joining an IDB record to its RECAP docket on docket number, so PG-09 can pass on a classified mechanism."
 }

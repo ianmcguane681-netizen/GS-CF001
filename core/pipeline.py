@@ -8,10 +8,11 @@ from pathlib import Path
 from connectors.base import DiscoveryConnector, RetrievalResult
 from connectors.cfpb import CFPBConnector
 from connectors.courtlistener import CourtListenerConnector, SOURCE_FAMILY as COURT_FAMILY
+from connectors.fjc_idb import FJCIDBConnector
 from core.ai_governance import deterministic_analysis_artifact
 from core.manifest import build_run_manifest
 from core.models import PipelineResult
-from core.normalization import normalise_cfpb_records, normalise_court_records
+from core.normalization import normalise_cfpb_records, normalise_court_records, normalise_idb_records
 from core.opportunity_decision_register import build_odr, write_odr_json, write_odr_markdown
 from core.run_index import append_run_index, build_run_index_entry
 from core.storage import file_checksum, run_timestamp, write_json_artifact
@@ -29,8 +30,14 @@ def _normalise_for_source(retrieval: "RetrievalResult", study) -> list:
 
     Dispatching on source family rather than connector type keeps the pipeline
     open to further families without another branch here per connector class.
+
+    Source type is checked before family because the FJC Integrated Database
+    deliberately shares the court records family: it raises evidentiary standing
+    rather than independence, so family alone no longer identifies a normaliser.
     """
 
+    if retrieval.source.source_type == "federal_judicial_outcomes":
+        return normalise_idb_records(retrieval.records, retrieval.source, study)
     if retrieval.source.source_family == COURT_FAMILY:
         return normalise_court_records(retrieval.records, retrieval.source, study)
     return normalise_cfpb_records(retrieval.records, retrieval.source, study)
@@ -280,10 +287,13 @@ def main() -> None:
     parser.add_argument(
         "--sources",
         default="cfpb",
-        help="Comma-separated source families: cfpb, court. Two families lift the evidence ceiling.",
+        help=(
+            "Comma-separated sources: cfpb, court, fjc. Two families lift the evidence "
+            "ceiling; fjc adds adjudicated standing and needs COURTLISTENER_API_TOKEN."
+        ),
     )
     args = parser.parse_args()
-    available = {"cfpb": CFPBConnector, "court": CourtListenerConnector}
+    available = {"cfpb": CFPBConnector, "court": CourtListenerConnector, "fjc": FJCIDBConnector}
     chosen = [name.strip().lower() for name in args.sources.split(",") if name.strip()]
     unknown = sorted(set(chosen) - set(available))
     if unknown:
@@ -301,6 +311,9 @@ def main() -> None:
         "source_families": sorted({
             item.source_family for item in result.verified_evidence if item.source_family
         }),
+        "occurrence_established": sum(
+            1 for item in result.verified_evidence if item.establishes_occurrence
+        ),
     }, indent=2))
 
 
