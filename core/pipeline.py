@@ -1,15 +1,17 @@
 from __future__ import annotations
 
 import argparse
+from collections.abc import Sequence
 import json
 from pathlib import Path
 
-from connectors.base import DiscoveryConnector
+from connectors.base import DiscoveryConnector, RetrievalResult
 from connectors.cfpb import CFPBConnector
+from connectors.courtlistener import CourtListenerConnector, SOURCE_FAMILY as COURT_FAMILY
 from core.ai_governance import deterministic_analysis_artifact
 from core.manifest import build_run_manifest
 from core.models import PipelineResult
-from core.normalization import normalise_cfpb_records
+from core.normalization import normalise_cfpb_records, normalise_court_records
 from core.opportunity_decision_register import build_odr, write_odr_json, write_odr_markdown
 from core.run_index import append_run_index, build_run_index_entry
 from core.storage import file_checksum, run_timestamp, write_json_artifact
@@ -22,14 +24,36 @@ from studies.definitions import get_study
 from verification.classifier import verify_candidates
 
 
+def _normalise_for_source(retrieval: "RetrievalResult", study) -> list:
+    """Route each source family to the normaliser that understands its records.
+
+    Dispatching on source family rather than connector type keeps the pipeline
+    open to further families without another branch here per connector class.
+    """
+
+    if retrieval.source.source_family == COURT_FAMILY:
+        return normalise_court_records(retrieval.records, retrieval.source, study)
+    return normalise_cfpb_records(retrieval.records, retrieval.source, study)
+
+
 def run_credit_reporting_proof(
     limit: int = 1,
     connector: DiscoveryConnector | None = None,
     data_dir: str | Path = "data",
+    connectors: Sequence[DiscoveryConnector] | None = None,
 ) -> PipelineResult:
+    """Run the study across one or more independent source families.
+
+    `connector` remains for a single-source run. `connectors` runs several: each
+    family is retrieved and normalised by its own rules, and the results are
+    pooled before verification so the evidence ceiling sees every family present.
+    A family that fails to retrieve contributes its diagnostics and no records,
+    which is a transparent partial run rather than a silent one.
+    """
+
     study = get_study("GS-CF001-C")
-    connector = connector or CFPBConnector()
-    retrieval = connector.retrieve(limit=limit)
+    if connectors is None:
+        connectors = [connector or CFPBConnector()]
 
     # One timestamp shared by every artifact this run produces, so the full
     # set of a run's files can always be found and grouped by this stamp
@@ -37,25 +61,34 @@ def run_credit_reporting_proof(
     stamp = run_timestamp()
 
     base = Path(data_dir)
+    retrievals = [item.retrieve(limit=limit) for item in connectors]
+    retrieval = retrievals[0]
     raw_path = write_json_artifact(
-        {
-            "source": retrieval.source.to_dict(),
-            "retrieval_url": retrieval.retrieval_url,
-            "retrieved_at": retrieval.retrieved_at,
-            "access_method": retrieval.access_method,
-            "errors": retrieval.errors,
-            "records": retrieval.records,
-        },
+        [
+            {
+                "source": item.source.to_dict(),
+                "retrieval_url": item.retrieval_url,
+                "retrieved_at": item.retrieved_at,
+                "access_method": item.access_method,
+                "errors": item.errors,
+                "records": item.records,
+            }
+            for item in retrievals
+        ],
         base / "raw",
         "cfpb_credit_reporting_raw",
         timestamp=stamp,
     )
-    diagnostics = retrieval.diagnostics or []
-    source_reliability = [retrieval.source_reliability] if retrieval.source_reliability else []
+    diagnostics = [item for r in retrievals for item in (r.diagnostics or [])]
+    source_reliability = [r.source_reliability for r in retrievals if r.source_reliability]
     diagnostics_path = write_json_artifact([diagnostic.to_dict() for diagnostic in diagnostics], base / "exports", "access_diagnostics", timestamp=stamp)
     reliability_path = write_json_artifact([item.to_dict() for item in source_reliability], base / "exports", "source_reliability", timestamp=stamp)
 
-    candidates = normalise_cfpb_records(retrieval.records, retrieval.source, study)
+    candidates = [
+        candidate
+        for item in retrievals
+        for candidate in _normalise_for_source(item, study)
+    ]
     verified = verify_candidates(candidates)
     findings = generate_findings(verified)
     opportunities = assess_findings(findings)
@@ -244,13 +277,30 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Run GS-CF001-C Credit Reporting Disputes proof pipeline.")
     parser.add_argument("--limit", type=int, default=1)
     parser.add_argument("--data-dir", default="data")
+    parser.add_argument(
+        "--sources",
+        default="cfpb",
+        help="Comma-separated source families: cfpb, court. Two families lift the evidence ceiling.",
+    )
     args = parser.parse_args()
-    result = run_credit_reporting_proof(limit=args.limit, data_dir=args.data_dir)
+    available = {"cfpb": CFPBConnector, "court": CourtListenerConnector}
+    chosen = [name.strip().lower() for name in args.sources.split(",") if name.strip()]
+    unknown = sorted(set(chosen) - set(available))
+    if unknown:
+        parser.error(f"unknown source(s): {', '.join(unknown)}; choose from {sorted(available)}")
+    result = run_credit_reporting_proof(
+        limit=args.limit,
+        data_dir=args.data_dir,
+        connectors=[available[name]() for name in chosen],
+    )
     print(json.dumps({
         "verdict": result.verdict.to_dict() if result.verdict else None,
         "artifacts": result.artifacts,
         "classification_count": len(result.mechanism_classifications),
         "odr_entry_count": len(result.odr_entries),
+        "source_families": sorted({
+            item.source_family for item in result.verified_evidence if item.source_family
+        }),
     }, indent=2))
 
 
