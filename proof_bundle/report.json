@@ -23,7 +23,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T17:15:13Z"
+      "_retrieved_at": "2026-07-26T21:32:42Z"
     },
     {
       "product": "Credit reporting or other personal consumer reports",
@@ -48,7 +48,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T17:15:13Z"
+      "_retrieved_at": "2026-07-26T21:32:42Z"
     },
     {
       "product": "Credit reporting or other personal consumer reports",
@@ -73,7 +73,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T17:15:13Z"
+      "_retrieved_at": "2026-07-26T21:32:42Z"
     },
     {
       "product": "Credit reporting or other personal consumer reports",
@@ -98,7 +98,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T17:15:13Z"
+      "_retrieved_at": "2026-07-26T21:32:42Z"
     },
     {
       "product": "Credit reporting or other personal consumer reports",
@@ -123,7 +123,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T17:15:13Z"
+      "_retrieved_at": "2026-07-26T21:32:42Z"
     },
     {
       "product": "Credit reporting or other personal consumer reports",
@@ -148,7 +148,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T17:15:13Z"
+      "_retrieved_at": "2026-07-26T21:32:42Z"
     },
     {
       "product": "Credit reporting or other personal consumer reports",
@@ -173,7 +173,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T17:15:13Z"
+      "_retrieved_at": "2026-07-26T21:32:42Z"
     },
     {
       "product": "Credit reporting or other personal consumer reports",
@@ -198,12 +198,12 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T17:15:13Z"
+      "_retrieved_at": "2026-07-26T21:32:42Z"
     }
   ],
   "candidates": [
     {
-      "candidate_id": "CAN-7B188C77E767",
+      "candidate_id": "CAN-F8A64E850A8B",
       "source": {
         "source_id": "CFPB-CCD-001",
         "name": "CFPB Consumer Complaint Database",
@@ -224,7 +224,7 @@
       },
       "source_record_id": "9999997",
       "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-      "retrieved_at": "2026-07-26T17:15:13Z",
+      "retrieved_at": "2026-07-26T21:32:42Z",
       "raw_record": {
         "product": "Credit reporting or other personal consumer reports",
         "complaint_what_happened": "",
@@ -248,7 +248,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       "parsed_fields": {
         "complaint_id": "9999997",
@@ -279,7 +279,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "CFPB field normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999997"
           ],
@@ -291,12 +291,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-75D46087B4D3",
-          "evidence_id": "CAN-7B188C77E767",
+          "transition_id": "TRN-141FDB8375FE",
+          "evidence_id": "CAN-F8A64E850A8B",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C product mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999997"
           ],
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-9094CEFE3CEF",
+      "candidate_id": "CAN-ECBC1434B40E",
       "source": {
         "source_id": "CFPB-CCD-001",
         "name": "CFPB Consumer Complaint Database",
@@ -331,7 +331,7 @@
       },
       "source_record_id": "9999996",
       "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-      "retrieved_at": "2026-07-26T17:15:13Z",
+      "retrieved_at": "2026-07-26T21:32:42Z",
       "raw_record": {
         "product": "Credit reporting or other personal consumer reports",
         "complaint_what_happened": "",
@@ -355,7 +355,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       "parsed_fields": {
         "complaint_id": "9999996",
@@ -386,7 +386,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "CFPB field normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999996"
           ],
@@ -398,12 +398,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-EB8C0017379D",
-          "evidence_id": "CAN-9094CEFE3CEF",
+          "transition_id": "TRN-A05646C9B676",
+          "evidence_id": "CAN-ECBC1434B40E",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C product mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999996"
           ],
@@ -417,7 +417,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-48ACDC0B6387",
+      "candidate_id": "CAN-D4C657208398",
       "source": {
         "source_id": "CFPB-CCD-001",
         "name": "CFPB Consumer Complaint Database",
@@ -438,7 +438,7 @@
       },
       "source_record_id": "9999995",
       "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-      "retrieved_at": "2026-07-26T17:15:13Z",
+      "retrieved_at": "2026-07-26T21:32:42Z",
       "raw_record": {
         "product": "Credit reporting or other personal consumer reports",
         "complaint_what_happened": "",
@@ -462,7 +462,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       "parsed_fields": {
         "complaint_id": "9999995",
@@ -493,7 +493,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "CFPB field normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999995"
           ],
@@ -505,12 +505,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-AD25FA897168",
-          "evidence_id": "CAN-48ACDC0B6387",
+          "transition_id": "TRN-BE6252C52326",
+          "evidence_id": "CAN-D4C657208398",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C product mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999995"
           ],
@@ -524,7 +524,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-AB79646FDBF7",
+      "candidate_id": "CAN-EAD09D5588C0",
       "source": {
         "source_id": "CFPB-CCD-001",
         "name": "CFPB Consumer Complaint Database",
@@ -545,7 +545,7 @@
       },
       "source_record_id": "9999994",
       "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-      "retrieved_at": "2026-07-26T17:15:13Z",
+      "retrieved_at": "2026-07-26T21:32:42Z",
       "raw_record": {
         "product": "Credit reporting or other personal consumer reports",
         "complaint_what_happened": "",
@@ -569,7 +569,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       "parsed_fields": {
         "complaint_id": "9999994",
@@ -600,7 +600,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "CFPB field normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999994"
           ],
@@ -612,12 +612,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-94B1ACD432B9",
-          "evidence_id": "CAN-AB79646FDBF7",
+          "transition_id": "TRN-FE6B6A8EA125",
+          "evidence_id": "CAN-EAD09D5588C0",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C product mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999994"
           ],
@@ -631,7 +631,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-8D5A0415E1B7",
+      "candidate_id": "CAN-BB14BA4BE27E",
       "source": {
         "source_id": "CFPB-CCD-001",
         "name": "CFPB Consumer Complaint Database",
@@ -652,7 +652,7 @@
       },
       "source_record_id": "9999989",
       "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-      "retrieved_at": "2026-07-26T17:15:13Z",
+      "retrieved_at": "2026-07-26T21:32:42Z",
       "raw_record": {
         "product": "Credit reporting or other personal consumer reports",
         "complaint_what_happened": "",
@@ -676,7 +676,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       "parsed_fields": {
         "complaint_id": "9999989",
@@ -707,7 +707,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "CFPB field normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999989"
           ],
@@ -719,12 +719,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-7CDA5B30288E",
-          "evidence_id": "CAN-8D5A0415E1B7",
+          "transition_id": "TRN-8A6B8679A19C",
+          "evidence_id": "CAN-BB14BA4BE27E",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C product mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999989"
           ],
@@ -738,7 +738,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-F8D2B450533D",
+      "candidate_id": "CAN-0B5A044DF51D",
       "source": {
         "source_id": "CFPB-CCD-001",
         "name": "CFPB Consumer Complaint Database",
@@ -759,7 +759,7 @@
       },
       "source_record_id": "9999988",
       "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-      "retrieved_at": "2026-07-26T17:15:13Z",
+      "retrieved_at": "2026-07-26T21:32:42Z",
       "raw_record": {
         "product": "Credit reporting or other personal consumer reports",
         "complaint_what_happened": "",
@@ -783,7 +783,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       "parsed_fields": {
         "complaint_id": "9999988",
@@ -814,7 +814,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "CFPB field normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999988"
           ],
@@ -826,12 +826,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-2E337A91140D",
-          "evidence_id": "CAN-F8D2B450533D",
+          "transition_id": "TRN-DF34ECD7C3FB",
+          "evidence_id": "CAN-0B5A044DF51D",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C product mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999988"
           ],
@@ -845,7 +845,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-01C262C06A93",
+      "candidate_id": "CAN-0700E8398828",
       "source": {
         "source_id": "CFPB-CCD-001",
         "name": "CFPB Consumer Complaint Database",
@@ -866,7 +866,7 @@
       },
       "source_record_id": "9999986",
       "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-      "retrieved_at": "2026-07-26T17:15:13Z",
+      "retrieved_at": "2026-07-26T21:32:42Z",
       "raw_record": {
         "product": "Credit reporting or other personal consumer reports",
         "complaint_what_happened": "",
@@ -890,7 +890,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       "parsed_fields": {
         "complaint_id": "9999986",
@@ -921,7 +921,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "CFPB field normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999986"
           ],
@@ -933,12 +933,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-45C809E14C1C",
-          "evidence_id": "CAN-01C262C06A93",
+          "transition_id": "TRN-13A046DA008A",
+          "evidence_id": "CAN-0700E8398828",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C product mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999986"
           ],
@@ -952,7 +952,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-D2E9D92D1366",
+      "candidate_id": "CAN-C580C8FF6A7D",
       "source": {
         "source_id": "CFPB-CCD-001",
         "name": "CFPB Consumer Complaint Database",
@@ -973,7 +973,7 @@
       },
       "source_record_id": "9999985",
       "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-      "retrieved_at": "2026-07-26T17:15:13Z",
+      "retrieved_at": "2026-07-26T21:32:42Z",
       "raw_record": {
         "product": "Credit reporting or other personal consumer reports",
         "complaint_what_happened": "",
@@ -997,7 +997,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       "parsed_fields": {
         "complaint_id": "9999985",
@@ -1028,7 +1028,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "CFPB field normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999985"
           ],
@@ -1040,12 +1040,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-9A1DC9F78487",
-          "evidence_id": "CAN-D2E9D92D1366",
+          "transition_id": "TRN-2F46BD180B3A",
+          "evidence_id": "CAN-C580C8FF6A7D",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C product mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "9999985"
           ],
@@ -1059,7 +1059,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-D3EDCA1BFEBB",
+      "candidate_id": "CAN-D078AE04D717",
       "source": {
         "source_id": "COURTLISTENER-FCRA-001",
         "name": "CourtListener Federal Court Records (RECAP)",
@@ -1080,7 +1080,7 @@
       },
       "source_record_id": "73667058",
       "source_url": "https://www.courtlistener.com/docket/73667058/anton-v-bank-of-america-na/",
-      "retrieved_at": "2026-07-26T17:15:17Z",
+      "retrieved_at": "2026-07-26T21:32:43Z",
       "raw_record": {
         "docket_id": "73667058",
         "case_name": "ANTON v. BANK OF AMERICA, N.A.",
@@ -1102,7 +1102,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73667058/anton-v-bank-of-america-na/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       "parsed_fields": {
         "docket_id": "73667058",
@@ -1137,7 +1137,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "Court docket normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73667058"
           ],
@@ -1149,12 +1149,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-5807ED85376E",
-          "evidence_id": "CAN-D3EDCA1BFEBB",
+          "transition_id": "TRN-141C1ADD59D1",
+          "evidence_id": "CAN-D078AE04D717",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73667058"
           ],
@@ -1168,7 +1168,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-925E42EA0AB4",
+      "candidate_id": "CAN-776477EEBD89",
       "source": {
         "source_id": "COURTLISTENER-FCRA-001",
         "name": "CourtListener Federal Court Records (RECAP)",
@@ -1189,7 +1189,7 @@
       },
       "source_record_id": "73662410",
       "source_url": "https://www.courtlistener.com/docket/73662410/lisman-v-trans-union-llc/",
-      "retrieved_at": "2026-07-26T17:15:17Z",
+      "retrieved_at": "2026-07-26T21:32:43Z",
       "raw_record": {
         "docket_id": "73662410",
         "case_name": "LISMAN v. TRANS UNION, LLC",
@@ -1215,7 +1215,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73662410/lisman-v-trans-union-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       "parsed_fields": {
         "docket_id": "73662410",
@@ -1254,7 +1254,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "Court docket normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73662410"
           ],
@@ -1266,12 +1266,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-513BCA6B3E6F",
-          "evidence_id": "CAN-925E42EA0AB4",
+          "transition_id": "TRN-EFC38EE85B16",
+          "evidence_id": "CAN-776477EEBD89",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73662410"
           ],
@@ -1285,7 +1285,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-57DAC006B4D0",
+      "candidate_id": "CAN-ECE963A7A6FF",
       "source": {
         "source_id": "COURTLISTENER-FCRA-001",
         "name": "CourtListener Federal Court Records (RECAP)",
@@ -1306,7 +1306,7 @@
       },
       "source_record_id": "73662383",
       "source_url": "https://www.courtlistener.com/docket/73662383/suazo-garcia-v-hy-cite-corporation/",
-      "retrieved_at": "2026-07-26T17:15:17Z",
+      "retrieved_at": "2026-07-26T21:32:43Z",
       "raw_record": {
         "docket_id": "73662383",
         "case_name": "Suazo Garcia v. Hy Cite Corporation",
@@ -1328,7 +1328,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73662383/suazo-garcia-v-hy-cite-corporation/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       "parsed_fields": {
         "docket_id": "73662383",
@@ -1363,7 +1363,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "Court docket normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73662383"
           ],
@@ -1375,12 +1375,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-9D9569704122",
-          "evidence_id": "CAN-57DAC006B4D0",
+          "transition_id": "TRN-590B8EC28EAF",
+          "evidence_id": "CAN-ECE963A7A6FF",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73662383"
           ],
@@ -1394,7 +1394,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-753A991BABF1",
+      "candidate_id": "CAN-C611A3B2C128",
       "source": {
         "source_id": "COURTLISTENER-FCRA-001",
         "name": "CourtListener Federal Court Records (RECAP)",
@@ -1415,7 +1415,7 @@
       },
       "source_record_id": "73661100",
       "source_url": "https://www.courtlistener.com/docket/73661100/williams-v-equifax-information-services-llc/",
-      "retrieved_at": "2026-07-26T17:15:17Z",
+      "retrieved_at": "2026-07-26T21:32:43Z",
       "raw_record": {
         "docket_id": "73661100",
         "case_name": "WILLIAMS v. EQUIFAX INFORMATION SERVICES LLC",
@@ -1438,7 +1438,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73661100/williams-v-equifax-information-services-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       "parsed_fields": {
         "docket_id": "73661100",
@@ -1474,7 +1474,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "Court docket normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73661100"
           ],
@@ -1486,12 +1486,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-9A0CF473018B",
-          "evidence_id": "CAN-753A991BABF1",
+          "transition_id": "TRN-F4669D874A80",
+          "evidence_id": "CAN-C611A3B2C128",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73661100"
           ],
@@ -1505,7 +1505,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-9CC9CF826F82",
+      "candidate_id": "CAN-B69695D92F8F",
       "source": {
         "source_id": "COURTLISTENER-FCRA-001",
         "name": "CourtListener Federal Court Records (RECAP)",
@@ -1526,7 +1526,7 @@
       },
       "source_record_id": "73655224",
       "source_url": "https://www.courtlistener.com/docket/73655224/arno-v-equifax-information-services-llc/",
-      "retrieved_at": "2026-07-26T17:15:17Z",
+      "retrieved_at": "2026-07-26T21:32:43Z",
       "raw_record": {
         "docket_id": "73655224",
         "case_name": "Arno v. Equifax Information Services, LLC",
@@ -1552,7 +1552,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73655224/arno-v-equifax-information-services-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       "parsed_fields": {
         "docket_id": "73655224",
@@ -1591,7 +1591,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "Court docket normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73655224"
           ],
@@ -1603,12 +1603,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-52C7306F6005",
-          "evidence_id": "CAN-9CC9CF826F82",
+          "transition_id": "TRN-C40F0DD16D59",
+          "evidence_id": "CAN-B69695D92F8F",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73655224"
           ],
@@ -1622,7 +1622,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-230B06C32AC7",
+      "candidate_id": "CAN-74F40E00396E",
       "source": {
         "source_id": "COURTLISTENER-FCRA-001",
         "name": "CourtListener Federal Court Records (RECAP)",
@@ -1643,7 +1643,7 @@
       },
       "source_record_id": "73652491",
       "source_url": "https://www.courtlistener.com/docket/73652491/bennett-v-equifax-information-services-llc/",
-      "retrieved_at": "2026-07-26T17:15:17Z",
+      "retrieved_at": "2026-07-26T21:32:43Z",
       "raw_record": {
         "docket_id": "73652491",
         "case_name": "Bennett v. Equifax Information Services LLC",
@@ -1668,7 +1668,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73652491/bennett-v-equifax-information-services-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       "parsed_fields": {
         "docket_id": "73652491",
@@ -1706,7 +1706,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "Court docket normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73652491"
           ],
@@ -1718,12 +1718,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-FE160C4320C5",
-          "evidence_id": "CAN-230B06C32AC7",
+          "transition_id": "TRN-5CD3FEB87248",
+          "evidence_id": "CAN-74F40E00396E",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73652491"
           ],
@@ -1737,7 +1737,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-1E7282A7BFB2",
+      "candidate_id": "CAN-88E5621078B7",
       "source": {
         "source_id": "COURTLISTENER-FCRA-001",
         "name": "CourtListener Federal Court Records (RECAP)",
@@ -1758,7 +1758,7 @@
       },
       "source_record_id": "73647363",
       "source_url": "https://www.courtlistener.com/docket/73647363/wright-david-v-hireright-llc/",
-      "retrieved_at": "2026-07-26T17:15:17Z",
+      "retrieved_at": "2026-07-26T21:32:43Z",
       "raw_record": {
         "docket_id": "73647363",
         "case_name": "Wright, David v. HireRight LLC",
@@ -1780,7 +1780,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73647363/wright-david-v-hireright-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       "parsed_fields": {
         "docket_id": "73647363",
@@ -1815,7 +1815,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "Court docket normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73647363"
           ],
@@ -1827,12 +1827,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-77AB391449E5",
-          "evidence_id": "CAN-1E7282A7BFB2",
+          "transition_id": "TRN-B19B44AA3EAD",
+          "evidence_id": "CAN-88E5621078B7",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73647363"
           ],
@@ -1846,7 +1846,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-C9F8363A862A",
+      "candidate_id": "CAN-34D16D43315A",
       "source": {
         "source_id": "COURTLISTENER-FCRA-001",
         "name": "CourtListener Federal Court Records (RECAP)",
@@ -1867,7 +1867,7 @@
       },
       "source_record_id": "73646709",
       "source_url": "https://www.courtlistener.com/docket/73646709/jover-v-equifax-information-services-llc/",
-      "retrieved_at": "2026-07-26T17:15:17Z",
+      "retrieved_at": "2026-07-26T21:32:43Z",
       "raw_record": {
         "docket_id": "73646709",
         "case_name": "Jover v. Equifax Information Services, LLC",
@@ -1893,7 +1893,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73646709/jover-v-equifax-information-services-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       "parsed_fields": {
         "docket_id": "73646709",
@@ -1932,7 +1932,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "Court docket normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73646709"
           ],
@@ -1944,12 +1944,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-9C8B2F7A3DAC",
-          "evidence_id": "CAN-C9F8363A862A",
+          "transition_id": "TRN-83D8596C0112",
+          "evidence_id": "CAN-34D16D43315A",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "73646709"
           ],
@@ -1963,7 +1963,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-80662B02CF19",
+      "candidate_id": "CAN-34249AFDD8A2",
       "source": {
         "source_id": "FJC-IDB-FCRA-001",
         "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -1984,7 +1984,7 @@
       },
       "source_record_id": "26367223",
       "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26367223/",
-      "retrieved_at": "2026-07-26T17:15:19Z",
+      "retrieved_at": "2026-07-26T21:32:46Z",
       "raw_record": {
         "idb_record_id": "26367223",
         "office": "5",
@@ -2008,7 +2008,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26367223/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "WASHINGTON v. EQUIFAX INFORMATION SERVICES, LLC",
@@ -2061,7 +2061,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "FJC IDB case outcome normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26367223"
           ],
@@ -2073,12 +2073,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-B2C35F905476",
-          "evidence_id": "CAN-80662B02CF19",
+          "transition_id": "TRN-D61E5191F69A",
+          "evidence_id": "CAN-34249AFDD8A2",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26367223"
           ],
@@ -2092,7 +2092,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-C7E687AE62F4",
+      "candidate_id": "CAN-942CD691F85D",
       "source": {
         "source_id": "FJC-IDB-FCRA-001",
         "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2113,7 +2113,7 @@
       },
       "source_record_id": "26362522",
       "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26362522/",
-      "retrieved_at": "2026-07-26T17:15:19Z",
+      "retrieved_at": "2026-07-26T21:32:46Z",
       "raw_record": {
         "idb_record_id": "26362522",
         "office": "1",
@@ -2137,7 +2137,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26362522/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Proctor v. Experian Information Solutions, Inc.",
@@ -2190,7 +2190,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "FJC IDB case outcome normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26362522"
           ],
@@ -2202,12 +2202,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-D753BF380615",
-          "evidence_id": "CAN-C7E687AE62F4",
+          "transition_id": "TRN-A1DFCF159F2B",
+          "evidence_id": "CAN-942CD691F85D",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26362522"
           ],
@@ -2221,7 +2221,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-708F6B709800",
+      "candidate_id": "CAN-D19325F86326",
       "source": {
         "source_id": "FJC-IDB-FCRA-001",
         "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2242,7 +2242,7 @@
       },
       "source_record_id": "26361819",
       "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26361819/",
-      "retrieved_at": "2026-07-26T17:15:19Z",
+      "retrieved_at": "2026-07-26T21:32:46Z",
       "raw_record": {
         "idb_record_id": "26361819",
         "office": "1",
@@ -2266,7 +2266,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26361819/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Family Walk Allah Trust v. Bouc",
@@ -2319,7 +2319,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "FJC IDB case outcome normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26361819"
           ],
@@ -2331,12 +2331,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-2E530AF3B739",
-          "evidence_id": "CAN-708F6B709800",
+          "transition_id": "TRN-AB93F8F0E6AB",
+          "evidence_id": "CAN-D19325F86326",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26361819"
           ],
@@ -2350,7 +2350,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-7795CD09FFA8",
+      "candidate_id": "CAN-894B21578E08",
       "source": {
         "source_id": "FJC-IDB-FCRA-001",
         "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2371,7 +2371,7 @@
       },
       "source_record_id": "26236853",
       "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26236853/",
-      "retrieved_at": "2026-07-26T17:15:19Z",
+      "retrieved_at": "2026-07-26T21:32:46Z",
       "raw_record": {
         "idb_record_id": "26236853",
         "office": "1",
@@ -2395,7 +2395,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26236853/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "JAMES v. CIRCLE K STORES INC",
@@ -2448,7 +2448,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "FJC IDB case outcome normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26236853"
           ],
@@ -2460,12 +2460,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-CAC7E3EAD2F9",
-          "evidence_id": "CAN-7795CD09FFA8",
+          "transition_id": "TRN-5D5176837334",
+          "evidence_id": "CAN-894B21578E08",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26236853"
           ],
@@ -2479,7 +2479,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-ADE092C69178",
+      "candidate_id": "CAN-F21547C46A41",
       "source": {
         "source_id": "FJC-IDB-FCRA-001",
         "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2500,7 +2500,7 @@
       },
       "source_record_id": "26232596",
       "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26232596/",
-      "retrieved_at": "2026-07-26T17:15:19Z",
+      "retrieved_at": "2026-07-26T21:32:46Z",
       "raw_record": {
         "idb_record_id": "26232596",
         "office": "2",
@@ -2524,7 +2524,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26232596/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "United States v. Vivint Smart Home",
@@ -2577,7 +2577,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "FJC IDB case outcome normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26232596"
           ],
@@ -2589,12 +2589,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-B9219961F840",
-          "evidence_id": "CAN-ADE092C69178",
+          "transition_id": "TRN-9ECC9B6DB8FF",
+          "evidence_id": "CAN-F21547C46A41",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26232596"
           ],
@@ -2608,7 +2608,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-5D97706FAAB2",
+      "candidate_id": "CAN-D935F58BF2D1",
       "source": {
         "source_id": "FJC-IDB-FCRA-001",
         "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2629,7 +2629,7 @@
       },
       "source_record_id": "26207324",
       "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26207324/",
-      "retrieved_at": "2026-07-26T17:15:19Z",
+      "retrieved_at": "2026-07-26T21:32:46Z",
       "raw_record": {
         "idb_record_id": "26207324",
         "office": "8",
@@ -2653,7 +2653,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26207324/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Shuthima Pongsai v. American Express Company",
@@ -2706,7 +2706,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "FJC IDB case outcome normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26207324"
           ],
@@ -2718,12 +2718,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-049D1A08F836",
-          "evidence_id": "CAN-5D97706FAAB2",
+          "transition_id": "TRN-6043CA6E1C06",
+          "evidence_id": "CAN-D935F58BF2D1",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26207324"
           ],
@@ -2737,7 +2737,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-B54020EBB393",
+      "candidate_id": "CAN-264B72C1084F",
       "source": {
         "source_id": "FJC-IDB-FCRA-001",
         "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2758,7 +2758,7 @@
       },
       "source_record_id": "26202575",
       "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26202575/",
-      "retrieved_at": "2026-07-26T17:15:19Z",
+      "retrieved_at": "2026-07-26T21:32:46Z",
       "raw_record": {
         "idb_record_id": "26202575",
         "office": "2",
@@ -2782,7 +2782,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26202575/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Groth v. JPMorgan Chase Bank, N.A.",
@@ -2835,7 +2835,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "FJC IDB case outcome normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26202575"
           ],
@@ -2847,12 +2847,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-6919C1FA9389",
-          "evidence_id": "CAN-B54020EBB393",
+          "transition_id": "TRN-6C870BB6AC39",
+          "evidence_id": "CAN-264B72C1084F",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26202575"
           ],
@@ -2866,7 +2866,7 @@
       ]
     },
     {
-      "candidate_id": "CAN-BBB65A92A0F9",
+      "candidate_id": "CAN-7AAF23A9E448",
       "source": {
         "source_id": "FJC-IDB-FCRA-001",
         "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2887,7 +2887,7 @@
       },
       "source_record_id": "26197175",
       "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26197175/",
-      "retrieved_at": "2026-07-26T17:15:19Z",
+      "retrieved_at": "2026-07-26T21:32:46Z",
       "raw_record": {
         "idb_record_id": "26197175",
         "office": "2",
@@ -2911,7 +2911,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26197175/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Olivier Chaine v. Tesla Energy Operation, Inc.",
@@ -2964,7 +2964,7 @@
           "previous_state": "SOURCE_RECORD",
           "new_state": "NORMALISED_RECORD",
           "rule_or_process": "FJC IDB case outcome normalisation v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26197175"
           ],
@@ -2976,12 +2976,12 @@
           "actor_type": "deterministic rule"
         },
         {
-          "transition_id": "TRN-1F3B6EB165E4",
-          "evidence_id": "CAN-BBB65A92A0F9",
+          "transition_id": "TRN-A180EF93250B",
+          "evidence_id": "CAN-7AAF23A9E448",
           "previous_state": "NORMALISED_RECORD",
           "new_state": "EVIDENCE_CANDIDATE",
           "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
             "26197175"
           ],
@@ -2997,8 +2997,8 @@
   ],
   "verified_evidence": [
     {
-      "evidence_id": "EVD-54DF1CC356D2",
-      "candidate_id": "CAN-7B188C77E767",
+      "evidence_id": "EVD-28B51E39B707",
+      "candidate_id": "CAN-F8A64E850A8B",
       "study_id": "GS-CF001-C",
       "source_record_id": "9999997",
       "company_name": "TRANSUNION INTERMEDIATE HOLDINGS, INC.",
@@ -3017,7 +3017,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-7B188C77E767"
+        "CAN-F8A64E850A8B"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3040,14 +3040,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-72D088BC24FE",
-          "evidence_id": "EVD-54DF1CC356D2",
+          "transition_id": "TRN-9CBE62690FC0",
+          "evidence_id": "EVD-28B51E39B707",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-7B188C77E767"
+            "CAN-F8A64E850A8B"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3069,8 +3069,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-B02D028F0632",
-      "candidate_id": "CAN-9094CEFE3CEF",
+      "evidence_id": "EVD-66D9ECDD7923",
+      "candidate_id": "CAN-ECBC1434B40E",
       "study_id": "GS-CF001-C",
       "source_record_id": "9999996",
       "company_name": "EQUIFAX, INC.",
@@ -3089,7 +3089,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-9094CEFE3CEF"
+        "CAN-ECBC1434B40E"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3112,14 +3112,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-B2A5C6860000",
-          "evidence_id": "EVD-B02D028F0632",
+          "transition_id": "TRN-45204098ACA0",
+          "evidence_id": "EVD-66D9ECDD7923",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-9094CEFE3CEF"
+            "CAN-ECBC1434B40E"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3141,8 +3141,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-B252E0B8B7C0",
-      "candidate_id": "CAN-48ACDC0B6387",
+      "evidence_id": "EVD-936633FC982C",
+      "candidate_id": "CAN-D4C657208398",
       "study_id": "GS-CF001-C",
       "source_record_id": "9999995",
       "company_name": "EQUIFAX, INC.",
@@ -3161,7 +3161,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-48ACDC0B6387"
+        "CAN-D4C657208398"
       ],
       "missing_evidence": [
         "independent non-CFPB corroboration"
@@ -3182,14 +3182,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-8C7458078F9F",
-          "evidence_id": "EVD-B252E0B8B7C0",
+          "transition_id": "TRN-5F2B84D4F6F6",
+          "evidence_id": "EVD-936633FC982C",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "CFPB_LIMITED_EVIDENCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-48ACDC0B6387"
+            "CAN-D4C657208398"
           ],
           "output": "verified_candidate",
           "confidence": 0.75,
@@ -3216,8 +3216,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-BD49B8C1847B",
-      "candidate_id": "CAN-AB79646FDBF7",
+      "evidence_id": "EVD-4B081545C79F",
+      "candidate_id": "CAN-EAD09D5588C0",
       "study_id": "GS-CF001-C",
       "source_record_id": "9999994",
       "company_name": "EQUIFAX, INC.",
@@ -3236,7 +3236,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-AB79646FDBF7"
+        "CAN-EAD09D5588C0"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3259,14 +3259,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-B535B16CCFC1",
-          "evidence_id": "EVD-BD49B8C1847B",
+          "transition_id": "TRN-0261ADB59CD3",
+          "evidence_id": "EVD-4B081545C79F",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-AB79646FDBF7"
+            "CAN-EAD09D5588C0"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3288,8 +3288,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-F5DD2A074622",
-      "candidate_id": "CAN-8D5A0415E1B7",
+      "evidence_id": "EVD-7B6427514240",
+      "candidate_id": "CAN-BB14BA4BE27E",
       "study_id": "GS-CF001-C",
       "source_record_id": "9999989",
       "company_name": "Lendmark Financial Services",
@@ -3308,7 +3308,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-8D5A0415E1B7"
+        "CAN-BB14BA4BE27E"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3331,14 +3331,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-AEFB6E8FF94A",
-          "evidence_id": "EVD-F5DD2A074622",
+          "transition_id": "TRN-5CAC021F39B6",
+          "evidence_id": "EVD-7B6427514240",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-8D5A0415E1B7"
+            "CAN-BB14BA4BE27E"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3360,8 +3360,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-572BD0B5ED79",
-      "candidate_id": "CAN-F8D2B450533D",
+      "evidence_id": "EVD-6C6190CABE8C",
+      "candidate_id": "CAN-0B5A044DF51D",
       "study_id": "GS-CF001-C",
       "source_record_id": "9999988",
       "company_name": "EQUIFAX, INC.",
@@ -3380,7 +3380,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-F8D2B450533D"
+        "CAN-0B5A044DF51D"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3403,14 +3403,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-16DB571D0557",
-          "evidence_id": "EVD-572BD0B5ED79",
+          "transition_id": "TRN-717052AF9691",
+          "evidence_id": "EVD-6C6190CABE8C",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-F8D2B450533D"
+            "CAN-0B5A044DF51D"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3432,8 +3432,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-CA8BCC788CBD",
-      "candidate_id": "CAN-01C262C06A93",
+      "evidence_id": "EVD-0367F3183CA6",
+      "candidate_id": "CAN-0700E8398828",
       "study_id": "GS-CF001-C",
       "source_record_id": "9999986",
       "company_name": "Experian Information Solutions Inc.",
@@ -3452,7 +3452,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-01C262C06A93"
+        "CAN-0700E8398828"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3475,14 +3475,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-33B36299ADAF",
-          "evidence_id": "EVD-CA8BCC788CBD",
+          "transition_id": "TRN-853B16282B1A",
+          "evidence_id": "EVD-0367F3183CA6",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-01C262C06A93"
+            "CAN-0700E8398828"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3504,8 +3504,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-A3D9992783BC",
-      "candidate_id": "CAN-D2E9D92D1366",
+      "evidence_id": "EVD-968C6A273272",
+      "candidate_id": "CAN-C580C8FF6A7D",
       "study_id": "GS-CF001-C",
       "source_record_id": "9999985",
       "company_name": "EQUIFAX, INC.",
@@ -3524,7 +3524,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-D2E9D92D1366"
+        "CAN-C580C8FF6A7D"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3547,14 +3547,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-463B3B5E7159",
-          "evidence_id": "EVD-A3D9992783BC",
+          "transition_id": "TRN-0A34EA814A4A",
+          "evidence_id": "EVD-968C6A273272",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-D2E9D92D1366"
+            "CAN-C580C8FF6A7D"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3576,8 +3576,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-D5F0D5534292",
-      "candidate_id": "CAN-D3EDCA1BFEBB",
+      "evidence_id": "EVD-49E278F60D33",
+      "candidate_id": "CAN-D078AE04D717",
       "study_id": "GS-CF001-C",
       "source_record_id": "73667058",
       "company_name": "BANK OF AMERICA, N.A.",
@@ -3596,7 +3596,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-D3EDCA1BFEBB"
+        "CAN-D078AE04D717"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3619,14 +3619,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-20CB59FA190B",
-          "evidence_id": "EVD-D5F0D5534292",
+          "transition_id": "TRN-19CCDB462D24",
+          "evidence_id": "EVD-49E278F60D33",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-D3EDCA1BFEBB"
+            "CAN-D078AE04D717"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3648,8 +3648,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-3A259E6FC571",
-      "candidate_id": "CAN-925E42EA0AB4",
+      "evidence_id": "EVD-35191F6DA61B",
+      "candidate_id": "CAN-776477EEBD89",
       "study_id": "GS-CF001-C",
       "source_record_id": "73662410",
       "company_name": "TRANS UNION, LLC",
@@ -3668,7 +3668,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-925E42EA0AB4"
+        "CAN-776477EEBD89"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3691,14 +3691,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-139DD6C14F0A",
-          "evidence_id": "EVD-3A259E6FC571",
+          "transition_id": "TRN-ED50B552FE93",
+          "evidence_id": "EVD-35191F6DA61B",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-925E42EA0AB4"
+            "CAN-776477EEBD89"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3720,8 +3720,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-29FFD18DDB3E",
-      "candidate_id": "CAN-57DAC006B4D0",
+      "evidence_id": "EVD-115A4F8ECAE7",
+      "candidate_id": "CAN-ECE963A7A6FF",
       "study_id": "GS-CF001-C",
       "source_record_id": "73662383",
       "company_name": "Hy Cite Corporation",
@@ -3740,7 +3740,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-57DAC006B4D0"
+        "CAN-ECE963A7A6FF"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3763,14 +3763,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-022C489D75F1",
-          "evidence_id": "EVD-29FFD18DDB3E",
+          "transition_id": "TRN-AF8CA0C0C19E",
+          "evidence_id": "EVD-115A4F8ECAE7",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-57DAC006B4D0"
+            "CAN-ECE963A7A6FF"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3792,8 +3792,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-09B0EFB4BFDA",
-      "candidate_id": "CAN-753A991BABF1",
+      "evidence_id": "EVD-17FF0C22CAF4",
+      "candidate_id": "CAN-C611A3B2C128",
       "study_id": "GS-CF001-C",
       "source_record_id": "73661100",
       "company_name": "EQUIFAX INFORMATION SERVICES LLC",
@@ -3812,7 +3812,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-753A991BABF1"
+        "CAN-C611A3B2C128"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3835,14 +3835,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-CB1FC1511C37",
-          "evidence_id": "EVD-09B0EFB4BFDA",
+          "transition_id": "TRN-8CDBC6602771",
+          "evidence_id": "EVD-17FF0C22CAF4",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-753A991BABF1"
+            "CAN-C611A3B2C128"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3864,8 +3864,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-9184F53EC48B",
-      "candidate_id": "CAN-9CC9CF826F82",
+      "evidence_id": "EVD-3F2B6EE3DB42",
+      "candidate_id": "CAN-B69695D92F8F",
       "study_id": "GS-CF001-C",
       "source_record_id": "73655224",
       "company_name": "Equifax Information Services, LLC",
@@ -3884,7 +3884,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-9CC9CF826F82"
+        "CAN-B69695D92F8F"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3907,14 +3907,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-0EAC060C71A5",
-          "evidence_id": "EVD-9184F53EC48B",
+          "transition_id": "TRN-CAE08854D74B",
+          "evidence_id": "EVD-3F2B6EE3DB42",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-9CC9CF826F82"
+            "CAN-B69695D92F8F"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -3936,8 +3936,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-20054679C056",
-      "candidate_id": "CAN-230B06C32AC7",
+      "evidence_id": "EVD-2E9764AB6C93",
+      "candidate_id": "CAN-74F40E00396E",
       "study_id": "GS-CF001-C",
       "source_record_id": "73652491",
       "company_name": "Equifax Information Services LLC",
@@ -3956,7 +3956,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-230B06C32AC7"
+        "CAN-74F40E00396E"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -3979,14 +3979,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-2F9532ABF279",
-          "evidence_id": "EVD-20054679C056",
+          "transition_id": "TRN-18B0DB42161B",
+          "evidence_id": "EVD-2E9764AB6C93",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-230B06C32AC7"
+            "CAN-74F40E00396E"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -4008,8 +4008,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-AAB34D4880BA",
-      "candidate_id": "CAN-1E7282A7BFB2",
+      "evidence_id": "EVD-B0A5EEDE06A1",
+      "candidate_id": "CAN-88E5621078B7",
       "study_id": "GS-CF001-C",
       "source_record_id": "73647363",
       "company_name": "HireRight LLC",
@@ -4028,7 +4028,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-1E7282A7BFB2"
+        "CAN-88E5621078B7"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -4051,14 +4051,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-5C73F7121124",
-          "evidence_id": "EVD-AAB34D4880BA",
+          "transition_id": "TRN-F6727A09405F",
+          "evidence_id": "EVD-B0A5EEDE06A1",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-1E7282A7BFB2"
+            "CAN-88E5621078B7"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -4080,8 +4080,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-56320C840917",
-      "candidate_id": "CAN-C9F8363A862A",
+      "evidence_id": "EVD-8C669BD3F643",
+      "candidate_id": "CAN-34D16D43315A",
       "study_id": "GS-CF001-C",
       "source_record_id": "73646709",
       "company_name": "Equifax Information Services, LLC",
@@ -4100,7 +4100,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-C9F8363A862A"
+        "CAN-34D16D43315A"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -4123,14 +4123,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-A2F5F959DB89",
-          "evidence_id": "EVD-56320C840917",
+          "transition_id": "TRN-CD46878490C0",
+          "evidence_id": "EVD-8C669BD3F643",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-C9F8363A862A"
+            "CAN-34D16D43315A"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -4152,8 +4152,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-3848CFE9BF3E",
-      "candidate_id": "CAN-80662B02CF19",
+      "evidence_id": "EVD-2C6E53A827F7",
+      "candidate_id": "CAN-34249AFDD8A2",
       "study_id": "GS-CF001-C",
       "source_record_id": "26367223",
       "company_name": "EQUIFAX INFORMATION SER, ET AL",
@@ -4172,7 +4172,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-80662B02CF19"
+        "CAN-34249AFDD8A2"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -4195,14 +4195,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-5B8739EA5194",
-          "evidence_id": "EVD-3848CFE9BF3E",
+          "transition_id": "TRN-9448BFDA3905",
+          "evidence_id": "EVD-2C6E53A827F7",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-80662B02CF19"
+            "CAN-34249AFDD8A2"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -4224,8 +4224,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-2ADDDC20E528",
-      "candidate_id": "CAN-C7E687AE62F4",
+      "evidence_id": "EVD-BE7D0129D6FE",
+      "candidate_id": "CAN-942CD691F85D",
       "study_id": "GS-CF001-C",
       "source_record_id": "26362522",
       "company_name": "EXPERIAN INFORMATION SO, ET AL",
@@ -4244,7 +4244,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-C7E687AE62F4"
+        "CAN-942CD691F85D"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -4267,14 +4267,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-1EBCFDAA2626",
-          "evidence_id": "EVD-2ADDDC20E528",
+          "transition_id": "TRN-5B2CB72C7101",
+          "evidence_id": "EVD-BE7D0129D6FE",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-C7E687AE62F4"
+            "CAN-942CD691F85D"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -4296,8 +4296,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-26F047F4853E",
-      "candidate_id": "CAN-708F6B709800",
+      "evidence_id": "EVD-628B25012603",
+      "candidate_id": "CAN-D19325F86326",
       "study_id": "GS-CF001-C",
       "source_record_id": "26361819",
       "company_name": "BOUC, ET AL",
@@ -4316,7 +4316,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-708F6B709800"
+        "CAN-D19325F86326"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -4339,14 +4339,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-CBF68786B886",
-          "evidence_id": "EVD-26F047F4853E",
+          "transition_id": "TRN-22E4A2BCC149",
+          "evidence_id": "EVD-628B25012603",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-708F6B709800"
+            "CAN-D19325F86326"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -4368,8 +4368,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-6A0A52C53E22",
-      "candidate_id": "CAN-7795CD09FFA8",
+      "evidence_id": "EVD-C7327BD5DD5F",
+      "candidate_id": "CAN-894B21578E08",
       "study_id": "GS-CF001-C",
       "source_record_id": "26236853",
       "company_name": "CIRCLE K STORES INC",
@@ -4388,7 +4388,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-7795CD09FFA8"
+        "CAN-894B21578E08"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -4411,14 +4411,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-FF60214AD7EC",
-          "evidence_id": "EVD-6A0A52C53E22",
+          "transition_id": "TRN-460E41281886",
+          "evidence_id": "EVD-C7327BD5DD5F",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-7795CD09FFA8"
+            "CAN-894B21578E08"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -4440,8 +4440,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-C9ED839573F1",
-      "candidate_id": "CAN-ADE092C69178",
+      "evidence_id": "EVD-7E96AA349101",
+      "candidate_id": "CAN-F21547C46A41",
       "study_id": "GS-CF001-C",
       "source_record_id": "26232596",
       "company_name": "VIVINT SMART HOME",
@@ -4460,7 +4460,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-ADE092C69178"
+        "CAN-F21547C46A41"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -4483,14 +4483,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-BC28883D7EA6",
-          "evidence_id": "EVD-C9ED839573F1",
+          "transition_id": "TRN-C80F14BFAFE8",
+          "evidence_id": "EVD-7E96AA349101",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-ADE092C69178"
+            "CAN-F21547C46A41"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -4512,8 +4512,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-E0C526190582",
-      "candidate_id": "CAN-5D97706FAAB2",
+      "evidence_id": "EVD-E6D9F831A02F",
+      "candidate_id": "CAN-D935F58BF2D1",
       "study_id": "GS-CF001-C",
       "source_record_id": "26207324",
       "company_name": "AMERICAN EXPRESS COMPAN, ET AL",
@@ -4532,7 +4532,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-5D97706FAAB2"
+        "CAN-D935F58BF2D1"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -4555,14 +4555,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-82438C9F94C1",
-          "evidence_id": "EVD-E0C526190582",
+          "transition_id": "TRN-751F4A22A7FA",
+          "evidence_id": "EVD-E6D9F831A02F",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-5D97706FAAB2"
+            "CAN-D935F58BF2D1"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -4584,8 +4584,8 @@
       "contradicts_occurrence": true
     },
     {
-      "evidence_id": "EVD-A47CA4024DE2",
-      "candidate_id": "CAN-B54020EBB393",
+      "evidence_id": "EVD-01F992D15FBF",
+      "candidate_id": "CAN-264B72C1084F",
       "study_id": "GS-CF001-C",
       "source_record_id": "26202575",
       "company_name": "JPMORGAN CHASE BANK, N.A.",
@@ -4604,7 +4604,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-B54020EBB393"
+        "CAN-264B72C1084F"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -4627,14 +4627,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-75EC07E9113C",
-          "evidence_id": "EVD-A47CA4024DE2",
+          "transition_id": "TRN-53AC0D318BED",
+          "evidence_id": "EVD-01F992D15FBF",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-B54020EBB393"
+            "CAN-264B72C1084F"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -4656,8 +4656,8 @@
       "contradicts_occurrence": false
     },
     {
-      "evidence_id": "EVD-889EA82F27FD",
-      "candidate_id": "CAN-BBB65A92A0F9",
+      "evidence_id": "EVD-427AA1556925",
+      "candidate_id": "CAN-7AAF23A9E448",
       "study_id": "GS-CF001-C",
       "source_record_id": "26197175",
       "company_name": "TESLA ENERGY OPERATIONS, ET AL",
@@ -4676,7 +4676,7 @@
         "Verification does not assess whether software should be built."
       ],
       "supporting_candidate_ids": [
-        "CAN-BBB65A92A0F9"
+        "CAN-7AAF23A9E448"
       ],
       "missing_evidence": [
         "operational complaint mechanism",
@@ -4699,14 +4699,14 @@
       ],
       "state_transitions": [
         {
-          "transition_id": "TRN-0DEF04B39686",
-          "evidence_id": "EVD-889EA82F27FD",
+          "transition_id": "TRN-F93895E79AD0",
+          "evidence_id": "EVD-427AA1556925",
           "previous_state": "EVIDENCE_CANDIDATE",
           "new_state": "VERIFIED_WITHIN_SOURCE",
           "rule_or_process": "Verification V1 deterministic classification",
-          "timestamp": "2026-07-26T17:15:53Z",
+          "timestamp": "2026-07-26T21:32:55Z",
           "inputs": [
-            "CAN-BBB65A92A0F9"
+            "CAN-7AAF23A9E448"
           ],
           "output": "rejected_candidate",
           "confidence": 0.35,
@@ -4730,12 +4730,12 @@
   ],
   "findings": [
     {
-      "finding_id": "FND-53681F803C93",
+      "finding_id": "FND-E20932B0E85E",
       "study_id": "GS-CF001-C",
       "mechanism": "unclassified_credit_reporting_complaint",
       "status": "needs_more_evidence",
       "evidence_ids": [
-        "EVD-B252E0B8B7C0"
+        "EVD-936633FC982C"
       ],
       "companies": [
         "EQUIFAX, INC."
@@ -4744,6 +4744,7 @@
       "company_count": 1,
       "summary": "unclassified_credit_reporting_complaint appears in one CFPB record. Repetition is not established, and independent corroboration is required.",
       "missing_evidence": [
+        "an identified operational mechanism",
         "minimum 3 verified evidence items",
         "evidence across at least 2 companies",
         "independent non-CFPB corroboration"
@@ -4751,7 +4752,7 @@
       "reasoning_chain": [
         "Grouped verified evidence by operational mechanism unclassified_credit_reporting_complaint.",
         "Finding remains limited because CFPB is currently the only source.",
-        "TRN-D7DF9BFE8B82"
+        "TRN-8754EB64EA10"
       ],
       "date_range": "2024-09-03T22:41:36.000Z to 2024-09-03T22:41:36.000Z",
       "product_issue_mappings": [
@@ -4787,8 +4788,8 @@
   ],
   "opportunities": [
     {
-      "opportunity_id": "OPP-6E1730C851CB",
-      "finding_id": "FND-53681F803C93",
+      "opportunity_id": "OPP-16F7E289ED98",
+      "finding_id": "FND-E20932B0E85E",
       "status": "unproven",
       "component_hypothesis": "Unclassified mechanism - no supported component yet",
       "buyer_clarity": "unclear",
@@ -4805,9 +4806,10 @@
       "cross_company_applicability": "unproven",
       "non_software_alternatives": "process change, policy change, staffing, vendor tools, or training may address the mechanism",
       "evidence_ids": [
-        "EVD-B252E0B8B7C0"
+        "EVD-936633FC982C"
       ],
       "missing_evidence": [
+        "an identified operational mechanism",
         "minimum 3 verified evidence items",
         "evidence across at least 2 companies",
         "independent non-CFPB corroboration",
@@ -4818,7 +4820,7 @@
         "commercial urgency evidence"
       ],
       "reasoning_chain": [
-        "Assessed finding FND-53681F803C93 after finding generation.",
+        "Assessed finding FND-E20932B0E85E after finding generation.",
         "Mapped mechanism unclassified_credit_reporting_complaint to component hypothesis: Unclassified mechanism - no supported component yet.",
         "Opportunity assessment does not override missing evidence."
       ]
@@ -4853,30 +4855,30 @@
       "threshold": "Raw retrieval artifact or diagnostic exists",
       "observed_value": "True",
       "evidence_ids": [
-        "EVD-54DF1CC356D2",
-        "EVD-B02D028F0632",
-        "EVD-B252E0B8B7C0",
-        "EVD-BD49B8C1847B",
-        "EVD-F5DD2A074622",
-        "EVD-572BD0B5ED79",
-        "EVD-CA8BCC788CBD",
-        "EVD-A3D9992783BC",
-        "EVD-D5F0D5534292",
-        "EVD-3A259E6FC571",
-        "EVD-29FFD18DDB3E",
-        "EVD-09B0EFB4BFDA",
-        "EVD-9184F53EC48B",
-        "EVD-20054679C056",
-        "EVD-AAB34D4880BA",
-        "EVD-56320C840917",
-        "EVD-3848CFE9BF3E",
-        "EVD-2ADDDC20E528",
-        "EVD-26F047F4853E",
-        "EVD-6A0A52C53E22",
-        "EVD-C9ED839573F1",
-        "EVD-E0C526190582",
-        "EVD-A47CA4024DE2",
-        "EVD-889EA82F27FD"
+        "EVD-28B51E39B707",
+        "EVD-66D9ECDD7923",
+        "EVD-936633FC982C",
+        "EVD-4B081545C79F",
+        "EVD-7B6427514240",
+        "EVD-6C6190CABE8C",
+        "EVD-0367F3183CA6",
+        "EVD-968C6A273272",
+        "EVD-49E278F60D33",
+        "EVD-35191F6DA61B",
+        "EVD-115A4F8ECAE7",
+        "EVD-17FF0C22CAF4",
+        "EVD-3F2B6EE3DB42",
+        "EVD-2E9764AB6C93",
+        "EVD-B0A5EEDE06A1",
+        "EVD-8C669BD3F643",
+        "EVD-2C6E53A827F7",
+        "EVD-BE7D0129D6FE",
+        "EVD-628B25012603",
+        "EVD-C7327BD5DD5F",
+        "EVD-7E96AA349101",
+        "EVD-E6D9F831A02F",
+        "EVD-01F992D15FBF",
+        "EVD-427AA1556925"
       ],
       "supporting_evidence": [
         "raw artifacts",
@@ -4898,56 +4900,56 @@
       "threshold": "Normalised candidate records exist",
       "observed_value": "True",
       "evidence_ids": [
-        "EVD-54DF1CC356D2",
-        "EVD-B02D028F0632",
-        "EVD-B252E0B8B7C0",
-        "EVD-BD49B8C1847B",
-        "EVD-F5DD2A074622",
-        "EVD-572BD0B5ED79",
-        "EVD-CA8BCC788CBD",
-        "EVD-A3D9992783BC",
-        "EVD-D5F0D5534292",
-        "EVD-3A259E6FC571",
-        "EVD-29FFD18DDB3E",
-        "EVD-09B0EFB4BFDA",
-        "EVD-9184F53EC48B",
-        "EVD-20054679C056",
-        "EVD-AAB34D4880BA",
-        "EVD-56320C840917",
-        "EVD-3848CFE9BF3E",
-        "EVD-2ADDDC20E528",
-        "EVD-26F047F4853E",
-        "EVD-6A0A52C53E22",
-        "EVD-C9ED839573F1",
-        "EVD-E0C526190582",
-        "EVD-A47CA4024DE2",
-        "EVD-889EA82F27FD"
+        "EVD-28B51E39B707",
+        "EVD-66D9ECDD7923",
+        "EVD-936633FC982C",
+        "EVD-4B081545C79F",
+        "EVD-7B6427514240",
+        "EVD-6C6190CABE8C",
+        "EVD-0367F3183CA6",
+        "EVD-968C6A273272",
+        "EVD-49E278F60D33",
+        "EVD-35191F6DA61B",
+        "EVD-115A4F8ECAE7",
+        "EVD-17FF0C22CAF4",
+        "EVD-3F2B6EE3DB42",
+        "EVD-2E9764AB6C93",
+        "EVD-B0A5EEDE06A1",
+        "EVD-8C669BD3F643",
+        "EVD-2C6E53A827F7",
+        "EVD-BE7D0129D6FE",
+        "EVD-628B25012603",
+        "EVD-C7327BD5DD5F",
+        "EVD-7E96AA349101",
+        "EVD-E6D9F831A02F",
+        "EVD-01F992D15FBF",
+        "EVD-427AA1556925"
       ],
       "supporting_evidence": [
-        "CAN-7B188C77E767",
-        "CAN-9094CEFE3CEF",
-        "CAN-48ACDC0B6387",
-        "CAN-AB79646FDBF7",
-        "CAN-8D5A0415E1B7",
-        "CAN-F8D2B450533D",
-        "CAN-01C262C06A93",
-        "CAN-D2E9D92D1366",
-        "CAN-D3EDCA1BFEBB",
-        "CAN-925E42EA0AB4",
-        "CAN-57DAC006B4D0",
-        "CAN-753A991BABF1",
-        "CAN-9CC9CF826F82",
-        "CAN-230B06C32AC7",
-        "CAN-1E7282A7BFB2",
-        "CAN-C9F8363A862A",
-        "CAN-80662B02CF19",
-        "CAN-C7E687AE62F4",
-        "CAN-708F6B709800",
-        "CAN-7795CD09FFA8",
-        "CAN-ADE092C69178",
-        "CAN-5D97706FAAB2",
-        "CAN-B54020EBB393",
-        "CAN-BBB65A92A0F9"
+        "CAN-F8A64E850A8B",
+        "CAN-ECBC1434B40E",
+        "CAN-D4C657208398",
+        "CAN-EAD09D5588C0",
+        "CAN-BB14BA4BE27E",
+        "CAN-0B5A044DF51D",
+        "CAN-0700E8398828",
+        "CAN-C580C8FF6A7D",
+        "CAN-D078AE04D717",
+        "CAN-776477EEBD89",
+        "CAN-ECE963A7A6FF",
+        "CAN-C611A3B2C128",
+        "CAN-B69695D92F8F",
+        "CAN-74F40E00396E",
+        "CAN-88E5621078B7",
+        "CAN-34D16D43315A",
+        "CAN-34249AFDD8A2",
+        "CAN-942CD691F85D",
+        "CAN-D19325F86326",
+        "CAN-894B21578E08",
+        "CAN-F21547C46A41",
+        "CAN-D935F58BF2D1",
+        "CAN-264B72C1084F",
+        "CAN-7AAF23A9E448"
       ],
       "counter_evidence": [],
       "confidence": 0.9,
@@ -4965,30 +4967,30 @@
       "threshold": "All evidence maps to GS-CF001-C",
       "observed_value": "True",
       "evidence_ids": [
-        "EVD-54DF1CC356D2",
-        "EVD-B02D028F0632",
-        "EVD-B252E0B8B7C0",
-        "EVD-BD49B8C1847B",
-        "EVD-F5DD2A074622",
-        "EVD-572BD0B5ED79",
-        "EVD-CA8BCC788CBD",
-        "EVD-A3D9992783BC",
-        "EVD-D5F0D5534292",
-        "EVD-3A259E6FC571",
-        "EVD-29FFD18DDB3E",
-        "EVD-09B0EFB4BFDA",
-        "EVD-9184F53EC48B",
-        "EVD-20054679C056",
-        "EVD-AAB34D4880BA",
-        "EVD-56320C840917",
-        "EVD-3848CFE9BF3E",
-        "EVD-2ADDDC20E528",
-        "EVD-26F047F4853E",
-        "EVD-6A0A52C53E22",
-        "EVD-C9ED839573F1",
-        "EVD-E0C526190582",
-        "EVD-A47CA4024DE2",
-        "EVD-889EA82F27FD"
+        "EVD-28B51E39B707",
+        "EVD-66D9ECDD7923",
+        "EVD-936633FC982C",
+        "EVD-4B081545C79F",
+        "EVD-7B6427514240",
+        "EVD-6C6190CABE8C",
+        "EVD-0367F3183CA6",
+        "EVD-968C6A273272",
+        "EVD-49E278F60D33",
+        "EVD-35191F6DA61B",
+        "EVD-115A4F8ECAE7",
+        "EVD-17FF0C22CAF4",
+        "EVD-3F2B6EE3DB42",
+        "EVD-2E9764AB6C93",
+        "EVD-B0A5EEDE06A1",
+        "EVD-8C669BD3F643",
+        "EVD-2C6E53A827F7",
+        "EVD-BE7D0129D6FE",
+        "EVD-628B25012603",
+        "EVD-C7327BD5DD5F",
+        "EVD-7E96AA349101",
+        "EVD-E6D9F831A02F",
+        "EVD-01F992D15FBF",
+        "EVD-427AA1556925"
       ],
       "supporting_evidence": [
         "GS-CF001-C deterministic product mapping"
@@ -5009,7 +5011,7 @@
       "threshold": "Minimum repeated mechanism finding",
       "observed_value": "False",
       "evidence_ids": [
-        "EVD-B252E0B8B7C0"
+        "EVD-936633FC982C"
       ],
       "supporting_evidence": [],
       "counter_evidence": [],
@@ -5030,7 +5032,7 @@
       "threshold": "At least 2 company references",
       "observed_value": "1",
       "evidence_ids": [
-        "EVD-B252E0B8B7C0"
+        "EVD-936633FC982C"
       ],
       "supporting_evidence": [
         "EQUIFAX, INC."
@@ -5053,7 +5055,7 @@
       "threshold": "Finding includes operational mechanism definition",
       "observed_value": "False",
       "evidence_ids": [
-        "EVD-B252E0B8B7C0"
+        "EVD-936633FC982C"
       ],
       "supporting_evidence": [],
       "counter_evidence": [],
@@ -5074,7 +5076,7 @@
       "threshold": "Opportunity assessment exists",
       "observed_value": "False",
       "evidence_ids": [
-        "EVD-B252E0B8B7C0"
+        "EVD-936633FC982C"
       ],
       "supporting_evidence": [
         "Unclassified mechanism - no supported component yet"
@@ -5099,30 +5101,30 @@
       "threshold": "At least 1 adjudicated finding of occurrence, on a mechanism independently alleged by another source family",
       "observed_value": "corroborated=0; adjudicated=8; establishing occurrence=0",
       "evidence_ids": [
-        "EVD-54DF1CC356D2",
-        "EVD-B02D028F0632",
-        "EVD-B252E0B8B7C0",
-        "EVD-BD49B8C1847B",
-        "EVD-F5DD2A074622",
-        "EVD-572BD0B5ED79",
-        "EVD-CA8BCC788CBD",
-        "EVD-A3D9992783BC",
-        "EVD-D5F0D5534292",
-        "EVD-3A259E6FC571",
-        "EVD-29FFD18DDB3E",
-        "EVD-09B0EFB4BFDA",
-        "EVD-9184F53EC48B",
-        "EVD-20054679C056",
-        "EVD-AAB34D4880BA",
-        "EVD-56320C840917",
-        "EVD-3848CFE9BF3E",
-        "EVD-2ADDDC20E528",
-        "EVD-26F047F4853E",
-        "EVD-6A0A52C53E22",
-        "EVD-C9ED839573F1",
-        "EVD-E0C526190582",
-        "EVD-A47CA4024DE2",
-        "EVD-889EA82F27FD"
+        "EVD-28B51E39B707",
+        "EVD-66D9ECDD7923",
+        "EVD-936633FC982C",
+        "EVD-4B081545C79F",
+        "EVD-7B6427514240",
+        "EVD-6C6190CABE8C",
+        "EVD-0367F3183CA6",
+        "EVD-968C6A273272",
+        "EVD-49E278F60D33",
+        "EVD-35191F6DA61B",
+        "EVD-115A4F8ECAE7",
+        "EVD-17FF0C22CAF4",
+        "EVD-3F2B6EE3DB42",
+        "EVD-2E9764AB6C93",
+        "EVD-B0A5EEDE06A1",
+        "EVD-8C669BD3F643",
+        "EVD-2C6E53A827F7",
+        "EVD-BE7D0129D6FE",
+        "EVD-628B25012603",
+        "EVD-C7327BD5DD5F",
+        "EVD-7E96AA349101",
+        "EVD-E6D9F831A02F",
+        "EVD-01F992D15FBF",
+        "EVD-427AA1556925"
       ],
       "supporting_evidence": [
         "CFPB complaints",
@@ -5149,7 +5151,7 @@
       "threshold": "Confirmed buyer evidence",
       "observed_value": "unverified",
       "evidence_ids": [
-        "EVD-B252E0B8B7C0"
+        "EVD-936633FC982C"
       ],
       "supporting_evidence": [
         "unclear"
@@ -5176,7 +5178,7 @@
       "threshold": "Existing solution maturity evidence",
       "observed_value": "unknown",
       "evidence_ids": [
-        "EVD-B252E0B8B7C0"
+        "EVD-936633FC982C"
       ],
       "supporting_evidence": [],
       "counter_evidence": [
@@ -5199,7 +5201,7 @@
       "threshold": "Commercial urgency evidence",
       "observed_value": "unproven",
       "evidence_ids": [
-        "EVD-B252E0B8B7C0"
+        "EVD-936633FC982C"
       ],
       "supporting_evidence": [],
       "counter_evidence": [
@@ -5224,30 +5226,30 @@
       "threshold": "At least 1 adjudicated disposition resolving the mechanism in a respondent's favour",
       "observed_value": "contradicting=0 of 8 adjudicated",
       "evidence_ids": [
-        "EVD-54DF1CC356D2",
-        "EVD-B02D028F0632",
-        "EVD-B252E0B8B7C0",
-        "EVD-BD49B8C1847B",
-        "EVD-F5DD2A074622",
-        "EVD-572BD0B5ED79",
-        "EVD-CA8BCC788CBD",
-        "EVD-A3D9992783BC",
-        "EVD-D5F0D5534292",
-        "EVD-3A259E6FC571",
-        "EVD-29FFD18DDB3E",
-        "EVD-09B0EFB4BFDA",
-        "EVD-9184F53EC48B",
-        "EVD-20054679C056",
-        "EVD-AAB34D4880BA",
-        "EVD-56320C840917",
-        "EVD-3848CFE9BF3E",
-        "EVD-2ADDDC20E528",
-        "EVD-26F047F4853E",
-        "EVD-6A0A52C53E22",
-        "EVD-C9ED839573F1",
-        "EVD-E0C526190582",
-        "EVD-A47CA4024DE2",
-        "EVD-889EA82F27FD"
+        "EVD-28B51E39B707",
+        "EVD-66D9ECDD7923",
+        "EVD-936633FC982C",
+        "EVD-4B081545C79F",
+        "EVD-7B6427514240",
+        "EVD-6C6190CABE8C",
+        "EVD-0367F3183CA6",
+        "EVD-968C6A273272",
+        "EVD-49E278F60D33",
+        "EVD-35191F6DA61B",
+        "EVD-115A4F8ECAE7",
+        "EVD-17FF0C22CAF4",
+        "EVD-3F2B6EE3DB42",
+        "EVD-2E9764AB6C93",
+        "EVD-B0A5EEDE06A1",
+        "EVD-8C669BD3F643",
+        "EVD-2C6E53A827F7",
+        "EVD-BE7D0129D6FE",
+        "EVD-628B25012603",
+        "EVD-C7327BD5DD5F",
+        "EVD-7E96AA349101",
+        "EVD-E6D9F831A02F",
+        "EVD-01F992D15FBF",
+        "EVD-427AA1556925"
       ],
       "supporting_evidence": [],
       "counter_evidence": [],
@@ -5269,30 +5271,30 @@
       "threshold": "Run preserves artifacts and diagnostics",
       "observed_value": "True",
       "evidence_ids": [
-        "EVD-54DF1CC356D2",
-        "EVD-B02D028F0632",
-        "EVD-B252E0B8B7C0",
-        "EVD-BD49B8C1847B",
-        "EVD-F5DD2A074622",
-        "EVD-572BD0B5ED79",
-        "EVD-CA8BCC788CBD",
-        "EVD-A3D9992783BC",
-        "EVD-D5F0D5534292",
-        "EVD-3A259E6FC571",
-        "EVD-29FFD18DDB3E",
-        "EVD-09B0EFB4BFDA",
-        "EVD-9184F53EC48B",
-        "EVD-20054679C056",
-        "EVD-AAB34D4880BA",
-        "EVD-56320C840917",
-        "EVD-3848CFE9BF3E",
-        "EVD-2ADDDC20E528",
-        "EVD-26F047F4853E",
-        "EVD-6A0A52C53E22",
-        "EVD-C9ED839573F1",
-        "EVD-E0C526190582",
-        "EVD-A47CA4024DE2",
-        "EVD-889EA82F27FD"
+        "EVD-28B51E39B707",
+        "EVD-66D9ECDD7923",
+        "EVD-936633FC982C",
+        "EVD-4B081545C79F",
+        "EVD-7B6427514240",
+        "EVD-6C6190CABE8C",
+        "EVD-0367F3183CA6",
+        "EVD-968C6A273272",
+        "EVD-49E278F60D33",
+        "EVD-35191F6DA61B",
+        "EVD-115A4F8ECAE7",
+        "EVD-17FF0C22CAF4",
+        "EVD-3F2B6EE3DB42",
+        "EVD-2E9764AB6C93",
+        "EVD-B0A5EEDE06A1",
+        "EVD-8C669BD3F643",
+        "EVD-2C6E53A827F7",
+        "EVD-BE7D0129D6FE",
+        "EVD-628B25012603",
+        "EVD-C7327BD5DD5F",
+        "EVD-7E96AA349101",
+        "EVD-E6D9F831A02F",
+        "EVD-01F992D15FBF",
+        "EVD-427AA1556925"
       ],
       "supporting_evidence": [
         "artifact preservation",
@@ -5314,30 +5316,30 @@
       "threshold": "Independent source family count >= 2",
       "observed_value": "2",
       "evidence_ids": [
-        "EVD-54DF1CC356D2",
-        "EVD-B02D028F0632",
-        "EVD-B252E0B8B7C0",
-        "EVD-BD49B8C1847B",
-        "EVD-F5DD2A074622",
-        "EVD-572BD0B5ED79",
-        "EVD-CA8BCC788CBD",
-        "EVD-A3D9992783BC",
-        "EVD-D5F0D5534292",
-        "EVD-3A259E6FC571",
-        "EVD-29FFD18DDB3E",
-        "EVD-09B0EFB4BFDA",
-        "EVD-9184F53EC48B",
-        "EVD-20054679C056",
-        "EVD-AAB34D4880BA",
-        "EVD-56320C840917",
-        "EVD-3848CFE9BF3E",
-        "EVD-2ADDDC20E528",
-        "EVD-26F047F4853E",
-        "EVD-6A0A52C53E22",
-        "EVD-C9ED839573F1",
-        "EVD-E0C526190582",
-        "EVD-A47CA4024DE2",
-        "EVD-889EA82F27FD"
+        "EVD-28B51E39B707",
+        "EVD-66D9ECDD7923",
+        "EVD-936633FC982C",
+        "EVD-4B081545C79F",
+        "EVD-7B6427514240",
+        "EVD-6C6190CABE8C",
+        "EVD-0367F3183CA6",
+        "EVD-968C6A273272",
+        "EVD-49E278F60D33",
+        "EVD-35191F6DA61B",
+        "EVD-115A4F8ECAE7",
+        "EVD-17FF0C22CAF4",
+        "EVD-3F2B6EE3DB42",
+        "EVD-2E9764AB6C93",
+        "EVD-B0A5EEDE06A1",
+        "EVD-8C669BD3F643",
+        "EVD-2C6E53A827F7",
+        "EVD-BE7D0129D6FE",
+        "EVD-628B25012603",
+        "EVD-C7327BD5DD5F",
+        "EVD-7E96AA349101",
+        "EVD-E6D9F831A02F",
+        "EVD-01F992D15FBF",
+        "EVD-427AA1556925"
       ],
       "supporting_evidence": [
         "CFPB complaints",
@@ -5361,30 +5363,30 @@
       "threshold": "If source families < 2, maximum verdict is CONTINUE RESEARCH",
       "observed_value": "source families=2",
       "evidence_ids": [
-        "EVD-54DF1CC356D2",
-        "EVD-B02D028F0632",
-        "EVD-B252E0B8B7C0",
-        "EVD-BD49B8C1847B",
-        "EVD-F5DD2A074622",
-        "EVD-572BD0B5ED79",
-        "EVD-CA8BCC788CBD",
-        "EVD-A3D9992783BC",
-        "EVD-D5F0D5534292",
-        "EVD-3A259E6FC571",
-        "EVD-29FFD18DDB3E",
-        "EVD-09B0EFB4BFDA",
-        "EVD-9184F53EC48B",
-        "EVD-20054679C056",
-        "EVD-AAB34D4880BA",
-        "EVD-56320C840917",
-        "EVD-3848CFE9BF3E",
-        "EVD-2ADDDC20E528",
-        "EVD-26F047F4853E",
-        "EVD-6A0A52C53E22",
-        "EVD-C9ED839573F1",
-        "EVD-E0C526190582",
-        "EVD-A47CA4024DE2",
-        "EVD-889EA82F27FD"
+        "EVD-28B51E39B707",
+        "EVD-66D9ECDD7923",
+        "EVD-936633FC982C",
+        "EVD-4B081545C79F",
+        "EVD-7B6427514240",
+        "EVD-6C6190CABE8C",
+        "EVD-0367F3183CA6",
+        "EVD-968C6A273272",
+        "EVD-49E278F60D33",
+        "EVD-35191F6DA61B",
+        "EVD-115A4F8ECAE7",
+        "EVD-17FF0C22CAF4",
+        "EVD-3F2B6EE3DB42",
+        "EVD-2E9764AB6C93",
+        "EVD-B0A5EEDE06A1",
+        "EVD-8C669BD3F643",
+        "EVD-2C6E53A827F7",
+        "EVD-BE7D0129D6FE",
+        "EVD-628B25012603",
+        "EVD-C7327BD5DD5F",
+        "EVD-7E96AA349101",
+        "EVD-E6D9F831A02F",
+        "EVD-01F992D15FBF",
+        "EVD-427AA1556925"
       ],
       "supporting_evidence": [
         "deterministic evidence ceiling rule"
@@ -5400,7 +5402,7 @@
     }
   ],
   "verdict": {
-    "verdict_id": "VER-AF01F91532AA",
+    "verdict_id": "VER-12BC6A64BE14",
     "study_id": "GS-CF001-C",
     "outcome": "CONTINUE RESEARCH",
     "unconstrained_outcome": "CONTINUE RESEARCH",
@@ -5438,30 +5440,30 @@
         "threshold": "Raw retrieval artifact or diagnostic exists",
         "observed_value": "True",
         "evidence_ids": [
-          "EVD-54DF1CC356D2",
-          "EVD-B02D028F0632",
-          "EVD-B252E0B8B7C0",
-          "EVD-BD49B8C1847B",
-          "EVD-F5DD2A074622",
-          "EVD-572BD0B5ED79",
-          "EVD-CA8BCC788CBD",
-          "EVD-A3D9992783BC",
-          "EVD-D5F0D5534292",
-          "EVD-3A259E6FC571",
-          "EVD-29FFD18DDB3E",
-          "EVD-09B0EFB4BFDA",
-          "EVD-9184F53EC48B",
-          "EVD-20054679C056",
-          "EVD-AAB34D4880BA",
-          "EVD-56320C840917",
-          "EVD-3848CFE9BF3E",
-          "EVD-2ADDDC20E528",
-          "EVD-26F047F4853E",
-          "EVD-6A0A52C53E22",
-          "EVD-C9ED839573F1",
-          "EVD-E0C526190582",
-          "EVD-A47CA4024DE2",
-          "EVD-889EA82F27FD"
+          "EVD-28B51E39B707",
+          "EVD-66D9ECDD7923",
+          "EVD-936633FC982C",
+          "EVD-4B081545C79F",
+          "EVD-7B6427514240",
+          "EVD-6C6190CABE8C",
+          "EVD-0367F3183CA6",
+          "EVD-968C6A273272",
+          "EVD-49E278F60D33",
+          "EVD-35191F6DA61B",
+          "EVD-115A4F8ECAE7",
+          "EVD-17FF0C22CAF4",
+          "EVD-3F2B6EE3DB42",
+          "EVD-2E9764AB6C93",
+          "EVD-B0A5EEDE06A1",
+          "EVD-8C669BD3F643",
+          "EVD-2C6E53A827F7",
+          "EVD-BE7D0129D6FE",
+          "EVD-628B25012603",
+          "EVD-C7327BD5DD5F",
+          "EVD-7E96AA349101",
+          "EVD-E6D9F831A02F",
+          "EVD-01F992D15FBF",
+          "EVD-427AA1556925"
         ],
         "supporting_evidence": [
           "raw artifacts",
@@ -5483,56 +5485,56 @@
         "threshold": "Normalised candidate records exist",
         "observed_value": "True",
         "evidence_ids": [
-          "EVD-54DF1CC356D2",
-          "EVD-B02D028F0632",
-          "EVD-B252E0B8B7C0",
-          "EVD-BD49B8C1847B",
-          "EVD-F5DD2A074622",
-          "EVD-572BD0B5ED79",
-          "EVD-CA8BCC788CBD",
-          "EVD-A3D9992783BC",
-          "EVD-D5F0D5534292",
-          "EVD-3A259E6FC571",
-          "EVD-29FFD18DDB3E",
-          "EVD-09B0EFB4BFDA",
-          "EVD-9184F53EC48B",
-          "EVD-20054679C056",
-          "EVD-AAB34D4880BA",
-          "EVD-56320C840917",
-          "EVD-3848CFE9BF3E",
-          "EVD-2ADDDC20E528",
-          "EVD-26F047F4853E",
-          "EVD-6A0A52C53E22",
-          "EVD-C9ED839573F1",
-          "EVD-E0C526190582",
-          "EVD-A47CA4024DE2",
-          "EVD-889EA82F27FD"
+          "EVD-28B51E39B707",
+          "EVD-66D9ECDD7923",
+          "EVD-936633FC982C",
+          "EVD-4B081545C79F",
+          "EVD-7B6427514240",
+          "EVD-6C6190CABE8C",
+          "EVD-0367F3183CA6",
+          "EVD-968C6A273272",
+          "EVD-49E278F60D33",
+          "EVD-35191F6DA61B",
+          "EVD-115A4F8ECAE7",
+          "EVD-17FF0C22CAF4",
+          "EVD-3F2B6EE3DB42",
+          "EVD-2E9764AB6C93",
+          "EVD-B0A5EEDE06A1",
+          "EVD-8C669BD3F643",
+          "EVD-2C6E53A827F7",
+          "EVD-BE7D0129D6FE",
+          "EVD-628B25012603",
+          "EVD-C7327BD5DD5F",
+          "EVD-7E96AA349101",
+          "EVD-E6D9F831A02F",
+          "EVD-01F992D15FBF",
+          "EVD-427AA1556925"
         ],
         "supporting_evidence": [
-          "CAN-7B188C77E767",
-          "CAN-9094CEFE3CEF",
-          "CAN-48ACDC0B6387",
-          "CAN-AB79646FDBF7",
-          "CAN-8D5A0415E1B7",
-          "CAN-F8D2B450533D",
-          "CAN-01C262C06A93",
-          "CAN-D2E9D92D1366",
-          "CAN-D3EDCA1BFEBB",
-          "CAN-925E42EA0AB4",
-          "CAN-57DAC006B4D0",
-          "CAN-753A991BABF1",
-          "CAN-9CC9CF826F82",
-          "CAN-230B06C32AC7",
-          "CAN-1E7282A7BFB2",
-          "CAN-C9F8363A862A",
-          "CAN-80662B02CF19",
-          "CAN-C7E687AE62F4",
-          "CAN-708F6B709800",
-          "CAN-7795CD09FFA8",
-          "CAN-ADE092C69178",
-          "CAN-5D97706FAAB2",
-          "CAN-B54020EBB393",
-          "CAN-BBB65A92A0F9"
+          "CAN-F8A64E850A8B",
+          "CAN-ECBC1434B40E",
+          "CAN-D4C657208398",
+          "CAN-EAD09D5588C0",
+          "CAN-BB14BA4BE27E",
+          "CAN-0B5A044DF51D",
+          "CAN-0700E8398828",
+          "CAN-C580C8FF6A7D",
+          "CAN-D078AE04D717",
+          "CAN-776477EEBD89",
+          "CAN-ECE963A7A6FF",
+          "CAN-C611A3B2C128",
+          "CAN-B69695D92F8F",
+          "CAN-74F40E00396E",
+          "CAN-88E5621078B7",
+          "CAN-34D16D43315A",
+          "CAN-34249AFDD8A2",
+          "CAN-942CD691F85D",
+          "CAN-D19325F86326",
+          "CAN-894B21578E08",
+          "CAN-F21547C46A41",
+          "CAN-D935F58BF2D1",
+          "CAN-264B72C1084F",
+          "CAN-7AAF23A9E448"
         ],
         "counter_evidence": [],
         "confidence": 0.9,
@@ -5550,30 +5552,30 @@
         "threshold": "All evidence maps to GS-CF001-C",
         "observed_value": "True",
         "evidence_ids": [
-          "EVD-54DF1CC356D2",
-          "EVD-B02D028F0632",
-          "EVD-B252E0B8B7C0",
-          "EVD-BD49B8C1847B",
-          "EVD-F5DD2A074622",
-          "EVD-572BD0B5ED79",
-          "EVD-CA8BCC788CBD",
-          "EVD-A3D9992783BC",
-          "EVD-D5F0D5534292",
-          "EVD-3A259E6FC571",
-          "EVD-29FFD18DDB3E",
-          "EVD-09B0EFB4BFDA",
-          "EVD-9184F53EC48B",
-          "EVD-20054679C056",
-          "EVD-AAB34D4880BA",
-          "EVD-56320C840917",
-          "EVD-3848CFE9BF3E",
-          "EVD-2ADDDC20E528",
-          "EVD-26F047F4853E",
-          "EVD-6A0A52C53E22",
-          "EVD-C9ED839573F1",
-          "EVD-E0C526190582",
-          "EVD-A47CA4024DE2",
-          "EVD-889EA82F27FD"
+          "EVD-28B51E39B707",
+          "EVD-66D9ECDD7923",
+          "EVD-936633FC982C",
+          "EVD-4B081545C79F",
+          "EVD-7B6427514240",
+          "EVD-6C6190CABE8C",
+          "EVD-0367F3183CA6",
+          "EVD-968C6A273272",
+          "EVD-49E278F60D33",
+          "EVD-35191F6DA61B",
+          "EVD-115A4F8ECAE7",
+          "EVD-17FF0C22CAF4",
+          "EVD-3F2B6EE3DB42",
+          "EVD-2E9764AB6C93",
+          "EVD-B0A5EEDE06A1",
+          "EVD-8C669BD3F643",
+          "EVD-2C6E53A827F7",
+          "EVD-BE7D0129D6FE",
+          "EVD-628B25012603",
+          "EVD-C7327BD5DD5F",
+          "EVD-7E96AA349101",
+          "EVD-E6D9F831A02F",
+          "EVD-01F992D15FBF",
+          "EVD-427AA1556925"
         ],
         "supporting_evidence": [
           "GS-CF001-C deterministic product mapping"
@@ -5594,7 +5596,7 @@
         "threshold": "Minimum repeated mechanism finding",
         "observed_value": "False",
         "evidence_ids": [
-          "EVD-B252E0B8B7C0"
+          "EVD-936633FC982C"
         ],
         "supporting_evidence": [],
         "counter_evidence": [],
@@ -5615,7 +5617,7 @@
         "threshold": "At least 2 company references",
         "observed_value": "1",
         "evidence_ids": [
-          "EVD-B252E0B8B7C0"
+          "EVD-936633FC982C"
         ],
         "supporting_evidence": [
           "EQUIFAX, INC."
@@ -5638,7 +5640,7 @@
         "threshold": "Finding includes operational mechanism definition",
         "observed_value": "False",
         "evidence_ids": [
-          "EVD-B252E0B8B7C0"
+          "EVD-936633FC982C"
         ],
         "supporting_evidence": [],
         "counter_evidence": [],
@@ -5659,7 +5661,7 @@
         "threshold": "Opportunity assessment exists",
         "observed_value": "False",
         "evidence_ids": [
-          "EVD-B252E0B8B7C0"
+          "EVD-936633FC982C"
         ],
         "supporting_evidence": [
           "Unclassified mechanism - no supported component yet"
@@ -5684,30 +5686,30 @@
         "threshold": "At least 1 adjudicated finding of occurrence, on a mechanism independently alleged by another source family",
         "observed_value": "corroborated=0; adjudicated=8; establishing occurrence=0",
         "evidence_ids": [
-          "EVD-54DF1CC356D2",
-          "EVD-B02D028F0632",
-          "EVD-B252E0B8B7C0",
-          "EVD-BD49B8C1847B",
-          "EVD-F5DD2A074622",
-          "EVD-572BD0B5ED79",
-          "EVD-CA8BCC788CBD",
-          "EVD-A3D9992783BC",
-          "EVD-D5F0D5534292",
-          "EVD-3A259E6FC571",
-          "EVD-29FFD18DDB3E",
-          "EVD-09B0EFB4BFDA",
-          "EVD-9184F53EC48B",
-          "EVD-20054679C056",
-          "EVD-AAB34D4880BA",
-          "EVD-56320C840917",
-          "EVD-3848CFE9BF3E",
-          "EVD-2ADDDC20E528",
-          "EVD-26F047F4853E",
-          "EVD-6A0A52C53E22",
-          "EVD-C9ED839573F1",
-          "EVD-E0C526190582",
-          "EVD-A47CA4024DE2",
-          "EVD-889EA82F27FD"
+          "EVD-28B51E39B707",
+          "EVD-66D9ECDD7923",
+          "EVD-936633FC982C",
+          "EVD-4B081545C79F",
+          "EVD-7B6427514240",
+          "EVD-6C6190CABE8C",
+          "EVD-0367F3183CA6",
+          "EVD-968C6A273272",
+          "EVD-49E278F60D33",
+          "EVD-35191F6DA61B",
+          "EVD-115A4F8ECAE7",
+          "EVD-17FF0C22CAF4",
+          "EVD-3F2B6EE3DB42",
+          "EVD-2E9764AB6C93",
+          "EVD-B0A5EEDE06A1",
+          "EVD-8C669BD3F643",
+          "EVD-2C6E53A827F7",
+          "EVD-BE7D0129D6FE",
+          "EVD-628B25012603",
+          "EVD-C7327BD5DD5F",
+          "EVD-7E96AA349101",
+          "EVD-E6D9F831A02F",
+          "EVD-01F992D15FBF",
+          "EVD-427AA1556925"
         ],
         "supporting_evidence": [
           "CFPB complaints",
@@ -5734,7 +5736,7 @@
         "threshold": "Confirmed buyer evidence",
         "observed_value": "unverified",
         "evidence_ids": [
-          "EVD-B252E0B8B7C0"
+          "EVD-936633FC982C"
         ],
         "supporting_evidence": [
           "unclear"
@@ -5761,7 +5763,7 @@
         "threshold": "Existing solution maturity evidence",
         "observed_value": "unknown",
         "evidence_ids": [
-          "EVD-B252E0B8B7C0"
+          "EVD-936633FC982C"
         ],
         "supporting_evidence": [],
         "counter_evidence": [
@@ -5784,7 +5786,7 @@
         "threshold": "Commercial urgency evidence",
         "observed_value": "unproven",
         "evidence_ids": [
-          "EVD-B252E0B8B7C0"
+          "EVD-936633FC982C"
         ],
         "supporting_evidence": [],
         "counter_evidence": [
@@ -5809,30 +5811,30 @@
         "threshold": "At least 1 adjudicated disposition resolving the mechanism in a respondent's favour",
         "observed_value": "contradicting=0 of 8 adjudicated",
         "evidence_ids": [
-          "EVD-54DF1CC356D2",
-          "EVD-B02D028F0632",
-          "EVD-B252E0B8B7C0",
-          "EVD-BD49B8C1847B",
-          "EVD-F5DD2A074622",
-          "EVD-572BD0B5ED79",
-          "EVD-CA8BCC788CBD",
-          "EVD-A3D9992783BC",
-          "EVD-D5F0D5534292",
-          "EVD-3A259E6FC571",
-          "EVD-29FFD18DDB3E",
-          "EVD-09B0EFB4BFDA",
-          "EVD-9184F53EC48B",
-          "EVD-20054679C056",
-          "EVD-AAB34D4880BA",
-          "EVD-56320C840917",
-          "EVD-3848CFE9BF3E",
-          "EVD-2ADDDC20E528",
-          "EVD-26F047F4853E",
-          "EVD-6A0A52C53E22",
-          "EVD-C9ED839573F1",
-          "EVD-E0C526190582",
-          "EVD-A47CA4024DE2",
-          "EVD-889EA82F27FD"
+          "EVD-28B51E39B707",
+          "EVD-66D9ECDD7923",
+          "EVD-936633FC982C",
+          "EVD-4B081545C79F",
+          "EVD-7B6427514240",
+          "EVD-6C6190CABE8C",
+          "EVD-0367F3183CA6",
+          "EVD-968C6A273272",
+          "EVD-49E278F60D33",
+          "EVD-35191F6DA61B",
+          "EVD-115A4F8ECAE7",
+          "EVD-17FF0C22CAF4",
+          "EVD-3F2B6EE3DB42",
+          "EVD-2E9764AB6C93",
+          "EVD-B0A5EEDE06A1",
+          "EVD-8C669BD3F643",
+          "EVD-2C6E53A827F7",
+          "EVD-BE7D0129D6FE",
+          "EVD-628B25012603",
+          "EVD-C7327BD5DD5F",
+          "EVD-7E96AA349101",
+          "EVD-E6D9F831A02F",
+          "EVD-01F992D15FBF",
+          "EVD-427AA1556925"
         ],
         "supporting_evidence": [],
         "counter_evidence": [],
@@ -5854,30 +5856,30 @@
         "threshold": "Run preserves artifacts and diagnostics",
         "observed_value": "True",
         "evidence_ids": [
-          "EVD-54DF1CC356D2",
-          "EVD-B02D028F0632",
-          "EVD-B252E0B8B7C0",
-          "EVD-BD49B8C1847B",
-          "EVD-F5DD2A074622",
-          "EVD-572BD0B5ED79",
-          "EVD-CA8BCC788CBD",
-          "EVD-A3D9992783BC",
-          "EVD-D5F0D5534292",
-          "EVD-3A259E6FC571",
-          "EVD-29FFD18DDB3E",
-          "EVD-09B0EFB4BFDA",
-          "EVD-9184F53EC48B",
-          "EVD-20054679C056",
-          "EVD-AAB34D4880BA",
-          "EVD-56320C840917",
-          "EVD-3848CFE9BF3E",
-          "EVD-2ADDDC20E528",
-          "EVD-26F047F4853E",
-          "EVD-6A0A52C53E22",
-          "EVD-C9ED839573F1",
-          "EVD-E0C526190582",
-          "EVD-A47CA4024DE2",
-          "EVD-889EA82F27FD"
+          "EVD-28B51E39B707",
+          "EVD-66D9ECDD7923",
+          "EVD-936633FC982C",
+          "EVD-4B081545C79F",
+          "EVD-7B6427514240",
+          "EVD-6C6190CABE8C",
+          "EVD-0367F3183CA6",
+          "EVD-968C6A273272",
+          "EVD-49E278F60D33",
+          "EVD-35191F6DA61B",
+          "EVD-115A4F8ECAE7",
+          "EVD-17FF0C22CAF4",
+          "EVD-3F2B6EE3DB42",
+          "EVD-2E9764AB6C93",
+          "EVD-B0A5EEDE06A1",
+          "EVD-8C669BD3F643",
+          "EVD-2C6E53A827F7",
+          "EVD-BE7D0129D6FE",
+          "EVD-628B25012603",
+          "EVD-C7327BD5DD5F",
+          "EVD-7E96AA349101",
+          "EVD-E6D9F831A02F",
+          "EVD-01F992D15FBF",
+          "EVD-427AA1556925"
         ],
         "supporting_evidence": [
           "artifact preservation",
@@ -5899,30 +5901,30 @@
         "threshold": "Independent source family count >= 2",
         "observed_value": "2",
         "evidence_ids": [
-          "EVD-54DF1CC356D2",
-          "EVD-B02D028F0632",
-          "EVD-B252E0B8B7C0",
-          "EVD-BD49B8C1847B",
-          "EVD-F5DD2A074622",
-          "EVD-572BD0B5ED79",
-          "EVD-CA8BCC788CBD",
-          "EVD-A3D9992783BC",
-          "EVD-D5F0D5534292",
-          "EVD-3A259E6FC571",
-          "EVD-29FFD18DDB3E",
-          "EVD-09B0EFB4BFDA",
-          "EVD-9184F53EC48B",
-          "EVD-20054679C056",
-          "EVD-AAB34D4880BA",
-          "EVD-56320C840917",
-          "EVD-3848CFE9BF3E",
-          "EVD-2ADDDC20E528",
-          "EVD-26F047F4853E",
-          "EVD-6A0A52C53E22",
-          "EVD-C9ED839573F1",
-          "EVD-E0C526190582",
-          "EVD-A47CA4024DE2",
-          "EVD-889EA82F27FD"
+          "EVD-28B51E39B707",
+          "EVD-66D9ECDD7923",
+          "EVD-936633FC982C",
+          "EVD-4B081545C79F",
+          "EVD-7B6427514240",
+          "EVD-6C6190CABE8C",
+          "EVD-0367F3183CA6",
+          "EVD-968C6A273272",
+          "EVD-49E278F60D33",
+          "EVD-35191F6DA61B",
+          "EVD-115A4F8ECAE7",
+          "EVD-17FF0C22CAF4",
+          "EVD-3F2B6EE3DB42",
+          "EVD-2E9764AB6C93",
+          "EVD-B0A5EEDE06A1",
+          "EVD-8C669BD3F643",
+          "EVD-2C6E53A827F7",
+          "EVD-BE7D0129D6FE",
+          "EVD-628B25012603",
+          "EVD-C7327BD5DD5F",
+          "EVD-7E96AA349101",
+          "EVD-E6D9F831A02F",
+          "EVD-01F992D15FBF",
+          "EVD-427AA1556925"
         ],
         "supporting_evidence": [
           "CFPB complaints",
@@ -5946,30 +5948,30 @@
         "threshold": "If source families < 2, maximum verdict is CONTINUE RESEARCH",
         "observed_value": "source families=2",
         "evidence_ids": [
-          "EVD-54DF1CC356D2",
-          "EVD-B02D028F0632",
-          "EVD-B252E0B8B7C0",
-          "EVD-BD49B8C1847B",
-          "EVD-F5DD2A074622",
-          "EVD-572BD0B5ED79",
-          "EVD-CA8BCC788CBD",
-          "EVD-A3D9992783BC",
-          "EVD-D5F0D5534292",
-          "EVD-3A259E6FC571",
-          "EVD-29FFD18DDB3E",
-          "EVD-09B0EFB4BFDA",
-          "EVD-9184F53EC48B",
-          "EVD-20054679C056",
-          "EVD-AAB34D4880BA",
-          "EVD-56320C840917",
-          "EVD-3848CFE9BF3E",
-          "EVD-2ADDDC20E528",
-          "EVD-26F047F4853E",
-          "EVD-6A0A52C53E22",
-          "EVD-C9ED839573F1",
-          "EVD-E0C526190582",
-          "EVD-A47CA4024DE2",
-          "EVD-889EA82F27FD"
+          "EVD-28B51E39B707",
+          "EVD-66D9ECDD7923",
+          "EVD-936633FC982C",
+          "EVD-4B081545C79F",
+          "EVD-7B6427514240",
+          "EVD-6C6190CABE8C",
+          "EVD-0367F3183CA6",
+          "EVD-968C6A273272",
+          "EVD-49E278F60D33",
+          "EVD-35191F6DA61B",
+          "EVD-115A4F8ECAE7",
+          "EVD-17FF0C22CAF4",
+          "EVD-3F2B6EE3DB42",
+          "EVD-2E9764AB6C93",
+          "EVD-B0A5EEDE06A1",
+          "EVD-8C669BD3F643",
+          "EVD-2C6E53A827F7",
+          "EVD-BE7D0129D6FE",
+          "EVD-628B25012603",
+          "EVD-C7327BD5DD5F",
+          "EVD-7E96AA349101",
+          "EVD-E6D9F831A02F",
+          "EVD-01F992D15FBF",
+          "EVD-427AA1556925"
         ],
         "supporting_evidence": [
           "deterministic evidence ceiling rule"
@@ -5985,36 +5987,36 @@
       }
     ],
     "evidence_ids": [
-      "EVD-09B0EFB4BFDA",
-      "EVD-20054679C056",
-      "EVD-26F047F4853E",
-      "EVD-29FFD18DDB3E",
-      "EVD-2ADDDC20E528",
-      "EVD-3848CFE9BF3E",
-      "EVD-3A259E6FC571",
-      "EVD-54DF1CC356D2",
-      "EVD-56320C840917",
-      "EVD-572BD0B5ED79",
-      "EVD-6A0A52C53E22",
-      "EVD-889EA82F27FD",
-      "EVD-9184F53EC48B",
-      "EVD-A3D9992783BC",
-      "EVD-A47CA4024DE2",
-      "EVD-AAB34D4880BA",
-      "EVD-B02D028F0632",
-      "EVD-B252E0B8B7C0",
-      "EVD-BD49B8C1847B",
-      "EVD-C9ED839573F1",
-      "EVD-CA8BCC788CBD",
-      "EVD-D5F0D5534292",
-      "EVD-E0C526190582",
-      "EVD-F5DD2A074622"
+      "EVD-01F992D15FBF",
+      "EVD-0367F3183CA6",
+      "EVD-115A4F8ECAE7",
+      "EVD-17FF0C22CAF4",
+      "EVD-28B51E39B707",
+      "EVD-2C6E53A827F7",
+      "EVD-2E9764AB6C93",
+      "EVD-35191F6DA61B",
+      "EVD-3F2B6EE3DB42",
+      "EVD-427AA1556925",
+      "EVD-49E278F60D33",
+      "EVD-4B081545C79F",
+      "EVD-628B25012603",
+      "EVD-66D9ECDD7923",
+      "EVD-6C6190CABE8C",
+      "EVD-7B6427514240",
+      "EVD-7E96AA349101",
+      "EVD-8C669BD3F643",
+      "EVD-936633FC982C",
+      "EVD-968C6A273272",
+      "EVD-B0A5EEDE06A1",
+      "EVD-BE7D0129D6FE",
+      "EVD-C7327BD5DD5F",
+      "EVD-E6D9F831A02F"
     ],
     "finding_ids": [
-      "FND-53681F803C93"
+      "FND-E20932B0E85E"
     ],
     "opportunity_ids": [
-      "OPP-6E1730C851CB"
+      "OPP-16F7E289ED98"
     ],
     "missing_evidence": [
       "a judgment, consent order, or examination finding resolving the mechanism against a respondent",
@@ -6050,7 +6052,7 @@
       "jurisdiction": "United States",
       "source_family": "CFPB complaints",
       "retrieval_method": "official_cfpb_search_api",
-      "retrieval_timestamp": "2026-07-26T17:15:13Z",
+      "retrieval_timestamp": "2026-07-26T21:32:42Z",
       "update_frequency": "Published by CFPB; update cadence should be confirmed per access method.",
       "coverage_period": "Depends on retrieved official dataset or query result.",
       "record_granularity": "Individual consumer complaint record.",
@@ -6100,7 +6102,7 @@
       "jurisdiction": "United States",
       "source_family": "Federal court records",
       "retrieval_method": "courtlistener_search_api",
-      "retrieval_timestamp": "2026-07-26T17:15:17Z",
+      "retrieval_timestamp": "2026-07-26T21:32:43Z",
       "update_frequency": "Continuously updated from PACER via RECAP contributions.",
       "coverage_period": "Depends on the retrieved docket set.",
       "record_granularity": "Individual federal court docket.",
@@ -6147,7 +6149,7 @@
       "jurisdiction": "United States",
       "source_family": "Federal court records",
       "retrieval_method": "fjc_integrated_database_api",
-      "retrieval_timestamp": "2026-07-26T17:15:19Z",
+      "retrieval_timestamp": "2026-07-26T21:32:46Z",
       "update_frequency": "Periodic dataset loads, not continuous.",
       "coverage_period": "Federal civil cases from SY 1970 onward, depending on dataset.",
       "record_granularity": "Individual federal civil case, with coded disposition and judgment.",
@@ -6189,9 +6191,9 @@
   ],
   "access_diagnostics": [
     {
-      "diagnostic_id": "ADIAG-C35141564FE3",
+      "diagnostic_id": "ADIAG-D952B231C570",
       "endpoint": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-      "attempted_at": "2026-07-26T17:15:17Z",
+      "attempted_at": "2026-07-26T21:32:43Z",
       "environment": "local-curl-transport",
       "request_method": "GET",
       "request_headers": {
@@ -6213,7 +6215,7 @@
         "referrer-policy": "same-origin",
         "cross-origin-opener-policy": "same-origin",
         "x-envoy-upstream-service-time": "9063",
-        "date": "Sun, 26 Jul 2026 17:15:18 GMT",
+        "date": "Sun, 26 Jul 2026 21:32:43 GMT",
         "strict-transport-security": "max-age=31536000"
       },
       "response_body_summary": "Retrieved 8 record(s).",
@@ -6222,9 +6224,9 @@
       "access_method": "official_cfpb_search_api"
     },
     {
-      "diagnostic_id": "ADIAG-30627985881B",
+      "diagnostic_id": "ADIAG-B540F7C9A9FF",
       "endpoint": "https://www.courtlistener.com/api/rest/v4/search/?q=%22Fair+Credit+Reporting+Act%22+reinvestigation&type=r&order_by=dateFiled+desc",
-      "attempted_at": "2026-07-26T17:15:19Z",
+      "attempted_at": "2026-07-26T21:32:46Z",
       "environment": "local-urllib-transport",
       "request_method": "GET",
       "request_headers": {
@@ -6236,12 +6238,12 @@
         "Content-Type": "application/json",
         "Content-Length": "50348",
         "Connection": "close",
-        "Date": "Sun, 26 Jul 2026 17:15:19 GMT",
-        "set-cookie": "dwf_replica-reads=True; expires=Tue, 25 Aug 2026 17:15:19 GMT; Max-Age=2592000; Path=/; Secure",
+        "Date": "Sun, 26 Jul 2026 21:32:46 GMT",
+        "set-cookie": "dwf_replica-reads=True; expires=Tue, 25 Aug 2026 21:32:46 GMT; Max-Age=2592000; Path=/; Secure",
         "server": "uvicorn",
         "vary": "Accept, origin, Cookie",
         "allow": "GET, POST, HEAD, OPTIONS",
-        "content-security-policy": "object-src 'self' https://storage.courtlistener.com/; style-src 'self' 'report-sample' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ 'unsafe-inline'; connect-src 'self' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ https://plausible.io/; font-src 'self' https://storage.courtlistener.com/ data:; upgrade-insecure-requests; script-src 'self' 'report-sample' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ https://plausible.io/; media-src 'self' https://storage.courtlistener.com/ data:; img-src 'self' https://storage.courtlistener.com/ https://portraits.free.law/ https://seals.free.law/ data:; frame-src 'self' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/; default-src 'self' https://storage.courtlistener.com/; base-uri 'self'",
+        "content-security-policy": "media-src 'self' https://storage.courtlistener.com/ data:; object-src 'self' https://storage.courtlistener.com/; default-src 'self' https://storage.courtlistener.com/; frame-src 'self' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/; style-src 'self' 'report-sample' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ 'unsafe-inline'; upgrade-insecure-requests; script-src 'self' 'report-sample' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ https://plausible.io/; img-src 'self' https://storage.courtlistener.com/ https://portraits.free.law/ https://seals.free.law/ data:; base-uri 'self'; connect-src 'self' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ https://plausible.io/; font-src 'self' https://storage.courtlistener.com/ data:",
         "x-frame-options": "DENY",
         "permissions-policy": "browsing-topics=()",
         "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
@@ -6249,10 +6251,10 @@
         "referrer-policy": "same-origin",
         "cross-origin-opener-policy": "same-origin",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 683078257ce5e83d12a6e6d985794762.cloudfront.net (CloudFront)",
+        "Via": "1.1 9a5b6055a4d8de1e925cd6f378def4d0.cloudfront.net (CloudFront)",
         "X-Amz-Cf-Pop": "LHR86-P1",
         "Alt-Svc": "h3=\":443\"; ma=86400",
-        "X-Amz-Cf-Id": "wfNCGQJlBR5OP7R6sekOEQ93gxvCeih-xpNxZH44QuNrRtu_c0obOw=="
+        "X-Amz-Cf-Id": "2Y9WHAp4m-weXu39NBVeyE0UGQGW_xp6kJk-JqjqeCLN5rDLzJC99Q=="
       },
       "response_body_summary": "Retrieved 8 FCRA docket record(s).",
       "retry_result": "not retried",
@@ -6260,9 +6262,9 @@
       "access_method": "courtlistener_search_api"
     },
     {
-      "diagnostic_id": "ADIAG-9EB23FD84633",
+      "diagnostic_id": "ADIAG-8C78B045597E",
       "endpoint": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/?title=15&section__startswith=1681&disposition__in=5%2C6%2C7%2C8%2C9&judgment__in=1%2C2&page_size=8",
-      "attempted_at": "2026-07-26T17:15:49Z",
+      "attempted_at": "2026-07-26T21:32:47Z",
       "environment": "local-urllib-transport",
       "request_method": "GET",
       "request_headers": {
@@ -6274,12 +6276,12 @@
         "Content-Type": "application/json",
         "Content-Length": "22410",
         "Connection": "close",
-        "Date": "Sun, 26 Jul 2026 17:15:49 GMT",
-        "set-cookie": "dwf_replica-reads=True; expires=Tue, 25 Aug 2026 17:15:49 GMT; Max-Age=2592000; Path=/; Secure",
+        "Date": "Sun, 26 Jul 2026 21:32:47 GMT",
+        "set-cookie": "dwf_replica-reads=False; expires=Tue, 25 Aug 2026 21:32:47 GMT; Max-Age=2592000; Path=/; Secure",
         "server": "uvicorn",
         "vary": "Accept, origin, Cookie",
         "allow": "GET, POST, HEAD, OPTIONS",
-        "content-security-policy": "upgrade-insecure-requests; script-src 'self' 'report-sample' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ https://plausible.io/; connect-src 'self' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ https://plausible.io/; style-src 'self' 'report-sample' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ 'unsafe-inline'; base-uri 'self'; frame-src 'self' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/; font-src 'self' https://storage.courtlistener.com/ data:; default-src 'self' https://storage.courtlistener.com/; media-src 'self' https://storage.courtlistener.com/ data:; img-src 'self' https://storage.courtlistener.com/ https://portraits.free.law/ https://seals.free.law/ data:; object-src 'self' https://storage.courtlistener.com/",
+        "content-security-policy": "script-src 'self' 'report-sample' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ https://plausible.io/; object-src 'self' https://storage.courtlistener.com/; media-src 'self' https://storage.courtlistener.com/ data:; connect-src 'self' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ https://plausible.io/; style-src 'self' 'report-sample' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/ 'unsafe-inline'; img-src 'self' https://storage.courtlistener.com/ https://portraits.free.law/ https://seals.free.law/ data:; base-uri 'self'; font-src 'self' https://storage.courtlistener.com/ data:; frame-src 'self' https://storage.courtlistener.com/ https://hcaptcha.com/ https://*.hcaptcha.com/; default-src 'self' https://storage.courtlistener.com/; upgrade-insecure-requests",
         "x-frame-options": "DENY",
         "permissions-policy": "browsing-topics=()",
         "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
@@ -6287,10 +6289,10 @@
         "referrer-policy": "same-origin",
         "cross-origin-opener-policy": "same-origin",
         "X-Cache": "Miss from cloudfront",
-        "Via": "1.1 54dacf7be5d48980fd6d3420c6807120.cloudfront.net (CloudFront)",
-        "X-Amz-Cf-Pop": "LHR86-P1",
+        "Via": "1.1 37e829d6e8569d5855ccabccb4714618.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Pop": "JFK50-P16",
         "Alt-Svc": "h3=\":443\"; ma=86400",
-        "X-Amz-Cf-Id": "xEFsVlc2AFidXPqUeS6Vl4UKVkHmEN_i8vInG4gPq46cdMK7IIHgzw=="
+        "X-Amz-Cf-Id": "JvT6wHiaYLam2mayJqKzkeoCilApZXhLPwr_KJ_eCcuyHdiDWl1cZQ=="
       },
       "response_body_summary": "Retrieved 8 adjudicated FCRA case record(s).",
       "retry_result": "not retried",
@@ -6300,35 +6302,35 @@
   ],
   "analysis_artifacts": [
     {
-      "artifact_id": "ANL-62883619A056",
+      "artifact_id": "ANL-172B9158005A",
       "method_used": "deterministic_rules_no_ai",
       "instruction_version": "AI-GOV-001",
-      "timestamp": "2026-07-26T17:15:53Z",
+      "timestamp": "2026-07-26T21:32:55Z",
       "input_evidence_ids": [
-        "EVD-54DF1CC356D2",
-        "EVD-B02D028F0632",
-        "EVD-B252E0B8B7C0",
-        "EVD-BD49B8C1847B",
-        "EVD-F5DD2A074622",
-        "EVD-572BD0B5ED79",
-        "EVD-CA8BCC788CBD",
-        "EVD-A3D9992783BC",
-        "EVD-D5F0D5534292",
-        "EVD-3A259E6FC571",
-        "EVD-29FFD18DDB3E",
-        "EVD-09B0EFB4BFDA",
-        "EVD-9184F53EC48B",
-        "EVD-20054679C056",
-        "EVD-AAB34D4880BA",
-        "EVD-56320C840917",
-        "EVD-3848CFE9BF3E",
-        "EVD-2ADDDC20E528",
-        "EVD-26F047F4853E",
-        "EVD-6A0A52C53E22",
-        "EVD-C9ED839573F1",
-        "EVD-E0C526190582",
-        "EVD-A47CA4024DE2",
-        "EVD-889EA82F27FD"
+        "EVD-28B51E39B707",
+        "EVD-66D9ECDD7923",
+        "EVD-936633FC982C",
+        "EVD-4B081545C79F",
+        "EVD-7B6427514240",
+        "EVD-6C6190CABE8C",
+        "EVD-0367F3183CA6",
+        "EVD-968C6A273272",
+        "EVD-49E278F60D33",
+        "EVD-35191F6DA61B",
+        "EVD-115A4F8ECAE7",
+        "EVD-17FF0C22CAF4",
+        "EVD-3F2B6EE3DB42",
+        "EVD-2E9764AB6C93",
+        "EVD-B0A5EEDE06A1",
+        "EVD-8C669BD3F643",
+        "EVD-2C6E53A827F7",
+        "EVD-BE7D0129D6FE",
+        "EVD-628B25012603",
+        "EVD-C7327BD5DD5F",
+        "EVD-7E96AA349101",
+        "EVD-E6D9F831A02F",
+        "EVD-01F992D15FBF",
+        "EVD-427AA1556925"
       ],
       "output": {
         "verification_count": 24,
@@ -6348,9 +6350,9 @@
   ],
   "state_transitions": [],
   "run_manifest": {
-    "run_id": "RUN-AE1038287921",
+    "run_id": "RUN-B47BE3F942BB",
     "study_id": "GS-CF001-C",
-    "code_commit_hash": "9560d0c0e8df7ca4b8cf55ea6591f2f9c471da59",
+    "code_commit_hash": "1906b1dc48e0db774005ff308017ebc4fbf694fa",
     "configuration_version": "GS-CF001-CONFIG-001",
     "methodology_version": "PROVENA-EOS-METHOD-001",
     "rule_versions": {
@@ -6365,7 +6367,7 @@
     "ai_model_configuration": "AI disabled; deterministic rules only.",
     "source_access_method": "official_cfpb_search_api",
     "retrieval_timestamps": [
-      "2026-07-26T17:15:13Z"
+      "2026-07-26T21:32:42Z"
     ],
     "input_record_identifiers": [
       "9999997",
@@ -6378,37 +6380,37 @@
       "9999985"
     ],
     "artifact_checksums": {
-      "data/raw/cfpb_credit_reporting_raw_20260726T171513043615Z.json": "af8b3baab71161261eec5c9d4c487b9bf9cc3cc0b4c719a7ee502e8d4982f4db",
-      "data/exports/access_diagnostics_20260726T171513043615Z.json": "e306cc968d4975ce0e0c2219e0d9acf11b4c97a32db6116f5241b424b599e6c8",
-      "data/exports/source_reliability_20260726T171513043615Z.json": "ace4964ab6c0142470023bc3979c9bce44a03ee98d3948bb579e4aa0d4e1c9be",
-      "data/exports/analysis_artifacts_20260726T171513043615Z.json": "d3857851c03b78dbe3f427aadaa5ea8e69f35861fd241b9d03958cf9cc07d85c",
-      "data/exports/verification_artifacts_20260726T171513043615Z.json": "bc591903c7e16c903c7b4bfed9da19c1c4aa50db5e02873574c89b339958d340",
-      "data/exports/proof_gate_results_20260726T171513043615Z.json": "eec485dcc951d8febc50d5bcd2d19db9a5f4fe61c46f19910f6839567cc9542f",
-      "data/exports/audit_trail_20260726T171513043615Z.json": "01bbf1a7b746de66ac4aea2d60a443bb3ab1562a4e93ec55b0f4cd487323faab",
-      "data/exports/normalised_candidates_20260726T171513043615Z.json": "d459204da701d3149961507dbb105c567105ef2bebd2b15b6422e572cab53b87",
-      "data/exports/findings_20260726T171513043615Z.json": "0251032fb4d913c3b30da3725f56257ab354239162091b6ce48dc375e5c5cd99",
-      "data/exports/opportunities_20260726T171513043615Z.json": "0c4c7ada66b9700e936b80536a7e907f150362171d681fb7031d7a7c19e76643",
-      "data/exports/mechanism_classifications_20260726T171513043615Z.json": "56f85d8018c44194796dbda52eebb24cc093b02a2885cb80349112a8bec30980",
-      "data/processed/gs_cf001_c_processed_20260726T171513043615Z.json": "b6375daef8007e614102bfe089df3035a6122b800d430efabf77a3c6b97b3e89",
-      "data/exports/gs_cf001_c_report_20260726T171513043615Z.json": "b6375daef8007e614102bfe089df3035a6122b800d430efabf77a3c6b97b3e89",
-      "data/exports/gs_cf001_c_report_20260726T171513043615Z.md": "9b98cff30dc22e2cf30bcae1acbf2cefa7ac70fd99aee1699271d8ecafb235f6"
+      "data/raw/cfpb_credit_reporting_raw_20260726T213242673508Z.json": "7ec57227cb286dd6b236dd22c78c95e013d1b86922d8477590bbf459f540cc64",
+      "data/exports/access_diagnostics_20260726T213242673508Z.json": "cfb56d6472629098f5b1bd07ff22f1cefabcb2fc35bd58c47f22fc6cbfdd5b16",
+      "data/exports/source_reliability_20260726T213242673508Z.json": "398018fd35a38da40313a5c7c8c85924fd70ae76c2efb60549cb65fe548253ea",
+      "data/exports/analysis_artifacts_20260726T213242673508Z.json": "77c7a565facff00ea6444ef2a0d26ac517ce046729c77607db3cf2384d28b400",
+      "data/exports/verification_artifacts_20260726T213242673508Z.json": "2fe79cbf68ce023924510465cf1194549234040127c2f2cb14500ef1ddaa63db",
+      "data/exports/proof_gate_results_20260726T213242673508Z.json": "cda3c533274ce6bee7961b28226af216e89bd3cfc99e0fec0dc9ca35d8967293",
+      "data/exports/audit_trail_20260726T213242673508Z.json": "5e277cb55f4e91ca7276455bb41aff9003ed82c688ea932e4894b8bccf40bb16",
+      "data/exports/normalised_candidates_20260726T213242673508Z.json": "d39e8cc54ea9e9958422bbbef1bd6e93d6f446e967367d3be02bd9049f6ed048",
+      "data/exports/findings_20260726T213242673508Z.json": "97b0543b06d3638d12c56ed013d2a92209a323f37f6e5304413541de269d9543",
+      "data/exports/opportunities_20260726T213242673508Z.json": "1ab9463bd12ce4227c6793e43666c3ca6c5ead8aeeae453741675e137be6b689",
+      "data/exports/mechanism_classifications_20260726T213242673508Z.json": "f46686f2934563ca7ed9b3299efa0cf659ef5612cf1fac86591ea838f9028d34",
+      "data/processed/gs_cf001_c_processed_20260726T213242673508Z.json": "ccc160416c961e30330a91d9a024c194811a61e6c46c8829407b399d854f500f",
+      "data/exports/gs_cf001_c_report_20260726T213242673508Z.json": "ccc160416c961e30330a91d9a024c194811a61e6c46c8829407b399d854f500f",
+      "data/exports/gs_cf001_c_report_20260726T213242673508Z.md": "9d86bc52cd420a577d3e572f92fbc5a106b9eb60e596aac9f7979084a285bf67"
     },
     "output_artifact_list": [
-      "data/raw/cfpb_credit_reporting_raw_20260726T171513043615Z.json",
-      "data/exports/access_diagnostics_20260726T171513043615Z.json",
-      "data/exports/source_reliability_20260726T171513043615Z.json",
-      "data/exports/analysis_artifacts_20260726T171513043615Z.json",
-      "data/exports/verification_artifacts_20260726T171513043615Z.json",
-      "data/exports/proof_gate_results_20260726T171513043615Z.json",
-      "data/exports/audit_trail_20260726T171513043615Z.json",
-      "data/exports/normalised_candidates_20260726T171513043615Z.json",
-      "data/exports/findings_20260726T171513043615Z.json",
-      "data/exports/opportunities_20260726T171513043615Z.json",
-      "data/exports/mechanism_classifications_20260726T171513043615Z.json",
-      "data/processed/gs_cf001_c_processed_20260726T171513043615Z.json",
-      "data/exports/gs_cf001_c_report_20260726T171513043615Z.json",
-      "data/exports/gs_cf001_c_report_20260726T171513043615Z.md",
-      "data/exports/run_manifest_20260726T171513043615Z.json"
+      "data/raw/cfpb_credit_reporting_raw_20260726T213242673508Z.json",
+      "data/exports/access_diagnostics_20260726T213242673508Z.json",
+      "data/exports/source_reliability_20260726T213242673508Z.json",
+      "data/exports/analysis_artifacts_20260726T213242673508Z.json",
+      "data/exports/verification_artifacts_20260726T213242673508Z.json",
+      "data/exports/proof_gate_results_20260726T213242673508Z.json",
+      "data/exports/audit_trail_20260726T213242673508Z.json",
+      "data/exports/normalised_candidates_20260726T213242673508Z.json",
+      "data/exports/findings_20260726T213242673508Z.json",
+      "data/exports/opportunities_20260726T213242673508Z.json",
+      "data/exports/mechanism_classifications_20260726T213242673508Z.json",
+      "data/processed/gs_cf001_c_processed_20260726T213242673508Z.json",
+      "data/exports/gs_cf001_c_report_20260726T213242673508Z.json",
+      "data/exports/gs_cf001_c_report_20260726T213242673508Z.md",
+      "data/exports/run_manifest_20260726T213242673508Z.json"
     ],
     "final_verdict": "CONTINUE RESEARCH",
     "evidence_ceiling": "BUILD CANDIDATE",
@@ -6427,31 +6429,38 @@
       "procurement context",
       "repeated mechanism across CFPB records",
       "software-addressability evidence"
-    ]
+    ],
+    "reviewing_authority": {
+      "review_methodology_profile_id": "RBM-001",
+      "architecture_authority": "RBE-001",
+      "assessment_version_recorded_by": "the reviewing board, in its session record and bundle manifest",
+      "binding": "false",
+      "note": "This run declares the review regime that governs it. It does not assert which review session assessed it, or under which version, because neither is knowable when the run is produced."
+    }
   },
   "artifacts": {
-    "raw": "data/raw/cfpb_credit_reporting_raw_20260726T171513043615Z.json",
-    "access_diagnostics": "data/exports/access_diagnostics_20260726T171513043615Z.json",
-    "source_reliability": "data/exports/source_reliability_20260726T171513043615Z.json",
-    "analysis_artifacts": "data/exports/analysis_artifacts_20260726T171513043615Z.json",
-    "verification_artifacts": "data/exports/verification_artifacts_20260726T171513043615Z.json",
-    "proof_gate_results": "data/exports/proof_gate_results_20260726T171513043615Z.json",
-    "audit_trail": "data/exports/audit_trail_20260726T171513043615Z.json",
-    "normalised_candidates": "data/exports/normalised_candidates_20260726T171513043615Z.json",
-    "findings": "data/exports/findings_20260726T171513043615Z.json",
-    "opportunities": "data/exports/opportunities_20260726T171513043615Z.json",
-    "mechanism_classifications": "data/exports/mechanism_classifications_20260726T171513043615Z.json",
-    "processed": "data/processed/gs_cf001_c_processed_20260726T171513043615Z.json",
-    "report_json": "data/exports/gs_cf001_c_report_20260726T171513043615Z.json",
-    "report_markdown": "data/exports/gs_cf001_c_report_20260726T171513043615Z.md",
-    "odr_json": "data/exports/odr_20260726T171513043615Z.json",
-    "odr_markdown": "data/exports/odr_20260726T171513043615Z.md",
-    "run_manifest": "data/exports/run_manifest_20260726T171513043615Z.json"
+    "raw": "data/raw/cfpb_credit_reporting_raw_20260726T213242673508Z.json",
+    "access_diagnostics": "data/exports/access_diagnostics_20260726T213242673508Z.json",
+    "source_reliability": "data/exports/source_reliability_20260726T213242673508Z.json",
+    "analysis_artifacts": "data/exports/analysis_artifacts_20260726T213242673508Z.json",
+    "verification_artifacts": "data/exports/verification_artifacts_20260726T213242673508Z.json",
+    "proof_gate_results": "data/exports/proof_gate_results_20260726T213242673508Z.json",
+    "audit_trail": "data/exports/audit_trail_20260726T213242673508Z.json",
+    "normalised_candidates": "data/exports/normalised_candidates_20260726T213242673508Z.json",
+    "findings": "data/exports/findings_20260726T213242673508Z.json",
+    "opportunities": "data/exports/opportunities_20260726T213242673508Z.json",
+    "mechanism_classifications": "data/exports/mechanism_classifications_20260726T213242673508Z.json",
+    "processed": "data/processed/gs_cf001_c_processed_20260726T213242673508Z.json",
+    "report_json": "data/exports/gs_cf001_c_report_20260726T213242673508Z.json",
+    "report_markdown": "data/exports/gs_cf001_c_report_20260726T213242673508Z.md",
+    "odr_json": "data/exports/odr_20260726T213242673508Z.json",
+    "odr_markdown": "data/exports/odr_20260726T213242673508Z.md",
+    "run_manifest": "data/exports/run_manifest_20260726T213242673508Z.json"
   },
   "mechanism_classifications": [
     {
-      "classification_id": "CLF-608E78336396",
-      "finding_id": "FND-53681F803C93",
+      "classification_id": "CLF-252E1CB90DAC",
+      "finding_id": "FND-E20932B0E85E",
       "mechanism": "unclassified_credit_reporting_complaint",
       "category": "noise",
       "category_label": "Noise \u2014 insufficient signal",
@@ -6463,13 +6472,13 @@
         "EQUIFAX, INC."
       ],
       "evidence_ids": [
-        "EVD-B252E0B8B7C0"
+        "EVD-936633FC982C"
       ],
       "all_repeated_signal": true,
       "majority_operational": true,
       "majority_software_addressable": true,
       "classification_reasoning": [
-        "Finding FND-53681F803C93 has 1 verified_candidate evidence item(s) \u2014 below the minimum of 2.",
+        "Finding FND-E20932B0E85E has 1 verified_candidate evidence item(s) \u2014 below the minimum of 2.",
         "Insufficient signal to assess mechanism type or commercial relevance.",
         "Classified as noise."
       ],
@@ -6481,15 +6490,15 @@
   ],
   "odr_entries": [
     {
-      "odr_id": "ODR-A31C25C11F42",
+      "odr_id": "ODR-A1434931B6D4",
       "mechanism": "unclassified_credit_reporting_complaint",
       "mechanism_classification": "Noise \u2014 insufficient signal",
       "decision_status": "REJECTED",
       "evidence_ceiling_note": "Evidence ceiling: CONTINUE RESEARCH. CFPB complaint data is a single source family. Proof Gates PG-15 and PG-16 cap the maximum verdict at CONTINUE RESEARCH regardless of record volume. CFPB complaints are unverified consumer allegations and do not independently confirm operational failure, software addressability, or commercial viability. Multiple independent research streams are required before any of those conclusions can be drawn.",
-      "finding_id": "FND-53681F803C93",
-      "opportunity_id": "OPP-6E1730C851CB",
+      "finding_id": "FND-E20932B0E85E",
+      "opportunity_id": "OPP-16F7E289ED98",
       "evidence_references": [
-        "EVD-B252E0B8B7C0"
+        "EVD-936633FC982C"
       ],
       "companies_observed": [
         "EQUIFAX, INC."
@@ -6502,7 +6511,7 @@
       "component_reusability": "unproven",
       "commercial_assessment_summary": "Buyer clarity: unclear. Commercial relevance: unproven. Component reusability: unproven. Market saturation: unknown. Existing solution maturity: unknown. Non-software alternatives: process change, policy change, staffing, vendor tools, or training may address the mechanism.",
       "decision_rationale": [
-        "Finding FND-53681F803C93 has 1 verified_candidate evidence item(s) \u2014 below the minimum of 2.",
+        "Finding FND-E20932B0E85E has 1 verified_candidate evidence item(s) \u2014 below the minimum of 2.",
         "Insufficient signal to assess mechanism type or commercial relevance.",
         "Classified as noise.",
         "Commercial hypothesis: 'Unclassified mechanism - no supported component yet' \u2014 buyer_clarity=unclear, commercial_relevance=unproven, reusability=unproven.",

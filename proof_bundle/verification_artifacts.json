@@ -1,7 +1,7 @@
 [
   {
-    "evidence_id": "EVD-54DF1CC356D2",
-    "candidate_id": "CAN-7B188C77E767",
+    "evidence_id": "EVD-28B51E39B707",
+    "candidate_id": "CAN-F8A64E850A8B",
     "study_id": "GS-CF001-C",
     "source_record_id": "9999997",
     "company_name": "TRANSUNION INTERMEDIATE HOLDINGS, INC.",
@@ -20,7 +20,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-7B188C77E767"
+      "CAN-F8A64E850A8B"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -43,14 +43,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-72D088BC24FE",
-        "evidence_id": "EVD-54DF1CC356D2",
+        "transition_id": "TRN-9CBE62690FC0",
+        "evidence_id": "EVD-28B51E39B707",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-7B188C77E767"
+          "CAN-F8A64E850A8B"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -72,8 +72,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-B02D028F0632",
-    "candidate_id": "CAN-9094CEFE3CEF",
+    "evidence_id": "EVD-66D9ECDD7923",
+    "candidate_id": "CAN-ECBC1434B40E",
     "study_id": "GS-CF001-C",
     "source_record_id": "9999996",
     "company_name": "EQUIFAX, INC.",
@@ -92,7 +92,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-9094CEFE3CEF"
+      "CAN-ECBC1434B40E"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -115,14 +115,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-B2A5C6860000",
-        "evidence_id": "EVD-B02D028F0632",
+        "transition_id": "TRN-45204098ACA0",
+        "evidence_id": "EVD-66D9ECDD7923",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-9094CEFE3CEF"
+          "CAN-ECBC1434B40E"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -144,8 +144,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-B252E0B8B7C0",
-    "candidate_id": "CAN-48ACDC0B6387",
+    "evidence_id": "EVD-936633FC982C",
+    "candidate_id": "CAN-D4C657208398",
     "study_id": "GS-CF001-C",
     "source_record_id": "9999995",
     "company_name": "EQUIFAX, INC.",
@@ -164,7 +164,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-48ACDC0B6387"
+      "CAN-D4C657208398"
     ],
     "missing_evidence": [
       "independent non-CFPB corroboration"
@@ -185,14 +185,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-8C7458078F9F",
-        "evidence_id": "EVD-B252E0B8B7C0",
+        "transition_id": "TRN-5F2B84D4F6F6",
+        "evidence_id": "EVD-936633FC982C",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "CFPB_LIMITED_EVIDENCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-48ACDC0B6387"
+          "CAN-D4C657208398"
         ],
         "output": "verified_candidate",
         "confidence": 0.75,
@@ -219,8 +219,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-BD49B8C1847B",
-    "candidate_id": "CAN-AB79646FDBF7",
+    "evidence_id": "EVD-4B081545C79F",
+    "candidate_id": "CAN-EAD09D5588C0",
     "study_id": "GS-CF001-C",
     "source_record_id": "9999994",
     "company_name": "EQUIFAX, INC.",
@@ -239,7 +239,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-AB79646FDBF7"
+      "CAN-EAD09D5588C0"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -262,14 +262,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-B535B16CCFC1",
-        "evidence_id": "EVD-BD49B8C1847B",
+        "transition_id": "TRN-0261ADB59CD3",
+        "evidence_id": "EVD-4B081545C79F",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-AB79646FDBF7"
+          "CAN-EAD09D5588C0"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -291,8 +291,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-F5DD2A074622",
-    "candidate_id": "CAN-8D5A0415E1B7",
+    "evidence_id": "EVD-7B6427514240",
+    "candidate_id": "CAN-BB14BA4BE27E",
     "study_id": "GS-CF001-C",
     "source_record_id": "9999989",
     "company_name": "Lendmark Financial Services",
@@ -311,7 +311,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-8D5A0415E1B7"
+      "CAN-BB14BA4BE27E"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -334,14 +334,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-AEFB6E8FF94A",
-        "evidence_id": "EVD-F5DD2A074622",
+        "transition_id": "TRN-5CAC021F39B6",
+        "evidence_id": "EVD-7B6427514240",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-8D5A0415E1B7"
+          "CAN-BB14BA4BE27E"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -363,8 +363,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-572BD0B5ED79",
-    "candidate_id": "CAN-F8D2B450533D",
+    "evidence_id": "EVD-6C6190CABE8C",
+    "candidate_id": "CAN-0B5A044DF51D",
     "study_id": "GS-CF001-C",
     "source_record_id": "9999988",
     "company_name": "EQUIFAX, INC.",
@@ -383,7 +383,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-F8D2B450533D"
+      "CAN-0B5A044DF51D"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -406,14 +406,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-16DB571D0557",
-        "evidence_id": "EVD-572BD0B5ED79",
+        "transition_id": "TRN-717052AF9691",
+        "evidence_id": "EVD-6C6190CABE8C",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-F8D2B450533D"
+          "CAN-0B5A044DF51D"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -435,8 +435,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-CA8BCC788CBD",
-    "candidate_id": "CAN-01C262C06A93",
+    "evidence_id": "EVD-0367F3183CA6",
+    "candidate_id": "CAN-0700E8398828",
     "study_id": "GS-CF001-C",
     "source_record_id": "9999986",
     "company_name": "Experian Information Solutions Inc.",
@@ -455,7 +455,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-01C262C06A93"
+      "CAN-0700E8398828"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -478,14 +478,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-33B36299ADAF",
-        "evidence_id": "EVD-CA8BCC788CBD",
+        "transition_id": "TRN-853B16282B1A",
+        "evidence_id": "EVD-0367F3183CA6",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-01C262C06A93"
+          "CAN-0700E8398828"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -507,8 +507,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-A3D9992783BC",
-    "candidate_id": "CAN-D2E9D92D1366",
+    "evidence_id": "EVD-968C6A273272",
+    "candidate_id": "CAN-C580C8FF6A7D",
     "study_id": "GS-CF001-C",
     "source_record_id": "9999985",
     "company_name": "EQUIFAX, INC.",
@@ -527,7 +527,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-D2E9D92D1366"
+      "CAN-C580C8FF6A7D"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -550,14 +550,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-463B3B5E7159",
-        "evidence_id": "EVD-A3D9992783BC",
+        "transition_id": "TRN-0A34EA814A4A",
+        "evidence_id": "EVD-968C6A273272",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-D2E9D92D1366"
+          "CAN-C580C8FF6A7D"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -579,8 +579,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-D5F0D5534292",
-    "candidate_id": "CAN-D3EDCA1BFEBB",
+    "evidence_id": "EVD-49E278F60D33",
+    "candidate_id": "CAN-D078AE04D717",
     "study_id": "GS-CF001-C",
     "source_record_id": "73667058",
     "company_name": "BANK OF AMERICA, N.A.",
@@ -599,7 +599,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-D3EDCA1BFEBB"
+      "CAN-D078AE04D717"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -622,14 +622,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-20CB59FA190B",
-        "evidence_id": "EVD-D5F0D5534292",
+        "transition_id": "TRN-19CCDB462D24",
+        "evidence_id": "EVD-49E278F60D33",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-D3EDCA1BFEBB"
+          "CAN-D078AE04D717"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -651,8 +651,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-3A259E6FC571",
-    "candidate_id": "CAN-925E42EA0AB4",
+    "evidence_id": "EVD-35191F6DA61B",
+    "candidate_id": "CAN-776477EEBD89",
     "study_id": "GS-CF001-C",
     "source_record_id": "73662410",
     "company_name": "TRANS UNION, LLC",
@@ -671,7 +671,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-925E42EA0AB4"
+      "CAN-776477EEBD89"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -694,14 +694,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-139DD6C14F0A",
-        "evidence_id": "EVD-3A259E6FC571",
+        "transition_id": "TRN-ED50B552FE93",
+        "evidence_id": "EVD-35191F6DA61B",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-925E42EA0AB4"
+          "CAN-776477EEBD89"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -723,8 +723,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-29FFD18DDB3E",
-    "candidate_id": "CAN-57DAC006B4D0",
+    "evidence_id": "EVD-115A4F8ECAE7",
+    "candidate_id": "CAN-ECE963A7A6FF",
     "study_id": "GS-CF001-C",
     "source_record_id": "73662383",
     "company_name": "Hy Cite Corporation",
@@ -743,7 +743,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-57DAC006B4D0"
+      "CAN-ECE963A7A6FF"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -766,14 +766,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-022C489D75F1",
-        "evidence_id": "EVD-29FFD18DDB3E",
+        "transition_id": "TRN-AF8CA0C0C19E",
+        "evidence_id": "EVD-115A4F8ECAE7",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-57DAC006B4D0"
+          "CAN-ECE963A7A6FF"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -795,8 +795,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-09B0EFB4BFDA",
-    "candidate_id": "CAN-753A991BABF1",
+    "evidence_id": "EVD-17FF0C22CAF4",
+    "candidate_id": "CAN-C611A3B2C128",
     "study_id": "GS-CF001-C",
     "source_record_id": "73661100",
     "company_name": "EQUIFAX INFORMATION SERVICES LLC",
@@ -815,7 +815,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-753A991BABF1"
+      "CAN-C611A3B2C128"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -838,14 +838,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-CB1FC1511C37",
-        "evidence_id": "EVD-09B0EFB4BFDA",
+        "transition_id": "TRN-8CDBC6602771",
+        "evidence_id": "EVD-17FF0C22CAF4",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-753A991BABF1"
+          "CAN-C611A3B2C128"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -867,8 +867,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-9184F53EC48B",
-    "candidate_id": "CAN-9CC9CF826F82",
+    "evidence_id": "EVD-3F2B6EE3DB42",
+    "candidate_id": "CAN-B69695D92F8F",
     "study_id": "GS-CF001-C",
     "source_record_id": "73655224",
     "company_name": "Equifax Information Services, LLC",
@@ -887,7 +887,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-9CC9CF826F82"
+      "CAN-B69695D92F8F"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -910,14 +910,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-0EAC060C71A5",
-        "evidence_id": "EVD-9184F53EC48B",
+        "transition_id": "TRN-CAE08854D74B",
+        "evidence_id": "EVD-3F2B6EE3DB42",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-9CC9CF826F82"
+          "CAN-B69695D92F8F"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -939,8 +939,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-20054679C056",
-    "candidate_id": "CAN-230B06C32AC7",
+    "evidence_id": "EVD-2E9764AB6C93",
+    "candidate_id": "CAN-74F40E00396E",
     "study_id": "GS-CF001-C",
     "source_record_id": "73652491",
     "company_name": "Equifax Information Services LLC",
@@ -959,7 +959,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-230B06C32AC7"
+      "CAN-74F40E00396E"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -982,14 +982,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-2F9532ABF279",
-        "evidence_id": "EVD-20054679C056",
+        "transition_id": "TRN-18B0DB42161B",
+        "evidence_id": "EVD-2E9764AB6C93",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-230B06C32AC7"
+          "CAN-74F40E00396E"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -1011,8 +1011,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-AAB34D4880BA",
-    "candidate_id": "CAN-1E7282A7BFB2",
+    "evidence_id": "EVD-B0A5EEDE06A1",
+    "candidate_id": "CAN-88E5621078B7",
     "study_id": "GS-CF001-C",
     "source_record_id": "73647363",
     "company_name": "HireRight LLC",
@@ -1031,7 +1031,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-1E7282A7BFB2"
+      "CAN-88E5621078B7"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -1054,14 +1054,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-5C73F7121124",
-        "evidence_id": "EVD-AAB34D4880BA",
+        "transition_id": "TRN-F6727A09405F",
+        "evidence_id": "EVD-B0A5EEDE06A1",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-1E7282A7BFB2"
+          "CAN-88E5621078B7"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -1083,8 +1083,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-56320C840917",
-    "candidate_id": "CAN-C9F8363A862A",
+    "evidence_id": "EVD-8C669BD3F643",
+    "candidate_id": "CAN-34D16D43315A",
     "study_id": "GS-CF001-C",
     "source_record_id": "73646709",
     "company_name": "Equifax Information Services, LLC",
@@ -1103,7 +1103,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-C9F8363A862A"
+      "CAN-34D16D43315A"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -1126,14 +1126,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-A2F5F959DB89",
-        "evidence_id": "EVD-56320C840917",
+        "transition_id": "TRN-CD46878490C0",
+        "evidence_id": "EVD-8C669BD3F643",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-C9F8363A862A"
+          "CAN-34D16D43315A"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -1155,8 +1155,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-3848CFE9BF3E",
-    "candidate_id": "CAN-80662B02CF19",
+    "evidence_id": "EVD-2C6E53A827F7",
+    "candidate_id": "CAN-34249AFDD8A2",
     "study_id": "GS-CF001-C",
     "source_record_id": "26367223",
     "company_name": "EQUIFAX INFORMATION SER, ET AL",
@@ -1175,7 +1175,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-80662B02CF19"
+      "CAN-34249AFDD8A2"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -1198,14 +1198,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-5B8739EA5194",
-        "evidence_id": "EVD-3848CFE9BF3E",
+        "transition_id": "TRN-9448BFDA3905",
+        "evidence_id": "EVD-2C6E53A827F7",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-80662B02CF19"
+          "CAN-34249AFDD8A2"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -1227,8 +1227,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-2ADDDC20E528",
-    "candidate_id": "CAN-C7E687AE62F4",
+    "evidence_id": "EVD-BE7D0129D6FE",
+    "candidate_id": "CAN-942CD691F85D",
     "study_id": "GS-CF001-C",
     "source_record_id": "26362522",
     "company_name": "EXPERIAN INFORMATION SO, ET AL",
@@ -1247,7 +1247,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-C7E687AE62F4"
+      "CAN-942CD691F85D"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -1270,14 +1270,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-1EBCFDAA2626",
-        "evidence_id": "EVD-2ADDDC20E528",
+        "transition_id": "TRN-5B2CB72C7101",
+        "evidence_id": "EVD-BE7D0129D6FE",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-C7E687AE62F4"
+          "CAN-942CD691F85D"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -1299,8 +1299,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-26F047F4853E",
-    "candidate_id": "CAN-708F6B709800",
+    "evidence_id": "EVD-628B25012603",
+    "candidate_id": "CAN-D19325F86326",
     "study_id": "GS-CF001-C",
     "source_record_id": "26361819",
     "company_name": "BOUC, ET AL",
@@ -1319,7 +1319,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-708F6B709800"
+      "CAN-D19325F86326"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -1342,14 +1342,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-CBF68786B886",
-        "evidence_id": "EVD-26F047F4853E",
+        "transition_id": "TRN-22E4A2BCC149",
+        "evidence_id": "EVD-628B25012603",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-708F6B709800"
+          "CAN-D19325F86326"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -1371,8 +1371,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-6A0A52C53E22",
-    "candidate_id": "CAN-7795CD09FFA8",
+    "evidence_id": "EVD-C7327BD5DD5F",
+    "candidate_id": "CAN-894B21578E08",
     "study_id": "GS-CF001-C",
     "source_record_id": "26236853",
     "company_name": "CIRCLE K STORES INC",
@@ -1391,7 +1391,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-7795CD09FFA8"
+      "CAN-894B21578E08"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -1414,14 +1414,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-FF60214AD7EC",
-        "evidence_id": "EVD-6A0A52C53E22",
+        "transition_id": "TRN-460E41281886",
+        "evidence_id": "EVD-C7327BD5DD5F",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-7795CD09FFA8"
+          "CAN-894B21578E08"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -1443,8 +1443,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-C9ED839573F1",
-    "candidate_id": "CAN-ADE092C69178",
+    "evidence_id": "EVD-7E96AA349101",
+    "candidate_id": "CAN-F21547C46A41",
     "study_id": "GS-CF001-C",
     "source_record_id": "26232596",
     "company_name": "VIVINT SMART HOME",
@@ -1463,7 +1463,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-ADE092C69178"
+      "CAN-F21547C46A41"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -1486,14 +1486,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-BC28883D7EA6",
-        "evidence_id": "EVD-C9ED839573F1",
+        "transition_id": "TRN-C80F14BFAFE8",
+        "evidence_id": "EVD-7E96AA349101",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-ADE092C69178"
+          "CAN-F21547C46A41"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -1515,8 +1515,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-E0C526190582",
-    "candidate_id": "CAN-5D97706FAAB2",
+    "evidence_id": "EVD-E6D9F831A02F",
+    "candidate_id": "CAN-D935F58BF2D1",
     "study_id": "GS-CF001-C",
     "source_record_id": "26207324",
     "company_name": "AMERICAN EXPRESS COMPAN, ET AL",
@@ -1535,7 +1535,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-5D97706FAAB2"
+      "CAN-D935F58BF2D1"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -1558,14 +1558,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-82438C9F94C1",
-        "evidence_id": "EVD-E0C526190582",
+        "transition_id": "TRN-751F4A22A7FA",
+        "evidence_id": "EVD-E6D9F831A02F",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-5D97706FAAB2"
+          "CAN-D935F58BF2D1"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -1587,8 +1587,8 @@
     "contradicts_occurrence": true
   },
   {
-    "evidence_id": "EVD-A47CA4024DE2",
-    "candidate_id": "CAN-B54020EBB393",
+    "evidence_id": "EVD-01F992D15FBF",
+    "candidate_id": "CAN-264B72C1084F",
     "study_id": "GS-CF001-C",
     "source_record_id": "26202575",
     "company_name": "JPMORGAN CHASE BANK, N.A.",
@@ -1607,7 +1607,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-B54020EBB393"
+      "CAN-264B72C1084F"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -1630,14 +1630,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-75EC07E9113C",
-        "evidence_id": "EVD-A47CA4024DE2",
+        "transition_id": "TRN-53AC0D318BED",
+        "evidence_id": "EVD-01F992D15FBF",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-B54020EBB393"
+          "CAN-264B72C1084F"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,
@@ -1659,8 +1659,8 @@
     "contradicts_occurrence": false
   },
   {
-    "evidence_id": "EVD-889EA82F27FD",
-    "candidate_id": "CAN-BBB65A92A0F9",
+    "evidence_id": "EVD-427AA1556925",
+    "candidate_id": "CAN-7AAF23A9E448",
     "study_id": "GS-CF001-C",
     "source_record_id": "26197175",
     "company_name": "TESLA ENERGY OPERATIONS, ET AL",
@@ -1679,7 +1679,7 @@
       "Verification does not assess whether software should be built."
     ],
     "supporting_candidate_ids": [
-      "CAN-BBB65A92A0F9"
+      "CAN-7AAF23A9E448"
     ],
     "missing_evidence": [
       "operational complaint mechanism",
@@ -1702,14 +1702,14 @@
     ],
     "state_transitions": [
       {
-        "transition_id": "TRN-0DEF04B39686",
-        "evidence_id": "EVD-889EA82F27FD",
+        "transition_id": "TRN-F93895E79AD0",
+        "evidence_id": "EVD-427AA1556925",
         "previous_state": "EVIDENCE_CANDIDATE",
         "new_state": "VERIFIED_WITHIN_SOURCE",
         "rule_or_process": "Verification V1 deterministic classification",
-        "timestamp": "2026-07-26T17:15:53Z",
+        "timestamp": "2026-07-26T21:32:55Z",
         "inputs": [
-          "CAN-BBB65A92A0F9"
+          "CAN-7AAF23A9E448"
         ],
         "output": "rejected_candidate",
         "confidence": 0.35,

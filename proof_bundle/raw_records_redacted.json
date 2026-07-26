@@ -12,7 +12,7 @@
       "evidentiary_standing": "ALLEGED"
     },
     "retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-26T17:15:13Z",
+    "retrieved_at": "2026-07-26T21:32:42Z",
     "access_method": "official_cfpb_search_api",
     "errors": [],
     "records": [
@@ -39,7 +39,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -64,7 +64,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -89,7 +89,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -114,7 +114,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -139,7 +139,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -164,7 +164,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -189,7 +189,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -214,7 +214,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-26T17:15:13Z"
+        "_retrieved_at": "2026-07-26T21:32:42Z"
       }
     ]
   },
@@ -231,7 +231,7 @@
       "evidentiary_standing": "ALLEGED"
     },
     "retrieval_url": "https://www.courtlistener.com/api/rest/v4/search/?q=%22Fair+Credit+Reporting+Act%22+reinvestigation&type=r&order_by=dateFiled+desc",
-    "retrieved_at": "2026-07-26T17:15:17Z",
+    "retrieved_at": "2026-07-26T21:32:43Z",
     "access_method": "courtlistener_search_api",
     "errors": [],
     "records": [
@@ -256,7 +256,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73667058/anton-v-bank-of-america-na/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       {
         "docket_id": "73662410",
@@ -283,7 +283,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73662410/lisman-v-trans-union-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       {
         "docket_id": "73662383",
@@ -306,7 +306,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73662383/suazo-garcia-v-hy-cite-corporation/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       {
         "docket_id": "73661100",
@@ -330,7 +330,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73661100/williams-v-equifax-information-services-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       {
         "docket_id": "73655224",
@@ -357,7 +357,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73655224/arno-v-equifax-information-services-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       {
         "docket_id": "73652491",
@@ -383,7 +383,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73652491/bennett-v-equifax-information-services-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       {
         "docket_id": "73647363",
@@ -406,7 +406,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73647363/wright-david-v-hireright-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       },
       {
         "docket_id": "73646709",
@@ -433,7 +433,7 @@
         "_retrieval_url": "https://www.courtlistener.com/docket/73646709/jover-v-equifax-information-services-llc/",
         "_source_name": "CourtListener Federal Court Records (RECAP)",
         "_access_method": "courtlistener_search_api",
-        "_retrieved_at": "2026-07-26T17:15:17Z"
+        "_retrieved_at": "2026-07-26T21:32:43Z"
       }
     ]
   },
@@ -450,7 +450,7 @@
       "evidentiary_standing": "ADJUDICATED"
     },
     "retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/?title=15&section__startswith=1681&disposition__in=5%2C6%2C7%2C8%2C9&judgment__in=1%2C2&page_size=8",
-    "retrieved_at": "2026-07-26T17:15:19Z",
+    "retrieved_at": "2026-07-26T21:32:46Z",
     "access_method": "fjc_integrated_database_api",
     "errors": [],
     "records": [
@@ -477,7 +477,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26367223/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "WASHINGTON v. EQUIFAX INFORMATION SERVICES, LLC",
@@ -511,7 +511,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26362522/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Proctor v. Experian Information Solutions, Inc.",
@@ -545,7 +545,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26361819/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Family Walk Allah Trust v. Bouc",
@@ -579,7 +579,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26236853/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "JAMES v. CIRCLE K STORES INC",
@@ -613,7 +613,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26232596/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "United States v. Vivint Smart Home",
@@ -647,7 +647,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26207324/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Shuthima Pongsai v. American Express Company",
@@ -681,7 +681,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26202575/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Groth v. JPMorgan Chase Bank, N.A.",
@@ -715,7 +715,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26197175/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-26T17:15:19Z",
+        "_retrieved_at": "2026-07-26T21:32:46Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Olivier Chaine v. Tesla Energy Operation, Inc.",
