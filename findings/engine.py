@@ -4,6 +4,7 @@ from collections import defaultdict
 
 from core.evidence_states import CFPB_LIMITED_EVIDENCE, FINDING_ELIGIBLE, transition
 from core.ids import stable_id
+from verification.rules import DEFAULT_MECHANISM
 from core.models import Finding, VerifiedEvidence
 
 
@@ -97,6 +98,18 @@ def generate_findings(evidence: list[VerifiedEvidence]) -> list[Finding]:
         evidence_count = len(items)
         company_count = len(companies)
         missing = []
+        # An unclassified group is not a mechanism finding. The classifier's
+        # fallback means "no mechanism was identified", and a finding is a claim
+        # about a mechanism, so this group has nothing to support.
+        #
+        # This is a single fix for three gates. PG-05 (Repetition), PG-07
+        # (Operational Specificity) and PG-08 (Software-Addressability) all read
+        # `finding_supported_cfpb_only`, so with every record unclassified all
+        # three reported PASS: repetition of nothing in particular, an
+        # "operational mechanism definition" reading "Unclassified mechanism", and
+        # a component hypothesis reading "no supported component yet".
+        if mechanism == DEFAULT_MECHANISM:
+            missing.append("an identified operational mechanism")
         if evidence_count < 3:
             missing.append("minimum 3 verified evidence items")
         if company_count < 2:
