@@ -51,6 +51,7 @@ from typing import Any, Callable
 from connectors.base import RetrievalResult
 from connectors.docket_join import DocketJoinAdapter, join_idb_record
 from core.adjudication import ADJUDICATED, classify_fjc_disposition, occurrence_reasoning
+from core.http_retry import retrying_urlopen
 from core.ids import stable_id, utc_now
 from core.models import AccessDiagnostic, Source, SourceReliabilityAssessment
 
@@ -315,7 +316,7 @@ class FJCIDBAdapter:
                 "Authorization": f"Token {self.token}",
             },
         )
-        with urllib.request.urlopen(request, timeout=ACCESS_TIMEOUT_SECONDS) as response:
+        with retrying_urlopen(request, timeout=ACCESS_TIMEOUT_SECONDS) as response:
             body = response.read().decode("utf-8", errors="ignore")
             return json.loads(body), dict(response.headers.items()), str(response.status)
 

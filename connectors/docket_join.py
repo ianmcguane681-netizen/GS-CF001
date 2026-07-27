@@ -49,6 +49,8 @@ import urllib.parse
 import urllib.request
 from typing import Any, Callable
 
+from core.http_retry import retrying_urlopen
+
 COURTLISTENER_SEARCH_URL = "https://www.courtlistener.com/api/rest/v4/search/"
 USER_AGENT = "GS-CF001/0.1 methodology proof"
 ACCESS_TIMEOUT_SECONDS = 45
@@ -57,23 +59,7 @@ ACCESS_TIMEOUT_SECONDS = 45
 # the API's rate limit. Without backoff a limited run degrades every record to
 # unjoined and the study's result depends on how busy the API was, which is the
 # opposite of reproducible. A 429 is a request to wait, so the client waits.
-RATE_LIMIT_BACKOFF_SECONDS = (5, 20, 60)
 INTER_REQUEST_DELAY_SECONDS = 0.5
-
-
-def _retrying_urlopen(request: urllib.request.Request, *, sleep=time.sleep):
-    """Open a request, waiting out rate limits rather than failing through them."""
-
-    last: Exception | None = None
-    for attempt in range(len(RATE_LIMIT_BACKOFF_SECONDS) + 1):
-        try:
-            return urllib.request.urlopen(request, timeout=ACCESS_TIMEOUT_SECONDS)
-        except urllib.error.HTTPError as error:
-            last = error
-            if error.code not in (429, 502, 503) or attempt == len(RATE_LIMIT_BACKOFF_SECONDS):
-                raise
-            sleep(RATE_LIMIT_BACKOFF_SECONDS[attempt])
-    raise last  # pragma: no cover - loop always returns or raises
 
 # Nature of suit 480 is Consumer Credit, the category FCRA consumer claims are
 # filed under. The FJC and RECAP render it variously as a bare code, a code with a
@@ -190,7 +176,7 @@ class DocketJoinAdapter:
         if self.token:
             headers["Authorization"] = f"Token {self.token}"
         request = urllib.request.Request(url, headers=headers)
-        with _retrying_urlopen(request) as response:
+        with retrying_urlopen(request, timeout=ACCESS_TIMEOUT_SECONDS) as response:
             body = response.read().decode("utf-8", errors="ignore")
             return json.loads(body), dict(response.headers.items()), str(response.status)
 
@@ -263,7 +249,7 @@ def _default_fetch_json(url: str) -> dict[str, Any]:
     if token:
         headers["Authorization"] = f"Token {token}"
     request = urllib.request.Request(url, headers=headers)
-    with _retrying_urlopen(request) as response:
+    with retrying_urlopen(request, timeout=ACCESS_TIMEOUT_SECONDS) as response:
         return json.loads(response.read().decode("utf-8", errors="ignore"))
 
 
