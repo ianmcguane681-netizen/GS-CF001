@@ -41,6 +41,12 @@ from core.adjudication import classify_fjc_disposition, establishes_occurrence
 from verification.rules import DEFAULT_MECHANISM, detect_mechanism
 
 DEFAULT_OUTPUT = Path("analysis/adjudication_coverage.json")
+DEFAULT_POOL_CACHE = Path("analysis/adjudication_pool.json")
+
+# The pool is a fixed set: FCRA cases whose coded outcome went against the
+# respondent. Re-walking it on every attempt was the reason every attempt was
+# rate-limited before it began -- the expensive part ran first and repeatedly, and
+# the cheap part never got a turn. It is enumerated once and cached.
 
 
 def fetch_establishing_records(
@@ -55,7 +61,7 @@ def fetch_establishing_records(
 
     collected: list[dict[str, Any]] = []
     incomplete = ""
-    url = adapter.build_url(min(limit, 100), judgment="1")
+    url = adapter.build_url(min(limit, 20), judgment="1")
     while url and len(collected) < limit:
         try:
             payload, _headers, _status = adapter._fetch_json(url)  # noqa: SLF001 - same package
@@ -73,7 +79,7 @@ def fetch_establishing_records(
             if establishes_occurrence(posture, direction):
                 collected.append({**row, "_posture": posture, "_direction": direction})
         url = payload.get("next")
-        time.sleep(1.0)
+        time.sleep(3.0)
     return collected[:limit], incomplete
 
 
@@ -132,6 +138,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Measure adjudicated corroboration coverage.")
     parser.add_argument("--limit", type=int, default=67)
     parser.add_argument("--output", default=str(DEFAULT_OUTPUT))
+    parser.add_argument("--pool-cache", default=str(DEFAULT_POOL_CACHE))
     args = parser.parse_args()
 
     output = Path(args.output)
@@ -146,8 +153,23 @@ def main() -> int:
         return 1
     join = DocketJoinAdapter(token=idb.token)
 
-    records, incomplete = fetch_establishing_records(idb, args.limit)
-    print(f"occurrence-establishing records retrieved: {len(records)}")
+    cache = Path(args.pool_cache)
+    incomplete = ""
+    if cache.is_file():
+        cached = json.loads(cache.read_text(encoding="utf-8"))
+        records = cached["records"][: args.limit]
+        print(f"pool from cache: {len(records)} occurrence-establishing record(s)")
+    else:
+        records, incomplete = fetch_establishing_records(idb, args.limit)
+        print(f"occurrence-establishing records retrieved: {len(records)}")
+        if records and not incomplete:
+            cache.parent.mkdir(parents=True, exist_ok=True)
+            cache.write_text(
+                json.dumps({"enumerated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                            "records": records}, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            print(f"pool cached to {cache}")
 
     results = list(done.values())
     for index, record in enumerate(records, start=1):

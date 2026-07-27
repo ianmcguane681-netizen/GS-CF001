@@ -1,6 +1,4 @@
 {
-  "pool_incomplete": "pagination stopped early: HTTP Error 429 (previous run)",
-  "note": "No summary: the pool was not enumerated on the run that produced these records.",
   "records": [
     {
       "docket": "2:21-cv-00267",
@@ -401,6 +399,66 @@
       "stopped_at": "join failed: docket lookup failed: HTTP 429",
       "suit_nature": "",
       "case_name": ""
+    },
+    {
+      "docket": "8:16-cv-00578",
+      "court": "flmd",
+      "defendant": "HALSTED FINANCIAL SERVICES, LL",
+      "posture": "TRIAL_JUDGMENT",
+      "origin": 1,
+      "joined": true,
+      "on_study_suit_nature": true,
+      "complaint_chars": 0,
+      "mechanism": "",
+      "stopped_at": "no document 1 text available in RECAP for this docket",
+      "suit_nature": "480 Consumer Credit",
+      "case_name": "Little v. Halsted Financial Services, LLC",
+      "complaint_note": "no document 1 text available in RECAP for this docket"
+    },
+    {
+      "docket": "8:15-cv-02456",
+      "court": "flmd",
+      "defendant": "AMAZON.COM, INC.",
+      "posture": "CONSENT_ORDER",
+      "origin": 4,
+      "joined": true,
+      "on_study_suit_nature": true,
+      "complaint_chars": 0,
+      "mechanism": "",
+      "stopped_at": "origin 4 is not an original proceeding, so document 1 is not the complaint",
+      "suit_nature": "480 Consumer Credit",
+      "case_name": "Hargrett v. Amazon.com, Inc.",
+      "complaint_note": "origin 4 is not an original proceeding, so document 1 is not the complaint"
+    },
+    {
+      "docket": "2:15-cv-00952",
+      "court": "alnd",
+      "defendant": "PORTFOLIO RECOVERY ASSO, ET AL",
+      "posture": "TRIAL_JUDGMENT",
+      "origin": 1,
+      "joined": true,
+      "on_study_suit_nature": true,
+      "complaint_chars": 0,
+      "mechanism": "",
+      "stopped_at": "no document 1 text available in RECAP for this docket",
+      "suit_nature": "480 Consumer Credit",
+      "case_name": "Younger v. Portfolio Recovery Associates LLC",
+      "complaint_note": "no document 1 text available in RECAP for this docket"
+    },
+    {
+      "docket": "1:17-cv-00025",
+      "court": "cod",
+      "defendant": "OCWEN LOAN SERVICING, LLC",
+      "posture": "TRIAL_JUDGMENT",
+      "origin": 1,
+      "joined": true,
+      "on_study_suit_nature": true,
+      "complaint_chars": 0,
+      "mechanism": "",
+      "stopped_at": "no document 1 text available in RECAP for this docket",
+      "suit_nature": "480 Consumer Credit",
+      "case_name": "Jeffers v. Ocwen Loan Servicing, LLC",
+      "complaint_note": "no document 1 text available in RECAP for this docket"
     }
   ]
 }
