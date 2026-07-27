@@ -1,4 +1,6 @@
 {
+  "pool_incomplete": "pagination stopped early: HTTP Error 429 (previous run)",
+  "note": "No summary: the pool was not enumerated on the run that produced these records.",
   "records": [
     {
       "docket": "2:21-cv-00267",

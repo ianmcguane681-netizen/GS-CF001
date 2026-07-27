@@ -43,10 +43,18 @@ from verification.rules import DEFAULT_MECHANISM, detect_mechanism
 DEFAULT_OUTPUT = Path("analysis/adjudication_coverage.json")
 
 
-def fetch_establishing_records(adapter: FJCIDBAdapter, limit: int) -> list[dict[str, Any]]:
-    """Every FCRA case whose coded outcome went against the respondent on the merits."""
+def fetch_establishing_records(
+    adapter: FJCIDBAdapter, limit: int
+) -> tuple[list[dict[str, Any]], str]:
+    """Every FCRA case whose coded outcome went against the respondent on the merits.
+
+    Returns the records and, if pagination did not complete, why. The caller needs
+    that: a walk that enumerated nothing has no denominator, and a summary written
+    over it would read as authoritative while resting on no pool at all.
+    """
 
     collected: list[dict[str, Any]] = []
+    incomplete = ""
     url = adapter.build_url(min(limit, 100), judgment="1")
     while url and len(collected) < limit:
         try:
@@ -55,7 +63,8 @@ def fetch_establishing_records(adapter: FJCIDBAdapter, limit: int) -> list[dict[
             # Pagination failing part-way is a smaller sample, not a lost run. The
             # caller assesses what was retrieved and the shortfall is visible in
             # the summary rather than silently changing the denominator.
-            print(f"  pagination stopped early: {error}")
+            incomplete = f"pagination stopped early: {error}"
+            print(f"  {incomplete}")
             break
         for row in payload.get("results") or []:
             if not cites_fcra(row.get("title"), row.get("section")):
@@ -65,7 +74,7 @@ def fetch_establishing_records(adapter: FJCIDBAdapter, limit: int) -> list[dict[
                 collected.append({**row, "_posture": posture, "_direction": direction})
         url = payload.get("next")
         time.sleep(1.0)
-    return collected[:limit]
+    return collected[:limit], incomplete
 
 
 def assess(record: dict[str, Any], join: DocketJoinAdapter) -> dict[str, Any]:
@@ -137,7 +146,7 @@ def main() -> int:
         return 1
     join = DocketJoinAdapter(token=idb.token)
 
-    records = fetch_establishing_records(idb, args.limit)
+    records, incomplete = fetch_establishing_records(idb, args.limit)
     print(f"occurrence-establishing records retrieved: {len(records)}")
 
     results = list(done.values())
@@ -158,8 +167,35 @@ def main() -> int:
         time.sleep(0.5)
 
     reached = [r for r in results if r.get("mechanism") and r["mechanism"] != DEFAULT_MECHANISM]
+    if incomplete and not records:
+        # The pool was never enumerated, so there is no denominator. Writing a
+        # summary here would present a run that retrieved nothing as a finished
+        # measurement -- the precise failure this repository keeps finding in its
+        # own gates. The assessed records are kept; the claim is not made.
+        output.write_text(
+            json.dumps(
+                {
+                    "pool_incomplete": incomplete,
+                    "note": (
+                        "No summary: the occurrence-establishing pool could not be "
+                        "enumerated on this run, so the assessed records have no "
+                        "denominator. Re-run to complete."
+                    ),
+                    "records": results,
+                },
+                indent=2,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        print(f"\nPOOL NOT ENUMERATED: {incomplete}")
+        print(f"{len(results)} record(s) assessed, but with no denominator. Re-run to complete.")
+        return 2
+
     summary = {
         "assessed": len(results),
+        "pool_size_enumerated": len(records),
+        "pool_incomplete": incomplete or None,
         "joined": sum(1 for r in results if r.get("joined")),
         "on_study_suit_nature": sum(1 for r in results if r.get("on_study_suit_nature")),
         "with_complaint_text": sum(1 for r in results if r.get("complaint_chars")),
