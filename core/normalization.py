@@ -210,10 +210,13 @@ def normalise_idb_record(
         "join_verified": bool(raw_record.get("join_verified")),
         "join_note": raw_record.get("join_note") or "",
         "occurrence_reasoning": raw_record.get("occurrence_reasoning") or "",
-        # An IDB row records who won, not what the consumer said. Leaving the
-        # narrative empty stops the verification rules reading an outcome code as
-        # a first-hand account of the operational failure.
-        "narrative": "",
+        # The complaint document, where RECAP has it. An outcome code is not a
+        # narrative and must never be read as one, but a complaint is the
+        # plaintiff's own account of what happened -- the same evidentiary class as
+        # a CFPB consumer narrative -- so the classifier applies to it unchanged.
+        # Empty whenever the document could not be identified with certainty.
+        "narrative": raw_record.get("complaint_text") or "",
+        "narrative_source": raw_record.get("complaint_text_note") or "",
         "product": "Credit reporting or other personal consumer reports",
         "issue": "Adjudicated Fair Credit Reporting Act claim",
         "sub_issue": f"disposition={raw_record.get('disposition_code')}; judgment={raw_record.get('judgment_code')}",
@@ -224,6 +227,7 @@ def normalise_idb_record(
         f"Classified posture {posture!r} direction {direction!r} from official FJC codes",
         f"Docket join {'confirmed' if raw_record.get('join_verified') else 'not confirmed'}: {raw_record.get('join_note') or 'not attempted'}",
         f"Suit nature {raw_record.get('joined_suit_nature') or 'unknown'!r}; on study subject matter: {bool(raw_record.get('on_study_suit_nature'))}",
+        f"Mechanism narrative: {raw_record.get('complaint_text_note') or 'not attempted'}",
         "Normalised coded case outcome into source-agnostic EvidenceCandidate",
     ]
     candidate_id = stable_id(

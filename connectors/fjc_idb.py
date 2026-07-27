@@ -200,7 +200,7 @@ class FJCIDBAdapter:
         # diagnostic rather than an unexplained empty result set.
         self.token = token if token is not None else os.environ.get(TOKEN_ENV_VAR, "")
 
-    def build_url(self, limit: int = 1) -> str:
+    def build_url(self, limit: int = 1, judgment: str = "1,2") -> str:
         params = {
             "title": FCRA_TITLE,
             "section__startswith": FCRA_SECTION_PREFIX,
@@ -208,7 +208,7 @@ class FJCIDBAdapter:
             # dismissed, transferred -- cannot establish or contradict occurrence,
             # so retrieving it would only be discarded downstream.
             "disposition__in": "5,6,7,8,9",
-            "judgment__in": "1,2",
+            "judgment__in": judgment,
             "page_size": str(max(1, min(int(limit), 100))),
         }
         return f"{FJC_IDB_URL}?{urllib.parse.urlencode(params)}"
@@ -216,8 +216,46 @@ class FJCIDBAdapter:
     def retrieve(
         self, limit: int
     ) -> tuple[str, list[dict[str, Any]], list[str], list[AccessDiagnostic]]:
-        url = self.build_url(limit)
+        """Retrieve decided FCRA cases, stratified by which way they went.
+
+        Defence-side decisions outnumber plaintiff-side ones by roughly 366 to 67
+        in this dataset, so an unstratified sample of any practical size is almost
+        all defence wins and the study never sees an adjudicated finding of
+        occurrence at all. Retrieving only plaintiff wins would be the opposite
+        error: a source that can only ever confirm the hypothesis is not a test of
+        it, and PG-13 exists precisely to require the other direction.
+
+        So both strata are retrieved deliberately and in equal measure, and the
+        stratification is recorded rather than left to look like a random sample.
+        """
+
+        half = max(1, limit // 2)
+        url_plaintiff = self.build_url(half, judgment="1")
+        url_defendant = self.build_url(limit - half, judgment="2")
+        records: list[dict[str, Any]] = []
+        errors: list[str] = []
+        diagnostics: list[AccessDiagnostic] = []
+        for stratum_url, stratum_limit, label in (
+            (url_plaintiff, half, "judgment for plaintiff"),
+            (url_defendant, limit - half, "judgment for defendant"),
+        ):
+            got, err, diag = self._retrieve_one(stratum_url, stratum_limit, label)
+            records.extend(got)
+            errors.extend(err)
+            diagnostics.extend(diag)
+        return url_plaintiff, records, errors, diagnostics
+
+    def _retrieve_one(
+        self, url: str, limit: int, stratum: str
+    ) -> tuple[list[dict[str, Any]], list[str], list[AccessDiagnostic]]:
+        _url, records, errors, diagnostics = self._retrieve_url(url, limit, stratum)
+        return records, errors, diagnostics
+
+    def _retrieve_url(
+        self, url: str, limit: int, stratum: str = ""
+    ) -> tuple[str, list[dict[str, Any]], list[str], list[AccessDiagnostic]]:
         headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
+        stratum_note = f" [{stratum}]" if stratum else ""
         if not self.token:
             diagnostic = _diagnostic(
                 url,
@@ -240,7 +278,7 @@ class FJCIDBAdapter:
                 headers,
                 status,
                 response_headers,
-                f"Retrieved {len(records)} adjudicated FCRA case record(s).",
+                f"Retrieved {len(records)} adjudicated FCRA case record(s){stratum_note}.",
                 "FJC Integrated Database returned parseable JSON.",
             )
             return url, records, [], [diagnostic]
@@ -304,6 +342,9 @@ def _normalise_idb_row(
     return {
         "idb_record_id": record_id,
         "office": row.get("office") or "",
+        # Origin decides whether document 1 is the complaint or a notice of
+        # removal, so the complaint text cannot be identified without it.
+        "origin": row.get("origin"),
         "docket_number": row.get("docket_number") or "",
         "plaintiff": row.get("plaintiff") or "",
         "defendant": row.get("defendant") or "",
@@ -347,8 +388,8 @@ class FJCIDBConnector:
         # mechanism it has nothing to do with.
         self.join_adapter = join_adapter or DocketJoinAdapter(token=self.access_adapter.token)
 
-    def build_url(self, limit: int = 1) -> str:
-        return self.access_adapter.build_url(limit)
+    def build_url(self, limit: int = 1, judgment: str = "1,2") -> str:
+        return self.access_adapter.build_url(limit, judgment=judgment)
 
     def retrieve(self, limit: int = 1) -> RetrievalResult:
         retrieved_at = utc_now()

@@ -26,14 +26,24 @@ So this module exists to verify and to exclude, never to classify. It:
   * reads the docket's nature of suit, which is the one field that distinguishes a
     consumer credit case from an enforcement action filed under the same statute.
 
-What it deliberately does not do is assign a mechanism. Docket metadata carries no
-consumer narrative and no statutory subsection, so the specific operational failure
-remains unclassified. Mechanism-level corroboration is still unachieved, and this
-module's job is to stop that gap being papered over.
+Docket *metadata* carries no narrative and no statutory subsection, so it cannot
+supply a mechanism, and this module never infers one from a caption. The complaint
+*document* is a different thing: it is the plaintiff's own account of what
+happened, the same evidentiary class as a CFPB consumer narrative, so the study's
+existing classifier applies to it unchanged. Where the join confirms a single
+docket and the case is an original proceeding, that text is fetched, and it is what
+finally gives an adjudicated record a mechanism.
+
+The pairing carries a caveat that must travel with it: a complaint states what was
+*alleged*, and the judgment establishes that a violation was *found*. Reading them
+together assumes the judgment was entered on the pleaded claim, which is usually
+but not always true where several counts are pleaded.
 """
 from __future__ import annotations
 
 import json
+import os
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -42,6 +52,28 @@ from typing import Any, Callable
 COURTLISTENER_SEARCH_URL = "https://www.courtlistener.com/api/rest/v4/search/"
 USER_AGENT = "GS-CF001/0.1 methodology proof"
 ACCESS_TIMEOUT_SECONDS = 45
+
+# The join makes one request per adjudicated record, so a run of any size will meet
+# the API's rate limit. Without backoff a limited run degrades every record to
+# unjoined and the study's result depends on how busy the API was, which is the
+# opposite of reproducible. A 429 is a request to wait, so the client waits.
+RATE_LIMIT_BACKOFF_SECONDS = (5, 20, 60)
+INTER_REQUEST_DELAY_SECONDS = 0.5
+
+
+def _retrying_urlopen(request: urllib.request.Request, *, sleep=time.sleep):
+    """Open a request, waiting out rate limits rather than failing through them."""
+
+    last: Exception | None = None
+    for attempt in range(len(RATE_LIMIT_BACKOFF_SECONDS) + 1):
+        try:
+            return urllib.request.urlopen(request, timeout=ACCESS_TIMEOUT_SECONDS)
+        except urllib.error.HTTPError as error:
+            last = error
+            if error.code not in (429, 502, 503) or attempt == len(RATE_LIMIT_BACKOFF_SECONDS):
+                raise
+            sleep(RATE_LIMIT_BACKOFF_SECONDS[attempt])
+    raise last  # pragma: no cover - loop always returns or raises
 
 # Nature of suit 480 is Consumer Credit, the category FCRA consumer claims are
 # filed under. The FJC and RECAP render it variously as a bare code, a code with a
@@ -158,9 +190,81 @@ class DocketJoinAdapter:
         if self.token:
             headers["Authorization"] = f"Token {self.token}"
         request = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(request, timeout=ACCESS_TIMEOUT_SECONDS) as response:
+        with _retrying_urlopen(request) as response:
             body = response.read().decode("utf-8", errors="ignore")
             return json.loads(body), dict(response.headers.items()), str(response.status)
+
+
+RECAP_DOCUMENTS_URL = "https://www.courtlistener.com/api/rest/v4/recap-documents/"
+
+# FJC origin codes. Only an original proceeding begins with a complaint: a removed
+# case opens with a notice of removal, a transferred one with transfer papers. So
+# "document 1 is the complaint" is true exactly when origin is 1, and the database
+# says which -- no assumption required.
+FJC_ORIGIN_ORIGINAL_PROCEEDING = 1
+
+COMPLAINT_LIMITATIONS = (
+    "A complaint states the alleged mechanism; the judgment establishes that a violation was found.",
+    "A complaint may plead several counts, and judgment may have been entered on only one of them.",
+    "Pairing a pleaded mechanism with a judgment assumes the judgment was on the pleaded claim.",
+    "RECAP document coverage depends on user contributions; absence of text proves nothing.",
+)
+
+
+def fetch_complaint_text(
+    docket_id: str,
+    origin: Any,
+    *,
+    fetch_json: Callable[[str], dict[str, Any]] | None = None,
+) -> tuple[str, str]:
+    """Return the complaint's text for an original proceeding, and why or why not.
+
+    This is what gives an adjudicated record a mechanism. The IDB says a violation
+    was found but never which duty was breached, and docket metadata carries no
+    narrative. A complaint does: it is the plaintiff's own account of what happened,
+    the same evidentiary class as a CFPB consumer narrative, so the study's existing
+    classifier applies to it unchanged rather than needing a new inference.
+
+    Returns empty text whenever the document cannot be identified with certainty.
+    RECAP coverage is contributed by users, so an absent document is an absence of
+    information and never evidence that nothing was alleged.
+    """
+
+    if not str(docket_id).strip():
+        return "", "no docket id"
+    try:
+        if int(origin) != FJC_ORIGIN_ORIGINAL_PROCEEDING:
+            return "", (
+                f"origin {origin} is not an original proceeding, so document 1 is not the complaint"
+            )
+    except (TypeError, ValueError):
+        return "", "origin not recorded, so the initiating document cannot be identified"
+
+    url = f"{RECAP_DOCUMENTS_URL}?{urllib.parse.urlencode({'docket_entry__docket__id': docket_id, 'page_size': '20'})}"
+    try:
+        payload = (fetch_json or _default_fetch_json)(url)
+    except Exception as error:  # noqa: BLE001 - reported, never swallowed
+        return "", f"document retrieval failed: {error}"
+
+    for row in payload.get("results") or []:
+        if str(row.get("document_number") or "").strip() != "1":
+            continue
+        text = " ".join(str(row.get("plain_text") or "").split())
+        if text:
+            return text, "complaint text from RECAP document 1 of an original proceeding"
+    return "", "no document 1 text available in RECAP for this docket"
+
+
+def _default_fetch_json(url: str) -> dict[str, Any]:
+    """Module-level document fetch, distinct from the adapter's search fetch."""
+
+    headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
+    token = os.environ.get("COURTLISTENER_API_TOKEN", "")
+    if token:
+        headers["Authorization"] = f"Token {token}"
+    request = urllib.request.Request(url, headers=headers)
+    with _retrying_urlopen(request) as response:
+        return json.loads(response.read().decode("utf-8", errors="ignore"))
 
 
 def _join_result(verified: bool, note: str) -> dict[str, Any]:
@@ -177,8 +281,20 @@ def _join_result(verified: bool, note: str) -> dict[str, Any]:
     }
 
 
-def join_idb_record(record: dict[str, Any], adapter: DocketJoinAdapter) -> dict[str, Any]:
-    """Enrich one normalised IDB record in place with its docket join fields."""
+def join_idb_record(
+    record: dict[str, Any],
+    adapter: DocketJoinAdapter,
+    *,
+    fetch_documents: Callable[[str], dict[str, Any]] | None = None,
+    with_complaint_text: bool = True,
+) -> dict[str, Any]:
+    """Enrich one normalised IDB record in place with its docket join fields.
+
+    Where the join confirms a single docket, the complaint's text is fetched too.
+    That is what carries the mechanism: without it an adjudicated record classifies
+    to the unclassified fallback and cannot corroborate anything, which is exactly
+    where the review board left this study.
+    """
 
     docket_number = pacer_docket_number(record.get("office"), record.get("docket_number"))
     court_id = court_id_from_district(record.get("district"))
@@ -186,4 +302,14 @@ def join_idb_record(record: dict[str, Any], adapter: DocketJoinAdapter) -> dict[
     record.update(result)
     record["pacer_docket_number"] = docket_number
     record["join_court_id"] = court_id
+
+    text, note = "", "not attempted"
+    if with_complaint_text and result.get("join_verified"):
+        time.sleep(INTER_REQUEST_DELAY_SECONDS)
+        text, note = fetch_complaint_text(
+            result.get("joined_docket_id", ""), record.get("origin"), fetch_json=fetch_documents
+        )
+    record["complaint_text"] = text
+    record["complaint_text_note"] = note
+    record["complaint_limitations"] = list(COMPLAINT_LIMITATIONS) if text else []
     return record

@@ -56,8 +56,18 @@ CONSENT_ROW = {
 }
 
 
-def fake_fetch(payload):
+def fake_fetch(payload, defendant_payload=None):
+    """Serve one payload per stratum.
+
+    Retrieval is stratified by which way the case went, so a stub that ignores the
+    URL returns the same row twice and hides the stratification entirely.
+    """
+
     def _fetch(url):
+        if defendant_payload is not None and "judgment__in=2" in url:
+            return defendant_payload, {"Content-Type": "application/json"}, "200"
+        if defendant_payload is None and "judgment__in=2" in url:
+            return {"results": []}, {"Content-Type": "application/json"}, "200"
         return payload, {"Content-Type": "application/json"}, "200"
 
     return _fetch
@@ -202,6 +212,31 @@ def test_only_decided_cases_are_requested():
     assert "disposition__in=5%2C6%2C7%2C8%2C9" in url
     assert "judgment__in=1%2C2" in url
     assert "title=15" in url
+
+
+def test_retrieval_is_stratified_by_direction():
+    """Defence decisions outnumber plaintiff ones roughly 366 to 67 in this data.
+
+    An unstratified sample of any practical size is almost all defence wins, so the
+    study never sees an adjudicated finding of occurrence. Retrieving only
+    plaintiff wins would be the opposite error -- a source that can only confirm is
+    not a test -- so both directions are requested deliberately.
+    """
+    connector = FJCIDBConnector(token="t")
+
+    assert "judgment__in=1" in connector.build_url(4, judgment="1")
+    assert "judgment__in=2" in connector.build_url(4, judgment="2")
+
+    seen = []
+
+    def recording_fetch(url):
+        seen.append(url)
+        return {"results": []}, {"Content-Type": "application/json"}, "200"
+
+    FJCIDBConnector(fetch_json=recording_fetch, token="t").retrieve(limit=6)
+
+    assert any("judgment__in=1&" in url or url.endswith("judgment__in=1") for url in seen)
+    assert any("judgment__in=2" in url for url in seen)
 
 
 def test_a_retrieved_consent_judgment_reaches_verification_as_adjudicated():

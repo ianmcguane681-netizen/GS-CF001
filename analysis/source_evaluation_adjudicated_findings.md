@@ -179,8 +179,41 @@ PG-09 moved from WEAK to FAIL. That is the correct answer.
 | PG-13 | WEAK — one contradicting case, mechanism unclassified |
 | Maximum permitted verdict | CONTINUE RESEARCH |
 
-**Where this leaves mechanism-level corroboration.** It is unachieved, and the
-reason is structural rather than a gap in the plumbing. Neither source names the
+## Update, 2026-07-27: mechanism-level corroboration is now reachable
+
+The structural claim below was wrong in one respect. Case-level *metadata* carries
+no mechanism, which remains true. But the complaint *document* does, and RECAP
+holds it for some dockets.
+
+A complaint is the plaintiff's own account of what happened — the same evidentiary
+class as a CFPB consumer narrative — so the study's existing classifier applies
+unchanged. Live: the complaint in *Proctor v Experian* (41,983 characters)
+classifies to `bureau_dispute_reinvestigation_failure`; *Washington v Equifax*
+(9,967 characters) to the same.
+
+Document 1 is the complaint only in an **original proceeding**. A removed case
+opens with a notice of removal, a transferred one with transfer papers. The IDB
+codes this in its `origin` field, so it is read rather than assumed.
+
+Retrieval is now **stratified by direction**. Defence-side decisions outnumber
+plaintiff-side ones roughly 366 to 67, so an unstratified sample of any practical
+size is almost all defence wins and the study never sees an adjudicated finding of
+occurrence. Retrieving only plaintiff wins would be the opposite error — a source
+that can only confirm is not a test — so both strata are requested in equal
+measure and the stratification is recorded.
+
+**Live state after these changes:** occurrence-establishing records went 0 → 1, and
+adjudicated records now carry real mechanisms (`bureau_dispute_reinvestigation_
+failure`, `dispute_supporting_evidence_rejection`). PG-09 moved FAIL → WEAK. It is
+not PASS because the one record establishing occurrence has no retrievable
+complaint text, so it corroborates nothing.
+
+What remains is coverage, not design: PG-09 needs a plaintiff win, on a
+consumer-credit case, with complaint text in RECAP, on a mechanism another family
+also alleges. That conjunction is sparse but no longer impossible.
+
+**Original assessment, retained:** it was unachieved, and the reason was thought
+structural rather than a gap in the plumbing. Neither source names the
 mechanism: the IDB stops at `section=1681`, and docket metadata carries a statutory
 cause and a nature-of-suit category but no consumer narrative. Case-level records
 identify *that* an FCRA claim was decided, never *which duty* was breached.
