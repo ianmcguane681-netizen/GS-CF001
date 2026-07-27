@@ -370,6 +370,35 @@
       "suit_nature": "480 Consumer credit",
       "case_name": "Tewmey v. Trans Union LLC",
       "complaint_note": "no document 1 text available in RECAP for this docket"
+    },
+    {
+      "docket": "1:17-cv-01904",
+      "court": "gand",
+      "defendant": "ORANGE TREE EMPLOYMENT , ET AL",
+      "posture": "CONSENT_ORDER",
+      "origin": 1,
+      "joined": true,
+      "on_study_suit_nature": true,
+      "complaint_chars": 0,
+      "mechanism": "",
+      "stopped_at": "no document 1 text available in RECAP for this docket",
+      "suit_nature": "480 Consumer Credit",
+      "case_name": "Sanchez v. Launch Technical Workforce Solutions, LLC",
+      "complaint_note": "no document 1 text available in RECAP for this docket"
+    },
+    {
+      "docket": "8:17-cv-02052",
+      "court": "flmd",
+      "defendant": "RUSHMORE LOAN MANAGEMEN, ET AL",
+      "posture": "SUMMARY_JUDGMENT",
+      "origin": 1,
+      "joined": false,
+      "on_study_suit_nature": false,
+      "complaint_chars": 0,
+      "mechanism": "",
+      "stopped_at": "join failed: docket lookup failed: HTTP 429",
+      "suit_nature": "",
+      "case_name": ""
     }
   ]
 }
