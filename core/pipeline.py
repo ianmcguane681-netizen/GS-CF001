@@ -43,6 +43,36 @@ def _normalise_for_source(retrieval: "RetrievalResult", study) -> list:
     return normalise_cfpb_records(retrieval.records, retrieval.source, study)
 
 
+def _load_ledger(path: Path, *, to_competitor: bool = False) -> list:
+    """Read an optional commercial ledger, tolerating its absence.
+
+    These are produced outside the study run -- pricing by `market.pricing_cli`,
+    buyer records by a human conversation -- so a missing file is the ordinary
+    case and must not be an error.
+    """
+
+    if not path.is_file():
+        return []
+    try:
+        rows = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    if not to_competitor:
+        return rows
+    from market.pricing import PricingObservation, to_sv_competitor
+
+    competitors = []
+    for row in rows:
+        try:
+            observation = PricingObservation(
+                **{**row, "limitations": tuple(row.get("limitations", ()))}
+            )
+        except TypeError:
+            continue
+        competitors.append(to_sv_competitor(observation))
+    return competitors
+
+
 def run_credit_reporting_proof(
     limit: int = 1,
     connector: DiscoveryConnector | None = None,
@@ -129,7 +159,21 @@ def run_credit_reporting_proof(
             affected_finding_or_verdict=bool(findings or opportunities),
         )
     ]
-    gates = evaluate_proof_gates(verified, findings, opportunities, source_reliability, diagnostics)
+    # Competitor and buyer material reach PG-11 and PG-12 through their own
+    # parameters, never through `verified`. Both ledgers are optional and default
+    # to empty: an absent ledger leaves those gates failing for want of research,
+    # which is the honest state, rather than being silently skipped.
+    competitors = _load_ledger(base / "market_pricing.json", to_competitor=True)
+    buyers = _load_ledger(base / "buyer_evidence.json")
+    gates = evaluate_proof_gates(
+        verified,
+        findings,
+        opportunities,
+        source_reliability,
+        diagnostics,
+        competitors=competitors,
+        buyer_evidence=buyers,
+    )
     verdict = make_verdict(study.study_id, gates, findings, opportunities, verified)
     state_transitions = []
     for candidate in candidates:

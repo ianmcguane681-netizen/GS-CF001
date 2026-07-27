@@ -12,14 +12,20 @@ implementation and staff time are counted. A strategy of being cheaper than a li
 price nobody actually pays is not a strategy, so this module is structurally barred
 from supporting the buyer gates. It links to G7 and C8 only.
 
-**What this module refuses to do is the point of it.** Five vendor pricing pages
-were probed on 2026-07-27. Two publish figures openly, three gate them behind
-contact-sales. Not one carries structured pricing markup -- no schema.org Offer,
-no microdata -- so reading "the price" off a page means running a regex across
-prose. A single pricing page carries a $1 trial, a $179 monthly plan, a $143.20
-annual-discounted equivalent and a "$1000 saved" marketing claim, and no rule
-distinguishes them reliably. Guessing here produces a number that looks
+**What this module refuses to do is the point of it.** Five vendors were probed on
+2026-07-27. All five publish pricing, and not one carries structured pricing markup
+-- no schema.org Offer, no microdata -- so reading "the price" off a page means
+running a regex across prose. Credit Repair Cloud's page alone holds twenty
+distinct dollar amounts: a $1 trial, a $179 monthly plan, a $143.20
+annual-discounted equivalent and a $15,427 marketing earnings claim. No rule
+distinguishes those reliably. Guessing here produces a number that looks
 authoritative and is wrong, which is worse than having none.
+
+The first version of this module reported "three of five publish". That was false,
+and instructive: it had guessed `/pricing` for every vendor and read two 404s as a
+finding about the market rather than about its own assumption. ScoreCEO publishes
+at `/plans`, DisputeSuite at `/how-to-buy-pricing/`. URLs are now confirmed against
+each vendor's own sitemap, and an unconfirmed URL is recorded as unconfirmed.
 
 So the connector records only what it can verify:
 
@@ -94,6 +100,11 @@ class PricingObservation:
     content_hash: str
     currency_amounts_found: int
     robots_permitted: bool
+    # Whether the vendor's own sitemap declares this URL. False means the URL was
+    # configured but not confirmed, which is how the first version of this module
+    # recorded two vendors as publishing nothing when both publish pricing under
+    # paths other than the one it guessed.
+    url_declared_in_sitemap: bool = False
     list_price: str = ""
     list_price_provenance: str = ""
     list_price_unit: str = ""
@@ -150,6 +161,89 @@ def robots_allows(base_url: str, path: str, fetch_text: Callable[[str], str] | N
             if path.startswith(value.rstrip("*")):
                 return False
     return True
+
+
+# Path fragments that name a pricing page. Used to filter a vendor's own sitemap,
+# never to construct a URL by guessing.
+PRICING_PATH_HINTS = ("pricing", "price", "plans", "packages", "how-to-buy", "buy")
+SITEMAP_LOC_PATTERN = re.compile(r"<loc>\s*([^<\s]+)\s*</loc>", re.I)
+SITEMAP_DIRECTIVE_PATTERN = re.compile(r"^\s*sitemap\s*:\s*(\S+)", re.I | re.M)
+
+
+def discover_pricing_urls(
+    base_url: str, *, fetch_text: Callable[[str], str] | None = None, max_maps: int = 6
+) -> list[str]:
+    """Find a vendor's pricing page from its own published sitemap.
+
+    The first version of this module guessed `/pricing` and recorded two vendors as
+    NOT_RETRIEVED on the strength of a 404. Both publish pricing: ScoreCEO at
+    `/plans` and `/buy`, DisputeSuite at `/how-to-buy-pricing/`. The finding
+    "three of five publish" was really "three of five use the path I guessed",
+    which is a statement about my assumption reported as a fact about the market.
+
+    A sitemap is the vendor's own declaration of what pages exist, so reading it is
+    retrieval rather than inference. Returns an empty list when a vendor publishes
+    no sitemap, which is an absence of information and not a claim about pricing.
+
+    These are **candidates for a person to choose between**, deliberately not a
+    selection. The hints match `buyers-remorse` and `how-monthly-plans-work` as
+    readily as they match `/pricing`, and tightening the pattern until it fits the
+    five vendors in front of me would be fitting a heuristic to its own test set.
+    `url_declared_in_sitemap` is the check that carries weight: it confirms a
+    chosen URL is one the vendor itself publishes.
+    """
+
+    fetch = fetch_text or _default_fetch_text
+    parsed = urllib.parse.urlparse(base_url)
+    root = f"{parsed.scheme}://{parsed.netloc}"
+
+    candidates: list[str] = []
+    try:
+        robots = fetch(f"{root}/robots.txt")
+        candidates.extend(SITEMAP_DIRECTIVE_PATTERN.findall(robots))
+    except Exception:
+        pass
+    candidates.extend([f"{root}/sitemap_index.xml", f"{root}/sitemap.xml"])
+
+    seen: set[str] = set()
+    found: list[str] = []
+    queue = list(dict.fromkeys(candidates))
+    while queue and len(seen) < max_maps:
+        target = queue.pop(0)
+        if target in seen:
+            continue
+        seen.add(target)
+        try:
+            body = fetch(target)
+        except Exception:
+            continue
+        for location in SITEMAP_LOC_PATTERN.findall(body):
+            if location.endswith(".xml"):
+                if len(seen) + len(queue) < max_maps:
+                    queue.append(location)
+                continue
+            path = urllib.parse.urlparse(location).path.lower()
+            if any(hint in path for hint in PRICING_PATH_HINTS) and location not in found:
+                found.append(location)
+    return found
+
+
+def url_declared_in_sitemap(
+    pricing_url: str, *, fetch_text: Callable[[str], str] | None = None
+) -> bool:
+    """Whether a vendor's own sitemap declares this URL.
+
+    This is what replaces the guess. A configured pricing URL is no longer "the
+    path I assumed"; it is a page the vendor publishes in its index. A vendor with
+    no sitemap returns False, which records that the URL could not be confirmed
+    rather than that it is wrong.
+    """
+
+    target = pricing_url.rstrip("/")
+    return any(
+        candidate.rstrip("/") == target
+        for candidate in discover_pricing_urls(pricing_url, fetch_text=fetch_text)
+    )
 
 
 def classify_disclosure(html: str) -> tuple[str, int, str]:
@@ -214,6 +308,7 @@ def observe_pricing_page(
     retrieved_at = utc_now()
     path = urllib.parse.urlparse(pricing_url).path or "/"
 
+    declared = url_declared_in_sitemap(pricing_url, fetch_text=fetch)
     permitted = robots_allows(pricing_url, path, fetch_text=fetch) if check_robots else True
     if not permitted:
         return _observation(
@@ -225,6 +320,7 @@ def observe_pricing_page(
             content_hash="",
             amounts=0,
             robots_permitted=False,
+            declared=declared,
             notes="robots.txt disallows this path; not retrieved.",
         )
 
@@ -240,7 +336,8 @@ def observe_pricing_page(
             content_hash="",
             amounts=0,
             robots_permitted=True,
-            notes=f"Pricing page did not resolve: HTTP {error.code}.",
+            declared=declared,
+            notes=f"Pricing page did not resolve: HTTP {error.code}." + ("" if declared else " This URL is not declared in the vendor's sitemap, so the path may simply be wrong."),
         )
     except Exception as error:  # noqa: BLE001 - recorded, never swallowed
         return _observation(
@@ -252,6 +349,7 @@ def observe_pricing_page(
             content_hash="",
             amounts=0,
             robots_permitted=True,
+            declared=declared,
             notes=f"Pricing page retrieval failed: {error}.",
         )
 
@@ -265,6 +363,7 @@ def observe_pricing_page(
         content_hash=stable_hash(html),
         amounts=amounts,
         robots_permitted=True,
+        declared=declared,
         list_price=structured_price,
         list_price_provenance=PriceProvenance.STRUCTURED_MARKUP if structured_price else "",
         notes=(
@@ -286,6 +385,7 @@ def _observation(
     content_hash: str,
     amounts: int,
     robots_permitted: bool,
+    declared: bool = False,
     list_price: str = "",
     list_price_provenance: str = "",
     notes: str = "",
@@ -302,6 +402,7 @@ def _observation(
         content_hash=content_hash,
         currency_amounts_found=amounts,
         robots_permitted=robots_permitted,
+        url_declared_in_sitemap=declared,
         list_price=list_price,
         list_price_provenance=str(list_price_provenance) if list_price_provenance else "",
         notes=notes,

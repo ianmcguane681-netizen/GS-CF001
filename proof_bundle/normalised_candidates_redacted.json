@@ -1,6 +1,6 @@
 [
   {
-    "candidate_id": "CAN-F8A64E850A8B",
+    "candidate_id": "CAN-6E938D214D32",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -21,7 +21,7 @@
     },
     "source_record_id": "9999997",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-26T21:32:42Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -45,7 +45,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T21:32:42Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "complaint_id": "9999997",
@@ -76,7 +76,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999997"
         ],
@@ -88,12 +88,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-141FDB8375FE",
-        "evidence_id": "CAN-F8A64E850A8B",
+        "transition_id": "TRN-2B77D82B28F0",
+        "evidence_id": "CAN-6E938D214D32",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999997"
         ],
@@ -107,7 +107,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-ECBC1434B40E",
+    "candidate_id": "CAN-CEEE7F9664BC",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -128,7 +128,7 @@
     },
     "source_record_id": "9999996",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-26T21:32:42Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -152,7 +152,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T21:32:42Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "complaint_id": "9999996",
@@ -183,7 +183,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999996"
         ],
@@ -195,12 +195,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-A05646C9B676",
-        "evidence_id": "CAN-ECBC1434B40E",
+        "transition_id": "TRN-16788B017BD7",
+        "evidence_id": "CAN-CEEE7F9664BC",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999996"
         ],
@@ -214,7 +214,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-D4C657208398",
+    "candidate_id": "CAN-73F4C2E957C4",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -235,7 +235,7 @@
     },
     "source_record_id": "9999995",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-26T21:32:42Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -259,7 +259,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T21:32:42Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "complaint_id": "9999995",
@@ -290,7 +290,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999995"
         ],
@@ -302,12 +302,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-BE6252C52326",
-        "evidence_id": "CAN-D4C657208398",
+        "transition_id": "TRN-26CE6817B789",
+        "evidence_id": "CAN-73F4C2E957C4",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999995"
         ],
@@ -321,7 +321,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-EAD09D5588C0",
+    "candidate_id": "CAN-44CDB6B487C6",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -342,7 +342,7 @@
     },
     "source_record_id": "9999994",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-26T21:32:42Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -366,7 +366,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T21:32:42Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "complaint_id": "9999994",
@@ -397,7 +397,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999994"
         ],
@@ -409,12 +409,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-FE6B6A8EA125",
-        "evidence_id": "CAN-EAD09D5588C0",
+        "transition_id": "TRN-758AF9DDAC37",
+        "evidence_id": "CAN-44CDB6B487C6",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999994"
         ],
@@ -428,7 +428,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-BB14BA4BE27E",
+    "candidate_id": "CAN-52A5E81F615F",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -449,7 +449,7 @@
     },
     "source_record_id": "9999989",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-26T21:32:42Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -473,7 +473,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T21:32:42Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "complaint_id": "9999989",
@@ -504,7 +504,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999989"
         ],
@@ -516,12 +516,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-8A6B8679A19C",
-        "evidence_id": "CAN-BB14BA4BE27E",
+        "transition_id": "TRN-CD2906A21C68",
+        "evidence_id": "CAN-52A5E81F615F",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999989"
         ],
@@ -535,7 +535,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-0B5A044DF51D",
+    "candidate_id": "CAN-F9EFAC631736",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -556,7 +556,7 @@
     },
     "source_record_id": "9999988",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-26T21:32:42Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -580,7 +580,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T21:32:42Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "complaint_id": "9999988",
@@ -611,7 +611,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999988"
         ],
@@ -623,12 +623,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-DF34ECD7C3FB",
-        "evidence_id": "CAN-0B5A044DF51D",
+        "transition_id": "TRN-7E15DD00841E",
+        "evidence_id": "CAN-F9EFAC631736",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999988"
         ],
@@ -642,7 +642,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-0700E8398828",
+    "candidate_id": "CAN-12087AB422C0",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -663,7 +663,7 @@
     },
     "source_record_id": "9999986",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-26T21:32:42Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -687,7 +687,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T21:32:42Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "complaint_id": "9999986",
@@ -718,7 +718,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999986"
         ],
@@ -730,12 +730,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-13A046DA008A",
-        "evidence_id": "CAN-0700E8398828",
+        "transition_id": "TRN-E4AAEFCBDC5D",
+        "evidence_id": "CAN-12087AB422C0",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999986"
         ],
@@ -749,7 +749,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-C580C8FF6A7D",
+    "candidate_id": "CAN-C7997D40E75C",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -770,7 +770,7 @@
     },
     "source_record_id": "9999985",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-26T21:32:42Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -794,7 +794,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=8&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-26T21:32:42Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "complaint_id": "9999985",
@@ -825,7 +825,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999985"
         ],
@@ -837,12 +837,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-2F46BD180B3A",
-        "evidence_id": "CAN-C580C8FF6A7D",
+        "transition_id": "TRN-1B4D9F43F73C",
+        "evidence_id": "CAN-C7997D40E75C",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "9999985"
         ],
@@ -856,7 +856,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-D078AE04D717",
+    "candidate_id": "CAN-C4B712D11D4B",
     "source": {
       "source_id": "COURTLISTENER-FCRA-001",
       "name": "CourtListener Federal Court Records (RECAP)",
@@ -877,7 +877,7 @@
     },
     "source_record_id": "73667058",
     "source_url": "https://www.courtlistener.com/docket/73667058/anton-v-bank-of-america-na/",
-    "retrieved_at": "2026-07-26T21:32:43Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "docket_id": "73667058",
       "case_name": "ANTON v. BANK OF AMERICA, N.A.",
@@ -899,7 +899,7 @@
       "_retrieval_url": "https://www.courtlistener.com/docket/73667058/anton-v-bank-of-america-na/",
       "_source_name": "CourtListener Federal Court Records (RECAP)",
       "_access_method": "courtlistener_search_api",
-      "_retrieved_at": "2026-07-26T21:32:43Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "docket_id": "73667058",
@@ -934,7 +934,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "Court docket normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73667058"
         ],
@@ -946,12 +946,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-141C1ADD59D1",
-        "evidence_id": "CAN-D078AE04D717",
+        "transition_id": "TRN-D1FAA14F6AB7",
+        "evidence_id": "CAN-C4B712D11D4B",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73667058"
         ],
@@ -965,7 +965,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-776477EEBD89",
+    "candidate_id": "CAN-F510B71FBF52",
     "source": {
       "source_id": "COURTLISTENER-FCRA-001",
       "name": "CourtListener Federal Court Records (RECAP)",
@@ -986,7 +986,7 @@
     },
     "source_record_id": "73662410",
     "source_url": "https://www.courtlistener.com/docket/73662410/lisman-v-trans-union-llc/",
-    "retrieved_at": "2026-07-26T21:32:43Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "docket_id": "73662410",
       "case_name": "LISMAN v. TRANS UNION, LLC",
@@ -1012,7 +1012,7 @@
       "_retrieval_url": "https://www.courtlistener.com/docket/73662410/lisman-v-trans-union-llc/",
       "_source_name": "CourtListener Federal Court Records (RECAP)",
       "_access_method": "courtlistener_search_api",
-      "_retrieved_at": "2026-07-26T21:32:43Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "docket_id": "73662410",
@@ -1051,7 +1051,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "Court docket normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73662410"
         ],
@@ -1063,12 +1063,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-EFC38EE85B16",
-        "evidence_id": "CAN-776477EEBD89",
+        "transition_id": "TRN-93A507BD5E03",
+        "evidence_id": "CAN-F510B71FBF52",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73662410"
         ],
@@ -1082,7 +1082,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-ECE963A7A6FF",
+    "candidate_id": "CAN-6D5DC81B368F",
     "source": {
       "source_id": "COURTLISTENER-FCRA-001",
       "name": "CourtListener Federal Court Records (RECAP)",
@@ -1103,7 +1103,7 @@
     },
     "source_record_id": "73662383",
     "source_url": "https://www.courtlistener.com/docket/73662383/suazo-garcia-v-hy-cite-corporation/",
-    "retrieved_at": "2026-07-26T21:32:43Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "docket_id": "73662383",
       "case_name": "Suazo Garcia v. Hy Cite Corporation",
@@ -1125,7 +1125,7 @@
       "_retrieval_url": "https://www.courtlistener.com/docket/73662383/suazo-garcia-v-hy-cite-corporation/",
       "_source_name": "CourtListener Federal Court Records (RECAP)",
       "_access_method": "courtlistener_search_api",
-      "_retrieved_at": "2026-07-26T21:32:43Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "docket_id": "73662383",
@@ -1160,7 +1160,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "Court docket normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73662383"
         ],
@@ -1172,12 +1172,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-590B8EC28EAF",
-        "evidence_id": "CAN-ECE963A7A6FF",
+        "transition_id": "TRN-9C023FAF8EDC",
+        "evidence_id": "CAN-6D5DC81B368F",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73662383"
         ],
@@ -1191,7 +1191,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-C611A3B2C128",
+    "candidate_id": "CAN-ED5C46BA8AA9",
     "source": {
       "source_id": "COURTLISTENER-FCRA-001",
       "name": "CourtListener Federal Court Records (RECAP)",
@@ -1212,7 +1212,7 @@
     },
     "source_record_id": "73661100",
     "source_url": "https://www.courtlistener.com/docket/73661100/williams-v-equifax-information-services-llc/",
-    "retrieved_at": "2026-07-26T21:32:43Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "docket_id": "73661100",
       "case_name": "WILLIAMS v. EQUIFAX INFORMATION SERVICES LLC",
@@ -1235,7 +1235,7 @@
       "_retrieval_url": "https://www.courtlistener.com/docket/73661100/williams-v-equifax-information-services-llc/",
       "_source_name": "CourtListener Federal Court Records (RECAP)",
       "_access_method": "courtlistener_search_api",
-      "_retrieved_at": "2026-07-26T21:32:43Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "docket_id": "73661100",
@@ -1271,7 +1271,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "Court docket normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73661100"
         ],
@@ -1283,12 +1283,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-F4669D874A80",
-        "evidence_id": "CAN-C611A3B2C128",
+        "transition_id": "TRN-A183F18D7B9B",
+        "evidence_id": "CAN-ED5C46BA8AA9",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73661100"
         ],
@@ -1302,7 +1302,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-B69695D92F8F",
+    "candidate_id": "CAN-8249A2C47904",
     "source": {
       "source_id": "COURTLISTENER-FCRA-001",
       "name": "CourtListener Federal Court Records (RECAP)",
@@ -1323,7 +1323,7 @@
     },
     "source_record_id": "73655224",
     "source_url": "https://www.courtlistener.com/docket/73655224/arno-v-equifax-information-services-llc/",
-    "retrieved_at": "2026-07-26T21:32:43Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "docket_id": "73655224",
       "case_name": "Arno v. Equifax Information Services, LLC",
@@ -1349,7 +1349,7 @@
       "_retrieval_url": "https://www.courtlistener.com/docket/73655224/arno-v-equifax-information-services-llc/",
       "_source_name": "CourtListener Federal Court Records (RECAP)",
       "_access_method": "courtlistener_search_api",
-      "_retrieved_at": "2026-07-26T21:32:43Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "docket_id": "73655224",
@@ -1388,7 +1388,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "Court docket normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73655224"
         ],
@@ -1400,12 +1400,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-C40F0DD16D59",
-        "evidence_id": "CAN-B69695D92F8F",
+        "transition_id": "TRN-2DDA6CD5F764",
+        "evidence_id": "CAN-8249A2C47904",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73655224"
         ],
@@ -1419,7 +1419,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-74F40E00396E",
+    "candidate_id": "CAN-E4C8015622EC",
     "source": {
       "source_id": "COURTLISTENER-FCRA-001",
       "name": "CourtListener Federal Court Records (RECAP)",
@@ -1440,7 +1440,7 @@
     },
     "source_record_id": "73652491",
     "source_url": "https://www.courtlistener.com/docket/73652491/bennett-v-equifax-information-services-llc/",
-    "retrieved_at": "2026-07-26T21:32:43Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "docket_id": "73652491",
       "case_name": "Bennett v. Equifax Information Services LLC",
@@ -1465,7 +1465,7 @@
       "_retrieval_url": "https://www.courtlistener.com/docket/73652491/bennett-v-equifax-information-services-llc/",
       "_source_name": "CourtListener Federal Court Records (RECAP)",
       "_access_method": "courtlistener_search_api",
-      "_retrieved_at": "2026-07-26T21:32:43Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "docket_id": "73652491",
@@ -1503,7 +1503,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "Court docket normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73652491"
         ],
@@ -1515,12 +1515,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-5CD3FEB87248",
-        "evidence_id": "CAN-74F40E00396E",
+        "transition_id": "TRN-3B1AD37F0D83",
+        "evidence_id": "CAN-E4C8015622EC",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73652491"
         ],
@@ -1534,7 +1534,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-88E5621078B7",
+    "candidate_id": "CAN-5F85EB0AD31B",
     "source": {
       "source_id": "COURTLISTENER-FCRA-001",
       "name": "CourtListener Federal Court Records (RECAP)",
@@ -1555,7 +1555,7 @@
     },
     "source_record_id": "73647363",
     "source_url": "https://www.courtlistener.com/docket/73647363/wright-david-v-hireright-llc/",
-    "retrieved_at": "2026-07-26T21:32:43Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "docket_id": "73647363",
       "case_name": "Wright, David v. HireRight LLC",
@@ -1577,7 +1577,7 @@
       "_retrieval_url": "https://www.courtlistener.com/docket/73647363/wright-david-v-hireright-llc/",
       "_source_name": "CourtListener Federal Court Records (RECAP)",
       "_access_method": "courtlistener_search_api",
-      "_retrieved_at": "2026-07-26T21:32:43Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "docket_id": "73647363",
@@ -1612,7 +1612,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "Court docket normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73647363"
         ],
@@ -1624,12 +1624,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-B19B44AA3EAD",
-        "evidence_id": "CAN-88E5621078B7",
+        "transition_id": "TRN-16DA28B2A137",
+        "evidence_id": "CAN-5F85EB0AD31B",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73647363"
         ],
@@ -1643,7 +1643,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-34D16D43315A",
+    "candidate_id": "CAN-8E5B4D4839C8",
     "source": {
       "source_id": "COURTLISTENER-FCRA-001",
       "name": "CourtListener Federal Court Records (RECAP)",
@@ -1664,7 +1664,7 @@
     },
     "source_record_id": "73646709",
     "source_url": "https://www.courtlistener.com/docket/73646709/jover-v-equifax-information-services-llc/",
-    "retrieved_at": "2026-07-26T21:32:43Z",
+    "retrieved_at": "2026-07-27T00:25:29Z",
     "raw_record": {
       "docket_id": "73646709",
       "case_name": "Jover v. Equifax Information Services, LLC",
@@ -1690,7 +1690,7 @@
       "_retrieval_url": "https://www.courtlistener.com/docket/73646709/jover-v-equifax-information-services-llc/",
       "_source_name": "CourtListener Federal Court Records (RECAP)",
       "_access_method": "courtlistener_search_api",
-      "_retrieved_at": "2026-07-26T21:32:43Z"
+      "_retrieved_at": "2026-07-27T00:25:29Z"
     },
     "parsed_fields": {
       "docket_id": "73646709",
@@ -1729,7 +1729,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "Court docket normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73646709"
         ],
@@ -1741,12 +1741,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-83D8596C0112",
-        "evidence_id": "CAN-34D16D43315A",
+        "transition_id": "TRN-0B24BD3BEC1F",
+        "evidence_id": "CAN-8E5B4D4839C8",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "73646709"
         ],
@@ -1760,7 +1760,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-34249AFDD8A2",
+    "candidate_id": "CAN-DA634A1BF095",
     "source": {
       "source_id": "FJC-IDB-FCRA-001",
       "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -1781,7 +1781,7 @@
     },
     "source_record_id": "26367223",
     "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26367223/",
-    "retrieved_at": "2026-07-26T21:32:46Z",
+    "retrieved_at": "2026-07-27T00:25:32Z",
     "raw_record": {
       "idb_record_id": "26367223",
       "office": "5",
@@ -1805,7 +1805,7 @@
       "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26367223/",
       "_source_name": "FJC Integrated Database (federal civil case outcomes)",
       "_access_method": "fjc_integrated_database_api",
-      "_retrieved_at": "2026-07-26T21:32:46Z",
+      "_retrieved_at": "2026-07-27T00:25:32Z",
       "join_verified": true,
       "join_note": "IDB case confirmed against a single RECAP docket.",
       "joined_case_name": "WASHINGTON v. EQUIFAX INFORMATION SERVICES, LLC",
@@ -1858,7 +1858,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "FJC IDB case outcome normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26367223"
         ],
@@ -1870,12 +1870,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-D61E5191F69A",
-        "evidence_id": "CAN-34249AFDD8A2",
+        "transition_id": "TRN-CE4B0D27572D",
+        "evidence_id": "CAN-DA634A1BF095",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26367223"
         ],
@@ -1889,7 +1889,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-942CD691F85D",
+    "candidate_id": "CAN-B768CC26711C",
     "source": {
       "source_id": "FJC-IDB-FCRA-001",
       "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -1910,7 +1910,7 @@
     },
     "source_record_id": "26362522",
     "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26362522/",
-    "retrieved_at": "2026-07-26T21:32:46Z",
+    "retrieved_at": "2026-07-27T00:25:32Z",
     "raw_record": {
       "idb_record_id": "26362522",
       "office": "1",
@@ -1934,7 +1934,7 @@
       "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26362522/",
       "_source_name": "FJC Integrated Database (federal civil case outcomes)",
       "_access_method": "fjc_integrated_database_api",
-      "_retrieved_at": "2026-07-26T21:32:46Z",
+      "_retrieved_at": "2026-07-27T00:25:32Z",
       "join_verified": true,
       "join_note": "IDB case confirmed against a single RECAP docket.",
       "joined_case_name": "Proctor v. Experian Information Solutions, Inc.",
@@ -1987,7 +1987,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "FJC IDB case outcome normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26362522"
         ],
@@ -1999,12 +1999,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-A1DFCF159F2B",
-        "evidence_id": "CAN-942CD691F85D",
+        "transition_id": "TRN-4AE9299B51F3",
+        "evidence_id": "CAN-B768CC26711C",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26362522"
         ],
@@ -2018,7 +2018,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-D19325F86326",
+    "candidate_id": "CAN-DA780A7329F3",
     "source": {
       "source_id": "FJC-IDB-FCRA-001",
       "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2039,7 +2039,7 @@
     },
     "source_record_id": "26361819",
     "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26361819/",
-    "retrieved_at": "2026-07-26T21:32:46Z",
+    "retrieved_at": "2026-07-27T00:25:32Z",
     "raw_record": {
       "idb_record_id": "26361819",
       "office": "1",
@@ -2063,7 +2063,7 @@
       "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26361819/",
       "_source_name": "FJC Integrated Database (federal civil case outcomes)",
       "_access_method": "fjc_integrated_database_api",
-      "_retrieved_at": "2026-07-26T21:32:46Z",
+      "_retrieved_at": "2026-07-27T00:25:32Z",
       "join_verified": true,
       "join_note": "IDB case confirmed against a single RECAP docket.",
       "joined_case_name": "Family Walk Allah Trust v. Bouc",
@@ -2116,7 +2116,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "FJC IDB case outcome normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26361819"
         ],
@@ -2128,12 +2128,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-AB93F8F0E6AB",
-        "evidence_id": "CAN-D19325F86326",
+        "transition_id": "TRN-949CD9CCECCF",
+        "evidence_id": "CAN-DA780A7329F3",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26361819"
         ],
@@ -2147,7 +2147,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-894B21578E08",
+    "candidate_id": "CAN-BD68DFFCF625",
     "source": {
       "source_id": "FJC-IDB-FCRA-001",
       "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2168,7 +2168,7 @@
     },
     "source_record_id": "26236853",
     "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26236853/",
-    "retrieved_at": "2026-07-26T21:32:46Z",
+    "retrieved_at": "2026-07-27T00:25:32Z",
     "raw_record": {
       "idb_record_id": "26236853",
       "office": "1",
@@ -2192,7 +2192,7 @@
       "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26236853/",
       "_source_name": "FJC Integrated Database (federal civil case outcomes)",
       "_access_method": "fjc_integrated_database_api",
-      "_retrieved_at": "2026-07-26T21:32:46Z",
+      "_retrieved_at": "2026-07-27T00:25:32Z",
       "join_verified": true,
       "join_note": "IDB case confirmed against a single RECAP docket.",
       "joined_case_name": "JAMES v. CIRCLE K STORES INC",
@@ -2245,7 +2245,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "FJC IDB case outcome normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26236853"
         ],
@@ -2257,12 +2257,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-5D5176837334",
-        "evidence_id": "CAN-894B21578E08",
+        "transition_id": "TRN-F6BE484B23B7",
+        "evidence_id": "CAN-BD68DFFCF625",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26236853"
         ],
@@ -2276,7 +2276,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-F21547C46A41",
+    "candidate_id": "CAN-66B976528A2C",
     "source": {
       "source_id": "FJC-IDB-FCRA-001",
       "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2297,7 +2297,7 @@
     },
     "source_record_id": "26232596",
     "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26232596/",
-    "retrieved_at": "2026-07-26T21:32:46Z",
+    "retrieved_at": "2026-07-27T00:25:32Z",
     "raw_record": {
       "idb_record_id": "26232596",
       "office": "2",
@@ -2321,7 +2321,7 @@
       "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26232596/",
       "_source_name": "FJC Integrated Database (federal civil case outcomes)",
       "_access_method": "fjc_integrated_database_api",
-      "_retrieved_at": "2026-07-26T21:32:46Z",
+      "_retrieved_at": "2026-07-27T00:25:32Z",
       "join_verified": true,
       "join_note": "IDB case confirmed against a single RECAP docket.",
       "joined_case_name": "United States v. Vivint Smart Home",
@@ -2374,7 +2374,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "FJC IDB case outcome normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26232596"
         ],
@@ -2386,12 +2386,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-9ECC9B6DB8FF",
-        "evidence_id": "CAN-F21547C46A41",
+        "transition_id": "TRN-91C78BC39496",
+        "evidence_id": "CAN-66B976528A2C",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26232596"
         ],
@@ -2405,7 +2405,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-D935F58BF2D1",
+    "candidate_id": "CAN-1C0DD0545A1E",
     "source": {
       "source_id": "FJC-IDB-FCRA-001",
       "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2426,7 +2426,7 @@
     },
     "source_record_id": "26207324",
     "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26207324/",
-    "retrieved_at": "2026-07-26T21:32:46Z",
+    "retrieved_at": "2026-07-27T00:25:32Z",
     "raw_record": {
       "idb_record_id": "26207324",
       "office": "8",
@@ -2450,7 +2450,7 @@
       "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26207324/",
       "_source_name": "FJC Integrated Database (federal civil case outcomes)",
       "_access_method": "fjc_integrated_database_api",
-      "_retrieved_at": "2026-07-26T21:32:46Z",
+      "_retrieved_at": "2026-07-27T00:25:32Z",
       "join_verified": true,
       "join_note": "IDB case confirmed against a single RECAP docket.",
       "joined_case_name": "Shuthima Pongsai v. American Express Company",
@@ -2503,7 +2503,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "FJC IDB case outcome normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26207324"
         ],
@@ -2515,12 +2515,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-6043CA6E1C06",
-        "evidence_id": "CAN-D935F58BF2D1",
+        "transition_id": "TRN-C29B850DA1D1",
+        "evidence_id": "CAN-1C0DD0545A1E",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26207324"
         ],
@@ -2534,7 +2534,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-264B72C1084F",
+    "candidate_id": "CAN-021641350D02",
     "source": {
       "source_id": "FJC-IDB-FCRA-001",
       "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2555,7 +2555,7 @@
     },
     "source_record_id": "26202575",
     "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26202575/",
-    "retrieved_at": "2026-07-26T21:32:46Z",
+    "retrieved_at": "2026-07-27T00:25:32Z",
     "raw_record": {
       "idb_record_id": "26202575",
       "office": "2",
@@ -2579,7 +2579,7 @@
       "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26202575/",
       "_source_name": "FJC Integrated Database (federal civil case outcomes)",
       "_access_method": "fjc_integrated_database_api",
-      "_retrieved_at": "2026-07-26T21:32:46Z",
+      "_retrieved_at": "2026-07-27T00:25:32Z",
       "join_verified": true,
       "join_note": "IDB case confirmed against a single RECAP docket.",
       "joined_case_name": "Groth v. JPMorgan Chase Bank, N.A.",
@@ -2632,7 +2632,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "FJC IDB case outcome normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26202575"
         ],
@@ -2644,12 +2644,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-6C870BB6AC39",
-        "evidence_id": "CAN-264B72C1084F",
+        "transition_id": "TRN-6817AE55F1D3",
+        "evidence_id": "CAN-021641350D02",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26202575"
         ],
@@ -2663,7 +2663,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-7AAF23A9E448",
+    "candidate_id": "CAN-B6B3E69CDA1D",
     "source": {
       "source_id": "FJC-IDB-FCRA-001",
       "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -2684,7 +2684,7 @@
     },
     "source_record_id": "26197175",
     "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26197175/",
-    "retrieved_at": "2026-07-26T21:32:46Z",
+    "retrieved_at": "2026-07-27T00:25:32Z",
     "raw_record": {
       "idb_record_id": "26197175",
       "office": "2",
@@ -2708,7 +2708,7 @@
       "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26197175/",
       "_source_name": "FJC Integrated Database (federal civil case outcomes)",
       "_access_method": "fjc_integrated_database_api",
-      "_retrieved_at": "2026-07-26T21:32:46Z",
+      "_retrieved_at": "2026-07-27T00:25:32Z",
       "join_verified": true,
       "join_note": "IDB case confirmed against a single RECAP docket.",
       "joined_case_name": "Olivier Chaine v. Tesla Energy Operation, Inc.",
@@ -2761,7 +2761,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "FJC IDB case outcome normalisation v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26197175"
         ],
@@ -2773,12 +2773,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-A180EF93250B",
-        "evidence_id": "CAN-7AAF23A9E448",
+        "transition_id": "TRN-CD7A859CA270",
+        "evidence_id": "CAN-B6B3E69CDA1D",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-        "timestamp": "2026-07-26T21:32:55Z",
+        "timestamp": "2026-07-27T00:25:38Z",
         "inputs": [
           "26197175"
         ],

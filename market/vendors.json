@@ -1,7 +1,27 @@
 [
-  {"vendor": "Credit Repair Cloud", "pricing_url": "https://www.creditrepaircloud.com/pricing"},
-  {"vendor": "DisputeFox", "pricing_url": "https://disputefox.com/pricing"},
-  {"vendor": "Client Dispute Manager", "pricing_url": "https://clientdisputemanagersoftware.com/pricing"},
-  {"vendor": "ScoreCEO", "pricing_url": "https://scoreceo.com/pricing"},
-  {"vendor": "DisputeSuite", "pricing_url": "https://disputesuite.com/pricing"}
+  {
+    "vendor": "Credit Repair Cloud",
+    "pricing_url": "https://www.creditrepaircloud.com/pricing",
+    "selection_basis": "Self-described credit repair business software; pricing page declared in the vendor's own sitemap."
+  },
+  {
+    "vendor": "DisputeFox",
+    "pricing_url": "https://disputefox.com/pricing",
+    "selection_basis": "Self-described credit repair CRM; pricing page resolves and publishes figures. Vendor publishes no sitemap, so the URL is unconfirmed."
+  },
+  {
+    "vendor": "ScoreCEO",
+    "pricing_url": "https://scoreceo.com/plans",
+    "selection_basis": "Self-described credit repair software; /pricing 404s, plans page declared in the vendor's own sitemap."
+  },
+  {
+    "vendor": "Client Dispute Manager",
+    "pricing_url": "https://clientdisputemanagersoftware.com/newpricing/",
+    "selection_basis": "Self-described dispute management software; pricing page declared in the vendor's own sitemap."
+  },
+  {
+    "vendor": "DisputeSuite",
+    "pricing_url": "https://disputesuite.com/how-to-buy-pricing/",
+    "selection_basis": "Self-described credit repair business software; /pricing 404s, pricing page declared in the vendor's own sitemap."
+  }
 ]

@@ -203,9 +203,9 @@ Those differ by a factor of two or more once discount, implementation and staff
 time are counted, so this lane links to `G7_COMPETITIVE_VIABILITY` and
 `C8_MARKET_COMPETITION` only. It is structurally barred from the buyer gates.
 
-What it refuses to do is the point. Five vendor pricing pages were probed on
-2026-07-27: three publish figures, two returned 404, and **none** carries
-structured pricing markup. One page alone held twenty distinct dollar amounts:
+What it refuses to do is the point. Five vendors were probed on 2026-07-27. All
+five publish pricing, and **none** carries structured pricing markup. One page
+alone held twenty distinct dollar amounts:
 
 ```text
 $1        trial
@@ -227,6 +227,20 @@ python -m market.pricing_cli status --export data/exports/market_competitors.jso
 
 Whether a vendor publishes at all is itself market information: it separates a
 self-serve market from an enterprise-negotiated one without anyone naming a figure.
+
+Pricing URLs are confirmed against each vendor's own sitemap rather than guessed.
+The first version assumed `/pricing` for everyone and reported "three of five
+publish" — which was really "three of five use the path I guessed". ScoreCEO
+publishes at `/plans`, DisputeSuite at `/how-to-buy-pricing/`. A URL that a
+vendor's sitemap does not declare is recorded as unconfirmed.
+
+`PG-11` and `PG-12` were pinned `FAIL` constants and now compute. PG-11 separates
+identification from assessment, exactly as G7 does: naming an incumbent is not
+assessing one, so a pricing observation alone leaves it `WEAK`. PG-12 reads buyer
+evidence and ignores pricing entirely, because a list price shows a market exists
+and never that anyone would switch. Both arrive through their own parameters, so
+neither can reach the independent source family count or lift the evidence
+ceiling.
 
 ## Market and Competition Lane
 

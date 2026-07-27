@@ -3,6 +3,8 @@ from __future__ import annotations
 from core.adjudication import ADJUDICATED, ALLEGED
 from core.ids import stable_id
 from verification.rules import DEFAULT_MECHANISM
+from typing import Any
+
 from core.models import AccessDiagnostic, Finding, OpportunityHypothesis, ProofGateResult, SourceReliabilityAssessment, StudyVerdict, VerifiedEvidence
 
 OUTCOME_RANK = {
@@ -13,6 +15,23 @@ OUTCOME_RANK = {
     "CONTINUE RESEARCH": 3,
     "BUILD CANDIDATE": 4,
 }
+
+
+def _meaningful(value: Any) -> bool:
+    """Whether a field carries a judgement rather than a placeholder.
+
+    The third instance of this failure in the system: G7 passed on "not assessed",
+    PG-09 on records matching on both being unclassified, and G4 on a buyer map
+    naming "TBD". Any new gate reading free text needs the same guard.
+    """
+
+    text = str(value or "").strip().lower()
+    if not text:
+        return False
+    return not any(
+        text == marker or text.startswith(marker)
+        for marker in ("unknown", "not assessed", "not disclosed", "n/a", "tbd", "none", "published, not transcribed", "not published")
+    )
 
 
 def _classified(item: VerifiedEvidence) -> bool:
@@ -71,9 +90,23 @@ def evaluate_proof_gates(
     opportunities: list[OpportunityHypothesis],
     source_reliability: list[SourceReliabilityAssessment] | None = None,
     access_diagnostics: list[AccessDiagnostic] | None = None,
+    competitors: list[dict[str, Any]] | None = None,
+    buyer_evidence: list[dict[str, Any]] | None = None,
 ) -> list[ProofGateResult]:
+    """Evaluate every proof gate.
+
+    `competitors` and `buyer_evidence` arrive as separate parameters rather than in
+    `evidence`, and that separation is the point. Market and buyer material answers
+    "who already solves this and who would pay", which is a different question with
+    a different burden of proof from "does this operational failure occur". Passing
+    them in the evidence list would let them reach the independent source family
+    count and lift the evidence ceiling, so they cannot be passed that way at all.
+    """
+
     source_reliability = source_reliability or []
     access_diagnostics = access_diagnostics or []
+    competitors = competitors or []
+    buyer_evidence = buyer_evidence or []
     evidence_ids = [item.evidence_id for item in evidence]
     verified = [item for item in evidence if item.verification_status == "verified_candidate"]
     supported_findings = [finding for finding in findings if finding.status == "finding_supported_cfpb_only"]
@@ -116,6 +149,30 @@ def evaluate_proof_gates(
     ]
     contradicting = [item for item in contradicting if _classified(item)]
 
+    # PG-11 and PG-12 were pinned FAIL constants, like PG-09 and PG-13 before them.
+    # A pinned gate cannot tell a study holding competitor research from one holding
+    # none, and the market lane now produces exactly that material.
+    #
+    # Identification is not assessment, which is the finding the board raised
+    # against G7: a record naming an incumbent with placeholder comparative fields
+    # identifies an alternative without assessing one. The same rule applies here.
+    identified = [item for item in competitors if str(item.get("name") or "").strip()]
+    assessed = [
+        item
+        for item in identified
+        if any(_meaningful(value) for value in list(item.get("strengths") or []) + list(item.get("weaknesses") or []))
+        or _meaningful(item.get("differentiation"))
+    ]
+    # A published list price is what a vendor charges, never what a buyer pays, so
+    # it can establish that a paying market exists and never that anyone would
+    # switch to us. PG-12 therefore reads buyer evidence and ignores pricing.
+    priced = [item for item in identified if _meaningful(item.get("pricing"))]
+    willing_buyers = [
+        item
+        for item in buyer_evidence
+        if _meaningful(item.get("stated_willingness")) and item.get("holds_budget_authority")
+    ]
+
     return [
         _gate("PG-01", "Source Authenticity", _status(bool(source_reliability)), "Source reliability assessment present", str(bool(source_reliability)), [], [item.source_id for item in source_reliability], [], 1.0 if source_reliability else 0.0, [] if source_reliability else ["source reliability assessment"], "Create or review source reliability assessment.", ["Source authenticity is assessed from source metadata."]),
         _gate("PG-02", "Raw Record Preservation", _status(preserved), "Raw retrieval artifact or diagnostic exists", str(preserved), evidence_ids, ["raw artifacts", "access diagnostics"] if preserved else [], [], 1.0 if preserved else 0.0, [] if preserved else ["raw preservation artifact"], "Do not normalise until raw retrieval or access failure is preserved.", ["Raw records or access failure diagnostics must exist."]),
@@ -127,8 +184,8 @@ def evaluate_proof_gates(
         _gate("PG-08", "Software-Addressability", _status(bool(supported_opportunities), bool(opportunities)), "Opportunity assessment exists", str(bool(supported_opportunities)), [evidence_id for opportunity in opportunities for evidence_id in opportunity.evidence_ids], [opportunity.component_hypothesis for opportunity in opportunities], [opportunity.non_software_alternatives for opportunity in opportunities], 0.45 if supported_opportunities else 0.2 if opportunities else 0.0, [] if supported_opportunities else ["software-addressability evidence"], "Assess workflow detail and non-software alternatives.", ["Opportunity assessment is separate from verification."]),
         _gate("PG-09", "Independent Corroboration", _status(bool(corroborated), bool(establishing)), "At least 1 adjudicated finding of occurrence, on a mechanism independently alleged by another source family", f"corroborated={len(corroborated)}; adjudicated={len(adjudicated)}; establishing occurrence={len(establishing)}", evidence_ids, [item.evidence_id for item in corroborated] or source_families, ["Allegations repeat across forums without any forum having decided them."] if not corroborated else [], 1.0 if corroborated else 0.0, [] if corroborated else ["a judgment, consent order, or examination finding resolving the mechanism against a respondent"], "Retrieve adjudicated dispositions before BUILD CANDIDATE.", ["Independence of forums makes allegations independent, not established.", "Occurrence is established by a decision, never by repetition."], not corroborated),
         _gate("PG-10", "Buyer Clarity", _status(False, bool(supported_opportunities)), "Confirmed buyer evidence", "unverified", [evidence_id for opportunity in opportunities for evidence_id in opportunity.evidence_ids], [opportunity.buyer_clarity for opportunity in opportunities], ["CFPB identifies companies, not buyers."], 0.25 if supported_opportunities else 0.0, ["confirmed buyer", "budget owner", "procurement context"], "Research buyer role after independent corroboration.", ["Buyer clarity cannot be established from CFPB complaints alone."]),
-        _gate("PG-11", "Existing Solution Assessment", _status(False), "Existing solution maturity evidence", "unknown", [evidence_id for opportunity in opportunities for evidence_id in opportunity.evidence_ids], [], ["No solution-market research integrated."], 0.0, ["existing solution maturity research"], "Research current solutions before commercial conclusion.", ["No market saturation claim is allowed yet."]),
-        _gate("PG-12", "Commercial Relevance", _status(False, bool(supported_opportunities)), "Commercial urgency evidence", "unproven", [evidence_id for opportunity in opportunities for evidence_id in opportunity.evidence_ids], [], ["CFPB complaints do not prove commercial demand."], 0.25 if supported_opportunities else 0.0, ["commercial urgency", "economic impact", "market evidence"], "Do not promote commercial claims without source evidence.", ["Commercial relevance remains hypothesis-only."]),
+        _gate("PG-11", "Existing Solution Assessment", _status(bool(assessed), bool(identified)), "At least 1 incumbent assessed for maturity, not merely identified", f"identified={len(identified)}; assessed={len(assessed)}; publishing a price={len(priced)}", [item.get("competitor_id", "") for item in identified], [item.get("competitor_id", "") for item in assessed], ["Identifying an incumbent is not assessing one."] if identified and not assessed else [], 0.7 if assessed else 0.3 if identified else 0.0, [] if assessed else ["comparative assessment of at least one incumbent: strengths, weaknesses or differentiation"], "Assess an identified incumbent rather than only listing it.", ["A pricing observation records what a vendor charges, not how mature its solution is.", "Placeholder comparative fields must never satisfy this gate."]),
+        _gate("PG-12", "Commercial Relevance", _status(bool(willing_buyers), bool(buyer_evidence)), "At least 1 budget-holding buyer stating willingness", f"buyer records={len(buyer_evidence)}; budget-holding and willing={len(willing_buyers)}", [item.get("evidence_id", "") for item in buyer_evidence], [item.get("evidence_id", "") for item in willing_buyers], ["Published vendor pricing shows a market exists, not that anyone would switch."] if priced and not willing_buyers else [], 0.7 if willing_buyers else 0.2 if buyer_evidence else 0.0, [] if willing_buyers else ["a buyer who controls a budget stating what they would pay for"], "Record a buyer conversation; no dataset answers this.", ["Commercial urgency cannot be retrieved, only asked.", "A list price is not evidence that a buyer would move."]),
         _gate("PG-13", "Counter-Evidence", _status(bool(contradicting), bool(adjudicated)), "At least 1 adjudicated disposition resolving the mechanism in a respondent's favour", f"contradicting={len(contradicting)} of {len(adjudicated)} adjudicated", evidence_ids, [item.evidence_id for item in contradicting], [item.evidence_id for item in contradicting], 1.0 if contradicting else 0.3 if adjudicated else 0.0, [] if contradicting else ["adjudicated dispositions decided in a respondent's favour"], "Retrieve dispositions in both directions, not only those that confirm.", ["Complaints and filings are submitted by claimants, so neither yields counter-evidence.", "A source that can only ever confirm the hypothesis is not a test of it."]),
         _gate("PG-14", "Reproducibility", _status(not any_access_error and preserved, preserved), "Run preserves artifacts and diagnostics", str(preserved), evidence_ids, ["artifact preservation", "diagnostics"] if preserved else [], [diagnostic.diagnostic_id for diagnostic in access_diagnostics if diagnostic.response_status not in {"200", "local_file_read"}], 0.8 if preserved and not any_access_error else 0.4 if preserved else 0.0, [] if preserved and not any_access_error else ["successful repeatable official retrieval"], "Preserve run manifest, diagnostics, and raw official records.", ["Access failures are reproducible diagnostics, not evidence records."]),
         _gate("PG-15", "Source Independence", _status(len(source_families) >= 2), "Independent source family count >= 2", str(len(source_families)), evidence_ids, source_families, ["Multiple CFPB complaints remain one source family."], 1.0 if len(source_families) >= 2 else 0.0, [] if len(source_families) >= 2 else ["second independent source family"], "Add independent corroborating source family.", ["Different URLs do not automatically mean independent sources."], True),
