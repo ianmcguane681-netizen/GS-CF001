@@ -189,6 +189,45 @@ See `analysis/source_evaluation_adjudicated_findings.md` for the four sources th
 were probed and rejected, and for the false PASS the first live three-source run
 produced before the unclassified-mechanism guard was added.
 
+## Incumbent Pricing
+
+`market/pricing.py` answers what vendors *charge*, which is a different question
+from what buyers *pay*:
+
+```text
+what does a vendor charge?   published, retrievable, documentary
+what does a buyer pay?       negotiated, discounted, only obtainable from a person
+```
+
+Those differ by a factor of two or more once discount, implementation and staff
+time are counted, so this lane links to `G7_COMPETITIVE_VIABILITY` and
+`C8_MARKET_COMPETITION` only. It is structurally barred from the buyer gates.
+
+What it refuses to do is the point. Five vendor pricing pages were probed on
+2026-07-27: three publish figures, two returned 404, and **none** carries
+structured pricing markup. One page alone held twenty distinct dollar amounts:
+
+```text
+$1        trial
+$179      monthly plan
+$143.20   annual-discounted equivalent
+$15,427   marketing earnings claim
+```
+
+No rule separates those, so the connector records that pricing is published, hashes
+the page, and refuses to say what the price is. A figure enters only from
+schema.org markup or from a human who read the page and transcribed it against the
+recorded hash.
+
+```bash
+python -m market.pricing_cli observe
+python -m market.pricing_cli transcribe --vendor "..." --price 179.00 --unit "USD/month" --by you
+python -m market.pricing_cli status --export data/exports/market_competitors.json
+```
+
+Whether a vendor publishes at all is itself market information: it separates a
+self-serve market from an enterprise-negotiated one without anyone naming a figure.
+
 ## Market and Competition Lane
 
 `market/` answers a different question from the study: who already operates in
