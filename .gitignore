@@ -7,3 +7,9 @@ data/processed/*.json
 data/exports/*.json
 data/exports/*.md
 
+
+# Pricing observations are a working ledger with human attestations in them.
+# A transcribed figure records a named person having read a page, so it must be
+# created by that person and never committed from a demo run.
+data/market_pricing.json
+data/exports/market_competitors.json
