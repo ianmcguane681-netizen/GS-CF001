@@ -222,3 +222,62 @@ Closing it needs document-level text — the complaint or opinion in a joined do
 which RECAP holds unevenly because coverage depends on user contributions. That is a
 real research step with an uncertain yield, not a wiring job, and it should be
 scoped as one.
+
+
+## Coverage sweep, 2026-07-27: the binding constraint measured
+
+`tools/adjudication_coverage.py` walked the entire occurrence-establishing pool —
+all 67 FCRA cases whose coded outcome went against the respondent on the merits —
+and recorded where each one stops on the way to corroborating this study's
+mechanism.
+
+| Stopped at | Count |
+| --- | ---: |
+| No complaint text in RECAP | 43 |
+| Off-study suit nature | 11 |
+| Not an original proceeding | 10 |
+| Join failed | 2 |
+| **Reached a mechanism** | **1** |
+
+```text
+pool enumerated        67
+joined to a docket     65
+consumer credit        54
+complaint text          1
+reached a mechanism     1
+```
+
+**RECAP document coverage is the binding constraint, and it is severe.** Subject
+matter is rarely the problem: 54 of the 65 joined records are consumer credit
+cases. The failure is that RECAP holds the complaint for one of them. Coverage is
+contributed by users, so this is a property of the archive rather than of the
+courts, and it is not something more retrieval effort fixes.
+
+The one record that completes the conjunction:
+
+```text
+Sandmeier v. Collection Consultants of California    caed 2:20-cv-00657
+merits judgment for the plaintiff, consumer credit, original proceeding
+complaint text retrieved -> bureau_dispute_reinvestigation_failure
+```
+
+That is the first adjudicated finding this study has ever held that is capable of
+corroborating its mechanism. It exists, and it is one record.
+
+**What this means for PG-09.** Corroboration is achievable but not yet robust. One
+adjudication is a fact about one dispute, and a gate that passes on a single record
+would be asserting a market-wide mechanism from a single California case. The
+sensible reading is that the tier now works and the sample is thin — a judgement for
+the board rather than for me.
+
+### A defect this sweep found in itself
+
+The first two runs reported a completed summary while pagination had failed on the
+first page, having enumerated nothing. The tool wrote a summary over previously
+assessed records, so a run with no denominator at all read as a finished
+measurement. It now refuses to summarise when the pool was not enumerated, exits
+non-zero, and says why.
+
+The cause was self-inflicted: the pool was re-walked at full page size on every
+attempt, so the expensive request ran first and repeatedly and was throttled before
+any record could be assessed. The pool is enumerated once and cached.
