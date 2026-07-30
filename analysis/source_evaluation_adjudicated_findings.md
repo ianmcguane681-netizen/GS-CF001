@@ -281,3 +281,30 @@ non-zero, and says why.
 The cause was self-inflicted: the pool was re-walked at full page size on every
 attempt, so the expensive request ran first and repeatedly and was throttled before
 any record could be assessed. The pool is enumerated once and cached.
+
+
+## Enforcement, 2026-07-29
+
+The three-district threshold from the remediation plan accepted in review 0007 is
+now enforced as `CORROBORATING_DISTRICTS_REQUIRED = 3` in
+`proof_gates/evaluator.py`, rather than held as a commitment in a document.
+
+For it to be enforceable, district had to reach the gates at all. It survived into
+`parsed_fields` as a CourtListener resource URL and stopped there — `verify_candidate`
+never copied it, so `evaluate_proof_gates` had no way to count districts. `court` is
+now a field on `VerifiedEvidence`.
+
+`PG-09` behaviour: `FAIL` with no adjudication establishing occurrence, `WEAK` while
+corroboration is incomplete — whether because it is not cross-family, on another
+mechanism, or confined to too few districts — and `PASS` only at three distinct
+courts. A record with no court is not counted as a district, on the same reasoning
+that keeps an unclassified mechanism from corroborating itself.
+
+**Current position: 1 district of 3.** The sweep spans 30 districts across 67
+records; exactly one (`caed`, *Sandmeier*) reaches the mechanism.
+
+The archive-selection limitation is recorded in the FJC reliability assessment's
+`representativeness_warning`, which is one of the fields the Markdown report
+renders. `known_limitations` previously reached the JSON exports and the proof
+bundle but not the report, so a limitation meant to travel with every downstream
+claim stopped short of the only artefact a human reads. It renders now.

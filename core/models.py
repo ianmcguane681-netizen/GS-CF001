@@ -100,6 +100,10 @@ class VerifiedEvidence:
     adjudication_posture: str = ""
     adjudication_direction: str = ""
     adjudication_citation: str = ""
+    # The federal district that decided the case, as a bare CourtListener court id.
+    # Empty for sources that are not court records. PG-09 counts distinct courts, so
+    # this has to survive verification rather than stopping at parsed_fields.
+    court: str = ""
     establishes_occurrence: bool = False
     contradicts_occurrence: bool = False
 

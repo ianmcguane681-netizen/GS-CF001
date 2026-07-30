@@ -112,6 +112,8 @@ def fjc_idb_reliability_assessment(
             "Case-level coding does not identify which specific allegation was decided.",
             "Litigation volume reflects propensity to sue, not underlying failure rates.",
             "Party names are as filed and may not identify the operationally responsible entity.",
+            "Which adjudications are reachable is determined by RECAP document coverage, "
+            "which is contributed by volunteers rather than assembled systematically.",
         ],
         verification_constraints=[
             "A merits judgment for the plaintiff establishes that a violation was found.",
@@ -124,8 +126,13 @@ def fjc_idb_reliability_assessment(
             "Corroborates only when another family independently alleges the same mechanism.",
         ],
         representativeness_warning=(
-            "Cases reaching a merits judgment are a small and unrepresentative fraction: "
-            "most FCRA cases settle."
+            "The adjudicated sample is archive-selected and not representative. Cases "
+            "reaching a merits judgment are already a small fraction because most FCRA "
+            "cases settle, and of those only the ones a volunteer chose to upload to "
+            "RECAP carry a retrievable complaint. Which adjudications this study can "
+            "see is therefore shaped by who uploaded documents rather than by which "
+            "cases were decided, and no amount of further retrieval corrects it. "
+            "Recorded under the remediation plan accepted in review RBE-GSCF001-0007."
         ),
         data_completeness_warning=(
             "Recent cases carry null outcome codes until a subsequent dataset load."

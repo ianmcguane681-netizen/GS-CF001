@@ -50,7 +50,7 @@ DEFAULT_POOL_CACHE = Path("analysis/adjudication_pool.json")
 
 
 def fetch_establishing_records(
-    adapter: FJCIDBAdapter, limit: int
+    adapter: FJCIDBAdapter, limit: int, judgment: str = "1"
 ) -> tuple[list[dict[str, Any]], str]:
     """Every FCRA case whose coded outcome went against the respondent on the merits.
 
@@ -61,7 +61,7 @@ def fetch_establishing_records(
 
     collected: list[dict[str, Any]] = []
     incomplete = ""
-    url = adapter.build_url(min(limit, 20), judgment="1")
+    url = adapter.build_url(min(limit, 20), judgment=judgment)
     while url and len(collected) < limit:
         try:
             payload, _headers, _status = adapter._fetch_json(url)  # noqa: SLF001 - same package
@@ -76,11 +76,20 @@ def fetch_establishing_records(
             if not cites_fcra(row.get("title"), row.get("section")):
                 continue
             posture, direction = classify_fjc_disposition(row.get("disposition"), row.get("judgment"))
-            if establishes_occurrence(posture, direction):
-                collected.append({**row, "_posture": posture, "_direction": direction})
+            # Every decided row is retained, not only those establishing occurrence.
+            # Measuring archive coverage needs the defence side too: coverage rates
+            # computed over confirmations alone would be a biased measurement of
+            # bias, which is worse than not measuring it.
+            collected.append({**row, "_posture": posture, "_direction": direction})
         url = payload.get("next")
         time.sleep(3.0)
     return collected[:limit], incomplete
+
+
+def _resume_key(row: dict[str, Any]) -> str:
+    """Identify an assessed record uniquely. Court first, because docket alone is not."""
+
+    return f"{row.get('court') or '?'}/{row.get('docket') or '?'}"
 
 
 def assess(record: dict[str, Any], join: DocketJoinAdapter) -> dict[str, Any]:
@@ -93,7 +102,15 @@ def assess(record: dict[str, Any], join: DocketJoinAdapter) -> dict[str, Any]:
         "court": court_id,
         "defendant": record.get("defendant") or "",
         "posture": record["_posture"],
+        "direction": record.get("_direction", ""),
         "origin": record.get("origin"),
+        # Retained so district and filing-year grouping needs no second pass over
+        # the API. The pool cache holds these already; dropping them here was why
+        # the first sweep could not answer "coverage by year".
+        "date_filed": record.get("date_filed") or "",
+        "district": record.get("district") or "",
+        "judgment": record.get("judgment"),
+        "disposition": record.get("disposition"),
         "joined": False,
         "on_study_suit_nature": False,
         "complaint_chars": 0,
@@ -139,12 +156,26 @@ def main() -> int:
     parser.add_argument("--limit", type=int, default=67)
     parser.add_argument("--output", default=str(DEFAULT_OUTPUT))
     parser.add_argument("--pool-cache", default=str(DEFAULT_POOL_CACHE))
+    parser.add_argument(
+        "--judgment",
+        default="1,2",
+        help="FJC judgment codes to walk: 1 plaintiff, 2 defendant. Both by default, "
+             "because coverage measured over confirmations alone is a biased measure of bias.",
+    )
     args = parser.parse_args()
 
     output = Path(args.output)
     done: dict[str, Any] = {}
     if output.is_file():
-        done = {row["docket"]: row for row in json.loads(output.read_text(encoding="utf-8"))["records"]}
+        # Keyed on court and docket together. A PACER docket number omits the court,
+        # so `2:20-cv-00294` exists in many districts at once; keying on it alone
+        # would silently skip every case after the first sharing a number. The
+        # 67-record run happened not to collide, but a ~430-record walk across
+        # ninety districts would, and the loss would look like completion.
+        done = {
+            _resume_key(row): row
+            for row in json.loads(output.read_text(encoding="utf-8"))["records"]
+        }
         print(f"resuming: {len(done)} record(s) already assessed")
 
     idb = FJCIDBAdapter()
@@ -155,26 +186,44 @@ def main() -> int:
 
     cache = Path(args.pool_cache)
     incomplete = ""
+    records: list[dict[str, Any]] = []
     if cache.is_file():
         cached = json.loads(cache.read_text(encoding="utf-8"))
-        records = cached["records"][: args.limit]
-        print(f"pool from cache: {len(records)} occurrence-establishing record(s)")
-    else:
-        records, incomplete = fetch_establishing_records(idb, args.limit)
-        print(f"occurrence-establishing records retrieved: {len(records)}")
+        # A cache is only reusable for the strata that produced it. Reusing a
+        # plaintiff-only pool for a judgment=1,2 run would report a coverage rate
+        # over a population that was never walked, and the file gives no hint.
+        cached_judgment = cached.get("judgment", "1")
+        if cached_judgment != args.judgment:
+            print(
+                f"pool cache was built for judgment={cached_judgment!r}, this run wants "
+                f"{args.judgment!r}; re-enumerating rather than mixing strata"
+            )
+        else:
+            records = cached["records"]
+            print(f"pool from cache: {len(records)} decided record(s) [judgment={cached_judgment}]")
+    if not records:
+        records, incomplete = fetch_establishing_records(idb, args.limit, judgment=args.judgment)
+        print(f"decided records retrieved: {len(records)} [judgment={args.judgment}]")
         if records and not incomplete:
             cache.parent.mkdir(parents=True, exist_ok=True)
             cache.write_text(
                 json.dumps({"enumerated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                            "judgment": args.judgment, "limit": args.limit,
                             "records": records}, indent=2) + "\n",
                 encoding="utf-8",
             )
-            print(f"pool cached to {cache}")
+            print(f"pool cached to {cache} [judgment={args.judgment}]")
+    records = records[: args.limit]
 
     results = list(done.values())
     for index, record in enumerate(records, start=1):
-        docket = pacer_docket_number(record.get("office"), record.get("docket_number"))
-        if docket in done:
+        key = _resume_key(
+            {
+                "court": court_id_from_district(record.get("district")),
+                "docket": pacer_docket_number(record.get("office"), record.get("docket_number")),
+            }
+        )
+        if key in done:
             continue
         row = assess(record, join)
         results.append(row)
@@ -214,8 +263,22 @@ def main() -> int:
         print(f"{len(results)} record(s) assessed, but with no denominator. Re-run to complete.")
         return 2
 
+    def _rate(rows: list[dict[str, Any]]) -> dict[str, Any]:
+        with_text = sum(1 for r in rows if r.get("complaint_chars"))
+        return {"assessed": len(rows), "with_complaint_text": with_text,
+                "coverage": round(with_text / len(rows), 4) if rows else None}
+
+    by_district: dict[str, Any] = {}
+    for row in results:
+        by_district.setdefault(row.get("court") or "unknown", []).append(row)
+    by_year: dict[str, Any] = {}
+    for row in results:
+        by_year.setdefault((row.get("date_filed") or "")[:4] or "unknown", []).append(row)
+
     summary = {
         "assessed": len(results),
+        "by_district": {k: _rate(v) for k, v in sorted(by_district.items())},
+        "by_filing_year": {k: _rate(v) for k, v in sorted(by_year.items())},
         "pool_size_enumerated": len(records),
         "pool_incomplete": incomplete or None,
         "joined": sum(1 for r in results if r.get("joined")),

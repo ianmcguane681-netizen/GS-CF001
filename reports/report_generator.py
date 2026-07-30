@@ -43,6 +43,11 @@ def render_markdown_report(
     for assessment in source_reliability:
         lines.append(f"- `{assessment.source_id}` {assessment.source_name}; family `{assessment.source_family}`; method `{assessment.retrieval_method}`.")
         lines.append(f"  - Representativeness warning: {assessment.representativeness_warning}")
+        # Known limitations reached the JSON exports and the proof bundle but never
+        # the Markdown report, so a limitation recorded to "travel with every
+        # downstream claim" stopped short of the only artefact a human reads.
+        if assessment.known_limitations:
+            lines.append(f"  - Known limitations: {'; '.join(assessment.known_limitations)}")
         lines.append(f"  - Data completeness warning: {assessment.data_completeness_warning}")
         lines.append(f"  - Verification constraints: {'; '.join(assessment.verification_constraints)}")
         lines.append(f"  - Prohibited inferences: {'; '.join(assessment.prohibited_inferences)}")

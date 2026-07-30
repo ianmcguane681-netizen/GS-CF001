@@ -189,6 +189,35 @@ See `analysis/source_evaluation_adjudicated_findings.md` for the four sources th
 were probed and rejected, and for the false PASS the first live three-source run
 produced before the unclassified-mechanism guard was added.
 
+## What This Study Currently Claims
+
+Stated plainly, because the difference matters and is easy to blur:
+
+```text
+CLAIMED     The mechanism is ALLEGED across two independent source families,
+            and ADJUDICATED against a respondent in one case.
+
+NOT CLAIMED  That the mechanism occurs market-wide.
+```
+
+`PG-09` requires adjudicated corroboration spanning at least three distinct federal
+districts before the stronger claim is available. That bar comes from the
+remediation plan accepted in review `RBE-GSCF001-0007`, after the board's sceptical
+seat refused to let a single California judgment carry a market-wide operational
+claim. It is enforced as `CORROBORATING_DISTRICTS_REQUIRED` in
+`proof_gates/evaluator.py`, not merely written down here — the finding that started
+this whole thread was a requirement that existed only as prose.
+
+Current position: **one district**. A full sweep of all 67 occurrence-establishing
+FCRA cases found exactly one reaching the study's mechanism, because RECAP holds a
+complaint for 1 in 67. PG-09 reports `WEAK` with the shortfall named rather than a
+bare failure.
+
+The adjudicated sample is **archive-selected**: which cases are reachable depends on
+who chose to upload documents to RECAP, not on which cases were decided. That
+limitation is recorded in the FJC source reliability assessment and travels into
+every report and proof bundle, because it cannot be corrected by further retrieval.
+
 ## Incumbent Pricing
 
 `market/pricing.py` answers what vendors *charge*, which is a different question

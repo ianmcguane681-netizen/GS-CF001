@@ -201,6 +201,9 @@ def normalise_idb_record(
         "adjudication_posture": posture,
         "adjudication_direction": direction,
         "adjudication_citation": raw_record.get("pacer_docket_number") or raw_record.get("docket_number") or "",
+        # The bare court id from the docket join. `district` below is the raw IDB
+        # resource URL; this is the form a gate can group on.
+        "court": raw_record.get("join_court_id") or "",
         # From the RECAP docket join. False whenever the join did not confirm a
         # single consumer-credit docket, including when it could not run at all:
         # unknown subject matter is not permission to count the case.

@@ -45,6 +45,7 @@ def evidence(
     standing: str = ALLEGED,
     posture: str = "",
     direction: str = "",
+    court: str = "",
 ) -> VerifiedEvidence:
     return VerifiedEvidence(
         evidence_id=evidence_id,
@@ -66,6 +67,7 @@ def evidence(
         evidentiary_standing=standing,
         adjudication_posture=posture,
         adjudication_direction=direction,
+        court=court,
         establishes_occurrence=establishes_occurrence(posture, direction),
         contradicts_occurrence=contradicts_occurrence(posture, direction),
     )
@@ -181,22 +183,74 @@ def test_two_alleging_families_do_not_pass_corroboration():
     assert gate(gates, "PG-09").constrains_max_verdict is True
 
 
-def test_an_adjudicated_finding_corroborated_by_another_family_passes_pg09():
+def corroborating(name: str, court: str):
+    return evidence(
+        name,
+        family="Federal court records",
+        standing=ADJUDICATED,
+        posture=CONSENT_ORDER,
+        direction=AGAINST_RESPONDENT,
+        court=court,
+    )
+
+
+def test_one_corroborating_district_is_not_enough_for_pg09():
+    """The threshold comes from the remediation plan accepted in review 0007.
+
+    The sceptical seat refused to let a single California judgment carry a
+    market-wide operational claim: "one case, in one district, against one
+    collection agency". Three distinct districts are required, and until then the
+    gate reports how far short it is rather than simply failing.
+    """
+    items = [evidence("E1", family="CFPB complaints"), corroborating("E2", "caed")]
+
+    result = gate(evaluate_proof_gates(items, [], []), "PG-09")
+
+    assert result.status == "WEAK"
+    assert result.constrains_max_verdict is True
+    assert "1 district(s); 3 required" in result.observed_value
+
+
+def test_three_distinct_districts_pass_pg09():
     items = [
         evidence("E1", family="CFPB complaints"),
-        evidence(
-            "E2",
-            family="Federal court records",
-            standing=ADJUDICATED,
-            posture=CONSENT_ORDER,
-            direction=AGAINST_RESPONDENT,
-        ),
+        corroborating("E2", "caed"),
+        corroborating("E3", "gand"),
+        corroborating("E4", "ilnd"),
     ]
 
-    gates = evaluate_proof_gates(items, [], [])
+    result = gate(evaluate_proof_gates(items, [], []), "PG-09")
 
-    assert gate(gates, "PG-09").status == "PASS"
-    assert gate(gates, "PG-09").constrains_max_verdict is False
+    assert result.status == "PASS"
+    assert result.constrains_max_verdict is False
+
+
+def test_three_records_from_one_district_are_still_one_district():
+    """Volume in a single court is not geographic spread."""
+    items = [
+        evidence("E1", family="CFPB complaints"),
+        corroborating("E2", "caed"),
+        corroborating("E3", "caed"),
+        corroborating("E4", "caed"),
+    ]
+
+    assert gate(evaluate_proof_gates(items, [], []), "PG-09").status == "WEAK"
+
+
+def test_records_without_a_court_do_not_count_as_districts():
+    """An absent value is never a distinct value -- otherwise three unknowns would
+    satisfy a three-district threshold, which is the placeholder failure again."""
+    items = [
+        evidence("E1", family="CFPB complaints"),
+        corroborating("E2", ""),
+        corroborating("E3", ""),
+        corroborating("E4", ""),
+    ]
+
+    result = gate(evaluate_proof_gates(items, [], []), "PG-09")
+
+    assert result.status == "WEAK"
+    assert "0 district(s)" in result.observed_value
 
 
 def test_an_adjudication_corroborated_only_by_its_own_family_does_not_pass():

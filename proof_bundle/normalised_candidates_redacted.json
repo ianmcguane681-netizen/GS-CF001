@@ -1,6 +1,6 @@
 [
   {
-    "candidate_id": "CAN-384DF7C4ADB0",
+    "candidate_id": "CAN-942E64087CFF",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -21,7 +21,7 @@
     },
     "source_record_id": "9999997",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-28T23:15:14Z",
+    "retrieved_at": "2026-07-30T23:35:47Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -45,7 +45,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-28T23:15:14Z"
+      "_retrieved_at": "2026-07-30T23:35:47Z"
     },
     "parsed_fields": {
       "complaint_id": "9999997",
@@ -76,7 +76,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999997"
         ],
@@ -88,12 +88,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-8696FE502013",
-        "evidence_id": "CAN-384DF7C4ADB0",
+        "transition_id": "TRN-B2E5BC6FEE16",
+        "evidence_id": "CAN-942E64087CFF",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999997"
         ],
@@ -107,7 +107,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-F9EE6C0FC8A3",
+    "candidate_id": "CAN-35811F793921",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -128,7 +128,7 @@
     },
     "source_record_id": "9999996",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-28T23:15:14Z",
+    "retrieved_at": "2026-07-30T23:35:47Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -152,7 +152,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-28T23:15:14Z"
+      "_retrieved_at": "2026-07-30T23:35:47Z"
     },
     "parsed_fields": {
       "complaint_id": "9999996",
@@ -183,7 +183,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999996"
         ],
@@ -195,12 +195,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-2B0C16B4D2CC",
-        "evidence_id": "CAN-F9EE6C0FC8A3",
+        "transition_id": "TRN-6DA3C614FF86",
+        "evidence_id": "CAN-35811F793921",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999996"
         ],
@@ -214,7 +214,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-39C10ED8477A",
+    "candidate_id": "CAN-3DEC652A1C58",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -235,7 +235,7 @@
     },
     "source_record_id": "9999995",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-28T23:15:14Z",
+    "retrieved_at": "2026-07-30T23:35:47Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -259,7 +259,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-28T23:15:14Z"
+      "_retrieved_at": "2026-07-30T23:35:47Z"
     },
     "parsed_fields": {
       "complaint_id": "9999995",
@@ -290,7 +290,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999995"
         ],
@@ -302,12 +302,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-1161226C004F",
-        "evidence_id": "CAN-39C10ED8477A",
+        "transition_id": "TRN-34801642D63A",
+        "evidence_id": "CAN-3DEC652A1C58",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999995"
         ],
@@ -321,7 +321,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-217C3BAD589F",
+    "candidate_id": "CAN-2B5269E2DD45",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -342,7 +342,7 @@
     },
     "source_record_id": "9999994",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-28T23:15:14Z",
+    "retrieved_at": "2026-07-30T23:35:47Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -366,7 +366,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-28T23:15:14Z"
+      "_retrieved_at": "2026-07-30T23:35:47Z"
     },
     "parsed_fields": {
       "complaint_id": "9999994",
@@ -397,7 +397,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999994"
         ],
@@ -409,12 +409,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-B0E49A639561",
-        "evidence_id": "CAN-217C3BAD589F",
+        "transition_id": "TRN-1C3568731B55",
+        "evidence_id": "CAN-2B5269E2DD45",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999994"
         ],
@@ -428,7 +428,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-6526986E90DC",
+    "candidate_id": "CAN-FF896BEF4BB1",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -449,7 +449,7 @@
     },
     "source_record_id": "9999989",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-28T23:15:14Z",
+    "retrieved_at": "2026-07-30T23:35:47Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -473,7 +473,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-28T23:15:14Z"
+      "_retrieved_at": "2026-07-30T23:35:47Z"
     },
     "parsed_fields": {
       "complaint_id": "9999989",
@@ -504,7 +504,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999989"
         ],
@@ -516,12 +516,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-FF0F643DF246",
-        "evidence_id": "CAN-6526986E90DC",
+        "transition_id": "TRN-9B7C33B4521C",
+        "evidence_id": "CAN-FF896BEF4BB1",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999989"
         ],
@@ -535,7 +535,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-7298E2D184C5",
+    "candidate_id": "CAN-D42D01E9F149",
     "source": {
       "source_id": "CFPB-CCD-001",
       "name": "CFPB Consumer Complaint Database",
@@ -556,7 +556,7 @@
     },
     "source_record_id": "9999988",
     "source_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-28T23:15:14Z",
+    "retrieved_at": "2026-07-30T23:35:47Z",
     "raw_record": {
       "product": "Credit reporting or other personal consumer reports",
       "complaint_what_happened": "",
@@ -580,7 +580,7 @@
       "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
       "_source_name": "CFPB Consumer Complaint Database",
       "_access_method": "official_cfpb_search_api",
-      "_retrieved_at": "2026-07-28T23:15:14Z"
+      "_retrieved_at": "2026-07-30T23:35:47Z"
     },
     "parsed_fields": {
       "complaint_id": "9999988",
@@ -611,7 +611,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "CFPB field normalisation v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999988"
         ],
@@ -623,12 +623,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-D6A9B3E6A878",
-        "evidence_id": "CAN-7298E2D184C5",
+        "transition_id": "TRN-0A0FF536A619",
+        "evidence_id": "CAN-D42D01E9F149",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C product mapping rule v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "9999988"
         ],
@@ -642,7 +642,677 @@
     ]
   },
   {
-    "candidate_id": "CAN-0490AC42F88C",
+    "candidate_id": "CAN-D9FBE25EFA55",
+    "source": {
+      "source_id": "COURTLISTENER-FCRA-001",
+      "name": "CourtListener Federal Court Records (RECAP)",
+      "source_type": "federal_judicial_records",
+      "base_url": "https://www.courtlistener.com/api/rest/v4/search/",
+      "jurisdiction": "United States",
+      "role": "discovery",
+      "source_family": "Federal court records",
+      "notes": "Independent of CFPB complaints. Filed claims are allegations, not findings of fact, and must be verified before supporting findings.",
+      "evidentiary_standing": "ALLEGED"
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "73680627",
+    "source_url": "https://www.courtlistener.com/docket/73680627/amor-v-credit-one-bank-na/",
+    "retrieved_at": "2026-07-30T23:36:08Z",
+    "raw_record": {
+      "docket_id": "73680627",
+      "case_name": "Amor v. Credit One Bank, N.A.",
+      "case_name_full": "",
+      "court": "District Court, S.D. Florida",
+      "court_id": "flsd",
+      "docket_number": "1:26-cv-25086",
+      "date_filed": "2026-07-28",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "jurisdiction_type": "Federal Question",
+      "assigned_to": "Federico A. Moreno",
+      "parties": [
+        "Experian Information Solutions, Inc.",
+        "Ricardo  Amor",
+        "Credit One Bank, N.A."
+      ],
+      "_source_record_id": "73680627",
+      "_retrieval_url": "https://www.courtlistener.com/docket/73680627/amor-v-credit-one-bank-na/",
+      "_source_name": "CourtListener Federal Court Records (RECAP)",
+      "_access_method": "courtlistener_search_api",
+      "_retrieved_at": "2026-07-30T23:36:08Z"
+    },
+    "parsed_fields": {
+      "docket_id": "73680627",
+      "case_name": "Amor v. Credit One Bank, N.A.",
+      "court": "District Court, S.D. Florida",
+      "court_id": "flsd",
+      "docket_number": "1:26-cv-25086",
+      "date_filed": "2026-07-28",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "parties": [
+        "Experian Information Solutions, Inc.",
+        "Ricardo  Amor",
+        "Credit One Bank, N.A."
+      ],
+      "company": "Credit One Bank, N.A.",
+      "narrative": "",
+      "issue": "15:1681 Fair Credit Reporting Act",
+      "sub_issue": "480 Consumer Credit"
+    },
+    "study_mapping_reason": "Docket cause arises under the Fair Credit Reporting Act.",
+    "traceability": [
+      "Retrieved federal docket record from https://www.courtlistener.com/docket/73680627/amor-v-credit-one-bank-na/",
+      "Admitted docket 73680627 on statutory cause '15:1681 Fair Credit Reporting Act'",
+      "Normalised docket metadata into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-170ABDE07950",
+        "evidence_id": "73680627",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "Court docket normalisation v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73680627"
+        ],
+        "output": "Normalised federal docket metadata.",
+        "confidence": 1.0,
+        "limitations": [
+          "A filed claim is an allegation, not a finding of fact."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-9C0E3EC4BF77",
+        "evidence_id": "CAN-D9FBE25EFA55",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73680627"
+        ],
+        "output": "Mapped FCRA statutory cause to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "Statutory cause is deterministic but does not describe the operational mechanism."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  },
+  {
+    "candidate_id": "CAN-C24E9E2334BD",
+    "source": {
+      "source_id": "COURTLISTENER-FCRA-001",
+      "name": "CourtListener Federal Court Records (RECAP)",
+      "source_type": "federal_judicial_records",
+      "base_url": "https://www.courtlistener.com/api/rest/v4/search/",
+      "jurisdiction": "United States",
+      "role": "discovery",
+      "source_family": "Federal court records",
+      "notes": "Independent of CFPB complaints. Filed claims are allegations, not findings of fact, and must be verified before supporting findings.",
+      "evidentiary_standing": "ALLEGED"
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "73677698",
+    "source_url": "https://www.courtlistener.com/docket/73677698/lopez-v-equifax-llc/",
+    "retrieved_at": "2026-07-30T23:36:08Z",
+    "raw_record": {
+      "docket_id": "73677698",
+      "case_name": "Lopez v. EQUIFAX LLC",
+      "case_name_full": "",
+      "court": "District Court, S.D. Florida",
+      "court_id": "flsd",
+      "docket_number": "1:26-cv-25068",
+      "date_filed": "2026-07-27",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "jurisdiction_type": "Federal Question",
+      "assigned_to": "Jose E. Martinez",
+      "parties": [
+        "EQUIFAX LLC",
+        "BANK OF AMERICA NA",
+        "Jose Lopez"
+      ],
+      "_source_record_id": "73677698",
+      "_retrieval_url": "https://www.courtlistener.com/docket/73677698/lopez-v-equifax-llc/",
+      "_source_name": "CourtListener Federal Court Records (RECAP)",
+      "_access_method": "courtlistener_search_api",
+      "_retrieved_at": "2026-07-30T23:36:08Z"
+    },
+    "parsed_fields": {
+      "docket_id": "73677698",
+      "case_name": "Lopez v. EQUIFAX LLC",
+      "court": "District Court, S.D. Florida",
+      "court_id": "flsd",
+      "docket_number": "1:26-cv-25068",
+      "date_filed": "2026-07-27",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "parties": [
+        "EQUIFAX LLC",
+        "BANK OF AMERICA NA",
+        "Jose Lopez"
+      ],
+      "company": "EQUIFAX LLC",
+      "narrative": "",
+      "issue": "15:1681 Fair Credit Reporting Act",
+      "sub_issue": "480 Consumer Credit"
+    },
+    "study_mapping_reason": "Docket cause arises under the Fair Credit Reporting Act.",
+    "traceability": [
+      "Retrieved federal docket record from https://www.courtlistener.com/docket/73677698/lopez-v-equifax-llc/",
+      "Admitted docket 73677698 on statutory cause '15:1681 Fair Credit Reporting Act'",
+      "Normalised docket metadata into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-932ED519884E",
+        "evidence_id": "73677698",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "Court docket normalisation v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73677698"
+        ],
+        "output": "Normalised federal docket metadata.",
+        "confidence": 1.0,
+        "limitations": [
+          "A filed claim is an allegation, not a finding of fact."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-E7D1582E21FA",
+        "evidence_id": "CAN-C24E9E2334BD",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73677698"
+        ],
+        "output": "Mapped FCRA statutory cause to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "Statutory cause is deterministic but does not describe the operational mechanism."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  },
+  {
+    "candidate_id": "CAN-E1A0573726EB",
+    "source": {
+      "source_id": "COURTLISTENER-FCRA-001",
+      "name": "CourtListener Federal Court Records (RECAP)",
+      "source_type": "federal_judicial_records",
+      "base_url": "https://www.courtlistener.com/api/rest/v4/search/",
+      "jurisdiction": "United States",
+      "role": "discovery",
+      "source_family": "Federal court records",
+      "notes": "Independent of CFPB complaints. Filed claims are allegations, not findings of fact, and must be verified before supporting findings.",
+      "evidentiary_standing": "ALLEGED"
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "73673986",
+    "source_url": "https://www.courtlistener.com/docket/73673986/sosnicki-v-equifax-information-services-llc/",
+    "retrieved_at": "2026-07-30T23:36:08Z",
+    "raw_record": {
+      "docket_id": "73673986",
+      "case_name": "Sosnicki v. Equifax Information Services LLC",
+      "case_name_full": "",
+      "court": "District Court, M.D. Florida",
+      "court_id": "flmd",
+      "docket_number": "5:26-cv-00527",
+      "date_filed": "2026-07-27",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "jurisdiction_type": "Federal Question",
+      "assigned_to": "James S. Moody Jr.",
+      "parties": [
+        "Equifax Information Services LLC",
+        "Experian Information Solutions Inc",
+        "Alex Sosnicki",
+        "Trans Union LLC",
+        "SoFi Bank NA Corp"
+      ],
+      "_source_record_id": "73673986",
+      "_retrieval_url": "https://www.courtlistener.com/docket/73673986/sosnicki-v-equifax-information-services-llc/",
+      "_source_name": "CourtListener Federal Court Records (RECAP)",
+      "_access_method": "courtlistener_search_api",
+      "_retrieved_at": "2026-07-30T23:36:08Z"
+    },
+    "parsed_fields": {
+      "docket_id": "73673986",
+      "case_name": "Sosnicki v. Equifax Information Services LLC",
+      "court": "District Court, M.D. Florida",
+      "court_id": "flmd",
+      "docket_number": "5:26-cv-00527",
+      "date_filed": "2026-07-27",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "parties": [
+        "Equifax Information Services LLC",
+        "Experian Information Solutions Inc",
+        "Alex Sosnicki",
+        "Trans Union LLC",
+        "SoFi Bank NA Corp"
+      ],
+      "company": "Equifax Information Services LLC",
+      "narrative": "",
+      "issue": "15:1681 Fair Credit Reporting Act",
+      "sub_issue": "480 Consumer Credit"
+    },
+    "study_mapping_reason": "Docket cause arises under the Fair Credit Reporting Act.",
+    "traceability": [
+      "Retrieved federal docket record from https://www.courtlistener.com/docket/73673986/sosnicki-v-equifax-information-services-llc/",
+      "Admitted docket 73673986 on statutory cause '15:1681 Fair Credit Reporting Act'",
+      "Normalised docket metadata into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-1FC2A2608BB3",
+        "evidence_id": "73673986",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "Court docket normalisation v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73673986"
+        ],
+        "output": "Normalised federal docket metadata.",
+        "confidence": 1.0,
+        "limitations": [
+          "A filed claim is an allegation, not a finding of fact."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-42CB351F799D",
+        "evidence_id": "CAN-E1A0573726EB",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73673986"
+        ],
+        "output": "Mapped FCRA statutory cause to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "Statutory cause is deterministic but does not describe the operational mechanism."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  },
+  {
+    "candidate_id": "CAN-A59A97D5B7B0",
+    "source": {
+      "source_id": "COURTLISTENER-FCRA-001",
+      "name": "CourtListener Federal Court Records (RECAP)",
+      "source_type": "federal_judicial_records",
+      "base_url": "https://www.courtlistener.com/api/rest/v4/search/",
+      "jurisdiction": "United States",
+      "role": "discovery",
+      "source_family": "Federal court records",
+      "notes": "Independent of CFPB complaints. Filed claims are allegations, not findings of fact, and must be verified before supporting findings.",
+      "evidentiary_standing": "ALLEGED"
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "73673636",
+    "source_url": "https://www.courtlistener.com/docket/73673636/murkerson-v-equifax-information-services-llc/",
+    "retrieved_at": "2026-07-30T23:36:08Z",
+    "raw_record": {
+      "docket_id": "73673636",
+      "case_name": "Murkerson v. Equifax Information Services LLC",
+      "case_name_full": "",
+      "court": "District Court, M.D. Florida",
+      "court_id": "flmd",
+      "docket_number": "8:26-cv-02145",
+      "date_filed": "2026-07-27",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "jurisdiction_type": "Federal Question",
+      "assigned_to": "",
+      "parties": [
+        "Equifax Information Services LLC",
+        "Experian Information Solutions Inc",
+        "Trans Union LLC",
+        "Synchrony Financial d/b/a Synchrony Bank",
+        "Stephen Murkerson"
+      ],
+      "_source_record_id": "73673636",
+      "_retrieval_url": "https://www.courtlistener.com/docket/73673636/murkerson-v-equifax-information-services-llc/",
+      "_source_name": "CourtListener Federal Court Records (RECAP)",
+      "_access_method": "courtlistener_search_api",
+      "_retrieved_at": "2026-07-30T23:36:08Z"
+    },
+    "parsed_fields": {
+      "docket_id": "73673636",
+      "case_name": "Murkerson v. Equifax Information Services LLC",
+      "court": "District Court, M.D. Florida",
+      "court_id": "flmd",
+      "docket_number": "8:26-cv-02145",
+      "date_filed": "2026-07-27",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "parties": [
+        "Equifax Information Services LLC",
+        "Experian Information Solutions Inc",
+        "Trans Union LLC",
+        "Synchrony Financial d/b/a Synchrony Bank",
+        "Stephen Murkerson"
+      ],
+      "company": "Equifax Information Services LLC",
+      "narrative": "",
+      "issue": "15:1681 Fair Credit Reporting Act",
+      "sub_issue": "480 Consumer Credit"
+    },
+    "study_mapping_reason": "Docket cause arises under the Fair Credit Reporting Act.",
+    "traceability": [
+      "Retrieved federal docket record from https://www.courtlistener.com/docket/73673636/murkerson-v-equifax-information-services-llc/",
+      "Admitted docket 73673636 on statutory cause '15:1681 Fair Credit Reporting Act'",
+      "Normalised docket metadata into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-E60B630E5B3C",
+        "evidence_id": "73673636",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "Court docket normalisation v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73673636"
+        ],
+        "output": "Normalised federal docket metadata.",
+        "confidence": 1.0,
+        "limitations": [
+          "A filed claim is an allegation, not a finding of fact."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-F8FA1D531703",
+        "evidence_id": "CAN-A59A97D5B7B0",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73673636"
+        ],
+        "output": "Mapped FCRA statutory cause to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "Statutory cause is deterministic but does not describe the operational mechanism."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  },
+  {
+    "candidate_id": "CAN-236ED0641696",
+    "source": {
+      "source_id": "COURTLISTENER-FCRA-001",
+      "name": "CourtListener Federal Court Records (RECAP)",
+      "source_type": "federal_judicial_records",
+      "base_url": "https://www.courtlistener.com/api/rest/v4/search/",
+      "jurisdiction": "United States",
+      "role": "discovery",
+      "source_family": "Federal court records",
+      "notes": "Independent of CFPB complaints. Filed claims are allegations, not findings of fact, and must be verified before supporting findings.",
+      "evidentiary_standing": "ALLEGED"
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "73669497",
+    "source_url": "https://www.courtlistener.com/docket/73669497/bennett-v-lexisnexis-risk-solutions-inc/",
+    "retrieved_at": "2026-07-30T23:36:08Z",
+    "raw_record": {
+      "docket_id": "73669497",
+      "case_name": "Bennett v. LexisNexis Risk Solutions Inc.",
+      "case_name_full": "",
+      "court": "District Court, M.D. Florida",
+      "court_id": "flmd",
+      "docket_number": "8:26-cv-02142",
+      "date_filed": "2026-07-24",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "jurisdiction_type": "Federal Question",
+      "assigned_to": "John Leonard Badalamenti",
+      "parties": [
+        "LexisNexis Risk Solutions Inc.",
+        "Joshua Eugene Bennett"
+      ],
+      "_source_record_id": "73669497",
+      "_retrieval_url": "https://www.courtlistener.com/docket/73669497/bennett-v-lexisnexis-risk-solutions-inc/",
+      "_source_name": "CourtListener Federal Court Records (RECAP)",
+      "_access_method": "courtlistener_search_api",
+      "_retrieved_at": "2026-07-30T23:36:08Z"
+    },
+    "parsed_fields": {
+      "docket_id": "73669497",
+      "case_name": "Bennett v. LexisNexis Risk Solutions Inc.",
+      "court": "District Court, M.D. Florida",
+      "court_id": "flmd",
+      "docket_number": "8:26-cv-02142",
+      "date_filed": "2026-07-24",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "parties": [
+        "LexisNexis Risk Solutions Inc.",
+        "Joshua Eugene Bennett"
+      ],
+      "company": "LexisNexis Risk Solutions Inc.",
+      "narrative": "",
+      "issue": "15:1681 Fair Credit Reporting Act",
+      "sub_issue": "480 Consumer Credit"
+    },
+    "study_mapping_reason": "Docket cause arises under the Fair Credit Reporting Act.",
+    "traceability": [
+      "Retrieved federal docket record from https://www.courtlistener.com/docket/73669497/bennett-v-lexisnexis-risk-solutions-inc/",
+      "Admitted docket 73669497 on statutory cause '15:1681 Fair Credit Reporting Act'",
+      "Normalised docket metadata into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-CE7F8BDB8778",
+        "evidence_id": "73669497",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "Court docket normalisation v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73669497"
+        ],
+        "output": "Normalised federal docket metadata.",
+        "confidence": 1.0,
+        "limitations": [
+          "A filed claim is an allegation, not a finding of fact."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-686AE942B56E",
+        "evidence_id": "CAN-236ED0641696",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73669497"
+        ],
+        "output": "Mapped FCRA statutory cause to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "Statutory cause is deterministic but does not describe the operational mechanism."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  },
+  {
+    "candidate_id": "CAN-4AD8B91340B8",
+    "source": {
+      "source_id": "COURTLISTENER-FCRA-001",
+      "name": "CourtListener Federal Court Records (RECAP)",
+      "source_type": "federal_judicial_records",
+      "base_url": "https://www.courtlistener.com/api/rest/v4/search/",
+      "jurisdiction": "United States",
+      "role": "discovery",
+      "source_family": "Federal court records",
+      "notes": "Independent of CFPB complaints. Filed claims are allegations, not findings of fact, and must be verified before supporting findings.",
+      "evidentiary_standing": "ALLEGED"
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "73669093",
+    "source_url": "https://www.courtlistener.com/docket/73669093/rozhkova-v-hyundai-capital-america-inc/",
+    "retrieved_at": "2026-07-30T23:36:08Z",
+    "raw_record": {
+      "docket_id": "73669093",
+      "case_name": "Rozhkova v. Hyundai Capital America, Inc",
+      "case_name_full": "",
+      "court": "District Court, S.D. Florida",
+      "court_id": "flsd",
+      "docket_number": "1:26-cv-25026",
+      "date_filed": "2026-07-24",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "jurisdiction_type": "Federal Question",
+      "assigned_to": "Darrin Phillip Gayles",
+      "parties": [
+        "Hyundai Capital America, Inc",
+        "Nadezhda Rozhkova"
+      ],
+      "_source_record_id": "73669093",
+      "_retrieval_url": "https://www.courtlistener.com/docket/73669093/rozhkova-v-hyundai-capital-america-inc/",
+      "_source_name": "CourtListener Federal Court Records (RECAP)",
+      "_access_method": "courtlistener_search_api",
+      "_retrieved_at": "2026-07-30T23:36:08Z"
+    },
+    "parsed_fields": {
+      "docket_id": "73669093",
+      "case_name": "Rozhkova v. Hyundai Capital America, Inc",
+      "court": "District Court, S.D. Florida",
+      "court_id": "flsd",
+      "docket_number": "1:26-cv-25026",
+      "date_filed": "2026-07-24",
+      "date_terminated": "",
+      "cause": "15:1681 Fair Credit Reporting Act",
+      "suit_nature": "480 Consumer Credit",
+      "parties": [
+        "Hyundai Capital America, Inc",
+        "Nadezhda Rozhkova"
+      ],
+      "company": "Hyundai Capital America, Inc",
+      "narrative": "",
+      "issue": "15:1681 Fair Credit Reporting Act",
+      "sub_issue": "480 Consumer Credit"
+    },
+    "study_mapping_reason": "Docket cause arises under the Fair Credit Reporting Act.",
+    "traceability": [
+      "Retrieved federal docket record from https://www.courtlistener.com/docket/73669093/rozhkova-v-hyundai-capital-america-inc/",
+      "Admitted docket 73669093 on statutory cause '15:1681 Fair Credit Reporting Act'",
+      "Normalised docket metadata into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-0751263405FC",
+        "evidence_id": "73669093",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "Court docket normalisation v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73669093"
+        ],
+        "output": "Normalised federal docket metadata.",
+        "confidence": 1.0,
+        "limitations": [
+          "A filed claim is an allegation, not a finding of fact."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-3F37F965A6DF",
+        "evidence_id": "CAN-4AD8B91340B8",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C statutory cause mapping rule v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "73669093"
+        ],
+        "output": "Mapped FCRA statutory cause to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "Statutory cause is deterministic but does not describe the operational mechanism."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  },
+  {
+    "candidate_id": "CAN-2F67FF7E0A6C",
     "source": {
       "source_id": "FJC-IDB-FCRA-001",
       "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -663,7 +1333,7 @@
     },
     "source_record_id": "26232596",
     "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26232596/",
-    "retrieved_at": "2026-07-28T23:15:18Z",
+    "retrieved_at": "2026-07-30T23:36:10Z",
     "raw_record": {
       "idb_record_id": "26232596",
       "office": "2",
@@ -688,7 +1358,7 @@
       "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26232596/",
       "_source_name": "FJC Integrated Database (federal civil case outcomes)",
       "_access_method": "fjc_integrated_database_api",
-      "_retrieved_at": "2026-07-28T23:15:18Z",
+      "_retrieved_at": "2026-07-30T23:36:10Z",
       "join_verified": true,
       "join_note": "IDB case confirmed against a single RECAP docket.",
       "joined_case_name": "United States v. Vivint Smart Home",
@@ -716,6 +1386,7 @@
       "adjudication_posture": "CONSENT_ORDER",
       "adjudication_direction": "AGAINST_RESPONDENT",
       "adjudication_citation": "2:21-cv-00267",
+      "court": "utd",
       "on_study_suit_nature": false,
       "joined_case_name": "United States v. Vivint Smart Home",
       "joined_suit_nature": "890 Other Statutory Actions",
@@ -746,7 +1417,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "FJC IDB case outcome normalisation v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "26232596"
         ],
@@ -758,12 +1429,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-93767D33DB40",
-        "evidence_id": "CAN-0490AC42F88C",
+        "transition_id": "TRN-4DCE92A87F71",
+        "evidence_id": "CAN-2F67FF7E0A6C",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "26232596"
         ],
@@ -777,7 +1448,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-50152865A955",
+    "candidate_id": "CAN-7E1B36537851",
     "source": {
       "source_id": "FJC-IDB-FCRA-001",
       "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -798,7 +1469,7 @@
     },
     "source_record_id": "26114731",
     "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26114731/",
-    "retrieved_at": "2026-07-28T23:15:18Z",
+    "retrieved_at": "2026-07-30T23:36:10Z",
     "raw_record": {
       "idb_record_id": "26114731",
       "office": "4",
@@ -823,7 +1494,7 @@
       "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26114731/",
       "_source_name": "FJC Integrated Database (federal civil case outcomes)",
       "_access_method": "fjc_integrated_database_api",
-      "_retrieved_at": "2026-07-28T23:15:18Z",
+      "_retrieved_at": "2026-07-30T23:36:10Z",
       "join_verified": true,
       "join_note": "IDB case confirmed against a single RECAP docket.",
       "joined_case_name": "Reece v. Deville Asset Management, Ltd.",
@@ -851,6 +1522,7 @@
       "adjudication_posture": "SUMMARY_JUDGMENT",
       "adjudication_direction": "AGAINST_RESPONDENT",
       "adjudication_citation": "4:20-cv-03316",
+      "court": "txsd",
       "on_study_suit_nature": false,
       "joined_case_name": "Reece v. Deville Asset Management, Ltd.",
       "joined_suit_nature": "",
@@ -881,7 +1553,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "FJC IDB case outcome normalisation v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "26114731"
         ],
@@ -893,12 +1565,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-A92B175A10E2",
-        "evidence_id": "CAN-50152865A955",
+        "transition_id": "TRN-84461DA6481A",
+        "evidence_id": "CAN-7E1B36537851",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "26114731"
         ],
@@ -912,7 +1584,7 @@
     ]
   },
   {
-    "candidate_id": "CAN-D9056222BA47",
+    "candidate_id": "CAN-85BDA98E90F7",
     "source": {
       "source_id": "FJC-IDB-FCRA-001",
       "name": "FJC Integrated Database (federal civil case outcomes)",
@@ -933,7 +1605,7 @@
     },
     "source_record_id": "25925458",
     "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/25925458/",
-    "retrieved_at": "2026-07-28T23:15:18Z",
+    "retrieved_at": "2026-07-30T23:36:10Z",
     "raw_record": {
       "idb_record_id": "25925458",
       "office": "1",
@@ -958,7 +1630,7 @@
       "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/25925458/",
       "_source_name": "FJC Integrated Database (federal civil case outcomes)",
       "_access_method": "fjc_integrated_database_api",
-      "_retrieved_at": "2026-07-28T23:15:18Z",
+      "_retrieved_at": "2026-07-30T23:36:10Z",
       "join_verified": true,
       "join_note": "IDB case confirmed against a single RECAP docket.",
       "joined_case_name": "Federal Trade Commission v. Avant, LLC",
@@ -991,6 +1663,7 @@
       "adjudication_posture": "CONSENT_ORDER",
       "adjudication_direction": "AGAINST_RESPONDENT",
       "adjudication_citation": "1:19-cv-02517",
+      "court": "ilnd",
       "on_study_suit_nature": false,
       "joined_case_name": "Federal Trade Commission v. Avant, LLC",
       "joined_suit_nature": "890 Other Statutory Actions",
@@ -1021,7 +1694,7 @@
         "previous_state": "SOURCE_RECORD",
         "new_state": "NORMALISED_RECORD",
         "rule_or_process": "FJC IDB case outcome normalisation v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "25925458"
         ],
@@ -1033,12 +1706,12 @@
         "actor_type": "deterministic rule"
       },
       {
-        "transition_id": "TRN-E86738D66DAE",
-        "evidence_id": "CAN-D9056222BA47",
+        "transition_id": "TRN-0F35ED78E15E",
+        "evidence_id": "CAN-85BDA98E90F7",
         "previous_state": "NORMALISED_RECORD",
         "new_state": "EVIDENCE_CANDIDATE",
         "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
-        "timestamp": "2026-07-28T23:16:17Z",
+        "timestamp": "2026-07-30T23:37:54Z",
         "inputs": [
           "25925458"
         ],
@@ -1046,6 +1719,424 @@
         "confidence": 1.0,
         "limitations": [
           "CONSENT_ORDER resolved against the respondent: occurrence established."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  },
+  {
+    "candidate_id": "CAN-C434D0414BD1",
+    "source": {
+      "source_id": "FJC-IDB-FCRA-001",
+      "name": "FJC Integrated Database (federal civil case outcomes)",
+      "source_type": "federal_judicial_outcomes",
+      "base_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/",
+      "jurisdiction": "United States",
+      "role": "adjudication",
+      "source_family": "Federal court records",
+      "notes": "Coded case outcomes from the Federal Judicial Center. Raises evidentiary standing, never the independent source family count: these are the same courts RECAP already covers.",
+      "evidentiary_standing": "ADJUDICATED"
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "26367223",
+    "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26367223/",
+    "retrieved_at": "2026-07-30T23:36:10Z",
+    "raw_record": {
+      "idb_record_id": "26367223",
+      "office": "5",
+      "origin": 1,
+      "docket_number": "2000294",
+      "plaintiff": "WASHINGTON",
+      "defendant": "EQUIFAX INFORMATION SER, ET AL",
+      "district": "https://www.courtlistener.com/api/rest/v4/courts/gamd/",
+      "circuit": "https://www.courtlistener.com/api/rest/v4/courts/ca11/",
+      "date_filed": "2020-07-22",
+      "date_terminated": "2021-06-25",
+      "nature_of_suit": 480,
+      "title": "15",
+      "section": "1681",
+      "disposition_code": 6,
+      "judgment_code": 2,
+      "nature_of_judgement": 0,
+      "adjudication_posture": "SUMMARY_JUDGMENT",
+      "adjudication_direction": "UNDETERMINED",
+      "occurrence_reasoning": "SUMMARY_JUDGMENT reached the merits but no direction was determinable.",
+      "_source_record_id": "26367223",
+      "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26367223/",
+      "_source_name": "FJC Integrated Database (federal civil case outcomes)",
+      "_access_method": "fjc_integrated_database_api",
+      "_retrieved_at": "2026-07-30T23:36:10Z",
+      "join_verified": true,
+      "join_note": "IDB case confirmed against a single RECAP docket.",
+      "joined_case_name": "WASHINGTON v. EQUIFAX INFORMATION SERVICES, LLC",
+      "joined_cause": "15:1681 Fair Credit Reporting Act",
+      "joined_suit_nature": "Consumer Credit",
+      "joined_docket_id": "18429337",
+      "on_study_suit_nature": true,
+      "pacer_docket_number": "5:20-cv-00294",
+      "join_court_id": "gamd",
+      "complaint_text": "[REDACTED]",
+      "complaint_text_note": "complaint text from RECAP document 1 of an original proceeding",
+      "complaint_limitations": [
+        "A complaint states the alleged mechanism; the judgment establishes that a violation was found.",
+        "A complaint may plead several counts, and judgment may have been entered on only one of them.",
+        "Pairing a pleaded mechanism with a judgment assumes the judgment was on the pleaded claim.",
+        "RECAP document coverage depends on user contributions; absence of text proves nothing."
+      ]
+    },
+    "parsed_fields": {
+      "idb_record_id": "26367223",
+      "docket_number": "2000294",
+      "plaintiff": "WASHINGTON",
+      "company": "EQUIFAX INFORMATION SER, ET AL",
+      "district": "https://www.courtlistener.com/api/rest/v4/courts/gamd/",
+      "date_filed": "2020-07-22",
+      "date_terminated": "2021-06-25",
+      "date_received": "2021-06-25",
+      "disposition_code": 6,
+      "judgment_code": 2,
+      "adjudication_posture": "SUMMARY_JUDGMENT",
+      "adjudication_direction": "UNDETERMINED",
+      "adjudication_citation": "5:20-cv-00294",
+      "court": "gamd",
+      "on_study_suit_nature": true,
+      "joined_case_name": "WASHINGTON v. EQUIFAX INFORMATION SERVICES, LLC",
+      "joined_suit_nature": "Consumer Credit",
+      "join_verified": true,
+      "join_note": "IDB case confirmed against a single RECAP docket.",
+      "occurrence_reasoning": "SUMMARY_JUDGMENT reached the merits but no direction was determinable.",
+      "narrative": "[REDACTED]",
+      "narrative_source": "complaint text from RECAP document 1 of an original proceeding",
+      "product": "Credit reporting or other personal consumer reports",
+      "issue": "Adjudicated Fair Credit Reporting Act claim",
+      "sub_issue": "disposition=6; judgment=2"
+    },
+    "study_mapping_reason": "Case arises under the Fair Credit Reporting Act by coded statute.",
+    "traceability": [
+      "Retrieved FJC Integrated Database case outcome from https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26367223/",
+      "Admitted case 26367223 on coded statute title '15' section '1681'",
+      "Classified posture 'SUMMARY_JUDGMENT' direction 'UNDETERMINED' from official FJC codes",
+      "Docket join confirmed: IDB case confirmed against a single RECAP docket.",
+      "Suit nature 'Consumer Credit'; on study subject matter: True",
+      "Mechanism narrative: complaint text from RECAP document 1 of an original proceeding",
+      "Normalised coded case outcome into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-B461405FF272",
+        "evidence_id": "26367223",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "FJC IDB case outcome normalisation v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "26367223"
+        ],
+        "output": "Normalised coded federal case outcome.",
+        "confidence": 1.0,
+        "limitations": [
+          "Outcome codes describe who prevailed, not the operational mechanism."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-6E1FB872F289",
+        "evidence_id": "CAN-C434D0414BD1",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "26367223"
+        ],
+        "output": "Mapped FCRA statutory basis to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "SUMMARY_JUDGMENT reached the merits but no direction was determinable."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  },
+  {
+    "candidate_id": "CAN-E88B1E630573",
+    "source": {
+      "source_id": "FJC-IDB-FCRA-001",
+      "name": "FJC Integrated Database (federal civil case outcomes)",
+      "source_type": "federal_judicial_outcomes",
+      "base_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/",
+      "jurisdiction": "United States",
+      "role": "adjudication",
+      "source_family": "Federal court records",
+      "notes": "Coded case outcomes from the Federal Judicial Center. Raises evidentiary standing, never the independent source family count: these are the same courts RECAP already covers.",
+      "evidentiary_standing": "ADJUDICATED"
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "26362522",
+    "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26362522/",
+    "retrieved_at": "2026-07-30T23:36:10Z",
+    "raw_record": {
+      "idb_record_id": "26362522",
+      "office": "1",
+      "origin": 1,
+      "docket_number": "2004737",
+      "plaintiff": "PROCTOR",
+      "defendant": "EXPERIAN INFORMATION SO, ET AL",
+      "district": "https://www.courtlistener.com/api/rest/v4/courts/gand/",
+      "circuit": "https://www.courtlistener.com/api/rest/v4/courts/ca11/",
+      "date_filed": "2020-11-20",
+      "date_terminated": "2021-05-25",
+      "nature_of_suit": 480,
+      "title": "15",
+      "section": "1681",
+      "disposition_code": 6,
+      "judgment_code": 2,
+      "nature_of_judgement": 0,
+      "adjudication_posture": "SUMMARY_JUDGMENT",
+      "adjudication_direction": "UNDETERMINED",
+      "occurrence_reasoning": "SUMMARY_JUDGMENT reached the merits but no direction was determinable.",
+      "_source_record_id": "26362522",
+      "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26362522/",
+      "_source_name": "FJC Integrated Database (federal civil case outcomes)",
+      "_access_method": "fjc_integrated_database_api",
+      "_retrieved_at": "2026-07-30T23:36:10Z",
+      "join_verified": true,
+      "join_note": "IDB case confirmed against a single RECAP docket.",
+      "joined_case_name": "Proctor v. Experian Information Solutions, Inc.",
+      "joined_cause": "15:1681 Fair Credit Reporting Act",
+      "joined_suit_nature": "480 Consumer Credit",
+      "joined_docket_id": "18695759",
+      "on_study_suit_nature": true,
+      "pacer_docket_number": "1:20-cv-04737",
+      "join_court_id": "gand",
+      "complaint_text": "[REDACTED]",
+      "complaint_text_note": "complaint text from RECAP document 1 of an original proceeding",
+      "complaint_limitations": [
+        "A complaint states the alleged mechanism; the judgment establishes that a violation was found.",
+        "A complaint may plead several counts, and judgment may have been entered on only one of them.",
+        "Pairing a pleaded mechanism with a judgment assumes the judgment was on the pleaded claim.",
+        "RECAP document coverage depends on user contributions; absence of text proves nothing."
+      ]
+    },
+    "parsed_fields": {
+      "idb_record_id": "26362522",
+      "docket_number": "2004737",
+      "plaintiff": "PROCTOR",
+      "company": "EXPERIAN INFORMATION SO, ET AL",
+      "district": "https://www.courtlistener.com/api/rest/v4/courts/gand/",
+      "date_filed": "2020-11-20",
+      "date_terminated": "2021-05-25",
+      "date_received": "2021-05-25",
+      "disposition_code": 6,
+      "judgment_code": 2,
+      "adjudication_posture": "SUMMARY_JUDGMENT",
+      "adjudication_direction": "UNDETERMINED",
+      "adjudication_citation": "1:20-cv-04737",
+      "court": "gand",
+      "on_study_suit_nature": true,
+      "joined_case_name": "Proctor v. Experian Information Solutions, Inc.",
+      "joined_suit_nature": "480 Consumer Credit",
+      "join_verified": true,
+      "join_note": "IDB case confirmed against a single RECAP docket.",
+      "occurrence_reasoning": "SUMMARY_JUDGMENT reached the merits but no direction was determinable.",
+      "narrative": "[REDACTED]",
+      "narrative_source": "complaint text from RECAP document 1 of an original proceeding",
+      "product": "Credit reporting or other personal consumer reports",
+      "issue": "Adjudicated Fair Credit Reporting Act claim",
+      "sub_issue": "disposition=6; judgment=2"
+    },
+    "study_mapping_reason": "Case arises under the Fair Credit Reporting Act by coded statute.",
+    "traceability": [
+      "Retrieved FJC Integrated Database case outcome from https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26362522/",
+      "Admitted case 26362522 on coded statute title '15' section '1681'",
+      "Classified posture 'SUMMARY_JUDGMENT' direction 'UNDETERMINED' from official FJC codes",
+      "Docket join confirmed: IDB case confirmed against a single RECAP docket.",
+      "Suit nature '480 Consumer Credit'; on study subject matter: True",
+      "Mechanism narrative: complaint text from RECAP document 1 of an original proceeding",
+      "Normalised coded case outcome into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-AAB8FB2821DE",
+        "evidence_id": "26362522",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "FJC IDB case outcome normalisation v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "26362522"
+        ],
+        "output": "Normalised coded federal case outcome.",
+        "confidence": 1.0,
+        "limitations": [
+          "Outcome codes describe who prevailed, not the operational mechanism."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-EE7BF1ED92EB",
+        "evidence_id": "CAN-E88B1E630573",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "26362522"
+        ],
+        "output": "Mapped FCRA statutory basis to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "SUMMARY_JUDGMENT reached the merits but no direction was determinable."
+        ],
+        "actor_type": "deterministic rule"
+      }
+    ]
+  },
+  {
+    "candidate_id": "CAN-98466421D868",
+    "source": {
+      "source_id": "FJC-IDB-FCRA-001",
+      "name": "FJC Integrated Database (federal civil case outcomes)",
+      "source_type": "federal_judicial_outcomes",
+      "base_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/",
+      "jurisdiction": "United States",
+      "role": "adjudication",
+      "source_family": "Federal court records",
+      "notes": "Coded case outcomes from the Federal Judicial Center. Raises evidentiary standing, never the independent source family count: these are the same courts RECAP already covers.",
+      "evidentiary_standing": "ADJUDICATED"
+    },
+    "study": {
+      "study_id": "GS-CF001-C",
+      "title": "Credit Reporting Disputes",
+      "research_question": "Is there enough verified, repeated operational pain in U.S. credit-reporting dispute handling to justify building a reusable workflow component?",
+      "implemented": true,
+      "notes": ""
+    },
+    "source_record_id": "26361819",
+    "source_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26361819/",
+    "retrieved_at": "2026-07-30T23:36:10Z",
+    "raw_record": {
+      "idb_record_id": "26361819",
+      "office": "1",
+      "origin": 2,
+      "docket_number": "2004036",
+      "plaintiff": "FAMILY WALK ALLAH TRUST",
+      "defendant": "BOUC, ET AL",
+      "district": "https://www.courtlistener.com/api/rest/v4/courts/gand/",
+      "circuit": "https://www.courtlistener.com/api/rest/v4/courts/ca11/",
+      "date_filed": "2020-09-30",
+      "date_terminated": "2021-03-15",
+      "nature_of_suit": 480,
+      "title": "15",
+      "section": "1681",
+      "disposition_code": 6,
+      "judgment_code": 2,
+      "nature_of_judgement": 0,
+      "adjudication_posture": "SUMMARY_JUDGMENT",
+      "adjudication_direction": "UNDETERMINED",
+      "occurrence_reasoning": "SUMMARY_JUDGMENT reached the merits but no direction was determinable.",
+      "_source_record_id": "26361819",
+      "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26361819/",
+      "_source_name": "FJC Integrated Database (federal civil case outcomes)",
+      "_access_method": "fjc_integrated_database_api",
+      "_retrieved_at": "2026-07-30T23:36:10Z",
+      "join_verified": true,
+      "join_note": "IDB case confirmed against a single RECAP docket.",
+      "joined_case_name": "Family Walk Allah Trust v. Bouc",
+      "joined_cause": "",
+      "joined_suit_nature": "",
+      "joined_docket_id": "44622384",
+      "on_study_suit_nature": false,
+      "pacer_docket_number": "1:20-cv-04036",
+      "join_court_id": "gand",
+      "complaint_text": "",
+      "complaint_text_note": "origin 2 is not an original proceeding, so document 1 is not the complaint",
+      "complaint_limitations": []
+    },
+    "parsed_fields": {
+      "idb_record_id": "26361819",
+      "docket_number": "2004036",
+      "plaintiff": "FAMILY WALK ALLAH TRUST",
+      "company": "BOUC, ET AL",
+      "district": "https://www.courtlistener.com/api/rest/v4/courts/gand/",
+      "date_filed": "2020-09-30",
+      "date_terminated": "2021-03-15",
+      "date_received": "2021-03-15",
+      "disposition_code": 6,
+      "judgment_code": 2,
+      "adjudication_posture": "SUMMARY_JUDGMENT",
+      "adjudication_direction": "UNDETERMINED",
+      "adjudication_citation": "1:20-cv-04036",
+      "court": "gand",
+      "on_study_suit_nature": false,
+      "joined_case_name": "Family Walk Allah Trust v. Bouc",
+      "joined_suit_nature": "",
+      "join_verified": true,
+      "join_note": "IDB case confirmed against a single RECAP docket.",
+      "occurrence_reasoning": "SUMMARY_JUDGMENT reached the merits but no direction was determinable.",
+      "narrative": "",
+      "narrative_source": "origin 2 is not an original proceeding, so document 1 is not the complaint",
+      "product": "Credit reporting or other personal consumer reports",
+      "issue": "Adjudicated Fair Credit Reporting Act claim",
+      "sub_issue": "disposition=6; judgment=2"
+    },
+    "study_mapping_reason": "Case arises under the Fair Credit Reporting Act by coded statute.",
+    "traceability": [
+      "Retrieved FJC Integrated Database case outcome from https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26361819/",
+      "Admitted case 26361819 on coded statute title '15' section '1681'",
+      "Classified posture 'SUMMARY_JUDGMENT' direction 'UNDETERMINED' from official FJC codes",
+      "Docket join confirmed: IDB case confirmed against a single RECAP docket.",
+      "Suit nature 'unknown'; on study subject matter: False",
+      "Mechanism narrative: origin 2 is not an original proceeding, so document 1 is not the complaint",
+      "Normalised coded case outcome into source-agnostic EvidenceCandidate"
+    ],
+    "evidence_state": "EVIDENCE_CANDIDATE",
+    "state_transitions": [
+      {
+        "transition_id": "TRN-D720E74CD906",
+        "evidence_id": "26361819",
+        "previous_state": "SOURCE_RECORD",
+        "new_state": "NORMALISED_RECORD",
+        "rule_or_process": "FJC IDB case outcome normalisation v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "26361819"
+        ],
+        "output": "Normalised coded federal case outcome.",
+        "confidence": 1.0,
+        "limitations": [
+          "Outcome codes describe who prevailed, not the operational mechanism."
+        ],
+        "actor_type": "deterministic rule"
+      },
+      {
+        "transition_id": "TRN-5BB03039C245",
+        "evidence_id": "CAN-98466421D868",
+        "previous_state": "NORMALISED_RECORD",
+        "new_state": "EVIDENCE_CANDIDATE",
+        "rule_or_process": "GS-CF001-C coded statutory basis mapping rule v1",
+        "timestamp": "2026-07-30T23:37:54Z",
+        "inputs": [
+          "26361819"
+        ],
+        "output": "Mapped FCRA statutory basis to Credit Reporting Disputes evidence candidate.",
+        "confidence": 1.0,
+        "limitations": [
+          "SUMMARY_JUDGMENT reached the merits but no direction was determinable."
         ],
         "actor_type": "deterministic rule"
       }

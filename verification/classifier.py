@@ -20,6 +20,7 @@ from __future__ import annotations
 
 from collections import Counter
 
+from connectors.docket_join import court_id_from_district
 from core.adjudication import ADJUDICATED, contradicts_occurrence, establishes_occurrence
 from core.evidence_states import CFPB_LIMITED_EVIDENCE, EVIDENCE_CANDIDATE, VERIFIED_WITHIN_SOURCE, transition
 from core.ids import stable_id
@@ -118,6 +119,8 @@ def verify_candidate(candidate: EvidenceCandidate, repeated_mechanisms: set[str]
         adjudication_posture=str(candidate.parsed_fields.get("adjudication_posture") or ""),
         adjudication_direction=str(candidate.parsed_fields.get("adjudication_direction") or ""),
         adjudication_citation=str(candidate.parsed_fields.get("adjudication_citation") or ""),
+        court=str(candidate.parsed_fields.get("court") or "")
+        or court_id_from_district(candidate.parsed_fields.get("district")),
         # Subject matter is a precondition, not a refinement. The first
         # occurrence-establishing record this study retrieved was United States v.
         # Vivint Smart Home -- a real FCRA violation resolved against the

@@ -12,7 +12,7 @@
       "evidentiary_standing": "ALLEGED"
     },
     "retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
-    "retrieved_at": "2026-07-28T23:15:14Z",
+    "retrieved_at": "2026-07-30T23:35:47Z",
     "access_method": "official_cfpb_search_api",
     "errors": [],
     "records": [
@@ -39,7 +39,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-28T23:15:14Z"
+        "_retrieved_at": "2026-07-30T23:35:47Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -64,7 +64,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-28T23:15:14Z"
+        "_retrieved_at": "2026-07-30T23:35:47Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -89,7 +89,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-28T23:15:14Z"
+        "_retrieved_at": "2026-07-30T23:35:47Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -114,7 +114,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-28T23:15:14Z"
+        "_retrieved_at": "2026-07-30T23:35:47Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -139,7 +139,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-28T23:15:14Z"
+        "_retrieved_at": "2026-07-30T23:35:47Z"
       },
       {
         "product": "Credit reporting or other personal consumer reports",
@@ -164,7 +164,7 @@
         "_retrieval_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/?size=6&product=Credit+reporting+or+other+personal+consumer+reports",
         "_source_name": "CFPB Consumer Complaint Database",
         "_access_method": "official_cfpb_search_api",
-        "_retrieved_at": "2026-07-28T23:15:14Z"
+        "_retrieved_at": "2026-07-30T23:35:47Z"
       }
     ]
   },
@@ -181,12 +181,157 @@
       "evidentiary_standing": "ALLEGED"
     },
     "retrieval_url": "https://www.courtlistener.com/api/rest/v4/search/?q=%22Fair+Credit+Reporting+Act%22+reinvestigation&type=r&order_by=dateFiled+desc",
-    "retrieved_at": "2026-07-28T23:15:17Z",
+    "retrieved_at": "2026-07-30T23:36:08Z",
     "access_method": "courtlistener_search_api",
-    "errors": [
-      "CourtListener access failed: HTTP 502"
-    ],
-    "records": []
+    "errors": [],
+    "records": [
+      {
+        "docket_id": "73680627",
+        "case_name": "Amor v. Credit One Bank, N.A.",
+        "case_name_full": "",
+        "court": "District Court, S.D. Florida",
+        "court_id": "flsd",
+        "docket_number": "1:26-cv-25086",
+        "date_filed": "2026-07-28",
+        "date_terminated": "",
+        "cause": "15:1681 Fair Credit Reporting Act",
+        "suit_nature": "480 Consumer Credit",
+        "jurisdiction_type": "Federal Question",
+        "assigned_to": "Federico A. Moreno",
+        "parties": [
+          "Experian Information Solutions, Inc.",
+          "Ricardo  Amor",
+          "Credit One Bank, N.A."
+        ],
+        "_source_record_id": "73680627",
+        "_retrieval_url": "https://www.courtlistener.com/docket/73680627/amor-v-credit-one-bank-na/",
+        "_source_name": "CourtListener Federal Court Records (RECAP)",
+        "_access_method": "courtlistener_search_api",
+        "_retrieved_at": "2026-07-30T23:36:08Z"
+      },
+      {
+        "docket_id": "73677698",
+        "case_name": "Lopez v. EQUIFAX LLC",
+        "case_name_full": "",
+        "court": "District Court, S.D. Florida",
+        "court_id": "flsd",
+        "docket_number": "1:26-cv-25068",
+        "date_filed": "2026-07-27",
+        "date_terminated": "",
+        "cause": "15:1681 Fair Credit Reporting Act",
+        "suit_nature": "480 Consumer Credit",
+        "jurisdiction_type": "Federal Question",
+        "assigned_to": "Jose E. Martinez",
+        "parties": [
+          "EQUIFAX LLC",
+          "BANK OF AMERICA NA",
+          "Jose Lopez"
+        ],
+        "_source_record_id": "73677698",
+        "_retrieval_url": "https://www.courtlistener.com/docket/73677698/lopez-v-equifax-llc/",
+        "_source_name": "CourtListener Federal Court Records (RECAP)",
+        "_access_method": "courtlistener_search_api",
+        "_retrieved_at": "2026-07-30T23:36:08Z"
+      },
+      {
+        "docket_id": "73673986",
+        "case_name": "Sosnicki v. Equifax Information Services LLC",
+        "case_name_full": "",
+        "court": "District Court, M.D. Florida",
+        "court_id": "flmd",
+        "docket_number": "5:26-cv-00527",
+        "date_filed": "2026-07-27",
+        "date_terminated": "",
+        "cause": "15:1681 Fair Credit Reporting Act",
+        "suit_nature": "480 Consumer Credit",
+        "jurisdiction_type": "Federal Question",
+        "assigned_to": "James S. Moody Jr.",
+        "parties": [
+          "Equifax Information Services LLC",
+          "Experian Information Solutions Inc",
+          "Alex Sosnicki",
+          "Trans Union LLC",
+          "SoFi Bank NA Corp"
+        ],
+        "_source_record_id": "73673986",
+        "_retrieval_url": "https://www.courtlistener.com/docket/73673986/sosnicki-v-equifax-information-services-llc/",
+        "_source_name": "CourtListener Federal Court Records (RECAP)",
+        "_access_method": "courtlistener_search_api",
+        "_retrieved_at": "2026-07-30T23:36:08Z"
+      },
+      {
+        "docket_id": "73673636",
+        "case_name": "Murkerson v. Equifax Information Services LLC",
+        "case_name_full": "",
+        "court": "District Court, M.D. Florida",
+        "court_id": "flmd",
+        "docket_number": "8:26-cv-02145",
+        "date_filed": "2026-07-27",
+        "date_terminated": "",
+        "cause": "15:1681 Fair Credit Reporting Act",
+        "suit_nature": "480 Consumer Credit",
+        "jurisdiction_type": "Federal Question",
+        "assigned_to": "",
+        "parties": [
+          "Equifax Information Services LLC",
+          "Experian Information Solutions Inc",
+          "Trans Union LLC",
+          "Synchrony Financial d/b/a Synchrony Bank",
+          "Stephen Murkerson"
+        ],
+        "_source_record_id": "73673636",
+        "_retrieval_url": "https://www.courtlistener.com/docket/73673636/murkerson-v-equifax-information-services-llc/",
+        "_source_name": "CourtListener Federal Court Records (RECAP)",
+        "_access_method": "courtlistener_search_api",
+        "_retrieved_at": "2026-07-30T23:36:08Z"
+      },
+      {
+        "docket_id": "73669497",
+        "case_name": "Bennett v. LexisNexis Risk Solutions Inc.",
+        "case_name_full": "",
+        "court": "District Court, M.D. Florida",
+        "court_id": "flmd",
+        "docket_number": "8:26-cv-02142",
+        "date_filed": "2026-07-24",
+        "date_terminated": "",
+        "cause": "15:1681 Fair Credit Reporting Act",
+        "suit_nature": "480 Consumer Credit",
+        "jurisdiction_type": "Federal Question",
+        "assigned_to": "John Leonard Badalamenti",
+        "parties": [
+          "LexisNexis Risk Solutions Inc.",
+          "Joshua Eugene Bennett"
+        ],
+        "_source_record_id": "73669497",
+        "_retrieval_url": "https://www.courtlistener.com/docket/73669497/bennett-v-lexisnexis-risk-solutions-inc/",
+        "_source_name": "CourtListener Federal Court Records (RECAP)",
+        "_access_method": "courtlistener_search_api",
+        "_retrieved_at": "2026-07-30T23:36:08Z"
+      },
+      {
+        "docket_id": "73669093",
+        "case_name": "Rozhkova v. Hyundai Capital America, Inc",
+        "case_name_full": "",
+        "court": "District Court, S.D. Florida",
+        "court_id": "flsd",
+        "docket_number": "1:26-cv-25026",
+        "date_filed": "2026-07-24",
+        "date_terminated": "",
+        "cause": "15:1681 Fair Credit Reporting Act",
+        "suit_nature": "480 Consumer Credit",
+        "jurisdiction_type": "Federal Question",
+        "assigned_to": "Darrin Phillip Gayles",
+        "parties": [
+          "Hyundai Capital America, Inc",
+          "Nadezhda Rozhkova"
+        ],
+        "_source_record_id": "73669093",
+        "_retrieval_url": "https://www.courtlistener.com/docket/73669093/rozhkova-v-hyundai-capital-america-inc/",
+        "_source_name": "CourtListener Federal Court Records (RECAP)",
+        "_access_method": "courtlistener_search_api",
+        "_retrieved_at": "2026-07-30T23:36:08Z"
+      }
+    ]
   },
   {
     "source": {
@@ -201,11 +346,9 @@
       "evidentiary_standing": "ADJUDICATED"
     },
     "retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/?title=15&section__startswith=1681&disposition__in=5%2C6%2C7%2C8%2C9&judgment__in=1&page_size=3",
-    "retrieved_at": "2026-07-28T23:15:18Z",
+    "retrieved_at": "2026-07-30T23:36:10Z",
     "access_method": "fjc_integrated_database_api",
-    "errors": [
-      "FJC IDB access failed: The read operation timed out"
-    ],
+    "errors": [],
     "records": [
       {
         "idb_record_id": "26232596",
@@ -231,7 +374,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26232596/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-28T23:15:18Z",
+        "_retrieved_at": "2026-07-30T23:36:10Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "United States v. Vivint Smart Home",
@@ -269,7 +412,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26114731/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-28T23:15:18Z",
+        "_retrieved_at": "2026-07-30T23:36:10Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Reece v. Deville Asset Management, Ltd.",
@@ -307,7 +450,7 @@
         "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/25925458/",
         "_source_name": "FJC Integrated Database (federal civil case outcomes)",
         "_access_method": "fjc_integrated_database_api",
-        "_retrieved_at": "2026-07-28T23:15:18Z",
+        "_retrieved_at": "2026-07-30T23:36:10Z",
         "join_verified": true,
         "join_note": "IDB case confirmed against a single RECAP docket.",
         "joined_case_name": "Federal Trade Commission v. Avant, LLC",
@@ -325,6 +468,130 @@
           "Pairing a pleaded mechanism with a judgment assumes the judgment was on the pleaded claim.",
           "RECAP document coverage depends on user contributions; absence of text proves nothing."
         ]
+      },
+      {
+        "idb_record_id": "26367223",
+        "office": "5",
+        "origin": 1,
+        "docket_number": "2000294",
+        "plaintiff": "WASHINGTON",
+        "defendant": "EQUIFAX INFORMATION SER, ET AL",
+        "district": "https://www.courtlistener.com/api/rest/v4/courts/gamd/",
+        "circuit": "https://www.courtlistener.com/api/rest/v4/courts/ca11/",
+        "date_filed": "2020-07-22",
+        "date_terminated": "2021-06-25",
+        "nature_of_suit": 480,
+        "title": "15",
+        "section": "1681",
+        "disposition_code": 6,
+        "judgment_code": 2,
+        "nature_of_judgement": 0,
+        "adjudication_posture": "SUMMARY_JUDGMENT",
+        "adjudication_direction": "UNDETERMINED",
+        "occurrence_reasoning": "SUMMARY_JUDGMENT reached the merits but no direction was determinable.",
+        "_source_record_id": "26367223",
+        "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26367223/",
+        "_source_name": "FJC Integrated Database (federal civil case outcomes)",
+        "_access_method": "fjc_integrated_database_api",
+        "_retrieved_at": "2026-07-30T23:36:10Z",
+        "join_verified": true,
+        "join_note": "IDB case confirmed against a single RECAP docket.",
+        "joined_case_name": "WASHINGTON v. EQUIFAX INFORMATION SERVICES, LLC",
+        "joined_cause": "15:1681 Fair Credit Reporting Act",
+        "joined_suit_nature": "Consumer Credit",
+        "joined_docket_id": "18429337",
+        "on_study_suit_nature": true,
+        "pacer_docket_number": "5:20-cv-00294",
+        "join_court_id": "gamd",
+        "complaint_text": "[REDACTED]",
+        "complaint_text_note": "complaint text from RECAP document 1 of an original proceeding",
+        "complaint_limitations": [
+          "A complaint states the alleged mechanism; the judgment establishes that a violation was found.",
+          "A complaint may plead several counts, and judgment may have been entered on only one of them.",
+          "Pairing a pleaded mechanism with a judgment assumes the judgment was on the pleaded claim.",
+          "RECAP document coverage depends on user contributions; absence of text proves nothing."
+        ]
+      },
+      {
+        "idb_record_id": "26362522",
+        "office": "1",
+        "origin": 1,
+        "docket_number": "2004737",
+        "plaintiff": "PROCTOR",
+        "defendant": "EXPERIAN INFORMATION SO, ET AL",
+        "district": "https://www.courtlistener.com/api/rest/v4/courts/gand/",
+        "circuit": "https://www.courtlistener.com/api/rest/v4/courts/ca11/",
+        "date_filed": "2020-11-20",
+        "date_terminated": "2021-05-25",
+        "nature_of_suit": 480,
+        "title": "15",
+        "section": "1681",
+        "disposition_code": 6,
+        "judgment_code": 2,
+        "nature_of_judgement": 0,
+        "adjudication_posture": "SUMMARY_JUDGMENT",
+        "adjudication_direction": "UNDETERMINED",
+        "occurrence_reasoning": "SUMMARY_JUDGMENT reached the merits but no direction was determinable.",
+        "_source_record_id": "26362522",
+        "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26362522/",
+        "_source_name": "FJC Integrated Database (federal civil case outcomes)",
+        "_access_method": "fjc_integrated_database_api",
+        "_retrieved_at": "2026-07-30T23:36:10Z",
+        "join_verified": true,
+        "join_note": "IDB case confirmed against a single RECAP docket.",
+        "joined_case_name": "Proctor v. Experian Information Solutions, Inc.",
+        "joined_cause": "15:1681 Fair Credit Reporting Act",
+        "joined_suit_nature": "480 Consumer Credit",
+        "joined_docket_id": "18695759",
+        "on_study_suit_nature": true,
+        "pacer_docket_number": "1:20-cv-04737",
+        "join_court_id": "gand",
+        "complaint_text": "[REDACTED]",
+        "complaint_text_note": "complaint text from RECAP document 1 of an original proceeding",
+        "complaint_limitations": [
+          "A complaint states the alleged mechanism; the judgment establishes that a violation was found.",
+          "A complaint may plead several counts, and judgment may have been entered on only one of them.",
+          "Pairing a pleaded mechanism with a judgment assumes the judgment was on the pleaded claim.",
+          "RECAP document coverage depends on user contributions; absence of text proves nothing."
+        ]
+      },
+      {
+        "idb_record_id": "26361819",
+        "office": "1",
+        "origin": 2,
+        "docket_number": "2004036",
+        "plaintiff": "FAMILY WALK ALLAH TRUST",
+        "defendant": "BOUC, ET AL",
+        "district": "https://www.courtlistener.com/api/rest/v4/courts/gand/",
+        "circuit": "https://www.courtlistener.com/api/rest/v4/courts/ca11/",
+        "date_filed": "2020-09-30",
+        "date_terminated": "2021-03-15",
+        "nature_of_suit": 480,
+        "title": "15",
+        "section": "1681",
+        "disposition_code": 6,
+        "judgment_code": 2,
+        "nature_of_judgement": 0,
+        "adjudication_posture": "SUMMARY_JUDGMENT",
+        "adjudication_direction": "UNDETERMINED",
+        "occurrence_reasoning": "SUMMARY_JUDGMENT reached the merits but no direction was determinable.",
+        "_source_record_id": "26361819",
+        "_retrieval_url": "https://www.courtlistener.com/api/rest/v4/fjc-integrated-database/26361819/",
+        "_source_name": "FJC Integrated Database (federal civil case outcomes)",
+        "_access_method": "fjc_integrated_database_api",
+        "_retrieved_at": "2026-07-30T23:36:10Z",
+        "join_verified": true,
+        "join_note": "IDB case confirmed against a single RECAP docket.",
+        "joined_case_name": "Family Walk Allah Trust v. Bouc",
+        "joined_cause": "",
+        "joined_suit_nature": "",
+        "joined_docket_id": "44622384",
+        "on_study_suit_nature": false,
+        "pacer_docket_number": "1:20-cv-04036",
+        "join_court_id": "gand",
+        "complaint_text": "",
+        "complaint_text_note": "origin 2 is not an original proceeding, so document 1 is not the complaint",
+        "complaint_limitations": []
       }
     ]
   }
