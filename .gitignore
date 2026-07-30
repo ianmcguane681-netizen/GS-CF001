@@ -13,3 +13,9 @@ data/exports/*.md
 # created by that person and never committed from a demo run.
 data/market_pricing.json
 data/exports/market_competitors.json
+
+# In-progress census output. The tool rewrites this after every record, so
+# committing mid-run risks a torn write, and a partial census in the repo is the
+# "partial state presenting as complete" failure this study keeps finding. Added
+# explicitly with `git add -f` once the run finishes and a summary block exists.
+analysis/adjudication_coverage_census.json
