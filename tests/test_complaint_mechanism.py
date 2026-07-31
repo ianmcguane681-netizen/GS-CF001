@@ -17,11 +17,14 @@ a caveat that has to travel with it.
 """
 from __future__ import annotations
 
+import pytest
+
 from connectors.docket_join import (
     COMPLAINT_LIMITATIONS,
     FJC_ORIGIN_ORIGINAL_PROCEEDING,
     fetch_complaint_text,
 )
+from core.http_retry import TransientRetrievalError
 from verification.rules import detect_mechanism
 
 # Condensed from the live complaint in Washington v Equifax, 5:20-cv-00294.
@@ -112,12 +115,27 @@ def test_absent_document_text_is_an_absence_not_a_finding():
 
 def test_a_retrieval_failure_is_reported_not_swallowed():
     def failing(_url):
-        raise TimeoutError("read timed out")
+        raise ValueError("malformed response body")
 
     text, note = fetch_complaint_text("1", FJC_ORIGIN_ORIGINAL_PROCEEDING, fetch_json=failing)
 
     assert text == ""
     assert "document retrieval failed" in note
+
+
+def test_a_transient_failure_is_raised_rather_than_recorded_as_an_absence():
+    """A timeout says nothing about what RECAP holds, so it must not return a note.
+
+    Returning `("", "document retrieval failed: read timed out")` here is what let a
+    rate limit be written into the coverage census as though the archive had been
+    searched and come up empty.
+    """
+
+    def timing_out(_url):
+        raise TimeoutError("read timed out")
+
+    with pytest.raises(TransientRetrievalError):
+        fetch_complaint_text("1", FJC_ORIGIN_ORIGINAL_PROCEEDING, fetch_json=timing_out)
 
 
 def test_the_pleading_caveat_travels_with_the_text():

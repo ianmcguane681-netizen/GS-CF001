@@ -1,10 +1,177 @@
 {
+  "pool_fingerprint": "400013d2c9236944",
+  "pool_judgment": "1",
   "summary": {
     "assessed": 67,
+    "by_district": {
+      "alnd": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "azd": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "cacd": {
+        "assessed": 7,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "caed": {
+        "assessed": 3,
+        "with_complaint_text": 1,
+        "coverage": 0.3333
+      },
+      "cand": {
+        "assessed": 12,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "casd": {
+        "assessed": 2,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "cod": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "flmd": {
+        "assessed": 3,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "gand": {
+        "assessed": 7,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "ilnd": {
+        "assessed": 3,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "kywd": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "laed": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "mdd": {
+        "assessed": 2,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "med": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "mied": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "mnd": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "mowd": {
+        "assessed": 2,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "nced": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "njd": {
+        "assessed": 3,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "nvd": {
+        "assessed": 3,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "ohnd": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "ohsd": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "ord": {
+        "assessed": 2,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "txsd": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "utd": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "vaed": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "waed": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "wawd": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "wied": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "wiwd": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      }
+    },
+    "by_filing_year": {
+      "2017": {
+        "assessed": 1,
+        "with_complaint_text": 0,
+        "coverage": 0.0
+      },
+      "unknown": {
+        "assessed": 66,
+        "with_complaint_text": 1,
+        "coverage": 0.0152
+      }
+    },
     "pool_size_enumerated": 67,
     "pool_incomplete": null,
-    "joined": 65,
-    "on_study_suit_nature": 54,
+    "deferred": 0,
+    "joined": 66,
+    "on_study_suit_nature": 55,
     "with_complaint_text": 1,
     "reached_a_mechanism": 1,
     "mechanisms": [
@@ -397,20 +564,6 @@
       "suit_nature": "480 Consumer Credit",
       "case_name": "Sanchez v. Launch Technical Workforce Solutions, LLC",
       "complaint_note": "no document 1 text available in RECAP for this docket"
-    },
-    {
-      "docket": "8:17-cv-02052",
-      "court": "flmd",
-      "defendant": "RUSHMORE LOAN MANAGEMEN, ET AL",
-      "posture": "SUMMARY_JUDGMENT",
-      "origin": 1,
-      "joined": false,
-      "on_study_suit_nature": false,
-      "complaint_chars": 0,
-      "mechanism": "",
-      "stopped_at": "join failed: docket lookup failed: HTTP 429",
-      "suit_nature": "",
-      "case_name": ""
     },
     {
       "docket": "8:16-cv-00578",
@@ -1003,6 +1156,27 @@
       "suit_nature": "480 Consumer Credit",
       "case_name": "FULLER v. AVIS BUDGET CAR RENTAL, LLC",
       "complaint_note": "no document 1 text available in RECAP for this docket"
+    },
+    {
+      "docket": "8:17-cv-02052",
+      "court": "flmd",
+      "defendant": "RUSHMORE LOAN MANAGEMEN, ET AL",
+      "posture": "SUMMARY_JUDGMENT",
+      "direction": "AGAINST_RESPONDENT",
+      "origin": 1,
+      "date_filed": "2017-08-28",
+      "district": "https://www.courtlistener.com/api/rest/v4/courts/flmd/",
+      "judgment": 1,
+      "disposition": 6,
+      "joined": true,
+      "on_study_suit_nature": true,
+      "complaint_chars": 0,
+      "mechanism": "",
+      "stopped_at": "no document 1 text available in RECAP for this docket",
+      "suit_nature": "480 Consumer Credit",
+      "case_name": "Sullivan v. Rushmore Loan Management Services, LLC",
+      "complaint_note": "no document 1 text available in RECAP for this docket"
     }
-  ]
+  ],
+  "deferred": []
 }

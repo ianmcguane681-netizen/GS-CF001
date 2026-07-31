@@ -49,7 +49,7 @@ import urllib.parse
 import urllib.request
 from typing import Any, Callable
 
-from core.http_retry import retrying_urlopen
+from core.http_retry import TransientRetrievalError, is_transient, retrying_urlopen
 
 COURTLISTENER_SEARCH_URL = "https://www.courtlistener.com/api/rest/v4/search/"
 USER_AGENT = "GS-CF001/0.1 methodology proof"
@@ -139,18 +139,32 @@ class DocketJoinAdapter:
         return f"{COURTLISTENER_SEARCH_URL}?{urllib.parse.urlencode(params)}"
 
     def lookup(self, court_id: str, docket_number: str) -> dict[str, Any]:
-        """Return join fields for one case. Never raises: a failed join is a
-        recorded absence, because an unreachable lookup must not look the same as
-        a case that does not exist."""
+        """Return join fields for one case, or raise if the lookup never happened.
+
+        A failed join is a recorded absence, because an unreachable lookup must not
+        look the same as a case that does not exist. That rule was written here and
+        then broken by this method: an exhausted 429 returned
+        ``join failed: HTTP 429`` in the same field, and the same shape, as
+        ``no RECAP docket matched``. A census then skipped those rows on resume as
+        already assessed, and a rate limit became a permanent finding about archive
+        coverage.
+
+        So a transient failure raises `TransientRetrievalError` instead. It is not an
+        answer and it does not get to look like one.
+        """
 
         if not court_id or not docket_number:
             return _join_result(False, "insufficient join key")
         url = self.build_url(court_id, docket_number)
         try:
             payload, _headers, _status = self._fetch_json(url)
-        except urllib.error.HTTPError as exc:
-            return _join_result(False, f"docket lookup failed: HTTP {exc.code}")
-        except Exception as exc:  # noqa: BLE001 - recorded, never swallowed
+        except Exception as exc:  # noqa: BLE001 - recorded or re-raised, never swallowed
+            if is_transient(exc):
+                raise TransientRetrievalError(
+                    f"docket lookup for {court_id}/{docket_number} could not be completed: {exc}"
+                ) from exc
+            if isinstance(exc, urllib.error.HTTPError):
+                return _join_result(False, f"docket lookup failed: HTTP {exc.code}")
             return _join_result(False, f"docket lookup failed: {exc}")
         results = payload.get("results") or []
         if not results:
@@ -164,6 +178,7 @@ class DocketJoinAdapter:
         return {
             "join_verified": True,
             "join_note": "IDB case confirmed against a single RECAP docket.",
+            "join_retryable": False,
             "joined_case_name": row.get("caseName") or "",
             "joined_cause": row.get("cause") or "",
             "joined_suit_nature": suit_nature,
@@ -214,6 +229,10 @@ def fetch_complaint_text(
     Returns empty text whenever the document cannot be identified with certainty.
     RECAP coverage is contributed by users, so an absent document is an absence of
     information and never evidence that nothing was alleged.
+
+    Raises `TransientRetrievalError` when the retrieval itself could not be made.
+    "RECAP holds no complaint for this docket" and "the client was rate-limited" are
+    different facts, and only the first is about the archive.
     """
 
     if not str(docket_id).strip():
@@ -229,7 +248,11 @@ def fetch_complaint_text(
     url = f"{RECAP_DOCUMENTS_URL}?{urllib.parse.urlencode({'docket_entry__docket__id': docket_id, 'page_size': '20'})}"
     try:
         payload = (fetch_json or _default_fetch_json)(url)
-    except Exception as error:  # noqa: BLE001 - reported, never swallowed
+    except Exception as error:  # noqa: BLE001 - reported or re-raised, never swallowed
+        if is_transient(error):
+            raise TransientRetrievalError(
+                f"complaint retrieval for docket {docket_id} could not be completed: {error}"
+            ) from error
         return "", f"document retrieval failed: {error}"
 
     for row in payload.get("results") or []:
@@ -253,10 +276,13 @@ def _default_fetch_json(url: str) -> dict[str, Any]:
         return json.loads(response.read().decode("utf-8", errors="ignore"))
 
 
-def _join_result(verified: bool, note: str) -> dict[str, Any]:
+def _join_result(verified: bool, note: str, *, retryable: bool = False) -> dict[str, Any]:
     return {
         "join_verified": verified,
         "join_note": note,
+        # Present on every join result, true or false, so a consumer reading the
+        # field never has to infer "this was actually looked up" from its absence.
+        "join_retryable": retryable,
         "joined_case_name": "",
         "joined_cause": "",
         "joined_suit_nature": "",
@@ -280,11 +306,19 @@ def join_idb_record(
     That is what carries the mechanism: without it an adjudicated record classifies
     to the unclassified fallback and cannot corroborate anything, which is exactly
     where the review board left this study.
+
+    A transient failure is caught here rather than propagated, because a pipeline run
+    should not die because the API was busy. It is marked `join_retryable`, which
+    means "not looked up" and never "looked up and not found" -- a caller measuring
+    archive coverage must exclude these rather than count them as absences.
     """
 
     docket_number = pacer_docket_number(record.get("office"), record.get("docket_number"))
     court_id = court_id_from_district(record.get("district"))
-    result = adapter.lookup(court_id, docket_number)
+    try:
+        result = adapter.lookup(court_id, docket_number)
+    except TransientRetrievalError as error:
+        result = _join_result(False, f"lookup deferred: {error}", retryable=True)
     record.update(result)
     record["pacer_docket_number"] = docket_number
     record["join_court_id"] = court_id
@@ -292,10 +326,15 @@ def join_idb_record(
     text, note = "", "not attempted"
     if with_complaint_text and result.get("join_verified"):
         time.sleep(INTER_REQUEST_DELAY_SECONDS)
-        text, note = fetch_complaint_text(
-            result.get("joined_docket_id", ""), record.get("origin"), fetch_json=fetch_documents
-        )
+        try:
+            text, note = fetch_complaint_text(
+                result.get("joined_docket_id", ""), record.get("origin"), fetch_json=fetch_documents
+            )
+        except TransientRetrievalError as error:
+            note = f"complaint retrieval deferred: {error}"
+            record["complaint_text_retryable"] = True
     record["complaint_text"] = text
     record["complaint_text_note"] = note
+    record.setdefault("complaint_text_retryable", False)
     record["complaint_limitations"] = list(COMPLAINT_LIMITATIONS) if text else []
     return record

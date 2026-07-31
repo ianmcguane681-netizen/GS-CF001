@@ -18,12 +18,20 @@ a finding the review board can act on rather than a guess.
 Progress is written after every record. A rate limit or a timeout costs one record,
 not the run, and re-running resumes rather than starting again.
 
+It costs that record *temporarily*. An earlier version wrote the rate limit down as
+`join failed: HTTP 429` next to genuine absences, and the resume map then skipped the
+row as already assessed -- so a busy API silently became a permanent statement about
+what RECAP holds. Transient failures are now deferred rather than recorded: they are
+retried on the next run, and no summary is written while any remain outstanding.
+
     python -m tools.adjudication_coverage --limit 67
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import re
 import time
 import urllib.parse
 from pathlib import Path
@@ -38,6 +46,7 @@ from connectors.docket_join import (
 )
 from connectors.fjc_idb import FJCIDBAdapter, cites_fcra
 from core.adjudication import classify_fjc_disposition, establishes_occurrence
+from core.http_retry import TransientRetrievalError
 from verification.rules import DEFAULT_MECHANISM, detect_mechanism
 
 DEFAULT_OUTPUT = Path("analysis/adjudication_coverage.json")
@@ -92,8 +101,103 @@ def _resume_key(row: dict[str, Any]) -> str:
     return f"{row.get('court') or '?'}/{row.get('docket') or '?'}"
 
 
+# Rows written before transient failures were deferred rather than recorded. They
+# have no structured marker -- the whole defect was that the outcome survived only as
+# a sentence -- so repairing existing files means reading that sentence. Nothing
+# written from here on can match: transient failures no longer produce a row at all,
+# and this pattern is deliberately anchored to the wording the old code emitted.
+_TRANSIENT_WORDING = re.compile(
+    r"HTTP (?:429|502|503|504)\b|urlopen error|timed out|timeout", re.IGNORECASE
+)
+
+
+def _pool_key(record: dict[str, Any]) -> str:
+    """The same identity as `_resume_key`, derived from a raw IDB row."""
+
+    return _resume_key(
+        {
+            "court": court_id_from_district(record.get("district")),
+            "docket": pacer_docket_number(record.get("office"), record.get("docket_number")),
+        }
+    )
+
+
+def pool_fingerprint(records: list[dict[str, Any]]) -> str:
+    """Identify the population a results file was measured against.
+
+    A results file records *what was found*, never *what was searched*, so nothing in
+    it distinguishes 67 plaintiff-win cases from 67 mixed-strata cases. Resuming one
+    onto the other silently unions two populations, and the summary computes a
+    coverage rate over a denominator that never existed. This is that missing field.
+    """
+
+    digest = hashlib.sha256()
+    for key in sorted({_pool_key(record) for record in records}):
+        digest.update(key.encode("utf-8") + b"\n")
+    return digest.hexdigest()[:16]
+
+
+def _resume_from(
+    stored: dict[str, Any], pool_keys: set[str], fingerprint: str
+) -> tuple[dict[str, Any], str]:
+    """Decide whether an existing results file may be resumed against this pool.
+
+    Returns the resumable rows and, if the file belongs to a different population,
+    the reason it was refused. Refusing costs a re-walk; accepting wrongly produces a
+    number that reads as a measurement and is not one.
+    """
+
+    rows = stored.get("records") or []
+    if not rows:
+        return {}, ""
+
+    recorded = stored.get("pool_fingerprint")
+    if recorded and recorded != fingerprint:
+        return {}, (
+            f"results file was measured against pool {recorded}, this run enumerated "
+            f"{fingerprint}. Refusing to resume: the two are different populations and "
+            f"combining them would produce a coverage rate over a denominator that was "
+            f"never walked. Use a different --output."
+        )
+    if not recorded:
+        # Written before the fingerprint existed. Containment is the available check:
+        # if every stored row is in this pool, resuming adds to the same population.
+        strays = sorted({_resume_key(row) for row in rows} - pool_keys)
+        if strays:
+            return {}, (
+                f"results file has no recorded pool, and {len(strays)} of its "
+                f"{len(rows)} row(s) are absent from the pool this run enumerated "
+                f"(e.g. {', '.join(strays[:3])}). It was measured against a different "
+                f"population. Refusing to resume; use a different --output."
+            )
+
+    done = {_resume_key(row): row for row in rows if not _was_transient_failure(row)}
+    readmitted = len(rows) - len(done)
+    print(f"resuming: {len(done)} record(s) already assessed")
+    if readmitted:
+        print(f"  {readmitted} previously recorded as failures were transient; retrying them")
+    return done, ""
+
+
+def _was_transient_failure(row: dict[str, Any]) -> bool:
+    """Is this stored row a rate limit wearing an assessment's clothes?
+
+    Such a row must be dropped from the resume map and attempted again. Keeping it
+    counts "the client was throttled" as "RECAP does not hold this docket", which
+    understates archive coverage by exactly the number of requests the API refused.
+    """
+
+    text = " ".join(str(row.get(field) or "") for field in ("stopped_at", "complaint_note"))
+    return bool(_TRANSIENT_WORDING.search(text))
+
+
 def assess(record: dict[str, Any], join: DocketJoinAdapter) -> dict[str, Any]:
-    """Walk one record through every condition, recording where it stops."""
+    """Walk one record through every condition, recording where it stops.
+
+    Raises `TransientRetrievalError` if any step could not be attempted. That is not
+    a stopping point on the path -- it is the walk not happening -- and the caller
+    must defer the record rather than store a row saying where it stopped.
+    """
 
     docket_number = pacer_docket_number(record.get("office"), record.get("docket_number"))
     court_id = court_id_from_district(record.get("district"))
@@ -165,18 +269,9 @@ def main() -> int:
     args = parser.parse_args()
 
     output = Path(args.output)
-    done: dict[str, Any] = {}
+    stored_document: dict[str, Any] = {}
     if output.is_file():
-        # Keyed on court and docket together. A PACER docket number omits the court,
-        # so `2:20-cv-00294` exists in many districts at once; keying on it alone
-        # would silently skip every case after the first sharing a number. The
-        # 67-record run happened not to collide, but a ~430-record walk across
-        # ninety districts would, and the loss would look like completion.
-        done = {
-            _resume_key(row): row
-            for row in json.loads(output.read_text(encoding="utf-8"))["records"]
-        }
-        print(f"resuming: {len(done)} record(s) already assessed")
+        stored_document = json.loads(output.read_text(encoding="utf-8"))
 
     idb = FJCIDBAdapter()
     if not idb.token:
@@ -194,13 +289,18 @@ def main() -> int:
         # over a population that was never walked, and the file gives no hint.
         cached_judgment = cached.get("judgment", "1")
         if cached_judgment != args.judgment:
+            # This branch used to print and carry on, re-enumerating and then
+            # overwriting the cache -- which destroyed the enumerated pool the
+            # existing results were measured against. Detecting a mismatch and then
+            # proceeding is not a guard.
             print(
-                f"pool cache was built for judgment={cached_judgment!r}, this run wants "
-                f"{args.judgment!r}; re-enumerating rather than mixing strata"
+                f"pool cache {cache} was built for judgment={cached_judgment!r}, this run "
+                f"wants {args.judgment!r}. Refusing to overwrite it: pass --pool-cache "
+                f"with a different path so both strata survive."
             )
-        else:
-            records = cached["records"]
-            print(f"pool from cache: {len(records)} decided record(s) [judgment={cached_judgment}]")
+            return 2
+        records = cached["records"]
+        print(f"pool from cache: {len(records)} decided record(s) [judgment={cached_judgment}]")
     if not records:
         records, incomplete = fetch_establishing_records(idb, args.limit, judgment=args.judgment)
         print(f"decided records retrieved: {len(records)} [judgment={args.judgment}]")
@@ -214,23 +314,42 @@ def main() -> int:
             )
             print(f"pool cached to {cache} [judgment={args.judgment}]")
     records = records[: args.limit]
+    pool_keys = {_pool_key(record) for record in records}
+    fingerprint = pool_fingerprint(records)
+
+    done, resume_error = _resume_from(stored_document, pool_keys, fingerprint)
+    if resume_error:
+        print(resume_error)
+        return 2
 
     results = list(done.values())
+    deferred: list[dict[str, Any]] = []
+
+    def _write(payload: dict[str, Any]) -> None:
+        # The fingerprint goes on every write, including the refusals. A partial file
+        # is the one most likely to be resumed, so it is the one that most needs to
+        # say which population it belongs to.
+        output.parent.mkdir(parents=True, exist_ok=True)
+        document = {"pool_fingerprint": fingerprint, "pool_judgment": args.judgment, **payload}
+        output.write_text(json.dumps(document, indent=2) + "\n", encoding="utf-8")
+
     for index, record in enumerate(records, start=1):
-        key = _resume_key(
-            {
-                "court": court_id_from_district(record.get("district")),
-                "docket": pacer_docket_number(record.get("office"), record.get("docket_number")),
-            }
-        )
+        key = _pool_key(record)
         if key in done:
             continue
-        row = assess(record, join)
+        try:
+            row = assess(record, join)
+        except TransientRetrievalError as error:
+            # Deliberately not appended to `results`, and deliberately not keyed into
+            # `done`: the next run must attempt this record again. Writing it as an
+            # assessment is the defect this guard exists for.
+            deferred.append({"key": key, "reason": str(error)})
+            _write({"records": results, "deferred": deferred})
+            print(f"  [{index}/{len(records)}] {key} -> DEFERRED (will retry): {str(error)[:60]}")
+            time.sleep(5.0)
+            continue
         results.append(row)
-        output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(
-            json.dumps({"records": results}, indent=2) + "\n", encoding="utf-8"
-        )
+        _write({"records": results, "deferred": deferred})
         print(
             f"  [{index}/{len(records)}] {row['court']}/{row['docket']} "
             f"{(row['defendant'] or '')[:26]:<26} -> {row['stopped_at'][:52]}"
@@ -243,24 +362,41 @@ def main() -> int:
         # summary here would present a run that retrieved nothing as a finished
         # measurement -- the precise failure this repository keeps finding in its
         # own gates. The assessed records are kept; the claim is not made.
-        output.write_text(
-            json.dumps(
-                {
-                    "pool_incomplete": incomplete,
-                    "note": (
-                        "No summary: the occurrence-establishing pool could not be "
-                        "enumerated on this run, so the assessed records have no "
-                        "denominator. Re-run to complete."
-                    ),
-                    "records": results,
-                },
-                indent=2,
-            )
-            + "\n",
-            encoding="utf-8",
+        _write(
+            {
+                "pool_incomplete": incomplete,
+                "note": (
+                    "No summary: the occurrence-establishing pool could not be "
+                    "enumerated on this run, so the assessed records have no "
+                    "denominator. Re-run to complete."
+                ),
+                "records": results,
+                "deferred": deferred,
+            }
         )
         print(f"\nPOOL NOT ENUMERATED: {incomplete}")
         print(f"{len(results)} record(s) assessed, but with no denominator. Re-run to complete.")
+        return 2
+
+    if deferred:
+        # Same rule, applied to the numerator. A coverage rate computed while records
+        # remain unattempted understates coverage by exactly the number the API
+        # refused, and nothing in the file would say so. The measurement is not
+        # finished, so it is not published.
+        _write(
+            {
+                "note": (
+                    f"No summary: {len(deferred)} record(s) could not be retrieved on this "
+                    "run and were deferred rather than recorded. They are not absences, "
+                    "so the coverage rate would be understated. Re-run to complete."
+                ),
+                "pool_size_enumerated": len(records),
+                "records": results,
+                "deferred": deferred,
+            }
+        )
+        print(f"\nDEFERRED: {len(deferred)} record(s) could not be retrieved.")
+        print(f"{len(results)} of {len(records)} assessed. No summary written. Re-run to complete.")
         return 2
 
     def _rate(rows: list[dict[str, Any]]) -> dict[str, Any]:
@@ -281,15 +417,14 @@ def main() -> int:
         "by_filing_year": {k: _rate(v) for k, v in sorted(by_year.items())},
         "pool_size_enumerated": len(records),
         "pool_incomplete": incomplete or None,
+        "deferred": 0,
         "joined": sum(1 for r in results if r.get("joined")),
         "on_study_suit_nature": sum(1 for r in results if r.get("on_study_suit_nature")),
         "with_complaint_text": sum(1 for r in results if r.get("complaint_chars")),
         "reached_a_mechanism": len(reached),
         "mechanisms": sorted({r["mechanism"] for r in reached}),
     }
-    output.write_text(
-        json.dumps({"summary": summary, "records": results}, indent=2) + "\n", encoding="utf-8"
-    )
+    _write({"summary": summary, "records": results, "deferred": deferred})
     print("\n" + json.dumps(summary, indent=1))
     return 0
 

@@ -218,6 +218,23 @@ who chose to upload documents to RECAP, not on which cases were decided. That
 limitation is recorded in the FJC source reliability assessment and travels into
 every report and proof bundle, because it cannot be corrected by further retrieval.
 
+Measuring that selection means asking, case by case, whether RECAP holds a complaint.
+Most answers are "no", and the "no" is the measurement — which is exactly why a
+failure to *ask* must never be written down as one. An exhausted rate limit was
+recorded as `join failed: HTTP 429` beside genuine absences, and the resume map then
+skipped those rows as already assessed, so a busy afternoon became a permanent
+statement about archive coverage. Nine rows across two census files carried it.
+
+`core/http_retry.py` now distinguishes the two: a failure that could succeed later
+raises `TransientRetrievalError` rather than returning a note, the census defers the
+record instead of storing one, and no summary is written while any record remains
+unattempted. Files written before the rule are repaired on load.
+
+Results files also record `pool_fingerprint` — which population they were measured
+against. Without it a run resumed a plaintiff-strata file onto a mixed-strata pool
+sharing seven of sixty-seven cases, unioning two populations into one coverage rate.
+A results file that cannot say what was searched can only report what was found.
+
 ## Incumbent Pricing
 
 `market/pricing.py` answers what vendors *charge*, which is a different question
