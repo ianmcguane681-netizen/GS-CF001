@@ -1,78 +1,31 @@
 """Deterministic evidence qualification and mechanism rules.
 
-Generic credit-reporting vocabulary is not enough to establish an operational
-failure. Narrative evidence must describe both a process and an alleged
-failure. In the absence of a public narrative, only explicit CFPB taxonomy
-phrases that name a failed process can establish a taxonomy-limited signal.
+Generic vocabulary is not enough to establish an operational failure. Narrative evidence
+must describe both a process and an alleged failure. In the absence of a public
+narrative, only explicit taxonomy phrases that name a failed process can establish a
+taxonomy-limited signal.
+
+That rule is sector-neutral and stays here. The words it applies are not, and no longer
+do: term lists and mechanism rules now come from `sectors/`, and every function takes a
+pack defaulting to the registered sector. The module-level names below are kept as views
+onto the default pack because callers and tests import them, but they are no longer the
+only statement of the vocabulary.
 """
 from __future__ import annotations
 
 import re
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:  # pragma: no cover - import cycle: models.py imports contains_any
+    from sectors.models import SectorPack
 
 
-NARRATIVE_PROCESS_TERMS = [
-    "contacted",
-    "dispute",
-    "disputed",
-    "documentation",
-    "documents",
-    "evidence",
-    "investigation",
-    "proof",
-    "reinvestigation",
-    "remove",
-    "requested",
-    "response",
-    "submitted",
-]
+def _default_pack() -> "SectorPack":
+    """Resolved on call, not at import: `sectors` imports this module."""
 
-NARRATIVE_FAILURE_TERMS = [
-    "did not",
-    "failed",
-    "ignored",
-    "no response",
-    "not considered",
-    "not corrected",
-    "not fixed",
-    "not removed",
-    "rejected",
-    "refused",
-    "refuses",
-    "remained",
-    "still inaccurate",
-    "unresolved",
-]
+    from sectors import get
 
-# These phrases describe an operational step and an alleged failure in the
-# official structured taxonomy. Broad labels such as "Incorrect information on
-# your report" are deliberately absent.
-EXPLICIT_OPERATIONAL_TAXONOMY_PHRASES = [
-    "investigation into an existing problem",
-    "investigation did not fix an error",
-    "did not receive notice of the results",
-    "was not notified of investigation status or results",
-    "problem with fraud alerts or security freezes",
-]
-
-SOFTWARE_ADDRESSABLE_TERMS = [
-    "communication",
-    "dispute",
-    "document",
-    "evidence",
-    "investigation",
-    "notification",
-    "proof",
-    "response",
-    "resolution",
-    "status",
-    "timeline",
-]
-
-# Backward-compatible export for callers that import the former name. It now
-# represents process terms only and is never sufficient by itself.
-OPERATIONAL_TERMS = NARRATIVE_PROCESS_TERMS
-
-DEFAULT_MECHANISM = "unclassified_credit_reporting_complaint"
+    return get()
 
 
 def matched_terms(text: str, terms: list[str]) -> list[str]:
@@ -89,13 +42,21 @@ def contains_any(text: str, terms: list[str]) -> bool:
     return bool(matched_terms(text, terms))
 
 
-def operational_assessment(parsed_fields: dict[str, object]) -> tuple[bool, str, list[str]]:
-    """Determine whether a record identifies an operational failure and why."""
+def operational_assessment(
+    parsed_fields: dict[str, object], pack: "SectorPack | None" = None
+) -> tuple[bool, str, list[str]]:
+    """Determine whether a record identifies an operational failure and why.
 
+    The two-limb rule -- a narrative naming both a process and a failure, or an explicit
+    taxonomy phrase that names a failed process -- is the engine's, and applies to any
+    sector. Only the vocabulary changes.
+    """
+
+    pack = pack or _default_pack()
     narrative = str(parsed_fields.get("narrative") or "").strip()
     if narrative:
-        process_matches = matched_terms(narrative, NARRATIVE_PROCESS_TERMS)
-        failure_matches = matched_terms(narrative, NARRATIVE_FAILURE_TERMS)
+        process_matches = matched_terms(narrative, list(pack.process_terms))
+        failure_matches = matched_terms(narrative, list(pack.failure_terms))
         if process_matches and failure_matches:
             return True, "consumer_narrative_process_and_failure", sorted(
                 set(process_matches + failure_matches)
@@ -104,31 +65,52 @@ def operational_assessment(parsed_fields: dict[str, object]) -> tuple[bool, str,
     taxonomy = " ".join(
         str(parsed_fields.get(key) or "") for key in ("issue", "sub_issue")
     )
-    taxonomy_matches = matched_terms(taxonomy, EXPLICIT_OPERATIONAL_TAXONOMY_PHRASES)
+    taxonomy_matches = matched_terms(taxonomy, list(pack.taxonomy_phrases))
     if taxonomy_matches:
         return True, "explicit_cfpb_taxonomy_process_failure", taxonomy_matches
 
     return False, "operational_failure_not_established", []
 
 
-NOTIFICATION_TERMS = ["notification", "status", "communication", "response"]
-DATA_ERROR_TERMS = ["incorrect", "inaccurate", "not mine", "tradeline"]
-PERSISTENCE_TERMS = ["persist", "remain", "still"]
+def detect_mechanism(text: str, pack: "SectorPack | None" = None) -> str:
+    """Classify text to one of the sector's mechanisms, or to its fallback.
+
+    This was an if-ladder naming four credit-reporting mechanisms. The ordering and the
+    conditions are unchanged -- they now live in the pack as declared rules, and this
+    walks them. First match wins, exactly as the ladder's early returns did.
+    """
+
+    return (pack or _default_pack()).classify(text)
 
 
-def detect_mechanism(text: str) -> str:
-    process = set(matched_terms(text, NARRATIVE_PROCESS_TERMS))
-    failures = set(matched_terms(text, NARRATIVE_FAILURE_TERMS))
+def default_mechanism(pack: "SectorPack | None" = None) -> str:
+    """The sector's unclassified fallback.
 
-    if ({"dispute", "disputed"} & process) and ({"investigation", "reinvestigation"} & process):
-        return "bureau_dispute_reinvestigation_failure"
-    if ({"documentation", "documents", "evidence", "proof"} & process) and failures:
-        return "dispute_supporting_evidence_rejection"
-    # matched_terms rather than a plain `in`: substring matching classified
-    # "telecommunications" as "communication" and "distilled" as "still".
-    if contains_any(text, NOTIFICATION_TERMS) and failures:
-        return "investigation_outcome_notification_failure"
-    if contains_any(text, DATA_ERROR_TERMS):
-        if failures or contains_any(text, PERSISTENCE_TERMS):
-            return "furnisher_tradeline_data_error_persistence"
-    return DEFAULT_MECHANISM
+    Never compare two records by this value. Two records that both failed to classify
+    once matched each other on a shared fallback and produced a corroboration PASS from
+    evidence that had corroborated nothing.
+    """
+
+    return (pack or _default_pack()).default_mechanism
+
+
+def __getattr__(name: str) -> Any:
+    """Module constants, resolved from the default pack at access time.
+
+    Import-time resolution is impossible here -- `sectors` imports this module for
+    `contains_any` -- and a stale copy taken at import would silently diverge from the
+    pack if a caller ever switched sectors. These exist for the callers that predate
+    packs; new code should take a pack.
+    """
+
+    views = {
+        "DEFAULT_MECHANISM": lambda pack: pack.default_mechanism,
+        "NARRATIVE_PROCESS_TERMS": lambda pack: list(pack.process_terms),
+        "OPERATIONAL_TERMS": lambda pack: list(pack.process_terms),
+        "NARRATIVE_FAILURE_TERMS": lambda pack: list(pack.failure_terms),
+        "EXPLICIT_OPERATIONAL_TAXONOMY_PHRASES": lambda pack: list(pack.taxonomy_phrases),
+        "SOFTWARE_ADDRESSABLE_TERMS": lambda pack: list(pack.software_addressable_terms),
+    }
+    if name in views:
+        return views[name](_default_pack())
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
