@@ -26,6 +26,7 @@ import pytest
 from connectors.docket_join import DocketJoinAdapter, join_idb_record
 from core.http_retry import TransientRetrievalError, is_transient
 from tools.adjudication_coverage import (
+    DeferralBudget,
     _pool_key,
     _resume_from,
     _was_transient_failure,
@@ -198,6 +199,56 @@ class TestAResultsFileKnowsWhichPopulationItMeasured:
 
         assert error == ""
         assert list(done) == ["gand/1:19-cv-00679"]
+
+
+class TestTellingAPauseFromAWall:
+    """Deferring is right; deferring 330 times in a row is waste.
+
+    On the 430-record census the pattern was a cliff rather than a scatter: forty
+    records assessed with no deferral at all, then every subsequent request refused.
+    Continuing would have spent 330 more requests to learn nothing about 330 records.
+    """
+
+    def test_an_intermittent_deferral_does_not_stop_the_walk(self):
+        budget = DeferralBudget(limit=5)
+
+        for position in range(1, 4):
+            assert budget.record_deferral(position, 430) is False
+        assert budget.exhausted is False
+
+    def test_one_success_clears_the_run(self):
+        """A limit that clears is a pause. The counter must reset, or a run with a
+        deferral every fifth record would stop despite making steady progress."""
+
+        budget = DeferralBudget(limit=5)
+        for position in range(1, 5):
+            budget.record_deferral(position, 430)
+
+        budget.record_success()
+
+        assert budget.record_deferral(5, 430) is False
+        assert budget.consecutive == 1
+
+    def test_sustained_deferrals_stop_the_walk(self):
+        budget = DeferralBudget(limit=5)
+
+        outcomes = [budget.record_deferral(position, 430) for position in range(1, 6)]
+
+        assert outcomes == [False, False, False, False, True]
+        assert budget.exhausted is True
+
+    def test_the_stopping_reason_names_where_it_stopped(self):
+        """A run that halts without saying where cannot be resumed intelligently."""
+
+        budget = DeferralBudget(limit=2)
+        budget.record_deferral(1, 430)
+        budget.record_deferral(88, 430)
+
+        assert "88" in budget.reason and "430" in budget.reason
+        assert "sustained" in budget.reason
+
+    def test_a_fresh_budget_is_not_exhausted(self):
+        assert DeferralBudget().exhausted is False
 
 
 class TestThePublishedCensusFiles:

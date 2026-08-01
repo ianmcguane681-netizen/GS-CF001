@@ -235,6 +235,27 @@ against. Without it a run resumed a plaintiff-strata file onto a mixed-strata po
 sharing seven of sixty-seven cases, unioning two populations into one coverage rate.
 A results file that cannot say what was searched can only report what was found.
 
+### What the census can and cannot deliver
+
+The 67-case plaintiff-strata sweep is **complete**: every record walked, no deferrals,
+summary written. That is the measurement the study relies on, and the one the README
+quotes above.
+
+The wider 430-case census across both strata is **not complete and may not become so**.
+Its failure is a quota wall rather than intermittent throttling — eighty-seven records
+assessed with no deferral at all, then every subsequent request refused. A run now stops
+after five consecutive deferrals instead of converting the remaining records into
+deferrals at the cost of one request each:
+
+```text
+a rate limit that clears   is a pause      keep going
+a rate limit that does not is a budget     stop, and say how far you got
+```
+
+Completing it would need either a higher rate allowance or several sessions resuming the
+same fingerprinted file. Until then no summary exists for it, which is the correct state:
+the wider census has no coverage figure rather than a provisional one.
+
 ## Incumbent Pricing
 
 `market/pricing.py` answers what vendors *charge*, which is a different question
